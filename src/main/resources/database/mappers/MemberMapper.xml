@@ -6,4 +6,32 @@
  	<select id="getMemberList" resultType="MemberDTO">
  		SELECT * FROM MEMBER
  	</select>
+ 	<insert id="setMemberAdd" parameterType="MemberDTO">
+ 		INSERT INTO MEMBER VALUES(#{memberId},#{memberPw},#{memberEmail},#{memberPhone},#{memberAddress},0,'user')
+ 	</insert>
+ 	<select id="getMemberDetail" parameterType="MemberDTO" resultType="MemberDTO">
+ 		SELECT * FROM MEMBER WHERE memberId = #{memberId}
+ 	</select>
+ 	<update id="setMemberUpdate" parameterType="MemberDTO">
+ 		UPDATE MEMBER 
+ 		<trim prefix="SET" suffixOverrides=",">
+ 			memberId = #{memberId},
+ 			<if test="memberPw != ''">memberPw = #{memberPw},</if>
+ 			<if test="memberEmail != ''">memberEmail = #{memberEmail},</if>
+ 			<if test="memberPhone != ''">memberPhone = #{memberPhone},</if>
+ 			<if test="memberAddress != ''">memberAddress = #{memberAddress},</if>
+ 		</trim>
+ 		WHERE memberId = #{memberId}
+ 	</update>
+ 	<delete id="setMemberDelete" parameterType="MemberDTO">
+ 		DELETE MEMBER WHERE memberId = #{memberId}
+ 	</delete>
  </mapper>
+ 
+ <!-- 	private String memberId;
+	private String memberPw;
+	private String memberEmail;
+	private String memberPhone;
+	private String memberAddress;
+	private Integer memberHit;
+	private String memberRole; -->
