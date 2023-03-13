@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -53,7 +55,7 @@ public class MemberController {
 		if(result > 0) {
 			modelAndView.addObject("message", "회원 탈퇴가 완료되었습니다");
 		}else {
-			modelAndView.addObject("message", "회원 탈퇴오류 발생했습니다");
+			modelAndView.addObject("message", "회원 탈퇴 오류 발생했습니다");
 		}
 		modelAndView.addObject("url", "/");
 		modelAndView.setViewName("/common/result");
@@ -121,7 +123,7 @@ public class MemberController {
 		System.out.println(memberDTO.getMemberId());
 		System.out.println();
 		ModelAndView modelAndView = new ModelAndView();
-		if(cookieMemberId.equals("cookieMemberId")) {
+		if(cookieMemberId != null && cookieMemberId.equals("cookieMemberId")) {
 			Cookie cookie = new Cookie("cookieMemberId", memberDTO.getMemberId());
 			cookie.setPath("/");
 			cookie.setMaxAge(60*60*24*7);
@@ -200,13 +202,22 @@ public class MemberController {
 	
 	
 	
-	
-	
 	// -------------------------테스트 전용---------------------------------
+	
+	@Autowired
+	private MailSender mailSender;
+	
 	@GetMapping("/test")
 	public ModelAndView test() {
 		ModelAndView modelAndView = new ModelAndView();
 		
+		SimpleMailMessage smm = new SimpleMailMessage();
+		smm.setFrom("computer8857@gmail.com");
+		smm.setTo("leejuhu@nate.com");
+		smm.setSubject("안녕하세용!");
+		smm.setText("ㅎㅇㅎㅇ");
+		//mailSender.send(smm);
+			
 		modelAndView.setViewName("/member/test");
 		return modelAndView;
 	}

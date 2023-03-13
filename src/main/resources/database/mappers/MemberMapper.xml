@@ -3,6 +3,14 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.main.branch.member">
+  <!-- 	private String memberId;
+	private String memberPw;
+	private String memberEmail;
+	private String memberPhone;
+	private String memberAddress;
+	private Integer memberHit;
+	private String memberRole; -->
+	
  	<select id="getMemberList" resultType="MemberDTO">
  		SELECT * FROM MEMBER
  	</select>
@@ -28,10 +36,3 @@
  	</delete>
  </mapper>
  
- <!-- 	private String memberId;
-	private String memberPw;
-	private String memberEmail;
-	private String memberPhone;
-	private String memberAddress;
-	private Integer memberHit;
-	private String memberRole; -->

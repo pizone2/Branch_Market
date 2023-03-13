@@ -14,4 +14,25 @@
 		<!-- 전체 upload하는 파일 크기 -->
 		<property name="maxUploadSize" value="31457280" ></property>
 	</bean>
+	
+	<!-- 메일링 -->
+	<!-- gmail설정 -->
+	<bean id="mailSender2" class="org.springframework.mail.javamail.JavaMailSenderImpl"> 
+     <property name="host" value="smtp.gmail.com" />
+     <property name="port" value="587" />
+	 <property name="username" value="computer8857@gmail.com"/> <!-- 자신의 이메일 아이디 -->
+	 <property name="password" value="chnebixkhkyvuhfq"/> <!-- 자신의 api 비번 -->
+	 <!-- 보안연결 TLS과 관련된 설정 -->
+	     <property name="javaMailProperties">
+	    <props>
+			<prop key="mail.smtp.starttls.enable">true</prop>
+			<prop key="mail.smtp.auth">true </prop>
+			<prop key="mail.transport.protocol">smtp</prop>
+			<prop key="mail.debug">true</prop>
+			<prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
+			<prop key="mail.smtp.ssl.protocols">TLSv1.2</prop>
+		</props>
+     </property>
+	</bean>
+
 </beans>
