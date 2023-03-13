@@ -16,4 +16,16 @@ public class MemberDAO {
 	public List<MemberDTO> getMemberList(){
 		return sqlSession.selectList(NAMESPACE + "getMemberList");
 	}
+	public int setMemberAdd(MemberDTO memberDTO) {
+		return sqlSession.insert(NAMESPACE + "setMemberAdd", memberDTO);
+	}
+	public MemberDTO getMemberDetail(MemberDTO memberDTO) {
+		return sqlSession.selectOne(NAMESPACE + "getMemberDetail", memberDTO);
+	}
+	public int setMemberUpdate(MemberDTO memberDTO) {
+		return sqlSession.update(NAMESPACE + "setMemberUpdate", memberDTO);
+	}
+	public int setMemberDelete(MemberDTO memberDTO) {
+		return sqlSession.delete(NAMESPACE + "setMemberDelete", memberDTO);
+	}
 }
