@@ -21,7 +21,7 @@ public class Pager {
 	
 	public String getKind() {
 		if(kind == null) {
-			kind = "contents";
+			kind = "contentsContens";
 		}
 		return kind;
 	}
