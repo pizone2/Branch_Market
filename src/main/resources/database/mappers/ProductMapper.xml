@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.main.branch.product.ProductDAO">
+  
+  <select id="getProductCount" parameterType="Pager" resultType="Integer">
+  	SELECT COUNT(PRODUCTNUM) FROM PRODUCT
+  	
+  		<if test="kind == 'contents'">
+  			WHERE PRODUCTDETAIL LIKE '%' || #{search} || '%'
+  		</if>
+  		
+  		<if test="kind == 'title'">
+  			WHERE PRODUCTTITLE LIKE '%' || #{search} || '%'
+  		</if>
+  </select>
+  
+  <select id="getProductList" parameterType="Pager" resultType="ProductDTO">
+  	SELECT * FROM 
+  		(
+  			SELECT ROWNUM R, P.*FROM
+  				(
+  					SELECT * FROM PRODUCT
+  					WHERE
+  						<choose>
+  							<when test="kind == 'contents'">
+  								PRODUCTDETAIL
+  							</when>
+  							<otherwise>
+  								PRODUCTTITLE
+  							</otherwise>
+  						</choose>
+  					LIKE '%' || #{search} || '%'
+  					
+  					ORDER BY PRODUCTNUM DESC
+  				)P
+  		)
+  	WHERE R BETWEEN #{startRow} AND #{lastRow}
+  </select>
+  
+  <select id="getProductNum" resultType="Integer">
+  	SELECT SEQ_SEQ.NEXTVAL FROM DUAL
+  </select>
+  
+  <select id="getProductDetail" parameterType="ProductDTO" resultType="ProductDTO">
+  	SELECT * FROM PRODUCT
+  	WHERE PRODUCTNUM = #{productNum}
+  </select>
+  
+  <insert id="setProductAdd" parameterType="ProductDTO">
+  	<selectKey keyProperty="productNum" resultType="Integer" order="BEFORE">
+  		SELECT SEQ_SEQ.NEXTVAL FROM DUAL
+  	</selectKey>
+  	INSERT INTO PRODUCT
+  	VALUES(#{productNum}, #{productTitle}, #{productPrice}, #{productDetail}, #{productCategory}, #{productQ})
+  </insert>
+  
+  <delete id="setProductDelete" parameterType="ProductDTO">
+	DELETE PRODUCT
+	WHERE PRODUCTNUM = #{productNum}  
+  </delete>
+  
+  <update id="setProductUpdate" parameterType="ProductDTO">
+  	UPDATE PRODUCT SET PRODUCTTITLE = #{productTitle}, PRODUCTPRICE = #{productPrice}, PRODUCTDETAIL = #{productDetail}, PRODUCTCATEGORY = #{productCategory}, PRODUCTQ = #{productQ}
+  	WHERE PRODUCTNUM = #{productNum}
+  </update>
+  
+  </mapper>
