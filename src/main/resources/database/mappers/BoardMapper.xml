@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.main.branch.board.BoardDAO">
+ 
+ 	<select id="getTotalCount" resultType="Integer" parameterType="Pager">
+ 		SELECT COUNT(BOARDNUM) FROM BOARD
+ 	</select>
+ 
+ 	<select id="getBoardList" resultType="BoardDTO" parameterType="Pager">
+ 		SELECT * FROM (
+ 			SELECT ROWNUM R,B.* FROM(
+ 				SELECT BOARDNUM, MEMBERID, BOARDTITLE, BOARDWRITER, BOARDHIT, BOARDCATEGORY FROM BOARD 
+ 				ORDER BY BOARDNUM DESC
+ 				)B
+ 			)
+ 		WHERE R BETWEEN #{startRow} AND #{lastRow}
+ 	</select>
+ 	
+ 	<select id="getBoardDetail" parameterType="BoardDTO" resultType="BoardDTO" >
+ 		SELECT * FROM BOARD WHERE BOARDNUM=#{boardNum}
+ 	</select>
+ 	<insert id="setBoardAdd" parameterType="BoardDTO">
+ 		<selectKey keyProperty="boardNum" resultType="Integer" order="BEFORE">
+ 			SELECT SEQ.NEXTVAL FROM DUAL
+ 		</selectKey>
+ 		INSERT INTO BOARD VALUES(#{boardNum},#{boardTitle},#{boardContents},#{boardWriter},SYSDATE,0,#{boardState},#{boardCategory})
+ 	</insert>
+ 	
+ </mapper>

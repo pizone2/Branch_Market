@@ -4,21 +4,21 @@
   "https://mybatis.org/dtd/mybatis-3-config.dtd">
   
   <configuration>
-  	<typeAliases>
-  		<!-- ex )) <typeAlias type="com.iu.s1.product.ProductDTO" alias="ProductDTO"/> -->
-  		<typeAlias type="com.main.branch.board.BoardDTO" alias="BoardDTO"/>
-  		
-  		<typeAlias type="com.main.branch.product.ProductDTO" alias="ProductDTO"/>
-  		
-  		<typeAlias type="com.main.branch.review.ReviewDTO" alias="ReviewDTO"/>
-  		  		
-  		<typeAlias type="com.main.branch.member.MemberDTO" alias="MemberDTO"/>
-  		<typeAlias type="com.main.branch.inquiry.InquiryDTO" alias="InquiryDTO"/>
-  		
-  		<typeAlias type="com.main.branch.comments.CommentsDTO" alias="CommentsDTO"/>
-  		<typeAlias type="com.main.branch.commentsReply.CommentsReplyDTO" alias="CommentsReplyDTO"/>
-  		
-  		<typeAlias type="java.lang.Integer" alias="Integer"/>
-  		
-  	</typeAliases>
+     <typeAliases>
+        <!-- ex )) <typeAlias type="com.iu.s1.product.ProductDTO" alias="ProductDTO"/> -->
+        <typeAlias type="com.main.branch.board.BoardDTO" alias="BoardDTO"/>
+        
+        <typeAlias type="com.main.branch.product.ProductDTO" alias="ProductDTO"/>
+        
+        <typeAlias type="com.main.branch.review.ReviewDTO" alias="ReviewDTO"/>
+                
+        <typeAlias type="com.main.branch.member.MemberDTO" alias="MemberDTO"/>
+        <typeAlias type="com.main.branch.inquiry.InquiryDTO" alias="InquiryDTO"/>
+        
+        <typeAlias type="com.main.branch.comments.CommentsDTO" alias="CommentsDTO"/>
+        <typeAlias type="com.main.branch.commentsReply.CommentsReplyDTO" alias="CommentsReplyDTO"/>
+        <typeAlias type="com.main.branch.util.Pager" alias="Pager"/>
+        <typeAlias type="java.lang.Integer" alias="Integer"/>
+        
+     </typeAliases>
   </configuration>
