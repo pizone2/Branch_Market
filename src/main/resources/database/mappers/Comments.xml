@@ -48,21 +48,12 @@
 <!--TotalCount--> 
 	<select id="getTotalCount" resultType="Integer" parameterType="Pager">
   		SELECT COUNT(COMMENTSNUM) FROM COMMENTS
-  			<include refid="commentsCondition"></include>
+  			<!-- <include refid="commentsCondition"></include> -->
     	  
   	</select>
  
  
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+
  
  
  </mapper>

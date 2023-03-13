@@ -1,5 +1,6 @@
 package com.main.branch.comments;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -15,17 +16,13 @@ import com.main.branch.util.Pager;
 
 
 @Controller
-@RequestMapping("Comment/*")
+@RequestMapping("/comments/*")
 public class CommentsController {
 	
 	@Autowired
 	private CommentsService commentsService;
 	
-//Listtest
-	@GetMapping("test")
-	public void getCommentsList()throws Exception{
-		
-	}
+
 	
 //List
 	@GetMapping("list")
@@ -34,8 +31,22 @@ public class CommentsController {
 		
 		List<CommentsDTO> ar = commentsService.getCommentsList(pager);
 		
+//		//////////////// TEST /////////////////////
+//		List<CommentsDTO> ar = new ArrayList<CommentsDTO>();
+//		CommentsDTO dto1 = new CommentsDTO();
+//		dto1.setBoardNum(1);
+//		dto1.setCommentNum(1);
+//		dto1.setCommentContents("댓글1");
+//		ar.add(dto1);
+//		CommentsDTO dto2 = new CommentsDTO();
+//		dto2.setBoardNum(1);
+//		dto2.setCommentNum(2);
+//		dto2.setCommentContents("댓글2");
+//		ar.add(dto2);
+//		///////////////////////////////////////////
+		
 		mv.addObject("list", ar);
-		mv.setViewName("comments/list");
+		mv.setViewName("comments/comments");
 	
 		return mv;
 	}
