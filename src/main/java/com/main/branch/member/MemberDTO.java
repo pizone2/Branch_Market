@@ -8,7 +8,15 @@ public class MemberDTO {
 	private String memberAddress;
 	private Integer memberHit;
 	private String memberRole;
+	private String changeMemberPw;
 	
+	
+	public String getChangeMemberPw() {
+		return changeMemberPw;
+	}
+	public void setChangeMemberPw(String changeMemberPw) {
+		this.changeMemberPw = changeMemberPw;
+	}
 	public String getMemberId() {
 		return memberId;
 	}

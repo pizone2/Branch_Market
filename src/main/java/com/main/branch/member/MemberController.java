@@ -3,6 +3,7 @@ package com.main.branch.member;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -46,6 +47,96 @@ public class MemberController {
 		modelAndView.setViewName("/member/list");
 		return modelAndView;
 	}
+	
+	// --------------------- findPw
+	@GetMapping("/member/findPw")
+	public ModelAndView getMemberFindPw() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("/member/findPw");
+		return modelAndView;
+	}
+	
+	// memberId, email 입력받음
+	@PostMapping("/member/findPw")
+	public ModelAndView getMemberFindPw(MemberDTO memberDTO) {
+		ModelAndView modelAndView = new ModelAndView();
+		String message = "";
+		String url = "/";
+		int result = memberService.getMemberFindPw(memberDTO);
+		if(result > 0) {
+			message = "이메일에 비밀번호를 성공적으로 보냄!";
+		}else {
+			message = "존재하지 않는 아이디 또는 이메일 입니다";
+			url = "./findPw";
+		}
+		
+		modelAndView.addObject("message", message);
+		modelAndView.addObject("url", url);
+		modelAndView.setViewName("/common/result");
+		
+		return modelAndView;
+	}
+	
+	// --------------------- findID
+	@GetMapping("/member/findId")
+	public ModelAndView getMemberFindId() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("/member/findId");
+		return modelAndView;
+	}
+	
+	@PostMapping("/member/findId")
+	public ModelAndView getMemberFindId(MemberDTO memberDTO) {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		int result = memberService.getMemberFindId(memberDTO);
+		if(result > 0) {
+			modelAndView.addObject("message", "이메일에 아이디 성공적으로 보냄!");
+		}else {
+			modelAndView.addObject("message", "이메일에 아이디를 보내지 못함!");
+		}
+		
+		modelAndView.addObject("url", "/");
+		modelAndView.setViewName("/common/result");
+		
+		return modelAndView;
+	}
+	
+	// --------------------- updatePw
+	@GetMapping("/updatePw")
+	public ModelAndView setMemberUpdatePw(){
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("/member/updatePw");
+		return modelAndView;
+	}
+	
+	@PostMapping("/updatePw")
+	public ModelAndView setMemberUpdatePw(MemberDTO memberDTO){
+		ModelAndView modelAndView = new ModelAndView();
+		MemberDTO memberDTO2 = (MemberDTO) httpSession.getAttribute("member");
+		
+		String message = "";
+		String url = "/";
+		if(memberDTO2 == null) {
+			message = "로그인 먼저 하세요";
+			url = "./login";
+		}else {
+			memberDTO.setMemberId(memberDTO2.getMemberId());
+			int result = memberService.setMemberUpdatePw(memberDTO);
+			if(result > 0) {
+				message = "비밀번호 업데이트 완료!";
+			}else {
+				message = "비밀번호 업데이트 실패!";
+				url = "./updatePw";
+			}
+		}
+		
+		modelAndView.addObject("message", message);
+		modelAndView.addObject("url", url);
+		modelAndView.setViewName("/common/result");
+		return modelAndView;
+	}
+	
 	// --------------------- memberDelete
 	@PostMapping("/delete")
 	public ModelAndView setMemberDelete(MemberDTO memberDTO) {
@@ -120,13 +211,15 @@ public class MemberController {
 	}
 	@PostMapping("/login")
 	public ModelAndView setMemberLogin(MemberDTO memberDTO,String cookieMemberId) {
-		System.out.println(memberDTO.getMemberId());
-		System.out.println();
 		ModelAndView modelAndView = new ModelAndView();
+		Cookie cookie = new Cookie("cookieMemberId", memberDTO.getMemberId());
 		if(cookieMemberId != null && cookieMemberId.equals("cookieMemberId")) {
-			Cookie cookie = new Cookie("cookieMemberId", memberDTO.getMemberId());
 			cookie.setPath("/");
 			cookie.setMaxAge(60*60*24*7);
+			response.addCookie(cookie);
+		}else {
+			cookie.setMaxAge(0);
+			cookie.setPath("/");
 			response.addCookie(cookie);
 		}
 		

@@ -6,8 +6,16 @@ public class Pager {
 	private Integer bookNumber;
 	private Integer boardNum;
 	private Integer commentsNum;
-
+	private String category;
 	
+	
+	
+	public String getCategory() {
+		return category;
+	}
+	public void setCategory(String category) {
+		this.category = category;
+	}
 	public Integer getCommentsNum() {
 		return commentsNum;
 	}

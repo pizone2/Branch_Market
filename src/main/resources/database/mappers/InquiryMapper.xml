@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.main.branch.inquiry.InquiryDAO">
+	 <sql id="listSearchCondition">
+ 			WHERE
+	 		<choose>
+		 		 <when test="kind == 'inquiryTitle'">
+		 		 	inquiryTitle 
+		 		 </when>
+		 		 <otherwise>
+		 		 	inquiryDetail 
+		 		 </otherwise>
+	 		</choose>
+	 		LIKE '%' || #{search} || '%'
+	 		AND
+	 		<choose>
+	 		<!-- - 여성패션
+
+- 남성패션
+- 가구/인테리어
+- 생활/주방
+- 가전제품
+- 전자기기(디지털,컴퓨터)
+- E쿠폰/티켓 -->
+	 		</choose>
+ 	</sql>
+ 	<select id="getInquiryList" parameterType="Pager" resultType="InquiryDTO">
+ 		SELECT * FROM(
+		SELECT ROWNUM R,A.*
+			FROM(
+				SELECT * FROM Inquiry <include refid="listSearchCondition"></include> 
+			) A
+		)
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
+ 	</select>
+ </mapper>

@@ -18,6 +18,8 @@
   		<typeAlias type="com.main.branch.comments.CommentsDTO" alias="CommentsDTO"/>
   		<typeAlias type="com.main.branch.commentsReply.CommentsReplyDTO" alias="CommentsReplyDTO"/>
   		<typeAlias type="com.main.branch.util.Pager" alias="Pager"/>
+  		
+  		<typeAlias type="java.lang.String" alias="String"/>
   		<typeAlias type="java.lang.Integer" alias="Integer"/>
   		
   	</typeAliases>

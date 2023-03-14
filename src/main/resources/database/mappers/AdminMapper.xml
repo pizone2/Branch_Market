@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.main.branch.admin.AdminDAO">
+ 
+ <!-- 이름 또는 주소-->
+ 	<sql id="listSearchCondition">
+ 			WHERE
+	 		<choose>
+		 		 <when test="kind == 'memberId'">
+		 		 	memberId 
+		 		 </when>
+		 		 <otherwise>
+		 		 	memberAddress 
+		 		 </otherwise>
+	 		</choose>
+	 		LIKE '%' || #{search} || '%'
+ 	</sql>
+ 	<select id="getMemberList" parameterType="Pager" resultType="MemberDTO">
+ 		SELECT * FROM(
+		SELECT ROWNUM R,A.*
+			FROM(
+				SELECT * FROM MEMBER <include refid="listSearchCondition"></include> 
+			) A
+		)
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
+ 	</select>
+ 	<select id="getMemberCount" parameterType="Pager" resultType="Integer">
+ 		SELECT COUNT(memberId) FROM MEMBER <include refid="listSearchCondition"></include>
+ 	</select>
+ 	<insert id="setAdminAdd" parameterType="MemberDTO">
+ 		INSERT INTO MEMBER VALUES(#{memberId},#{memberPw},#{memberEmail},#{memberPhone},#{memberAddress},0,'admin')
+ 	</insert>
+ </mapper>

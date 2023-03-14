@@ -11,7 +11,14 @@ public class MemberDAO {
 	
 	@Autowired
 	private SqlSession sqlSession;
-	private final String NAMESPACE = "com.main.branch.member.";
+	private final String NAMESPACE = "com.main.branch.member.MemberDAO.";
+	
+	public String getMemberFindId(MemberDTO memberDTO) {
+		return sqlSession.selectOne(NAMESPACE + "getMemberFindId", memberDTO);
+	}
+	public int setMemberUpdatePw(MemberDTO memberDTO) {
+		return sqlSession.update(NAMESPACE + "setMemberUpdatePw", memberDTO);
+	}
 	
 	public List<MemberDTO> getMemberList(){
 		return sqlSession.selectList(NAMESPACE + "getMemberList");

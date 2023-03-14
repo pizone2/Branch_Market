@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
- <mapper namespace="com.main.branch.member">
+ <mapper namespace="com.main.branch.member.MemberDAO">
   <!-- 	private String memberId;
 	private String memberPw;
 	private String memberEmail;
@@ -11,11 +11,19 @@
 	private Integer memberHit;
 	private String memberRole; -->
 	
+	<select id="getMemberFindId" parameterType="MemberDTO" resultType="String">
+		SELECT memberId FROM MEMBER WHERE memberEmail = #{memberEmail}
+	</select>
+	
+	<update id="setMemberUpdatePw" parameterType="MemberDTO">
+		UPDATE MEMBER SET memberPw = #{changeMemberPw} WHERE memberId = #{memberId} AND memberPw = #{memberPw}
+	</update>
+	
  	<select id="getMemberList" resultType="MemberDTO">
  		SELECT * FROM MEMBER
  	</select>
  	<insert id="setMemberAdd" parameterType="MemberDTO">
- 		INSERT INTO MEMBER VALUES(#{memberId},#{memberPw},#{memberEmail},#{memberPhone},#{memberAddress},0,'user')
+ 		INSERT INTO MEMBER VALUES(#{memberId},#{memberPw},#{memberEmail},#{memberPhone},#{memberAddress},0,'member')
  	</insert>
  	<select id="getMemberDetail" parameterType="MemberDTO" resultType="MemberDTO">
  		SELECT * FROM MEMBER WHERE memberId = #{memberId}

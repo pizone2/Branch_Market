@@ -13,7 +13,7 @@
     <form action="./login" method="post">
         아이디 <input type="text" name="memberId" id="memberId" value="${cookie.cookieMemberId.value}">
         비밀번호 <input type="password" name="memberPw" id="memberPw" placeholder="10 ~ 20 자리로 입력 해주세요">
-        아이디 저장<input type="checkbox" name="cookieMemberId" value="cookieMemberId" id="">
+        아이디 저장<input type="checkbox" name="cookieMemberId" value="cookieMemberId" id="" checked>
         <input type="submit" value="로그인">
     </form>
 
