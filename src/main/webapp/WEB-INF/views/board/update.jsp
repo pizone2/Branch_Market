@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Board add</title>
+<title>Board update</title>
 <c:import url="../template/common_css.jsp"></c:import>
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
@@ -13,24 +13,25 @@
 <body>
 <div class="container-fluid my-5">
 	<div class="row mb-4 ">
-		<h1 class="col-md-7 mx-auto text-center border-bottom border-dark pb-4">Board Add Page</h1>
+		<h1 class="col-md-7 mx-auto text-center border-bottom border-dark pb-4">Board Update Page</h1>
 	</div>
 	<div class="row col-md-7 mx-auto">
-		<form action="./add" method = "post" enctype="multipart/form-data">
+		<form action="./update" method = "post" enctype="multipart/form-data">
+			<input type="hidden" name="boardNum" value="${dto.boardNum}">
 	    	<div class="row">
 	        	<div class="fw-bold fs-5 col-12">
 	           		<p>작성자</p>
-	           		<input type="text" name="boardWriter" class="form-control" id="boardWriter" placeholder="이름 입력"><br>
+	           		<input type="text" name="writer" readonly="readonly" value="${dto.boardWriter}" class="form-control" id="writer" placeholder="이름 입력"><br>
 	        	</div>
 	         	<div class="fw-bold fs-5 col-12">
 	            	<p>제목</p>
 	            	<div class="fw-bold fs-5 col-12">
-		        	 	<input type="radio" class="btn-check" name="options" vlaue="판매" id="option1" autocomplete="off" checked>
 						<label class="btn btn-outline-success" for="option1">판매</label>
-						<input type="radio" class="btn-check" name="options" vlaue="구매" id="option2" autocomplete="off">
+		        	 	<input type="radio" class="btn-check" ${dto.boardState eq "판매"? 'checked':''} name="options" vlaue="판매" id="option1" autocomplete="off" checked>
 						<label class="btn btn-outline-success" for="option2">구매</label>
+						<input type="radio" class="btn-check" ${dto.boardState eq "구매"? 'checked':''} name="options" vlaue="구매" id="option2" autocomplete="off">
 					</div>
-	            	<input type="text" name="title" class="form-control my-2" id="boardTitle" placeholder="제목 입력"><br>
+	            	<input type="text" name="title" class="form-control my-2" value="${dto.boardTitle}" id="title" placeholder="제목 입력"><br>
 	        	 </div>
 	        	 <div class="fw-bold fs-5 col-12">
 		            <p>카테고리</lp>
@@ -43,7 +44,7 @@
 		         </div>
 		         <div class="fw-bold fs-5 col-12 my-4">
 		            <p>내용</lp>
-		            <textarea name="boardContents" class="form-control my-2" id="boardContents" rows="8" placeholder="내용 입력"></textarea><br>
+		            <textarea name="contents" class="form-control my-2" id="boardContents" rows="8" placeholder="내용 입력">${dto.boardContents}</textarea><br>
 		         </div>
 		       
 		         <div class="row justify-content-center my-5">

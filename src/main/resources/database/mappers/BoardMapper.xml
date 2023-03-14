@@ -3,15 +3,30 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.main.branch.board.BoardDAO">
+ 	<sql id="boardCondition">
+ 		<where>
+ 			<if test="kind=='title'">
+ 				BOARDTITLE LIKE '%' || #{search} ||'%'
+ 			</if>
+ 			<if test="kind=='contents'">
+ 				BOARDCONTENS LIKE '%' || #{search} || '%'
+ 			</if>
+ 			<if test="kind=='writer'">
+ 				BOARDWRITER LIKE '%' || #{search} || '%'
+ 			</if>
+ 		</where>
+ 	</sql>
  
  	<select id="getTotalCount" resultType="Integer" parameterType="Pager">
  		SELECT COUNT(BOARDNUM) FROM BOARD
+ 		<include refid="boardCondition"></include>
  	</select>
  
  	<select id="getBoardList" resultType="BoardDTO" parameterType="Pager">
  		SELECT * FROM (
  			SELECT ROWNUM R,B.* FROM(
  				SELECT BOARDNUM, MEMBERID, BOARDTITLE, BOARDWRITER, BOARDHIT, BOARDCATEGORY FROM BOARD 
+ 				<include refid="boardCondition"></include>
  				ORDER BY BOARDNUM DESC
  				)B
  			)
@@ -21,11 +36,21 @@
  	<select id="getBoardDetail" parameterType="BoardDTO" resultType="BoardDTO" >
  		SELECT * FROM BOARD WHERE BOARDNUM=#{boardNum}
  	</select>
+ 	
  	<insert id="setBoardAdd" parameterType="BoardDTO">
  		<selectKey keyProperty="boardNum" resultType="Integer" order="BEFORE">
  			SELECT SEQ.NEXTVAL FROM DUAL
  		</selectKey>
- 		INSERT INTO BOARD VALUES(#{boardNum},#{boardTitle},#{boardContents},#{boardWriter},SYSDATE,0,#{boardState},#{boardCategory})
+ 		INSERT INTO BOARD VALUES(#{boardNum},'',#{boardTitle},#{boardContents},#{boardWriter},SYSDATE,0,#{boardState},#{boardCategory})
  	</insert>
+ 	
+ 	<delete id="setBoardDelete" parameterType="BoardDTO">
+ 		DELETE BOARD WHERE BOARDNUM=#{boardNum}
+ 	</delete>
+ 	
+ 	<update id="setBoardUpdate" parameterType="BoardDTO">
+ 		UPDATE BOARD SET BOARDTITLE=#{boardTitle}, BOARDCONTENTS=#{boardContents}, BOARDSTATE=#{boardState}, BOARDCATEGORY=#{boardCategory} 
+ 		WHERE BOARDNUM=#{boardNum}
+ 	</update>
  	
  </mapper>
