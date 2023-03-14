@@ -13,10 +13,8 @@
 <!--  -->
 <table class="table table-striped">
 	<c:forEach items="${list}" var="dto"> 
-		<tr>
+		<tr id="${dto.commentsNum}">
 			
-			
-		</td>
 		<td>${dto.commentsNum}</td>
 		<td>${dto.boardNum}</td>
 		<td>${dto.memberId}</td>	
@@ -29,6 +27,8 @@
 			
 			
 			<button class="btn btn-info update" data-bs-toggle="modal" data-bs-target="#contentsModal" data-comment-num="${dto.commentsNum}">UPDATE</button>
+
+			<button class="btn btn rep" id="rep" data-comment-num="${dto.commentsNum}">답글달기</button>
 			
 		</td>	
 	</c:forEach>
@@ -37,7 +37,7 @@
 	<input class="w-100 form-control" id="newReplyText"type="text" placeholder="댓글입력...">
 </div>
 <div class="col-3 ">
-	<button type="button" id="replyAddBtn"class="btn btn-success mb-1 write_reply">댓글&nbsp;달기</button>
+	<button type="button" id="replyAddBtn"class="btn btn-success mb-1 write_reply">등록</button>
 </div>
 
 

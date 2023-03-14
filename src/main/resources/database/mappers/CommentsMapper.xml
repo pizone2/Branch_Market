@@ -49,7 +49,7 @@
 <!--ADD--> 
 	<insert id="setCommentsAdd" parameterType="CommentsDTO">
 		INSERT INTO COMMENTS 
-		VALUES (SEQ.NEXTVAL,#{boardNum},#{memberId},#{commentsContens},SYSDATE)	
+		VALUES (SEQ.NEXTVAL,#{boardNum},#{memberId},#{commentsContents},SYSDATE)	
 	</insert>
  
  
