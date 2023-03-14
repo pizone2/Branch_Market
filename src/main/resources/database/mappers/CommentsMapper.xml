@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+ <mapper namespace="com.main.branch.comments.CommentsDAO">
+ 	 <sql id="commentsCondition">
+  		<trim prefix="where" suffixOverrides="and" >
+    		BOARDNUM = #{boardNum} AND
+    		
+    		<if test="kind == 'contentsContens'">
+    			COMMENTSCONTENS LIKE '%' ||#{search}|| '%'
+    		</if>
+    		
+    		<if test="kind == 'memberId'">
+    			MEMBERID LIKE '%' ||#{search}|| '%'
+    		</if>
+    	</trim>
+  	</sql>
+ 
+<!--TotalCount--> 
+	<select id="getTotalCount" resultType="Integer">
+  		SELECT COUNT(COMMENTSNUM) FROM COMMENTS
+  			<!-- <include refid="commentsCondition"></include> -->
+    	  
+  	</select>
+<!--List-->
+	<select id="getCommentsList" resultType="CommentsDTO" parameterType="Pager">
+		SELECT * FROM
+	  		(
+		  		SELECT ROWNUM R, C.* FROM 
+			  		(	
+			  			SELECT * FROM COMMENTS
+			  			<include refid="commentsCondition"></include>
+			  			ORDER BY COMMENTSNUM DESC
+			  		)C
+	  		)
+	  	WHERE R BETWEEN #{startRow} AND #{lastRow} 
+	</select>
+<!--Update-->  
+	<update id="setCommentsUpdate" parameterType="CommentsDTO">
+	  	UPDATE COMMENTS SET COMMENTSCONTENS=#{commentsContens}
+	  	WHERE COMMENTSNUM=#{commentsNum}
+	</update>
+<!--Delete--> 
+	<delete id="setCommentsDelete" parameterType="CommentsDTO">
+  		DELETE COMMENTS WHERE COMMENTSNUM=#{commentsNum}
+  	</delete>	
+<!--ADD--> 
+	<insert id="setCommentsAdd" parameterType="CommentsDTO">
+		INSERT INTO COMMENTS 
+		VALUES (SEQ.NEXTVAL,#{boardNum},#{memberId},#{commentsContens},SYSDATE)	
+	</insert>
+ 
+ 
+
+ 
+ 
+ </mapper>
