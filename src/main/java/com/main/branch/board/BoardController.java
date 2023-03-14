@@ -11,6 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.main.branch.util.Pager;
 
+import oracle.jdbc.proxy.annotation.Post;
+
 @Controller
 @RequestMapping("/board/*")
 public class BoardController {
@@ -30,7 +32,7 @@ public class BoardController {
 	public ModelAndView getBoardDetail(BoardDTO boardDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		boardDTO = boardService.getBoardDetail(boardDTO);
-		mv.addObject("detail", boardDTO);
+		mv.addObject("dto", boardDTO);
 		mv.setViewName("board/detail");
 		return mv;
 	}
@@ -51,6 +53,36 @@ public class BoardController {
 		}
 		mv.addObject("result", message);
 		mv.addObject("url", "./list");
+		mv.setViewName("common/result");
+		return mv;
+	}
+	
+	@GetMapping("delete")
+	public ModelAndView setBoardDelete(BoardDTO boardDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = boardService.setBoardDelete(boardDTO);
+		String message = "삭제 실패";
+		if(result>0) {
+			message = "게시물이 삭제되었습니다";
+		}
+		mv.addObject("result", message);
+		mv.addObject("url", "./list");
+		mv.setViewName("common/result");
+		return mv;
+	}
+	
+	@GetMapping("update")
+	public ModelAndView setBoardUpdate(BoardDTO boardDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		boardDTO = boardService.getBoardDetail(boardDTO);
+		mv.addObject("dto", boardDTO);
+		mv.setViewName("board/update");
+		return mv;
+	}
+	
+	@PostMapping("update")
+	public ModelAndView setBoardUpdate(BoardDTO boardDTO, ModelAndView mv) throws Exception{
+		int result = boardService.setBoardUpdate(boardDTO);
 		mv.setViewName("common/result");
 		return mv;
 	}
