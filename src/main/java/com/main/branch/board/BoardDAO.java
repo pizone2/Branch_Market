@@ -27,7 +27,16 @@ public class BoardDAO {
 	}
 	
 	public int setBoardAdd(BoardDTO boardDTO) throws Exception{
+		System.out.println(boardDTO.getBoardNum());
 		return sqlSession.insert(NAMESPACE+"setBoardAdd", boardDTO);
+	}
+	
+	public int setBoardDelete(BoardDTO boardDTO) throws Exception{
+		return sqlSession.delete(NAMESPACE+"setBoardDelete", boardDTO);
+	}
+	
+	public int setBoardUpdate(BoardDTO boardDTO) throws Exception{
+		return sqlSession.update(NAMESPACE+"setBoardUpdate", boardDTO);
 	}
 
 }

@@ -9,7 +9,7 @@ public class BoardDTO {
 	private String boardWriter;
 	private String boardDate;
 	private Integer boardHit;
-	private String boardOriName;
+	private String boardState;
 	private String boardCategory;
 	public Integer getBoardNum() {
 		return boardNum;
@@ -47,11 +47,11 @@ public class BoardDTO {
 	public void setBoardHit(Integer boardHit) {
 		this.boardHit = boardHit;
 	}
-	public String getBoardOriName() {
-		return boardOriName;
+	public String getBoardState() {
+		return boardState;
 	}
-	public void setBoardOriName(String boardOriName) {
-		this.boardOriName = boardOriName;
+	public void setBoardState(String boardState) {
+		this.boardState = boardState;
 	}
 	public String getBoardCategory() {
 		return boardCategory;
@@ -59,6 +59,5 @@ public class BoardDTO {
 	public void setBoardCategory(String boardCategory) {
 		this.boardCategory = boardCategory;
 	}
-	
 	
 }
