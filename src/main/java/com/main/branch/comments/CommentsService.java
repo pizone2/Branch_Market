@@ -34,7 +34,7 @@ public class CommentsService {
 	}
 
 	
-	public int setCommentsAdd(CommentsDTO commentsDTO, MultipartFile[] multipartFiles, HttpSession session) throws Exception {
+	public int setCommentsAdd(CommentsDTO commentsDTO, HttpSession session) throws Exception {
 		return commentsDAO.setCommentsAdd(commentsDTO);
 	}
 

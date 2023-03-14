@@ -6,44 +6,44 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<c:import url="../template/common_css.jsp"></c:import>
 </head>
 <body>
 
-
-<!-- 댓글  -->
-<c:forEach items="${list}" var="dto">
-<div class="collapse" id="reply_card${dto.commentNum }">
-    <section class="modal-section">
-        <div class="card card-body">
-            <!-- 댓글 목록 -->
-            <div class="reply-list reply-list${dto.commentNum }">
-                <!-- 댓글이 목록이 들어가는 곳 -->
-            </div>
-            <!-- 댓글 작성 => 로그인한 상태여야만 댓글작성 칸이 나온다. -->
-            <%-- <c:if test="${not empty sessionScope.nick }"> --%>
-                <div class="row reply_write">
-                    <div class="col-1">
-                        <a href="other_profile.do?other_nick=${dto.memberId }">
-                            <img id="write_reply_profileImage" />
-                                <%-- src="./upload/profile/${sessionScope.profile }" /> --%>
-                        </a>
-                    </div>
-                    <div class="col-8" class="input_reply_div">
-                        <input class="w-100 form-control" id="input_reply${dto.commentNum}"
-                            type="text" placeholder="댓글입력...">
-                    </div>
-                    <div class="col-3 ">
-                        <button type="button" idx="${dto.commentNum }"
-                            class="btn btn-success mb-1 write_reply">댓글&nbsp;달기</button>
-                    </div>
-                </div>
-            <%-- </c:if> --%>
-        </div>
-    </section>
+<!--  -->
+<table class="table table-striped">
+	<c:forEach items="${list}" var="dto"> 
+		<tr>
+			
+			
+		</td>
+		<td>${dto.commentsNum}</td>
+		<td>${dto.boardNum}</td>
+		<td>${dto.memberId}</td>	
+		<td>${dto.commentsContents}</td>	
+		<td>${dto.commentsRegDate}</td>
+		
+		<td>
+			
+			<button class="btn btn-danger del" id="del" data-comment-num="${dto.commentsNum}">DELETE</button>		
+			
+			
+			<button class="btn btn-info update" data-bs-toggle="modal" data-bs-target="#contentsModal" data-comment-num="${dto.commentsNum}">UPDATE</button>
+			
+		</td>	
+	</c:forEach>
+</table>
+<div class="col-8" class="input_reply_div">
+	<input class="w-100 form-control" id="newReplyText"type="text" placeholder="댓글입력...">
 </div>
-</c:forEach>
+<div class="col-3 ">
+	<button type="button" id="replyAddBtn"class="btn btn-success mb-1 write_reply">댓글&nbsp;달기</button>
+</div>
 
 
 
+<!-- <script src="/src/main/webapp/resources/js/comments/comments.js"></script> -->
+<script src="../resources/js/comments/comments.js"></script>
+<c:import url="../template/common_js.jsp"></c:import>
 </body>
 </html>

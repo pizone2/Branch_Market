@@ -31,7 +31,7 @@
 		  		SELECT ROWNUM R, C.* FROM 
 			  		(	
 			  			SELECT * FROM COMMENTS
-			  			<include refid="commentsCondition"></include>
+			  			<!-- <include refid="commentsCondition"></include> -->
 			  			ORDER BY COMMENTSNUM DESC
 			  		)C
 	  		)

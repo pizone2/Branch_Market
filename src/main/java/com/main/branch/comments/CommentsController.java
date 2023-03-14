@@ -55,7 +55,7 @@ public class CommentsController {
 	public ModelAndView setCommentsAdd(CommentsDTO commentsDTO,HttpSession session)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
-		int result = commentsService.setCommentsAdd(commentsDTO, null, session);
+		int result = commentsService.setCommentsAdd(commentsDTO, session);
 		
 		mv.addObject("result", result);
 		mv.setViewName("common/ajaxResult");	
