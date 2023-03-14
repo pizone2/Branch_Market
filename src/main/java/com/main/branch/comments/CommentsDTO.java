@@ -3,30 +3,30 @@ package com.main.branch.comments;
 import java.sql.Date;
 
 public class CommentsDTO {
-	private Integer commentNum;
-	private String commentContents;
-	private Date commentRegDate;
+	private Integer commentsNum;
+	private String commentsContents;
+	private Date commentsRegDate;
 	private Integer boardNum;
 	private String memberId;
 	
 	
-	public Integer getCommentNum() {
-		return commentNum;
+	public Integer getCommentsNum() {
+		return commentsNum;
 	}
-	public void setCommentNum(Integer commentNum) {
-		this.commentNum = commentNum;
+	public void setCommentsNum(Integer commentsNum) {
+		this.commentsNum = commentsNum;
 	}
-	public String getCommentContents() {
-		return commentContents;
+	public String getCommentsContents() {
+		return commentsContents;
 	}
-	public void setCommentContents(String commentContents) {
-		this.commentContents = commentContents;
+	public void setCommentsContents(String commentsContents) {
+		this.commentsContents = commentsContents;
 	}
-	public Date getCommentRegDate() {
-		return commentRegDate;
+	public Date getCommentsRegDate() {
+		return commentsRegDate;
 	}
-	public void setCommentRegDate(Date commentRegDate) {
-		this.commentRegDate = commentRegDate;
+	public void setCommentsRegDate(Date commentsRegDate) {
+		this.commentsRegDate = commentsRegDate;
 	}
 	public Integer getBoardNum() {
 		return boardNum;
@@ -41,6 +41,8 @@ public class CommentsDTO {
 		this.memberId = memberId;
 	}
 	
+	
+
 	
 	
 }
