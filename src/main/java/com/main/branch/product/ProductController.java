@@ -2,11 +2,14 @@ package com.main.branch.product;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.main.branch.util.Pager;
@@ -50,10 +53,13 @@ public class ProductController {
 	}
 	
 	@PostMapping("add")
-	public ModelAndView setProductAdd(ProductDTO productDTO) throws Exception{
+	public ModelAndView setProductAdd(ProductDTO productDTO, MultipartFile [] files, HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
-		Integer result = productService.setProductAdd(productDTO);
+//		System.out.println("Name : "+files.get());
+		System.out.println(session.getServletContext());
+		
+		Integer result = productService.setProductAdd(productDTO, files);
 		
 		mv.setViewName("redirect:./list");
 		
@@ -102,11 +108,20 @@ public class ProductController {
 		return mv;
 	}
 	
-	@PostMapping("request")
-	public ModelAndView setProductRequest(ProductDTO productDTO, ModelAndView mv) throws Exception{
-		Integer result = productService.setProductRequest(productDTO);
+	@PostMapping
+	public ModelAndView setProductAddConfirm(ProductDTO productDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
 		
-		mv.setViewName("redirect:./list");
+		mv.setViewName("product/list");
+		
+		return mv;
+	}
+	
+	@GetMapping("requestList")
+	public ModelAndView setProductRequestList(ProductDTO productDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("product/list");
 		
 		return mv;
 	}

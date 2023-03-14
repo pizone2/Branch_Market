@@ -39,8 +39,16 @@ public class ProductDAO {
 		return sqlSession.update(NAMESPACE + "setProductUpdate", productDTO);
 	}
 	
-	public Integer setProductRequest(ProductDTO productDTO) throws Exception{
+	public Integer setProductRequest(ProductDTO productDTO) throws Exception{	//사용자용
 		return sqlSession.insert(NAMESPACE + "setProductRequest", productDTO);
+	}
+	
+	public Integer setProductAddConfirm(ProductDTO productDTO) throws Exception{	//신청확인 DB저장
+		return sqlSession.insert(NAMESPACE + "setProductAddConfirm", productDTO);
+	}
+	
+	public Integer setProductRequestList(ProductDTO productDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE + "setProductRequestList", productDTO);
 	}
 
 }	

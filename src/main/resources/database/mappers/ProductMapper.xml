@@ -49,13 +49,13 @@
   	WHERE PRODUCTNUM = #{productNum}
   </select>
   
-  <insert id="setProductAdd" parameterType="ProductDTO">
-  	<selectKey keyProperty="productNum" resultType="Integer" order="BEFORE">
-  		SELECT SEQ_SEQ.NEXTVAL FROM DUAL
-  	</selectKey>
-  	INSERT INTO PRODUCT
-  	VALUES(#{productNum}, #{productTitle}, #{productPrice}, #{productDetail}, #{productCategory}, #{productQ})
-  </insert>
+  <insert id="setProductAdd" parameterType="productDTO">
+ 		<selectKey keyProperty="productNum" resultType="Integer" order="BEFORE">
+ 			SELECT SEQ.NEXTVAL FROM DUAL
+ 		</selectKey>
+ 		INSERT INTO PRODUCT 
+ 		VALUES(#{productNum}, #{memberId} ,#{productTitle}, #{productPrice}, #{productDetail},#{productCategory} , #{productQ}, #{productImgName})
+ 	</insert>
   
   <delete id="setProductDelete" parameterType="ProductDTO">
 	DELETE PRODUCT
@@ -63,7 +63,7 @@
   </delete>
   
   <update id="setProductUpdate" parameterType="ProductDTO">
-  	UPDATE PRODUCT SET PRODUCTTITLE = #{productTitle}, PRODUCTPRICE = #{productPrice}, PRODUCTDETAIL = #{productDetail}, PRODUCTCATEGORY = #{productCategory}, PRODUCTQ = #{productQ}
+  	UPDATE PRODUCT SET PRODUCTTITLE = #{productTitle}, PRODUCTPRICE = #{productPrice}, PRODUCTDETAIL = #{productDetail}, PRODUCTCATEGORY = #{productCategory}, PRODUCTQ = #{productQ}, PRODUCTIMGNAME = #{productImgName}
   	WHERE PRODUCTNUM = #{productNum}
   </update>
   
