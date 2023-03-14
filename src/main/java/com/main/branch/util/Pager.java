@@ -4,7 +4,25 @@ public class Pager {
 	
 	// mapper에서 쓰기전용
 	private Integer bookNumber;
+	private Integer boardNum;
+	private Integer commentsNum;
+
 	
+	public Integer getCommentsNum() {
+		return commentsNum;
+	}
+	public void setCommentsNum(Integer commentsNum) {
+		this.commentsNum = commentsNum;
+	}
+	public Integer getBoardNum() {
+		return boardNum;
+	}
+	public void setBoardNum(Integer boardNum) {
+		this.boardNum = boardNum;
+	}
+	public void setTotalPage(Integer totalPage) {
+		this.totalPage = totalPage;
+	}
 	public Integer getBookNumber() {
 		return bookNumber;
 	}
@@ -21,7 +39,7 @@ public class Pager {
 	
 	public String getKind() {
 		if(kind == null) {
-			kind = "contentsContens";
+			kind = "";
 		}
 		return kind;
 	}

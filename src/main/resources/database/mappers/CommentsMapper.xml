@@ -18,6 +18,12 @@
     	</trim>
   	</sql>
  
+<!--TotalCount--> 
+	<select id="getTotalCount" resultType="Integer">
+  		SELECT COUNT(COMMENTSNUM) FROM COMMENTS
+  			<!-- <include refid="commentsCondition"></include> -->
+    	  
+  	</select>
 <!--List-->
 	<select id="getCommentsList" resultType="CommentsDTO" parameterType="Pager">
 		SELECT * FROM
@@ -26,7 +32,7 @@
 			  		(	
 			  			SELECT * FROM COMMENTS
 			  			<include refid="commentsCondition"></include>
-			  			ORDER BY COMMENTNUM DESC
+			  			ORDER BY COMMENTSNUM DESC
 			  		)C
 	  		)
 	  	WHERE R BETWEEN #{startRow} AND #{lastRow} 
@@ -45,12 +51,6 @@
 		INSERT INTO COMMENTS 
 		VALUES (SEQ.NEXTVAL,#{boardNum},#{memberId},#{commentsContens},SYSDATE)	
 	</insert>
-<!--TotalCount--> 
-	<select id="getTotalCount" resultType="Integer" parameterType="Pager">
-  		SELECT COUNT(COMMENTSNUM) FROM COMMENTS
-  			<!-- <include refid="commentsCondition"></include> -->
-    	  
-  	</select>
  
  
 
