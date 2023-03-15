@@ -7,9 +7,15 @@ public class Pager {
 	private Integer boardNum;
 	private Integer commentsNum;
 	private String category;
+	private String memberId;
 	
 	
-	
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
 	public String getCategory() {
 		return category;
 	}

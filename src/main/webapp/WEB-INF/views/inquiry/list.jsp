@@ -14,24 +14,19 @@
   <thead>
     <tr>
       <th scope="col">아이디</th>
-      <th scope="col">비밀번호</th>
-      <th scope="col">이메일</th>
-      <th scope="col">핸드폰 번호</th>
-      <th scope="col">주소</th>
-      <th scope="col">인기도</th>
-      <th scope="col">권한</th>
+      <th scope="col">문의 제목</th>
+      <th scope="col">문의 내용</th>
+      <th scope="col">문의 카테고리</th>
     </tr>
   </thead>
   <tbody>
-	   	<c:forEach items="${memberDTOs}" var="memberDTO">
+	   	<c:forEach items="${inquiryDTOs}" var="inquiryDTO">
 	   	  	<tr>
-				<td><h2>${memberDTO.memberId}</h2></td>
-				<td><h2>${memberDTO.memberPw}</h2></td>
-				<td><h2>${memberDTO.memberEmail}</h2></td>
-				<td><h2>${memberDTO.memberPhone}</h2></td>
-				<td><h2>${memberDTO.memberAddress}</h2></td>
-				<td><h2>${memberDTO.memberHit}</h2></td>
-				<td><h2>${memberDTO.memberRole}</h2></td>
+				<td><h2>${inquiryDTO.memberId}</h2></td>
+				<td><a href="./detail?inquiryNum=${inquiryDTO.inquiryNum}"><h2>${inquiryDTO.inquiryTitle}</h2></a></td>
+				<td><h2>${inquiryDTO.inquiryDetail}</h2></td>
+				<td><h2>${inquiryDTO.inquiryCategory}</h2></td>
+				<td><button class="btn btn-danger del" data-inquiryNum="${inquiryDTO.inquiryNum}">삭제</button></td>
 			</tr>
 		</c:forEach>
   </tbody>
@@ -73,13 +68,14 @@
 				
 				<!-- 검색창 -->
 				<div class = "row">
-					  <form class="row g-3" action="./memberList" method="get" id="paginingForm">
+					  <form class="row g-3" action="./list" method="get" id="paginingForm">
 						  <input type="hidden" name="page" id="page">
+						  <input type="hidden" name="category" id="category" value="${pager.category}">
 						  <div class="col-auto">
 						    <label for="kind" class="visually-hidden">Kind</label>
 						    <select name="kind" class="form-select" id="kind" aria-label="Default select example">
-							  <option value="memberId" ${pager.kind eq 'memberId' ? 'selected' : ''}>아이디</option>
-							  <option value="memberAddress" ${pager.kind eq 'memberAddress' ? 'selected' : ''}>주소</option>
+							  <option value="inquiryTitle" ${pager.kind eq 'inquiryTitle' ? 'selected' : ''} >제목</option>
+							  <option value="inquiryDetail" ${pager.kind eq 'inquiryDetail' ? 'selected' : ''}>내용</option>
 							</select>
 						  </div>
 						  <div class="col-auto">
@@ -92,7 +88,7 @@
 					</form>
 				</div>
 	
-				<script src="/resources/js/member/memberList.js"></script>
-    <c:import url="../template/common_js.jsp"></c:import>
+				<script src="/resources/js/inquiry/list.js"></script>
+  				<c:import url="../template/common_js.jsp"></c:import>
 </body>
 </html>
