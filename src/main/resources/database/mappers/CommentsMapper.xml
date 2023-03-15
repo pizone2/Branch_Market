@@ -39,7 +39,7 @@
 	</select>
 <!--Update-->  
 	<update id="setCommentsUpdate" parameterType="CommentsDTO">
-	  	UPDATE COMMENTS SET COMMENTSCONTENS=#{commentsContens}
+	  	UPDATE COMMENTS SET COMMENTSCONTENTS=#{commentsContents}
 	  	WHERE COMMENTSNUM=#{commentsNum}
 	</update>
 <!--Delete--> 
