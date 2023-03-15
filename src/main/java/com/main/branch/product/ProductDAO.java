@@ -39,7 +39,7 @@ public class ProductDAO {
 		return sqlSession.update(NAMESPACE + "setProductUpdate", productDTO);
 	}
 	
-	public Integer setProductRequest(ProductDTO productDTO) throws Exception{	//사용자용
+	public Integer setProductRequest(ProductDTO productDTO) throws Exception{	
 		return sqlSession.insert(NAMESPACE + "setProductRequest", productDTO);
 	}
 	

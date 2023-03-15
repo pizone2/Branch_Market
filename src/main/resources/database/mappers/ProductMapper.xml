@@ -58,12 +58,12 @@
  	</insert>
   
   <delete id="setProductDelete" parameterType="ProductDTO">
-	DELETE PRODUCT
+	DELETE  PRODUCT
 	WHERE PRODUCTNUM = #{productNum}  
   </delete>
   
   <update id="setProductUpdate" parameterType="ProductDTO">
-  	UPDATE PRODUCT SET PRODUCTTITLE = #{productTitle}, PRODUCTPRICE = #{productPrice}, PRODUCTDETAIL = #{productDetail}, PRODUCTCATEGORY = #{productCategory}, PRODUCTQ = #{productQ}, PRODUCTIMGNAME = #{productImgName}
+  	UPDATE PRODUCT SET PRODUCTTITLE = #{productTitle}, PRODUCTPRICE = #{productPrice}, PRODUCTDETAIL = #{productDetail}, PRODUCTCATEGORY = #{productCategory}, PRODUCTQ = #{productQ}
   	WHERE PRODUCTNUM = #{productNum}
   </update>
   

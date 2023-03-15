@@ -19,15 +19,21 @@
 	<h3>${dto.productQ}</h3>
 	<h3>${dto.productPrice}</h3>
 		
-		<div class="my-5">
-				<%-- <c:if test="${dto.writer eq member.id}"> --%>
-				<button id="update" type="submit" class="btn btn-info">수정</button>
-				<button id="delete" type="button" class="btn btn-danger">삭제</button>
-				<%-- </c:if> --%>
-			
-		</div>
+	<a href="./delete?productNum=${dto.productNum}">상품삭제</a>
+	
+	<c:if test="${empty dto}">
+		<h3>존재하지 않는 상품입니다.</h3>
+	</c:if>
+	<a href="./update?productNum=${dto.productNum}">상품수정</a>
+	<a href="./list">목록으로</a>
+
+	<div class="my-5" id="commentListResult">
+
+
+	</div>
 	</div>
 </div>
+
 
 <c:import url="../template/common_js.jsp" ></c:import>
 </body>
