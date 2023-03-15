@@ -10,5 +10,5 @@ public class InquiryDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.main.branch.inquiry.InquiryDAO.";
 	
-	mapper 수정!!!!!!!!!!!
+	//mapper 수정!!!!!!!!!!!
 }
