@@ -9,7 +9,7 @@
  				BOARDTITLE LIKE '%' || #{search} ||'%'
  			</if>
  			<if test="kind=='contents'">
- 				BOARDCONTENS LIKE '%' || #{search} || '%'
+ 				BOARDCONTENTS LIKE '%' || #{search} || '%'
  			</if>
  			<if test="kind=='writer'">
  				MEMBERID LIKE '%' || #{search} || '%'
