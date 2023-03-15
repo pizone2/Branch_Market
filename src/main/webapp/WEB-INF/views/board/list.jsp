@@ -29,7 +29,7 @@
 						<td>
 							<a href="./detail?boardNum=${dto.boardNum}">${dto.boardTitle}</a>
 						</td>
-						<td>${dto.boardWriter}</td>
+						<td>${dto.memberId}</td>
 						<td>${dto.boardDate}</td>
 						<td>${dto.boardHit}</td>
 					</tr>
@@ -77,7 +77,7 @@
 			    <select class="form-select" name="kind" id="kind" aria-label="Default select example">
 				  <option value="title" ${pager.kind eq 'boardTitle' ? 'selected':''} >Title</option>
 				  <option value="contents" ${pager.kind eq 'boardContents' ? 'selected':''}>Contents</option>
-				  <option value="writer" ${pager.kind eq 'boardWriter' ? 'selected':''}>writer</option>
+				  <option value="writer" ${pager.kind eq 'memberId' ? 'selected':''}>writer</option>
 				</select>
 			  </div>
 			  <div class="col-auto">

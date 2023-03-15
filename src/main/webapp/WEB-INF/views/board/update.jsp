@@ -21,7 +21,7 @@
 	    	<div class="row">
 	        	<div class="fw-bold fs-5 col-12">
 	           		<p>작성자</p>
-	           		<input type="text" name="writer" readonly="readonly" value="${dto.boardWriter}" class="form-control" id="writer" placeholder="이름 입력"><br>
+	           		<input type="text" name="writer" readonly="readonly" value="${dto.memberId}" class="form-control" id="writer" placeholder="이름 입력"><br>
 	        	</div>
 	         	<div class="fw-bold fs-5 col-12">
 	            	<p>제목</p>
@@ -33,6 +33,11 @@
 					</div>
 	            	<input type="text" name="title" class="form-control my-2" value="${dto.boardTitle}" id="title" placeholder="제목 입력"><br>
 	        	 </div>
+	        	 <div class="fw-bold fs-5 col-12">
+		            <p>가격</lp>
+		            <input type="text" name="price" class="form-control my-2" value="${dto.boardPrice}" id="price" placeholder="가격 입력"><br>
+		         </div>
+	        	 
 	        	 <div class="fw-bold fs-5 col-12">
 		            <p>카테고리</lp>
 	        	  <select class="form-select" aria-label="Default select example">

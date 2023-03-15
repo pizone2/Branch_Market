@@ -15,12 +15,14 @@
 	</div>
 	<div class="row col-md-7 mx-auto">
 	<div class="row">
-	        	<div class="fw-bold fs-5 col-12">
-	           		<input type="text" readonly class="form-control-plaintext" id="boardTitle" value="${dto.boardTitle}">
-	        	</div>
-		<h1>${dto.boardTitle}</h3>
-		<h3>${dto.boardState}</h3>
-		<h3>${dto.boardContents}</h3>
+	    <div class="fw-bold fs-5 col-12">
+	    	<input type="text" readonly class="form-control-plaintext" id="boardTitle" value="${dto.boardTitle}">
+	    </div>
+	    <div class="fw-bold fs-5 col-12">
+	    	<input type="text" readonly class="form-control-plaintext" id="boardTitle" value="${dto.boardState}">
+	    	<input type="text" readonly class="form-control-plaintext" id="boardTitle" value="${dto.boardPrice}">
+	    </div>
+	    <h3>${dto.boardContents}</h3>
 	</div>
 	<div class="row col-md-7 mx-auto my-2">
 		<a href="./delete?boardNum=${dto.boardNum}" class="btn btn-outline-danger col-3" id="delete">게시물 삭제</a>

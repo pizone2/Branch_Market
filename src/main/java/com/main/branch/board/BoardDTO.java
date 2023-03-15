@@ -4,11 +4,12 @@ import java.sql.Date;
 
 public class BoardDTO {
 	private Integer boardNum;
+	private String memberId;
 	private String boardTitle;
 	private String boardContents;
-	private String boardWriter;
 	private String boardDate;
 	private Integer boardHit;
+	private String boardPrice;
 	private String boardState;
 	private String boardCategory;
 	public Integer getBoardNum() {
@@ -16,6 +17,12 @@ public class BoardDTO {
 	}
 	public void setBoardNum(Integer boardNum) {
 		this.boardNum = boardNum;
+	}
+	public String getMemberId() {
+		return memberId;
+	}
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 	public String getBoardTitle() {
 		return boardTitle;
@@ -29,12 +36,6 @@ public class BoardDTO {
 	public void setBoardContents(String boardContents) {
 		this.boardContents = boardContents;
 	}
-	public String getBoardWriter() {
-		return boardWriter;
-	}
-	public void setBoardWriter(String boardWriter) {
-		this.boardWriter = boardWriter;
-	}
 	public String getBoardDate() {
 		return boardDate;
 	}
@@ -46,6 +47,12 @@ public class BoardDTO {
 	}
 	public void setBoardHit(Integer boardHit) {
 		this.boardHit = boardHit;
+	}
+	public String getBoardPrice() {
+		return boardPrice;
+	}
+	public void setBoardPrice(String boardPrice) {
+		this.boardPrice = boardPrice;
 	}
 	public String getBoardState() {
 		return boardState;
@@ -59,5 +66,6 @@ public class BoardDTO {
 	public void setBoardCategory(String boardCategory) {
 		this.boardCategory = boardCategory;
 	}
+	
 	
 }
