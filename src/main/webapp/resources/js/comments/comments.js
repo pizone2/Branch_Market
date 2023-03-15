@@ -1,5 +1,6 @@
-let rep =document.getElementById("rep")
+
 //@@@@@@@@@@@@@@@@@@@@@@@@@ 답글달기 폼 생성@@@@@@@@@@@@@@@@@@@@@@@
+let rep =document.getElementById("rep")
 $(document).ready(function() {
     // 답글 버튼 클릭 이벤트
     $('.rep').click(function() {
@@ -59,6 +60,56 @@ $.ajax({
         }
     });
 });
+//@@@@@@@@@@@@@@@@@@@@@@@@ ReplyList @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+$(document).ready(function(){
+    getReplyList();
+})
+    
+
+function getReplyList() {
+    
+    $.ajax({
+        url : "../commentsReply/list",
+
+        type : "get",
+        success : function(result) { //댓글목록 불러오는 함수
+            var tableBody = $('#rtb tbody'); //$는 의미없음 그냥 변수명 중 하나
+            tableBody.html(''); //tbody를 초기화 시켜야 댓글 목록의 중첩을 막을수 있음 아니면 등록할떄마다 append로 이어짐
+            $('#rCount').text("댓글 ("+result.length+")") //댓글수 출력
+            if (result != null) {
+                console.log(result[0]);
+                console.log(Object.keys(result.getList))
+                for ( var i in result) {
+
+                    console.log("제발 좀...")
+                    var tr = $("<tr>");
+                    var rNum = $("<td width='100'>").text(result[i].replyNum);
+                    var rContent = $("<td>").text(result[i].replyContents);
+                    var rMemberId = $("<td width='100'>").text(result[i].memberId);
+                    var rDate = $("<td width='100'>").text(result[i].commentsReplyRegDate);
+                    var btnArea = $("<td width='80'>").append("<a href='modifyreply(${commentsReply.commentsNum})'>수정</a>").append("<a href='#'>삭제</a>");
+                    console.log(rNum)            
+                    tr.append(rNum);
+                    tr.append(rContent);
+                    tr.append(rMemberId);
+                    tr.append(rDate);
+                    tr.append(btnArea);
+                    tableBody.append(tr);
+
+                }
+            }
+
+        },
+        error : function() {
+            console.log("요청실패");
+
+        }
+    })
+
+}
+
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@  댓글 등록  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 $("#replyAddBtn").on("click", function () {
     console.log("click")
@@ -97,44 +148,38 @@ $("#replyAddBtn").on("click", function () {
         }
     });
 });
-//@@@@@@@@@@@@@@@@@@@@  댓글 수정 @@@@@@@@@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@@@  댓글 UPDATE @@@@@@@@@@@@@@@@@@@@@@@@@
 // 댓글 모달
 $(document).on("click", ".update", function(e) {
+    console.log("UPDATE ON CLICK")
+    let num = $(this).attr("data-comment-num");
+    $("#commentsContents").val($("#commentsContents"+num).text());
+    $("#contentsConfirm").attr("data-comment-num", num);
     e.preventDefault();
     $('#modifyModal').modal("show");
 });
 
-$(document).on("click", ".modalModBtn", function(e) {
-    console.log("댓글 수정창의 수정 버튼")
-    var commentNum = $(this).data("comment-num");
-    // var commentNum = $(this).parent().data("comment-num");
-        // var commentNum = 9;
-
-    // 입력한 댓글 내용 가져오기
-        var reply_text = $('#reply_text').val(); 
-    // 서버로 전송할 데이터
-    var data = {
-                commentsNum: commentNum,
-                commentsContents: reply_text
-                }   
-
-    $.ajax({
-        type: "POST",
-        url: '../comments/update',
-        // ?commentsNum='+ commentNum,
-        data: data,
-        
-        success: function() {
-            location.reload(); // 성공적으로 한 경우, 페이지 리로드
-            alert("good")
+$("#contentsConfirm").click(function(){
+    
+    fetch('../comments/update', {
+        method:'POST',
+        headers:{
+            "Content-type":"application/x-www-form-urlencoded"
         },
-        error: function(error) {
-            console.log(error);
-            alert("error")
+        body: "commentsNum="+$(this).attr("data-comment-num")+"&commentsContents="+$('#reply_text').val()
+    }).then( (response) => response.text())
+      .then( (res) => {
+        if(res.trim()>0){
+            alert('수정 성공');
+            $("#closeModal").click();
+            getList(1);            
+        }else {
+            alert('수정 실패');
         }
-        });
-        console.log("Num 값 확인 : "+commentNum)
-        console.log("Text 값 확인 : "+reply_text)
+      })
+      .catch(()=>{
+        alert('관리자에게 문의 하세요');
+      })
 });
 //@@@@@@@@@@@@@@@@@@@@  댓글 삭제  @@@@@@@@@@@@@@@@@@@@@@@@@@
 $(document).on("click", ".del", function() {
