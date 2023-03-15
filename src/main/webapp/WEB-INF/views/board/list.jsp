@@ -75,9 +75,9 @@
 			  <div class="col-auto">
 			    <label for="kind" class="visually-hidden">kind</label>
 			    <select class="form-select" name="kind" id="kind" aria-label="Default select example">
-				  <option value="title" ${pager.kind eq 'boardTitle' ? 'selected':''} >Title</option>
-				  <option value="contents" ${pager.kind eq 'boardContents' ? 'selected':''}>Contents</option>
-				  <option value="writer" ${pager.kind eq 'memberId' ? 'selected':''}>writer</option>
+				  <option value="title" ${pager.kind eq 'title' ? 'selected':''} >Title</option>
+				  <option value="contents" ${pager.kind eq 'contents' ? 'selected':''}>Contents</option>
+				  <option value="writer" ${pager.kind eq 'writer' ? 'selected':''}>writer</option>
 				</select>
 			  </div>
 			  <div class="col-auto">

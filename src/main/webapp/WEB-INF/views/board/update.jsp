@@ -46,7 +46,7 @@
 	        	 
 	        	 <div class="fw-bold fs-5 col-12">
 		            <p>카테고리</lp>
-	        	  	<select class="form-select" aria-label="Default select example">
+	        	  	<select class="form-select" name="boardCategory" id="boardCategory" aria-label="Default select example">
 					  <option name="boardCategory" id="boardCategory" selected>카테고리를 선택해주세요 </option>
 					  <option for="boardCategory" ${dto.boardCategory eq "여성패션"?'selected':''} value="여성패션">여성패션</option>
 					  <option for="boardCategory" ${dto.boardCategory eq "남성패션"?'selected':''} value="남성패션">남성패션</option>

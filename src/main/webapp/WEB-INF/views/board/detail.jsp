@@ -14,15 +14,23 @@
 		<h1 class="col-md-7 mx-auto text-center border-bottom border-dark pb-4">Board Detail Page</h1>
 	</div>
 	<div class="row col-md-7 mx-auto">
-		<div class="input-group mb-3">
-		  <span class="input-group-text">제목</span>
-		  <input type="text" readonly class="form-control" id="boardTitle" value="${dto.boardTitle}">
+		<div class="row">
+			<div class="input-group mb-3 col">
+			  <span class="input-group-text">제목</span>
+			  <input type="text" readonly class="form-control" id="boardTitle" value="${dto.boardTitle}">
+			</div>
+			<div class="col-auto">
+				<div class="form-check">
+					<input class="form-check-input btn btn-success" type="checkbox" value="" id="flexCheckDefault">
+					<label class="form-check-label btn btn-success" for="flexCheckDefault">Pic</label>
+				</div>
+			</div>
 		</div>
 		
 		<div class="row">
 			<div class="input-group mb-3 col">
 			  <span class="input-group-text">판매구매</span>
-			  <input type="text" readonly class="form-control" id="boardTitle" value="${dto.boardState}">
+			  <input type="text" readonly class="form-control" id="boardState" value="${dto.boardState}">
 			</div>
 			<div class="input-group mb-3 col">
 			  <span class="input-group-text">가격</span>
@@ -34,17 +42,20 @@
 			</div>
 		</div>
 		
-		<div class="input-group">
-		  <span class="input-group-text">내용</span>
-		  <%-- <textarea name="boardContents" readonly class="form-control" id="boardContents" rows="5" placeholder="내용 입력">${dto.boardContents}</textarea> --%>
-		  <span name="boardContents" readonly class="form-control" id="boardContents" rows="5" th:utext>${dto.boardContents}</span>
+		<div class="row">
+			<div class="input-group mb-3 col">
+			  <span class="input-group-text">내용</span>
+			  <%-- <textarea name="boardContents" readonly class="form-control" id="boardContents" rows="5" placeholder="내용 입력">${dto.boardContents}</textarea> --%>
+			  <span name="boardContents" readonly class="form-control" id="boardContents" rows="5" th:utext>${dto.boardContents}</span>
+			</div>
 		</div>
 	    
-	<div class="row col-md-7 mx-auto my-4 justify-content-center">
+	<div class="row col-md-9 mx-auto my-4 justify-content-center">
 		<a href="./delete?boardNum=${dto.boardNum}" class="btn btn-outline-danger col-3" id="delete">게시물 삭제</a>
 		<a href="./update?boardNum=${dto.boardNum}" class="btn btn-outline-success col-3 mx-2">게시물 수정</a>
 		<a href="./list" class="btn btn-success col-3">목록으로</a>
 	</div>
+</div>
 </div>
 <script>
 const del = document.getElementById("delete");
@@ -52,10 +63,12 @@ const frm = document.getElementById("frm");
 
 del.addEventListener("click", function(){
     let check = window.confirm("정말 삭제ㄱ?");
-    if(check){
+    if(check==true){
         frm.setAttribute("action","./delete");
         frm.setAttribute("method","post");
         frm.submit();
+    }else{
+    	return false;
     }
 
 })
