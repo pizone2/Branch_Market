@@ -20,27 +20,41 @@
 	    	<div class="row">
 	        	<div class="fw-bold fs-5 col-12">
 	           		<p>작성자</p>
-	           		<input type="text" name="writer" class="form-control" id="memberId" placeholder="이름 입력"><br>
+	           		<input type="text" name="memberId" class="form-control" id="memberId" placeholder="이름 입력"><br>
 	        	</div>
 	         	<div class="fw-bold fs-5 col-12">
 	            	<p>제목</p>
-	            	<div class="fw-bold fs-5 col-12">
-		        	 	<input type="radio" class="btn-check" name="options" vlaue="판매" id="option1" autocomplete="off" checked>
-						<label class="btn btn-outline-success" for="option1">판매</label>
-						<input type="radio" class="btn-check" name="options" vlaue="구매" id="option2" autocomplete="off">
-						<label class="btn btn-outline-success" for="option2">구매</label>
+	            	<!--  <div class="fw-bold fs-5 col-12">
+						<label class="btn btn-outline-success" for="boardState1">판매</label>
+			        	 <input id="boardState1" type="radio" class="btn-check" name="boardState" vlaue="1">
+						<label class="btn btn-outline-success" for="boardState2">구매</label>
+						<input id="boardState2" type="radio" class="btn-check" name="boardState" vlaue="2"  >
+					</div>-->
+					
+					<div class="row">
+						<div class="form-check">
+							<input class="btn-check" type="radio" name="boardState" id="boardState" value="판매" checked>
+							<label class="btn btn-outline-success" for="boardState">판매</label>
+							<input class="btn-check" type="radio" name="boardState" id="boardState1" value="구매">
+							<label class="btn btn-outline-success" for="boardState1">구매</label>
+						</div>
 					</div>
-	            	<input type="text" name="title" class="form-control my-2" id="boardTitle" placeholder="제목 입력"><br>
+					
+	            	<input type="text" name="boardTitle" class="form-control my-2" id="boardTitle" placeholder="제목 입력"><br>
 	        	 </div>
 	        	 <div class="fw-bold fs-5 col-12">
 		            <p>카테고리</lp>
-	        	  <select class="form-select" aria-label="Default select example">
-					  <option selected>카테고리를 선택해주세요</option>
-					  <option value="1">Test</option>
-					  <option value="2">Test2</option>
-					  <option value="3">Test3</option>
+	        	  	<select class="form-select" name="boardCategory" id="boardCategory" aria-label="Default select example">
+					  <option name="boardCategory" id="boardCategory" selected>카테고리를 선택해주세요</option>
+					  <option for="boardCategory" value="여성패션">여성패션</option>
+					  <option for="boardCategory" value="남성패션">남성패션</option>
+					  <option for="boardCategory" value="기타">기타</option>
 					</select>
 		         </div>
+		         <div class="fw-bold fs-5 col-12">
+	           		<p>가격</p>
+	           		<input type="text" name="boardPrice" class="form-control" id="boardPrice" placeholder="가격 입력"><br>
+	        	</div>
 		         <div class="fw-bold fs-5 col-12 my-4">
 		            <p>내용</lp>
 		            <textarea name="boardContents" class="form-control my-2" id="boardContents" rows="8" placeholder="내용 입력"></textarea><br>
@@ -54,7 +68,9 @@
 	</div>
 </div>
 <script>
-   $("#boardContents").summernote();
+   $("#boardContents").summernote({
+	   height:250
+   });
 </script>
 <c:import url="../template/common_js.jsp"></c:import>
 </body>

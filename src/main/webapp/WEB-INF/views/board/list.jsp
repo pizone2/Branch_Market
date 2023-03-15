@@ -38,7 +38,7 @@
 		</table>
 		
 		<!-- paseing -->
-		<div class="row col-md-7 mx-auto">
+		<div class="row col-md-7 mx-auto ">
 			<nav aria-label="Page navigation example">
 			  <ul class="pagination">
 			    <li class="page-item ${pager.before?'disabled':'' }">

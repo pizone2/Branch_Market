@@ -74,6 +74,7 @@ public class BoardController {
 	@GetMapping("update")
 	public ModelAndView setBoardUpdate(BoardDTO boardDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
+		System.out.println(boardDTO.getBoardNum());
 		boardDTO = boardService.getBoardDetail(boardDTO);
 		mv.addObject("dto", boardDTO);
 		mv.setViewName("board/update");
@@ -83,7 +84,11 @@ public class BoardController {
 	@PostMapping("update")
 	public ModelAndView setBoardUpdate(BoardDTO boardDTO, ModelAndView mv) throws Exception{
 		int result = boardService.setBoardUpdate(boardDTO);
+		System.out.println(boardDTO.getBoardNum());
 		mv.setViewName("common/result");
+		mv.addObject("result","수정성공");
+		mv.addObject("url","./detail"+"?boardNum="+boardDTO.getBoardNum());
 		return mv;
 	}
+
 }
