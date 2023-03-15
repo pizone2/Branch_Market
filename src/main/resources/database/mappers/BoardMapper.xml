@@ -49,7 +49,7 @@
  	</delete>
  	
  	<update id="setBoardUpdate" parameterType="BoardDTO">
- 		UPDATE BOARD SET BOARDTITLE=#{boardTitle}, BOARDCONTENTS=#{boardContents},BOARDPRICE=#{boardPrice},BOARDSTATE=#{boardState},BOARDCATEGORY=#{boardCategory})
+ 		UPDATE BOARD SET BOARDTITLE=#{boardTitle}, BOARDCONTENTS=#{boardContents},BOARDPRICE=#{boardPrice},BOARDSTATE=#{boardState} 
  		WHERE BOARDNUM=#{boardNum}
  	</update>
  	
