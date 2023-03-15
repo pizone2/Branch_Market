@@ -14,15 +14,33 @@
 		<h1 class="col-md-7 mx-auto text-center border-bottom border-dark pb-4">Board Detail Page</h1>
 	</div>
 	<div class="row col-md-7 mx-auto">
-	<div class="row">
-	        	<div class="fw-bold fs-5 col-12">
-	           		<input type="text" readonly class="form-control-plaintext" id="boardTitle" value="${dto.boardTitle}">
-	        	</div>
-		<h1>${dto.boardTitle}</h3>
-		<h3>${dto.boardState}</h3>
-		<h3>${dto.boardContents}</h3>
-	</div>
-	<div class="row col-md-7 mx-auto my-2">
+		<div class="input-group mb-3">
+		  <span class="input-group-text">제목</span>
+		  <input type="text" readonly class="form-control" id="boardTitle" value="${dto.boardTitle}">
+		</div>
+		
+		<div class="row">
+			<div class="input-group mb-3 col">
+			  <span class="input-group-text">판매구매</span>
+			  <input type="text" readonly class="form-control" id="boardTitle" value="${dto.boardState}">
+			</div>
+			<div class="input-group mb-3 col">
+			  <span class="input-group-text">가격</span>
+			  <input type="text" readonly class="form-control" id="boardPrice" value="${dto.boardPrice}">
+			</div>
+			<div class="input-group mb-3 col">
+			  <span class="input-group-text">카테고리</span>
+			  <input type="text" readonly class="form-control" id="boardCategory" value="${dto.boardCategory}">
+			</div>
+		</div>
+		
+		<div class="input-group">
+		  <span class="input-group-text">내용</span>
+		  <%-- <textarea name="boardContents" readonly class="form-control" id="boardContents" rows="5" placeholder="내용 입력">${dto.boardContents}</textarea> --%>
+		  <span name="boardContents" readonly class="form-control" id="boardContents" rows="5" th:utext>${dto.boardContents}</span>
+		</div>
+	    
+	<div class="row col-md-7 mx-auto my-4 justify-content-center">
 		<a href="./delete?boardNum=${dto.boardNum}" class="btn btn-outline-danger col-3" id="delete">게시물 삭제</a>
 		<a href="./update?boardNum=${dto.boardNum}" class="btn btn-outline-success col-3 mx-2">게시물 수정</a>
 		<a href="./list" class="btn btn-success col-3">목록으로</a>

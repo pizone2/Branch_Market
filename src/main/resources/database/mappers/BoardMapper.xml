@@ -9,10 +9,10 @@
  				BOARDTITLE LIKE '%' || #{search} ||'%'
  			</if>
  			<if test="kind=='contents'">
- 				BOARDCONTENS LIKE '%' || #{search} || '%'
+ 				BOARDCONTENTS LIKE '%' || #{search} || '%'
  			</if>
  			<if test="kind=='writer'">
- 				BOARDWRITER LIKE '%' || #{search} || '%'
+ 				MEMBERID LIKE '%' || #{search} || '%'
  			</if>
  		</where>
  	</sql>
@@ -25,7 +25,7 @@
  	<select id="getBoardList" resultType="BoardDTO" parameterType="Pager">
  		SELECT * FROM (
  			SELECT ROWNUM R,B.* FROM(
- 				SELECT BOARDNUM, MEMBERID, BOARDTITLE, BOARDWRITER, BOARDHIT, BOARDCATEGORY FROM BOARD 
+ 				SELECT BOARDNUM, MEMBERID, BOARDTITLE, BOARDHIT,BOARDDATE, BOARDCATEGORY FROM BOARD 
  				<include refid="boardCondition"></include>
  				ORDER BY BOARDNUM DESC
  				)B
@@ -41,7 +41,7 @@
  		<selectKey keyProperty="boardNum" resultType="Integer" order="BEFORE">
  			SELECT SEQ.NEXTVAL FROM DUAL
  		</selectKey>
- 		INSERT INTO BOARD VALUES(#{boardNum},'',#{boardTitle},#{boardContents},#{boardWriter},SYSDATE,0,#{boardState},#{boardCategory})
+ 		INSERT INTO BOARD VALUES(#{boardNum},#{memberId},#{boardTitle},#{boardContents},#{boardPrice},SYSDATE,0,#{boardState},#{boardCategory})
  	</insert>
  	
  	<delete id="setBoardDelete" parameterType="BoardDTO">
@@ -49,7 +49,7 @@
  	</delete>
  	
  	<update id="setBoardUpdate" parameterType="BoardDTO">
- 		UPDATE BOARD SET BOARDTITLE=#{boardTitle}, BOARDCONTENTS=#{boardContents}, BOARDSTATE=#{boardState}, BOARDCATEGORY=#{boardCategory} 
+ 		UPDATE BOARD SET BOARDTITLE=#{boardTitle}, BOARDCONTENTS=#{boardContents},BOARDPRICE=#{boardPrice},BOARDSTATE=#{boardState},BOARDCATEGORY=#{boardCategory})
  		WHERE BOARDNUM=#{boardNum}
  	</update>
  	

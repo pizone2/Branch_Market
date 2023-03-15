@@ -15,36 +15,47 @@
 	<div class="row mb-4 ">
 		<h1 class="col-md-7 mx-auto text-center border-bottom border-dark pb-4">Board Update Page</h1>
 	</div>
+	
 	<div class="row col-md-7 mx-auto">
-		<form action="./update" method = "post" enctype="multipart/form-data">
+		<form action="./update" method = "post">
 			<input type="hidden" name="boardNum" value="${dto.boardNum}">
+			
 	    	<div class="row">
 	        	<div class="fw-bold fs-5 col-12">
 	           		<p>작성자</p>
-	           		<input type="text" name="writer" readonly="readonly" value="${dto.boardWriter}" class="form-control" id="writer" placeholder="이름 입력"><br>
+	           		<input type="text" name="memberId" readonly="readonly" value="${dto.memberId}" class="form-control" id="memberId" placeholder="이름 입력"><br>
 	        	</div>
+	        	
 	         	<div class="fw-bold fs-5 col-12">
 	            	<p>제목</p>
-	            	<div class="fw-bold fs-5 col-12">
-						<label class="btn btn-outline-success" for="option1">판매</label>
-		        	 	<input type="radio" class="btn-check" ${dto.boardState eq "판매"? 'checked':''} name="options" vlaue="판매" id="option1" autocomplete="off" checked>
-						<label class="btn btn-outline-success" for="option2">구매</label>
-						<input type="radio" class="btn-check" ${dto.boardState eq "구매"? 'checked':''} name="options" vlaue="구매" id="option2" autocomplete="off">
+	            	<div class="form-check">
+		        	 	<input type="radio" class="btn-check" ${dto.boardState eq "판매"?'checked':''} name="boardState" vlaue="판매" id="boardState" checked>
+						<label class="btn btn-outline-success" for="boardState">판매</label>
+						<input type="radio" class="btn-check" ${dto.boardState eq "구매"?'checked':''} name="boardState" vlaue="구매" id="boardState1">
+						<label class="btn btn-outline-success" for="boardState1">구매</label>
 					</div>
-	            	<input type="text" name="title" class="form-control my-2" value="${dto.boardTitle}" id="title" placeholder="제목 입력"><br>
+					<div class="fw-bold fs-5 col-12">
+	            	<input type="text" name="boardTitle" class="form-control my-2" value="${dto.boardTitle}" id="boardTitle" placeholder="제목 입력"><br>
+	            	</div>
 	        	 </div>
+	        	 
+	        	 <div class="fw-bold fs-5 col-12">
+		            <p>가격</lp>
+		            <input type="text" name="boardPrice" class="form-control my-2" value="${dto.boardPrice}" id="boardPrice" placeholder="가격 입력"><br>
+		         </div>
+	        	 
 	        	 <div class="fw-bold fs-5 col-12">
 		            <p>카테고리</lp>
-	        	  <select class="form-select" aria-label="Default select example">
-					  <option selected>카테고리를 선택해주세요</option>
-					  <option value="1">Test</option>
-					  <option value="2">Test2</option>
-					  <option value="3">Test3</option>
+	        	  	<select class="form-select" aria-label="Default select example">
+					  <option name="boardCategory" id="boardCategory">카테고리를 선택해주세요</option>
+					  <option for="boardCategory" ${dto.boardCategory eq "여성패션"?'selected':''} value="여성패션">여성패션</option>
+					  <option for="boardCategory" ${dto.boardCategory eq "남성패션"?'selected':''} value="남성패션">남성패션</option>
+					  <option for="boardCategory" ${dto.boardCategory eq "기타"?'selected':''} value="기타">기타</option>
 					</select>
 		         </div>
 		         <div class="fw-bold fs-5 col-12 my-4">
 		            <p>내용</lp>
-		            <textarea name="contents" class="form-control my-2" id="boardContents" rows="8" placeholder="내용 입력">${dto.boardContents}</textarea><br>
+		            <textarea name="boardContents" class="form-control my-2" id="boardContents" rows="8" placeholder="내용 입력">${dto.boardContents}</textarea><br>
 		         </div>
 		       
 		         <div class="row justify-content-center my-5">
