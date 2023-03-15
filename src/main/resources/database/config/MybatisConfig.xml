@@ -13,7 +13,9 @@
   		<typeAlias type="com.main.branch.review.ReviewDTO" alias="ReviewDTO"/>
   		  		
   		<typeAlias type="com.main.branch.member.MemberDTO" alias="MemberDTO"/>
+  		
   		<typeAlias type="com.main.branch.inquiry.InquiryDTO" alias="InquiryDTO"/>
+  		<typeAlias type="com.main.branch.InqComments.InqCommentsDTO" alias="InqCommentsDTO"/>
   		
   		<typeAlias type="com.main.branch.comments.CommentsDTO" alias="CommentsDTO"/>
   		<typeAlias type="com.main.branch.commentsReply.CommentsReplyDTO" alias="CommentsReplyDTO"/>

@@ -47,6 +47,7 @@ public class ProductService {
 //		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("member");
 //		productDTO.setMemberId(memberDTO.getMemberId());
 		productDTO.setMemberId("이주형");
+		
 		if(files.length != 0) { //pic.getSize() !=0
 			
 			//1. File을 HDD에 저장 경로
@@ -56,7 +57,8 @@ public class ProductService {
 			
 			String fileName = fileManager.fileSave(files[0], realPath);
 			productDTO.setProductImgName(fileName);
-
+			System.out.println(files.length);
+			System.out.println(files[0].getOriginalFilename());
 			//2. DB에 저장
 			
 			result = productDAO.setProductAdd(productDTO);
@@ -71,8 +73,15 @@ public class ProductService {
 		return productDAO.setProductDelete(productDTO);
 	}
 	
-	public Integer setProductUpdate(ProductDTO productDTO) throws Exception{
-		return productDAO.setProductUpdate(productDTO);
+	public Integer setProductUpdate(ProductDTO productDTO, MultipartFile [] files) throws Exception{
+		Integer result;
+		// ----------- 나중에 주석 해제
+//		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("member");
+//		productDTO.setMemberId(memberDTO.getMemberId());
+		productDTO.setMemberId("이주형");
+		
+		result = productDAO.setProductUpdate(productDTO);
+		return result;
 	}
 	
 	public Integer setProductRequest(ProductDTO productDTO) throws Exception{

@@ -25,7 +25,8 @@
 						<th>상품번호</th>
 						<th>상품명</th>
 						<th>카테고리</th>
-
+						<th>이미지</th>
+						<th>품질</th>
 						<th>상품 가격</th>
 						
 					</tr>
@@ -36,10 +37,10 @@
 							<td><a>${dto.productNum}</a></td>
 							<td><a href="./detail?productNum=${dto.productNum}">${dto.productTitle}</a></td>
 							<td><a>${dto.productCategory}</a></td>
-							<div>
-								
-							</div>
+							<td><img src="/resources/upload/product/${dto.productImgName}" alt=""></td>
+							<td><a>${dto.productQ}</a></td>
 							<td><a>${dto.productPrice}</a></td>
+							
 					 		
 						</tr>
 					</c:forEach>
@@ -111,7 +112,7 @@
 			
 			</div>
 			<div class="row col-md-7 mx-auto">
-				<a class="btn btn-primary col-2" href="./add">상품등록</a>
+				<a class="btn btn-primary col-2" href="./add">위탁상품 등록</a>
 			</div>
 		</div>
 	

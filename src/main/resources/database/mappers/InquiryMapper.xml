@@ -13,18 +13,13 @@
 		 		 	inquiryDetail 
 		 		 </otherwise>
 	 		</choose>
-	 		LIKE '%' || #{search} || '%'
-	 		AND
-	 		<choose>
-	 		<!-- - 여성패션
-
-- 남성패션
-- 가구/인테리어
-- 생활/주방
-- 가전제품
-- 전자기기(디지털,컴퓨터)
-- E쿠폰/티켓 -->
-	 		</choose>
+	 			LIKE '%' || #{search} || '%'
+	 			<if test="category != null and category != ''">
+	 				AND inquiryCategory = #{category}
+	 			</if>
+	 			<if test="memberId != null and memberId != ''">
+	 				AND memberId = #{memberId}
+	 			</if>
  	</sql>
  	<select id="getInquiryList" parameterType="Pager" resultType="InquiryDTO">
  		SELECT * FROM(
@@ -35,4 +30,30 @@
 		)
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
  	</select>
+ 	<select id="getInquiryCount" parameterType="Pager" resultType="Integer">
+ 		SELECT COUNT(*) FROM INQUIRY
+ 		<include refid="listSearchCondition"></include>
+ 	</select>
+ 	<update id="setInquriyUpdate" parameterType="InquiryDTO">
+ 		UPDATE INQUIRY SET inquiryTitle = #{inquiryTitle}, inquiryDetail = #{inquiryDetail}, inquiryCategory = #{inquiryCategory}
+ 		WHERE inquiryNum = #{inquiryNum}
+ 	</update>
+ 	<insert id="setInquriyAdd" parameterType="InquiryDTO">
+ 		<selectKey keyProperty="inquiryNum" order="BEFORE" resultType="Integer">
+ 			SELECT SEQ.NEXTVAL FROM DUAL
+ 		</selectKey>
+ 		INSERT INTO INQUIRY VALUES(#{inquiryNum},#{memberId},#{inquiryTitle},#{inquiryDetail},#{inquiryCategory})
+ 	</insert>
+ 	<select id="getInquriyDetail" parameterType="InquiryDTO" resultType="InquiryDTO">
+ 		SELECT * FROM INQUIRY WHERE inquiryNum = #{inquiryNum}
+ 	</select>
+ 	<delete id="setInquiryDelete" parameterType="InquiryDTO">
+ 		DELETE INQUIRY WHERE inquiryNum = #{inquiryNum}
+ 	</delete>
  </mapper>
+ 
+<!--  private Integer inquiryNum;
+	private String memberId;
+	private String inquiryTitle;
+	private String inquiryDetail;
+	private String inquiryCategory; -->

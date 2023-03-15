@@ -90,8 +90,9 @@ public class ProductController {
 	}
 	
 	@PostMapping("update")
-	public ModelAndView setProductUpdate(ProductDTO productDTO, ModelAndView mv) throws Exception{
-		Integer result = productService.setProductUpdate(productDTO);
+	public ModelAndView setProductUpdate(ProductDTO productDTO, MultipartFile [] files) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		Integer result = productService.setProductUpdate(productDTO, files);
 		
 		mv.setViewName("redirect:./list");
 		
