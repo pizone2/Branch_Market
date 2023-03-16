@@ -7,8 +7,8 @@
  <mapper namespace="com.main.branch.commentsReply.CommentsReplyDAO">
  
 <!--List-->
-	<select id="getCommentsReplyList" resultType="CommentsReplyDTO">
-		SELECT * FROM COMMENTSREPLY
+	<select id="getCommentsReplyList" parameterType="CommentsReplyDTO" resultType="CommentsReplyDTO">
+		SELECT * FROM COMMENTSREPLY WHERE commentsNum = #{commentsNum}
 		ORDER BY REPLYNUM DESC
 	</select>
 <!--Update-->  

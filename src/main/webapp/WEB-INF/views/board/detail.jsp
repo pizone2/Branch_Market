@@ -21,6 +21,13 @@
 		<td>${dto.boardDate}</td>
 		<td>${dto.boardHit}</td> --%>
 	</div>
+
+
+
+
+
+
+	
 </div>
 </body>
 </html>
