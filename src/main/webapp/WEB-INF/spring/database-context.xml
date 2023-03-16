@@ -11,6 +11,7 @@
 		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"></property>
 	</bean>
 	
+	
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactoryBean">
 		<!-- connection 객체 생성 db연결 알아내기 -->
 		<property name="dataSource" ref="dataSource"></property>
