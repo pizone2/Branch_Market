@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.main.branch.util.Pager;
@@ -88,6 +89,27 @@ public class BoardController {
 		mv.setViewName("common/result");
 		mv.addObject("result","수정성공");
 		mv.addObject("url","./detail"+"?boardNum="+boardDTO.getBoardNum());
+		return mv;
+	}
+	
+	//-------------------------
+	
+	@PostMapping("add")
+	public ModelAndView setBoardPicAdd(BoardPicDTO boardPicDTO,BoardDTO boardDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = boardService.SetBoardPicAdd(boardPicDTO);
+		mv.addObject("url","./detail"+"?boardNum="+boardDTO.getBoardNum());
+		mv.setViewName("common/result");
+		return mv;
+	}
+	
+	
+	@GetMapping("delete")
+	public ModelAndView setBoardDelete(BoardPicDTO boardPicDTO,BoardDTO boardDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = boardService.setBoardPicDelete(boardPicDTO);
+		mv.addObject("url","./detail"+"?boardNum="+boardDTO.getBoardNum());
+		mv.setViewName("common/result");
 		return mv;
 	}
 

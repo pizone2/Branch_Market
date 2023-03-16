@@ -14,9 +14,15 @@
 		<h1 class="col-md-7 mx-auto text-center border-bottom border-dark pb-4">Board Detail Page</h1>
 	</div>
 	<div class="row col-md-7 mx-auto">
-		<div class="input-group mb-3">
-		  <span class="input-group-text">제목</span>
-		  <input type="text" readonly class="form-control" id="boardTitle" value="${dto.boardTitle}">
+		<div class="row">
+			<div class="input-group mb-3 col">
+			  <span class="input-group-text">제목</span>
+			  <input type="text" readonly class="form-control" id="boardTitle" value="${dto.boardTitle}">
+			</div>
+			<div class="col">
+				<button type="submit" class="btn btn-outline-success col-3">Pic</button>
+				<button type="submit" class="btn btn-outline-danger col-3">Pic</button>
+			</div>
 		</div>
 		
 		<div class="row">

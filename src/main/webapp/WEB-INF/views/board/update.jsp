@@ -29,9 +29,9 @@
 	         	<div class="fw-bold fs-5 col-12">
 	            	<p>제목</p>
 	            	<div class="form-check">
-		        	 	<input type="radio" class="btn-check" ${dto.boardState eq "판매"?'checked':''} name="boardState" vlaue="판매" id="boardState" checked>
+		        	 	<input type="radio" class="btn-check" ${dto.boardState eq "판매"?'checked':''} name="boardState" value="판매" id="boardState" checked>
 						<label class="btn btn-outline-success" for="boardState">판매</label>
-						<input type="radio" class="btn-check" ${dto.boardState eq "구매"?'checked':''} name="boardState" vlaue="구매" id="boardState1">
+						<input type="radio" class="btn-check" ${dto.boardState eq "구매"?'checked':''} name="boardState" value="구매" id="boardState1">
 						<label class="btn btn-outline-success" for="boardState1">구매</label>
 					</div>
 					<div class="fw-bold fs-5 col-12">
@@ -46,7 +46,7 @@
 	        	 
 	        	 <div class="fw-bold fs-5 col-12">
 		            <p>카테고리</lp>
-	        	  	<select class="form-select" aria-label="Default select example">
+	        	  	<select class="form-select" aria-label="Default select example" name="boardCategory" id="boardCategory">
 					  <option name="boardCategory" id="boardCategory">카테고리를 선택해주세요</option>
 					  <option for="boardCategory" ${dto.boardCategory eq "여성패션"?'selected':''} value="여성패션">여성패션</option>
 					  <option for="boardCategory" ${dto.boardCategory eq "남성패션"?'selected':''} value="남성패션">남성패션</option>

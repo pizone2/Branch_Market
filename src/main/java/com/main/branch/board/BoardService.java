@@ -34,4 +34,12 @@ public class BoardService {
 	public int setBoardUpdate(BoardDTO boardDTO) throws Exception{
 		return boardDAO.setBoardUpdate(boardDTO);
 	}
+	
+	//-----------------------------
+	public int SetBoardPicAdd(BoardPicDTO boardPicDTO) throws Exception{
+		return boardDAO.setBoardPicAdd(boardPicDTO);
+	}
+	public int setBoardPicDelete(BoardPicDTO boardPicDTO) throws Exception{
+		return boardDAO.setBoardPicDelete(boardPicDTO);
+	}
 }

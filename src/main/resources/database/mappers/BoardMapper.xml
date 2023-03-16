@@ -49,8 +49,23 @@
  	</delete>
  	
  	<update id="setBoardUpdate" parameterType="BoardDTO">
- 		UPDATE BOARD SET BOARDTITLE=#{boardTitle}, BOARDCONTENTS=#{boardContents},BOARDPRICE=#{boardPrice},BOARDSTATE=#{boardState},BOARDCATEGORY=#{boardCategory})
+ 		UPDATE BOARD SET BOARDTITLE=#{boardTitle}, BOARDCONTENTS=#{boardContents},BOARDPRICE=#{boardPrice},BOARDSTATE=#{boardState},BOARDCATEGORY= #{boardCategory} 
  		WHERE BOARDNUM=#{boardNum}
  	</update>
+ 	
+ 	
+ 	
+ 	
+ 	<!--  -->
+ 	<insert id="setBoardAdd" parameterType="BoardDTO">
+ 		<selectKey keyProperty="boardNum" resultType="Integer" order="BEFORE">
+ 			SELECT SEQ.NEXTVAL FROM DUAL
+ 		</selectKey>
+ 		INSERT INTO BOARD VALUES(#{boardNum},#{memberId},#{boardTitle},#{boardContents},#{boardPrice},SYSDATE,0,#{boardState},#{boardCategory})
+ 	</insert>
+ 	
+ 	<delete id="setBoardPicDelete" parameterType="BoardPicDTO">
+ 		DELETE BOARDPIC WHERE BOARDNUM=#{boardNum}
+ 	</delete>
  	
  </mapper>
