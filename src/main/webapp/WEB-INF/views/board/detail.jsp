@@ -20,10 +20,7 @@
 			  <input type="text" readonly class="form-control" id="boardTitle" value="${dto.boardTitle}">
 			</div>
 			<div class="col-auto">
-				<div class="form-check">
-					<input class="form-check-input btn btn-success" type="checkbox" value="" id="flexCheckDefault">
-					<label class="form-check-label btn btn-success" for="flexCheckDefault">Pic</label>
-				</div>
+				<button type="button" class="btn btn-outline-success" data-bs-toggle="button" aria-pressed="true">Pic</button>
 			</div>
 		</div>
 		
