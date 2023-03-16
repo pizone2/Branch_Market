@@ -3,7 +3,49 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.main.branch.InqComments">
- 	<select id="getInqCommentsList" parameterType="InqCommentsDTO" resultType="InqCommentsDTO">
- 		SELECT * FROM INQCOMMENTS WHERE inquiryNum = #{inquiryNum}
+ 
+ 	<sql id="searchCondition">
+ 			WHERE
+			<choose>
+				<when test="kind == 'memberId'">
+					memberId
+				</when>
+				<otherwise>
+					inqCommentsContents
+				</otherwise>
+			</choose>
+			LIKE '%' || #{search} || '%' AND inquiryNum = #{inquiryNum}
+
+ 	</sql>
+ 	<select id="getInqCommentsList" parameterType="Pager" resultType="InqCommentsDTO">
+ 		SELECT * FROM(
+		SELECT ROWNUM R,A.* FROM
+		(
+			SELECT * FROM INQCOMMENTS <include refid="searchCondition"></include>
+			) A
+		)
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
  	</select>
+ 	<select id="getInqCommentsCount" parameterType="Pager" resultType="Integer">
+ 		SELECT COUNT(*) FROM INQCOMMENTS <include refid="searchCondition"></include>
+ 	</select>
+ 	
+ 	
+ 	<insert id="setInqCommentsAdd" parameterType="InqCommentsDTO">
+ 		INSERT INTO INQCOMMENTS VALUES(SEQ.NEXTVAL,#{inquiryNum},#{memberId},#{inqCommentsContents})
+ 	</insert>
+ 	
+ 	<update id="setInqCommentsUpdate" parameterType="InqCommentsDTO">
+ 		UPDATE INQCOMMENTS SET inqCommentsContents = #{inqCommentsContents} WHERE inqCommentsNum = #{inqCommentsNum}
+ 	</update>
+ 	
+ 	<delete id="setInqCommentsDelete" parameterType="InqCommentsDTO">
+ 		DELETE INQCOMMENTS WHERE inqCommentsNum = #{inqCommentsNum}
+ 	</delete>
+ 	
  </mapper>
+ 
+<!--  private Integer inqCommentsNum;
+	private Integer inquiryNum;
+	private String memberId;
+	private String inqCommentsContents; -->
