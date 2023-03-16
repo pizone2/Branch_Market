@@ -39,7 +39,7 @@
 	</select>
 <!--Update-->  
 	<update id="setCommentsUpdate" parameterType="CommentsDTO">
-	  	UPDATE COMMENTS SET COMMENTSCONTENS=#{commentsContens}
+	  	UPDATE COMMENTS SET COMMENTSCONTENTS=#{commentsContents}
 	  	WHERE COMMENTSNUM=#{commentsNum}
 	</update>
 <!--Delete--> 
@@ -49,7 +49,7 @@
 <!--ADD--> 
 	<insert id="setCommentsAdd" parameterType="CommentsDTO">
 		INSERT INTO COMMENTS 
-		VALUES (SEQ.NEXTVAL,#{boardNum},#{memberId},#{commentsContens},SYSDATE)	
+		VALUES (SEQ.NEXTVAL,#{boardNum},#{memberId},#{commentsContents},SYSDATE)	
 	</insert>
  
  

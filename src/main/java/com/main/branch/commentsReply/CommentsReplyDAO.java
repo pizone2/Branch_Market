@@ -12,7 +12,7 @@ public class CommentsReplyDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	private final String NAMESPACE = "com.main.branch.comments.CommentsReplyDAO.";	
+	private final String NAMESPACE = "com.main.branch.commentsReply.CommentsReplyDAO.";	
 	
 	//List
 	

@@ -28,22 +28,11 @@ public class CommentsController {
 	@GetMapping("list")
 	public ModelAndView getCommentsList (Pager pager)throws Exception{
 		ModelAndView mv = new ModelAndView();
+	
 		
-		List<CommentsDTO> ar = commentsService.getCommentsList(pager);
-		
-//		//////////////// TEST /////////////////////
-//		List<CommentsDTO> ar = new ArrayList<CommentsDTO>();
-//		CommentsDTO dto1 = new CommentsDTO();
-//		dto1.setBoardNum(1);
-//		dto1.setCommentNum(1);
-//		dto1.setCommentContents("댓글1");
-//		ar.add(dto1);
-//		CommentsDTO dto2 = new CommentsDTO();
-//		dto2.setBoardNum(1);
-//		dto2.setCommentNum(2);
-//		dto2.setCommentContents("댓글2");
-//		ar.add(dto2);
-//		///////////////////////////////////////////
+		List<CommentsDTO> ar = commentsService.getCommentsList(pager); // 댓글가져옴
+
+
 		
 		mv.addObject("list", ar);
 		mv.setViewName("comments/comments");
@@ -86,18 +75,7 @@ public class CommentsController {
 		return mv;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 
 }

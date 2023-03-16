@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+ <mapper namespace="com.main.branch.commentsReply.CommentsReplyDAO">
+ 
+<!--List-->
+	<select id="getCommentsReplyList" resultType="CommentsReplyDTO">
+		SELECT * FROM COMMENTSREPLY
+		ORDER BY REPLYNUM DESC
+	</select>
+<!--Update-->  
+	<update id="setCommentsReplyUpdate" parameterType="CommentsReplyDTO">
+	  	UPDATE COMMENTSREPLY SET REPLYCONTENTS=#{replyContents}
+	  	WHERE REPLYNUM=#{replyNum}
+	</update>
+<!--Delete--> 
+	<delete id="setCommentsReplyDelete" parameterType="CommentsReplyDTO">
+  		DELETE COMMENTSREPLY WHERE REPLYNUM=#{replyNum}
+  	</delete>	
+<!--ADD--> 
+	<insert id="setCommentsReplyAdd" parameterType="CommentsReplyDTO">
+		INSERT INTO COMMENTSREPLY 
+		VALUES (SEQ.NEXTVAL,#{commentsNum},#{memberId},#{replyContents},SYSDATE)	
+	</insert>
+
+ </mapper>
