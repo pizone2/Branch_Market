@@ -9,7 +9,36 @@
 <c:import url="../template/common_css.jsp"></c:import>
 </head>
 <body>
+    <!-- 댓글 목록을 출력할 HTML 코드 -->
+	<table id="rtb">
+		<thead>
+			<tr>
+				<th width='100'>번호</th>
+				<th>내용</th>
+				<th width='100'>작성자</th>
+				<th width='100'>작성일</th>
+				<th width='80'>관리</th>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- 댓글 목록이 여기에 추가됩니다. -->
+		</tbody>
+	</table>
 
+	<!-- 댓글 목록을 불러오는 버튼 -->
+	<button onclick="getReplyList()">댓글 목록 불러오기</button>
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
+	<table align="center" width="500" border="1" id="rtb">
+		<thead>
+			<td colspan="4"><b id="rCount">댓글목록</b></td>
+		</thead>
+		<tbody>
+		</tbody>
+
+        <div class="my-5" id="commentListResult">
+
+
+        </div>
 <!--  -->
 <table class="table table-striped">
 	<c:forEach items="${list}" var="dto"> 
@@ -31,9 +60,11 @@
 			<button class="btn btn rep" id="rep" data-comment-num="${dto.commentsNum}">
 				답글달기
 			</button>
-		</td>	
+		</td>
+		
 	</c:forEach>
 </table>
+
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@  댓글등록  @@@@@@@@@@@@@@@@@@@@@@@-->
 <div class="col-8" class="input_reply_div">
 	<input class="w-100 form-control" id="newReplyText"type="text" placeholder="댓글입력...">
@@ -68,7 +99,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">닫기</button>
-                <button type="button" class="btn btn-success modalModBtn"  data-comment-num="${dto.commentsNum}">수정</button>
+                <button type="button" class="btn btn-success modalModBtn"  data-comment-num="" id="contentsConfirm">수정</button>
                 <button type="button" class="btn btn-danger modalDelBtn">삭제</button>
             </div>
         </div>
