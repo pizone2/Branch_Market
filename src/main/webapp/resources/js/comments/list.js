@@ -1,21 +1,19 @@
 
 //@@@@@@@@@@@@@@@@@@@@@@@@@ 답글달기 폼 생성@@@@@@@@@@@@@@@@@@@@@@@
-let rep =document.getElementById("rep")
-$(document).ready(function() {
-    // 답글 버튼 클릭 이벤트
-    $('.rep').click(function() {
-      // 부모 댓글의 ID 가져오기
+// 답글 버튼 클릭 이벤트
+$('.rep').click(function() {
+        // 부모 댓글의 ID 가져오기
     var parentId = $(this).data('comment-num');
-      // 부모 댓글의 행 요소 가져오기
+        // 부모 댓글의 행 요소 가져오기
     var parentRow = $('#' + parentId);
-      // 답글 폼이 이미 삽입되어 있는지 확인
+        // 답글 폼이 이미 삽입되어 있는지 확인
     var replyForm = parentRow.next('.reply-form');
     if (replyForm.length > 0) {
         // 답글 폼이 이미 삽입되어 있다면, 답글 폼을 숨기거나 삭제
         replyForm.toggle();
         return;
     }
-      // 부모 댓글의 답글 폼 HTML 생성
+        // 부모 댓글의 답글 폼 HTML 생성
     var replyFormHtml = '<tr class="reply-form">' +
         '<td colspan="6">' +
         '<form>' +
@@ -25,10 +23,10 @@ $(document).ready(function() {
         '</form>' +
         '</td>' +
         '</tr>';
-      // 부모 댓글 아래에 답글 폼 삽입
+        // 부모 댓글 아래에 답글 폼 삽입
     parentRow.after(replyFormHtml);
-    });
 });
+
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@  답글 등록  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 $(document).on("click", ".add", function(e) {
     console.log("답글등록 TEST")
@@ -39,7 +37,7 @@ $.ajax({
     type: 'POST',
     url: '../commentsReply/add',
     data: {
-        commentsNum: 3,
+        commentsNum: newReplyText,
         memberId: '작성자 아이디',
         replyContents: newReplyText
     },
@@ -62,53 +60,48 @@ $.ajax({
 });
 //@@@@@@@@@@@@@@@@@@@@@@@@ ReplyList @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
-
-$(document).ready(function(){
-    getReplyList();
-})
-    
-
-function getReplyList() {
-    
+let replys = document.getElementsByClassName('replayList');
+for(let reply of replys){
+   //$(reply).attr('id');
+   let commentNum = $(reply).attr('data-commentsNum');
     $.ajax({
-        url : "../commentsReply/list",
-
-        type : "get",
-        success : function(result) { //댓글목록 불러오는 함수
-            var tableBody = $('#rtb tbody'); //$는 의미없음 그냥 변수명 중 하나
-            tableBody.html(''); //tbody를 초기화 시켜야 댓글 목록의 중첩을 막을수 있음 아니면 등록할떄마다 append로 이어짐
-            $('#rCount').text("댓글 ("+result.length+")") //댓글수 출력
-            if (result != null) {
-                console.log(result[0]);
-                console.log(Object.keys(result.getList))
-                for ( var i in result) {
-
-                    console.log("제발 좀...")
-                    var tr = $("<tr>");
-                    var rNum = $("<td width='100'>").text(result[i].replyNum);
-                    var rContent = $("<td>").text(result[i].replyContents);
-                    var rMemberId = $("<td width='100'>").text(result[i].memberId);
-                    var rDate = $("<td width='100'>").text(result[i].commentsReplyRegDate);
-                    var btnArea = $("<td width='80'>").append("<a href='modifyreply(${commentsReply.commentsNum})'>수정</a>").append("<a href='#'>삭제</a>");
-                    console.log(rNum)            
-                    tr.append(rNum);
-                    tr.append(rContent);
-                    tr.append(rMemberId);
-                    tr.append(rDate);
-                    tr.append(btnArea);
-                    tableBody.append(tr);
-
-                }
-            }
-
+        url:"../commentsReply/list",
+        type: "get",
+        data:{
+            'commentsNum':commentNum
         },
-        error : function() {
-            console.log("요청실패");
-
+        success:(response)=>{
+            response = response.trim();
+            $('#replyList' + commentNum).html(response);
         }
     })
-
 }
+
+
+function getList(commentsNum) {
+    $.ajax({
+        url : "../commentsReply/list",
+        type : "get",
+        success : (res)=>{
+            console.log("commentNum"+commentsNum)
+            // $(".commentListResult").html(res.trim());
+
+            var data = $(res.trim());
+
+            // data에서 commentsNum이 일치하는 요소만 필터링하여 .commentListResult에 추가
+            $(".commentListResult").append(data);
+            // .filter("#" + commentsNum)
+            console.log("필터링성공???")
+            
+        }, 
+        error : function() {
+        console.log("요청실패");
+            
+        }  
+    })
+    
+}
+
 
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@  댓글 등록  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 $("#replyAddBtn").on("click", function () {
@@ -199,4 +192,20 @@ $.ajax({
     }
     });
 });
-//@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+//@@@@@@@@@@@@@@@@@@@@@@@  답급 삭제  @@@@@@@@@@@@@@@@@@@@@@@@@@@@
+// $(document).on("click", ".del", function() {
+//     console.log("delete")
+//     var replyNum = $(this).data("replyNum");
+
+// $.ajax({
+//     type: "POST",
+//     url: '../commentsReply/delete?replyNum='+ replyNum,
+//     success: function() {
+//         location.reload(); // 성공적으로 삭제한 경우, 페이지 리로드
+//     },
+//     error: function(error) {
+//         console.log(error);
+//     }
+//     });
+// });
+

@@ -9,59 +9,34 @@
 <c:import url="../template/common_css.jsp"></c:import>
 </head>
 <body>
-    <!-- 댓글 목록을 출력할 HTML 코드 -->
-	<table id="rtb">
-		<thead>
-			<tr>
-				<th width='100'>번호</th>
-				<th>내용</th>
-				<th width='100'>작성자</th>
-				<th width='100'>작성일</th>
-				<th width='80'>관리</th>
-			</tr>
-		</thead>
-		<tbody>
-			<!-- 댓글 목록이 여기에 추가됩니다. -->
-		</tbody>
-	</table>
-
-	<!-- 댓글 목록을 불러오는 버튼 -->
-	<button onclick="getReplyList()">댓글 목록 불러오기</button>
-<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-	<table align="center" width="500" border="1" id="rtb">
-		<thead>
-			<td colspan="4"><b id="rCount">댓글목록</b></td>
-		</thead>
-		<tbody>
-		</tbody>
-
-        <div class="my-5" id="commentListResult">
-
-
-        </div>
-<!--  -->
+<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
 <table class="table table-striped">
 	<c:forEach items="${list}" var="dto"> 
 		<tr id="${dto.commentsNum}">
+			<td>${dto.commentsNum}</td>
+			<td>${dto.boardNum}</td>
+			<td>${dto.memberId}</td>	
+			<td>${dto.commentsContents}</td>	
+			<td>${dto.commentsRegDate}</td>
 			
-		<td>${dto.commentsNum}</td>
-		<td>${dto.boardNum}</td>
-		<td>${dto.memberId}</td>	
-		<td>${dto.commentsContents}</td>	
-		<td>${dto.commentsRegDate}</td>
+			<td>
+				<button class="btn btn-danger del" id="del" data-comment-num="${dto.commentsNum}">
+					DELETE
+				</button>		 			
+				<button class="btn btn-info update" id="replies" data-bs-toggle="modal" data-target="#modifyModal"  data-comment-num="${dto.commentsNum}">
+					UPDATE
+				</button>
+				<button class="btn btn rep" data-comment-num="${dto.commentsNum}">
+					답글달기
+				</button>
+			</td>
+		</tr>
 		
-		<td>
-			<button class="btn btn-danger del" id="del" data-comment-num="${dto.commentsNum}">
-				DELETE
-			</button>		 			
-			<button class="btn btn-info update" id="replies" data-bs-toggle="modal" data-target="#modifyModal"  data-comment-num="${dto.commentsNum}">
-				UPDATE
-			</button>
-			<button class="btn btn rep" id="rep" data-comment-num="${dto.commentsNum}">
-				답글달기
-			</button>
-		</td>
-		
+		<tr>
+			<td colspan="6">
+				<div class="replayList" id="replyList${dto.commentsNum}" data-commentsNum="${dto.commentsNum}"></div>
+			</td>
+		</tr> 
 	</c:forEach>
 </table>
 
@@ -84,18 +59,12 @@
                 <h4 class="modal-title">댓글 수정창</h4>
             </div>
             <div class="modal-body">
-            	<!-- <div class="form-group">
-                    <label for="reply_no">댓글 번호</label>
-                    <input class="form-control" id="reply_no" name="reply_no" readonly>
-                </div>  -->
+            
                 <div class="form-group">
                     <label for="reply_text">댓글 내용</label>
                     <input class="form-control" id="reply_text" name="reply_text" placeholder="댓글 내용을 입력해주세요">
                 </div>
-                <!-- <div class="form-group">
-                    <label for="reply_writer">댓글 작성자</label>
-                    <input class="form-control" id="reply_writer" name="reply_writer" readonly>
-                </div> -->
+            
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">닫기</button>
@@ -107,7 +76,7 @@
 
 
 
-<script src="../resources/js/comments/comments.js"></script>
+<script src="../resources/js/comments/list.js"></script>
 <c:import url="../template/common_js.jsp"></c:import>
 </body>
 </html>
