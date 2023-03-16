@@ -61,54 +61,73 @@ $.ajax({
     });
 });
 //@@@@@@@@@@@@@@@@@@@@@@@@ ReplyList @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
-
-
 $(document).ready(function(){
-    getReplyList();
+    getList();
 })
-    
 
-function getReplyList() {
-    
+function getList() {
     $.ajax({
-        url : "../commentsReply/list",
-
+        url : "../comments/list",
         type : "get",
-        success : function(result) { //댓글목록 불러오는 함수
-            var tableBody = $('#rtb tbody'); //$는 의미없음 그냥 변수명 중 하나
-            tableBody.html(''); //tbody를 초기화 시켜야 댓글 목록의 중첩을 막을수 있음 아니면 등록할떄마다 append로 이어짐
-            $('#rCount').text("댓글 ("+result.length+")") //댓글수 출력
-            if (result != null) {
-                console.log(result[0]);
-                console.log(Object.keys(result.getList))
-                for ( var i in result) {
-
-                    console.log("제발 좀...")
-                    var tr = $("<tr>");
-                    var rNum = $("<td width='100'>").text(result[i].replyNum);
-                    var rContent = $("<td>").text(result[i].replyContents);
-                    var rMemberId = $("<td width='100'>").text(result[i].memberId);
-                    var rDate = $("<td width='100'>").text(result[i].commentsReplyRegDate);
-                    var btnArea = $("<td width='80'>").append("<a href='modifyreply(${commentsReply.commentsNum})'>수정</a>").append("<a href='#'>삭제</a>");
-                    console.log(rNum)            
-                    tr.append(rNum);
-                    tr.append(rContent);
-                    tr.append(rMemberId);
-                    tr.append(rDate);
-                    tr.append(btnArea);
-                    tableBody.append(tr);
-
-                }
-            }
-
-        },
+        success : (res)=>{
+            
+            $("#commentListResult").html(res.trim());
+            
+        }, 
         error : function() {
-            console.log("요청실패");
-
-        }
+        console.log("요청실패");
+            
+        }  
     })
-
+    
 }
+
+
+// $(document).ready(function(){
+//     getReplyList();
+// })
+
+// function getReplyList() {
+    
+    //     $.ajax({
+        //         url : "../commentsReply/list",
+        
+//         type : "get",
+//         success : function(result) { //댓글목록 불러오는 함수
+//             var tableBody = $('#rtb tbody'); //$는 의미없음 그냥 변수명 중 하나
+//             tableBody.html(''); //tbody를 초기화 시켜야 댓글 목록의 중첩을 막을수 있음 아니면 등록할떄마다 append로 이어짐
+//             $('#rCount').text("댓글 ("+result.length+")") //댓글수 출력
+//             if (result != null) {
+//                 console.log(result[0]);
+            
+//                 for ( var i in result) {
+
+//                     console.log("제발 좀...")
+//                     var tr = $("<tr>");
+//                     var rNum = $("<td width='100'>").text(result[i].r);eplyNum
+//                     var rContent = $("<td>").text(result[i].replyContents);
+//                     var rMemberId = $("<td width='100'>").text(result[i].memberId);
+//                     var rDate = $("<td width='100'>").text(result[i].commentsReplyRegDate);
+//                     var btnArea = $("<td width='80'>").append("<a href='modifyreply(${commentsReply.commentsNum})'>수정</a>").append("<a href='#'>삭제</a>");
+//                     console.log(rNum)            
+//                     tr.append(rNum);
+//                     tr.append(rContent);
+//                     tr.append(rMemberId);
+//                     tr.append(rDate);
+//                     tr.append(btnArea);
+//                     tableBody.append(tr);
+
+//                 }
+//             }
+
+//         },
+//         error : function() {
+//             console.log("요청실패");
+
+//         }
+//     })
+
+// }
 
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@  댓글 등록  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 $("#replyAddBtn").on("click", function () {

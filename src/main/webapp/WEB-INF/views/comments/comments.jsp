@@ -9,8 +9,8 @@
 <c:import url="../template/common_css.jsp"></c:import>
 </head>
 <body>
-    <!-- 댓글 목록을 출력할 HTML 코드 -->
-	<table id="rtb">
+    <!-- 댓글 목록을 출력할 HTML 코드
+	 <table id="rtb">
 		<thead>
 			<tr>
 				<th width='100'>번호</th>
@@ -21,25 +21,26 @@
 			</tr>
 		</thead>
 		<tbody>
-			<!-- 댓글 목록이 여기에 추가됩니다. -->
-		</tbody>
-	</table>
+			댓글 목록이 여기에 추가됩니다. 
+		 </tbody>
+	</table>  -->
 
 	<!-- 댓글 목록을 불러오는 버튼 -->
-	<button onclick="getReplyList()">댓글 목록 불러오기</button>
+	<!-- <button onclick="getReplyList()">댓글 목록 불러오기</button> -->
 <!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-	<table align="center" width="500" border="1" id="rtb">
+	<!-- <table align="center" width="500" border="1" id="rtb">
 		<thead>
 			<td colspan="4"><b id="rCount">댓글목록</b></td>
 		</thead>
 		<tbody>
-		</tbody>
+		</tbody> -->
+<!-- @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ -->		
 
         <div class="my-5" id="commentListResult">
 
 
         </div>
-<!--  -->
+<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
 <table class="table table-striped">
 	<c:forEach items="${list}" var="dto"> 
 		<tr id="${dto.commentsNum}">
