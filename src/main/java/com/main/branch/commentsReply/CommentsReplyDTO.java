@@ -7,7 +7,7 @@ public class CommentsReplyDTO {
 	private String replyContents;
 	private Long commentsNum;
 	private String memberId;
-	private Date commentsReplyRegDate;
+	private Date ReplyRegDate;
 	
 	
 	
@@ -36,12 +36,13 @@ public class CommentsReplyDTO {
 	public void setCommentsNum(Long commentsNum) {
 		this.commentsNum = commentsNum;
 	}
-	public Date getCommentsReplyRegDate() {
-		return commentsReplyRegDate;
+	public Date getReplyRegDate() {
+		return ReplyRegDate;
 	}
-	public void setCommentsReplyRegDate(Date commentsReplyRegDate) {
-		this.commentsReplyRegDate = commentsReplyRegDate;
+	public void setReplyRegDate(Date replyRegDate) {
+		ReplyRegDate = replyRegDate;
 	}
+	
 	
 	
 	

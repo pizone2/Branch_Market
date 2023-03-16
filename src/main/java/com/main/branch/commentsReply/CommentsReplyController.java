@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,15 +25,16 @@ public class CommentsReplyController {
 	private CommentsReplyService commentsReplyService;
 	
 	//List
+		
 		@GetMapping("list")
 		public ModelAndView getCommentsReplyList (CommentsReplyDTO commentsReplyDTO)throws Exception{
 			ModelAndView mv = new ModelAndView();
-			
+			System.out.println("답글리스트");
 			List<CommentsReplyDTO> ar = commentsReplyService.getCommentsReplyList(commentsReplyDTO);
 		
 			mv.addObject("list", ar);
-			mv.setViewName("comments/comments");
-		
+			mv.setViewName("commentsReply/list");
+			System.out.println("답글리스트2");	
 			return mv;
 		}
 	//Add
