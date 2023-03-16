@@ -24,6 +24,7 @@ public class ProductService {
 	
 	@Autowired
 	private ServletContext servletContext;
+	
 	@Autowired
 	private HttpSession httpSession;
 	
@@ -41,24 +42,24 @@ public class ProductService {
 		return productDAO.getProductDetail(productDTO);
 	}
 	
-	public Integer setProductAdd(ProductDTO productDTO, MultipartFile [] files) throws Exception{
+	public Integer setProductAdd(ProductDTO productDTO, MultipartFile filecs) throws Exception{
 		Integer result;
 		// ----------- 나중에 주석 해제
 //		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("member");
 //		productDTO.setMemberId(memberDTO.getMemberId());
 		productDTO.setMemberId("이주형");
 		
-		if(files.length != 0) { //pic.getSize() !=0
+		if(!filecs.isEmpty()) { //pic.getSize() !=0
 			
 			//1. File을 HDD에 저장 경로
 			// Project 경로가 아닌 OS가 이용하는 경로
 			String realPath = servletContext.getRealPath("resources/upload/product");
 			System.out.println(realPath);
 			
-			String fileName = fileManager.fileSave(files[0], realPath);
-			productDTO.setProductImgName(fileName);
-			System.out.println(files.length);
-			System.out.println(files[0].getOriginalFilename());
+			String fileName = fileManager.fileSave(filecs, realPath);
+			productDTO.setProductImgName("/resources/upload/product/"+fileName);
+			System.out.println(filecs);
+			System.out.println(filecs.getOriginalFilename());
 			//2. DB에 저장
 			
 			result = productDAO.setProductAdd(productDTO);
@@ -83,17 +84,19 @@ public class ProductService {
 		result = productDAO.setProductUpdate(productDTO);
 		return result;
 	}
-	
-	public Integer setProductRequest(ProductDTO productDTO) throws Exception{
-		return productDAO.setProductRequest(productDTO);
+
+	public List<ProductDTO> getProductAddList(Pager pager) throws Exception{
+		
+		Integer totalCount = productDAO.getProductCount(pager);
+		
+		pager.makeNum(totalCount);
+		pager.makeRow();
+		
+		return productDAO.getProductAddList(pager);
 	}
 	
 	public Integer setProductAddConfirm(ProductDTO productDTO) throws Exception{
 		return productDAO.setProductAddConfirm(productDTO);
-	}
-	
-	public Integer setProductRequestList(ProductDTO productDTO) throws Exception{
-		return productDAO.setProductRequestList(productDTO);
 	}
 	
 }

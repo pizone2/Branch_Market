@@ -53,13 +53,13 @@ public class ProductController {
 	}
 	
 	@PostMapping("add")
-	public ModelAndView setProductAdd(ProductDTO productDTO, MultipartFile [] files, HttpSession session) throws Exception{
+	public ModelAndView setProductAdd(ProductDTO productDTO, MultipartFile filecs, HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
 //		System.out.println("Name : "+files.get());
 		System.out.println(session.getServletContext());
 		
-		Integer result = productService.setProductAdd(productDTO, files);
+		Integer result = productService.setProductAdd(productDTO, filecs);
 		
 		mv.setViewName("redirect:./list");
 		
@@ -99,30 +99,25 @@ public class ProductController {
 		return mv;
 	}
 	
-	@GetMapping("request")
-	public ModelAndView setProductRequest(ProductDTO productDTO) throws Exception{
+	@GetMapping("addList")
+	public ModelAndView setProductAddList(ProductDTO productDTO, Pager pager) throws Exception{
 		ModelAndView mv = new ModelAndView();
+		List<ProductDTO> ar = productService.getProductList(pager);
 		
-		mv.setViewName("product/request");
-		
+		mv.setViewName("product/addList");
+		mv.addObject("list", ar);
+		mv.addObject("pager", pager);
 		
 		return mv;
 	}
 	
-	@PostMapping
+	@PostMapping("addConfirm")
 	public ModelAndView setProductAddConfirm(ProductDTO productDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
-		mv.setViewName("product/list");
+		Integer result = productService.setProductAddConfirm(productDTO);
 		
-		return mv;
-	}
-	
-	@GetMapping("requestList")
-	public ModelAndView setProductRequestList(ProductDTO productDTO) throws Exception{
-		ModelAndView mv = new ModelAndView();
-		
-		mv.setViewName("product/list");
+		mv.setViewName("redirect:./list");
 		
 		return mv;
 	}
