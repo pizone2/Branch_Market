@@ -57,14 +57,11 @@
  	
  	
  	<!--  -->
- 	<insert id="setBoardAdd" parameterType="BoardDTO">
- 		<selectKey keyProperty="boardNum" resultType="Integer" order="BEFORE">
- 			SELECT SEQ.NEXTVAL FROM DUAL
- 		</selectKey>
- 		INSERT INTO BOARD VALUES(#{boardNum},#{memberId},#{boardTitle},#{boardContents},#{boardPrice},SYSDATE,0,#{boardState},#{boardCategory})
+ 	<insert id="setBoardPicAdd" parameterType="BoardDTO">
+ 		INSERT INTO BOARDPIC VALUES ((SELECT BOARDNUM FROM BOARD WHERE BOARDNUM=#{boardNum}),(SELECT MEMBERID FROM BOARD WHERE BOARDNUM=#{boardNum}))
  	</insert>
  	
- 	<delete id="setBoardPicDelete" parameterType="BoardPicDTO">
+ 	<delete id="setBoardPicDelete" parameterType="BoardDTO">
  		DELETE BOARDPIC WHERE BOARDNUM=#{boardNum}
  	</delete>
  	

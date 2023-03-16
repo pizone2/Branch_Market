@@ -4,7 +4,8 @@ import java.sql.Date;
 
 public class BoardPicDTO {
 	private Integer boardNum;
-	private String MemberId;
+	private String memberId;
+	
 	public Integer getBoardNum() {
 		return boardNum;
 	}
@@ -12,12 +13,10 @@ public class BoardPicDTO {
 		this.boardNum = boardNum;
 	}
 	public String getMemberId() {
-		return MemberId;
+		return memberId;
 	}
 	public void setMemberId(String memberId) {
-		MemberId = memberId;
+		this.memberId = memberId;
 	}
-	
-	
 	
 }

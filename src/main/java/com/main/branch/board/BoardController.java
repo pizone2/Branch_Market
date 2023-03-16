@@ -2,6 +2,8 @@ package com.main.branch.board;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -94,22 +96,22 @@ public class BoardController {
 	
 	//-------------------------
 	
-	@PostMapping("add")
-	public ModelAndView setBoardPicAdd(BoardPicDTO boardPicDTO,BoardDTO boardDTO) throws Exception{
+	@PostMapping("picAdd")
+	public ModelAndView setBoardPicAdd(BoardDTO boardDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		int result = boardService.SetBoardPicAdd(boardPicDTO);
-		mv.addObject("url","./detail"+"?boardNum="+boardDTO.getBoardNum());
-		mv.setViewName("common/result");
+		int result = boardService.SetBoardPicAdd(boardDTO);
+		mv.addObject("result",result);
+		mv.setViewName("common/ajaxResult");
 		return mv;
 	}
 	
 	
-	@GetMapping("delete")
-	public ModelAndView setBoardDelete(BoardPicDTO boardPicDTO,BoardDTO boardDTO) throws Exception{
+	@PostMapping("picDelete")
+	public ModelAndView setBoardPicDelete(BoardDTO boardDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		int result = boardService.setBoardPicDelete(boardPicDTO);
-		mv.addObject("url","./detail"+"?boardNum="+boardDTO.getBoardNum());
-		mv.setViewName("common/result");
+		int result = boardService.setBoardPicDelete(boardDTO,null);
+		mv.addObject("result",result);
+		mv.setViewName("common/ajaxResult");
 		return mv;
 	}
 

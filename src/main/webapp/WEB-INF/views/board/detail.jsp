@@ -20,8 +20,8 @@
 			  <input type="text" readonly class="form-control" id="boardTitle" value="${dto.boardTitle}">
 			</div>
 			<div class="col">
-				<button type="submit" class="btn btn-outline-success col-3">Pic</button>
-				<button type="submit" class="btn btn-outline-danger col-3">Pic</button>
+				<button type="submit" class="btn btn-outline-success col-3" id="picAdd" data-board-boardNum="${dto.boardNum}">Pic</button>
+				<button type="submit" class="btn btn-outline-danger col-3" id="picDelete">Pic</button>
 			</div>
 		</div>
 		
@@ -66,5 +66,6 @@ del.addEventListener("click", function(){
 
 })
 </script>
+<script src="/resources/js/board/board.js"></script>	
 </body>
 </html>
