@@ -98,11 +98,8 @@ function getList(commentsNum) {
         console.log("요청실패");
             
         }  
-    })
-    
+    }) 
 }
-
-
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@  댓글 등록  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 $("#replyAddBtn").on("click", function () {
     console.log("click")
@@ -142,40 +139,77 @@ $("#replyAddBtn").on("click", function () {
     });
 });
 //@@@@@@@@@@@@@@@@@@@@  댓글 UPDATE @@@@@@@@@@@@@@@@@@@@@@@@@
-// 댓글 모달
-$(document).on("click", ".update", function(e) {
+$(".update").on("click", function(e) {
     console.log("UPDATE ON CLICK")
     let num = $(this).attr("data-comment-num");
     $("#commentsContents").val($("#commentsContents"+num).text());
     $("#contentsConfirm").attr("data-comment-num", num);
     e.preventDefault();
     $('#modifyModal').modal("show");
+
+    $("#contentsConfirm").off("click").on("click", function(){
+        console.log("수정")
+        fetch('../comments/update', {
+            method:'POST',
+            headers:{
+                "Content-type":"application/x-www-form-urlencoded"
+            },
+            body: "commentsNum="+$(this).attr("data-comment-num")+"&commentsContents="+$('#reply_text').val()
+        }).then( (response) => response.text())
+          .then( (res) => {
+            if(res.trim()>0){
+                alert('수정 성공');
+                $("#closeModal").click();
+                location.reload();            
+            }else {
+                alert('수정 실패');
+            }
+          })
+          .catch(()=>{
+            alert('관리자에게 문의 하세요');
+          })
+    });
+});
+//@@@@@@@@@@@@@@@@@@@@  답글 UPDATE @@@@@@@@@@@@@@@@@@@@@@@@@
+$(document).on('click', '.update', function(e) {
+   
+    console.log("UPDATE ON CLICK")
+    let num = $(this).attr("data-comment-num");
+    $("#replyContents").val($("#commentsContents"+num).text());
+    $("#contentsConfirm").attr("data-comment-num", num);
+    e.preventDefault();
+    $('#modifyModal').modal({
+        backdrop: 'static'
+    }).modal("show");
+
+    $("#contentsConfirm").off("click").on("click", function(){
+        console.log("수정")
+        fetch('../commentsReply/update', {
+            method:'POST',
+            headers:{
+                "Content-type":"application/x-www-form-urlencoded"
+            },
+            body: "replyNum="+$(this).attr("data-comment-num")+"&replyContents="+$('#reply_text').val()
+        }).then( (response) => response.text())
+          .then( (res) => {
+            if(res.trim()>0){
+                alert('수정 성공');
+                $("#closeModal").click();
+                location.reload();            
+            }else {
+                alert('수정 실패');
+                $("#closeModal").click();
+            }
+          })
+          .catch(()=>{
+            alert('관리자에게 문의 하세요');
+          })
+    });
 });
 
-$("#contentsConfirm").click(function(){
-    
-    fetch('../comments/update', {
-        method:'POST',
-        headers:{
-            "Content-type":"application/x-www-form-urlencoded"
-        },
-        body: "commentsNum="+$(this).attr("data-comment-num")+"&commentsContents="+$('#reply_text').val()
-    }).then( (response) => response.text())
-      .then( (res) => {
-        if(res.trim()>0){
-            alert('수정 성공');
-            $("#closeModal").click();
-            getList(1);            
-        }else {
-            alert('수정 실패');
-        }
-      })
-      .catch(()=>{
-        alert('관리자에게 문의 하세요');
-      })
-});
+
 //@@@@@@@@@@@@@@@@@@@@  댓글 삭제  @@@@@@@@@@@@@@@@@@@@@@@@@@
-$(document).on("click", ".del", function() {
+$(".del").on("click", function() {
     console.log("delete")
     var commentNum = $(this).data("comment-num");
     
@@ -192,20 +226,20 @@ $.ajax({
     }
     });
 });
-//@@@@@@@@@@@@@@@@@@@@@@@  답급 삭제  @@@@@@@@@@@@@@@@@@@@@@@@@@@@
-// $(document).on("click", ".del", function() {
-//     console.log("delete")
-//     var replyNum = $(this).data("replyNum");
+// @@@@@@@@@@@@@@@@@@@@@@@  답급 삭제  @@@@@@@@@@@@@@@@@@@@@@@@@@@@
+$(document).on('click', '.del', function() {
+    console.log("delete")
+    var replyNum = $(this).data("comment-num");
 
-// $.ajax({
-//     type: "POST",
-//     url: '../commentsReply/delete?replyNum='+ replyNum,
-//     success: function() {
-//         location.reload(); // 성공적으로 삭제한 경우, 페이지 리로드
-//     },
-//     error: function(error) {
-//         console.log(error);
-//     }
-//     });
-// });
+$.ajax({
+    type: "POST",
+    url: '../commentsReply/delete?replyNum='+ replyNum,
+    success: function() {
+        location.reload(); // 성공적으로 삭제한 경우, 페이지 리로드
+    },
+    error: function(error) {
+        console.log(error);
+    }
+    });
+});
 
