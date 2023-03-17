@@ -13,10 +13,10 @@
 		<td>${dto.replyRegDate}</td>
 		
 		<td>
-			<button class="btn btn-danger del" id="del" data-replyNum-num="${dto.replyNum}">
+			<button class="btn btn-danger del" id="del${dto.replyNum}" data-comment-num="${dto.replyNum}">
 				DELETE
 			</button>		 			
-			<button class="btn btn-info update" id="replies" data-bs-toggle="modal" data-target="#modifyModal"  data-replyNum="${dto.replyNum}">
+			<button class="btn btn-info update" id="replies" data-bs-toggle="modal" data-target="#modifyModal"  data-comment-num="${dto.replyNum}">
 				UPDATE
 			</button>			
 		</td>
