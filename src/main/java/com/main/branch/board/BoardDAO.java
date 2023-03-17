@@ -39,4 +39,12 @@ public class BoardDAO {
 		return sqlSession.update(NAMESPACE+"setBoardUpdate", boardDTO);
 	}
 
+	
+	//----------------------------------
+	public int setBoardPicAdd(BoardDTO boardDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"setBoardPicAdd", boardDTO);
+	}
+	public int setBoardPicDelete(BoardDTO boardDTO) throws Exception{
+		return sqlSession.delete(NAMESPACE+"setBoardPicDelete", boardDTO);
+	}
 }
