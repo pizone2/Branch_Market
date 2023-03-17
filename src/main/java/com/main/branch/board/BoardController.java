@@ -2,11 +2,14 @@ package com.main.branch.board;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.main.branch.util.Pager;
@@ -88,6 +91,27 @@ public class BoardController {
 		mv.setViewName("common/result");
 		mv.addObject("result","수정성공");
 		mv.addObject("url","./detail"+"?boardNum="+boardDTO.getBoardNum());
+		return mv;
+	}
+	
+	//-------------------------
+	
+	@PostMapping("picAdd")
+	public ModelAndView setBoardPicAdd(BoardDTO boardDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = boardService.SetBoardPicAdd(boardDTO);
+		mv.addObject("result",result);
+		mv.setViewName("common/ajaxResult");
+		return mv;
+	}
+	
+	
+	@PostMapping("picDelete")
+	public ModelAndView setBoardPicDelete(BoardDTO boardDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = boardService.setBoardPicDelete(boardDTO,null);
+		mv.addObject("result",result);
+		mv.setViewName("common/ajaxResult");
 		return mv;
 	}
 

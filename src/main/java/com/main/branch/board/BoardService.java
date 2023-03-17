@@ -2,6 +2,8 @@ package com.main.branch.board;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,5 +35,13 @@ public class BoardService {
 	
 	public int setBoardUpdate(BoardDTO boardDTO) throws Exception{
 		return boardDAO.setBoardUpdate(boardDTO);
+	}
+	
+	//-----------------------------
+	public int SetBoardPicAdd(BoardDTO boardDTO) throws Exception{
+		return boardDAO.setBoardPicAdd(boardDTO);
+	}
+	public int setBoardPicDelete(BoardDTO boardDTO, HttpSession session) throws Exception{
+		return boardDAO.setBoardPicDelete(boardDTO);
 	}
 }

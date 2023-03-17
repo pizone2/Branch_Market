@@ -49,8 +49,20 @@
  	</delete>
  	
  	<update id="setBoardUpdate" parameterType="BoardDTO">
- 		UPDATE BOARD SET BOARDTITLE=#{boardTitle}, BOARDCONTENTS=#{boardContents},BOARDPRICE=#{boardPrice},BOARDSTATE=#{boardState},BOARDCATEGORY=#{boardCategory})
+ 		UPDATE BOARD SET BOARDTITLE=#{boardTitle}, BOARDCONTENTS=#{boardContents},BOARDPRICE=#{boardPrice},BOARDSTATE=#{boardState},BOARDCATEGORY= #{boardCategory} 
  		WHERE BOARDNUM=#{boardNum}
  	</update>
+ 	
+ 	
+ 	
+ 	
+ 	<!--  -->
+ 	<insert id="setBoardPicAdd" parameterType="BoardDTO">
+ 		INSERT INTO BOARDPIC VALUES ((SELECT BOARDNUM FROM BOARD WHERE BOARDNUM=#{boardNum}),(SELECT MEMBERID FROM BOARD WHERE BOARDNUM=#{boardNum}))
+ 	</insert>
+ 	
+ 	<delete id="setBoardPicDelete" parameterType="BoardDTO">
+ 		DELETE BOARDPIC WHERE BOARDNUM=#{boardNum}
+ 	</delete>
  	
  </mapper>
