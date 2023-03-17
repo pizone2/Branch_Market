@@ -35,7 +35,7 @@ public class CommentsController {
 
 		
 		mv.addObject("list", ar);
-		mv.setViewName("comments/comments");
+		mv.setViewName("comments/list");
 	
 		return mv;
 	}

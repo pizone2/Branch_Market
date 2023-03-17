@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.main.branch.member.MemberDTO;
 import com.main.branch.util.Pager;
 
 @Repository
@@ -39,16 +40,12 @@ public class ProductDAO {
 		return sqlSession.update(NAMESPACE + "setProductUpdate", productDTO);
 	}
 	
-	public Integer setProductRequest(ProductDTO productDTO) throws Exception{	
-		return sqlSession.insert(NAMESPACE + "setProductRequest", productDTO);
+	public List<ProductDTO> getProductAddList(Pager pager) throws Exception{
+		return sqlSession.selectList(NAMESPACE + "setProductAddList", pager);
 	}
 	
 	public Integer setProductAddConfirm(ProductDTO productDTO) throws Exception{	//신청확인 DB저장
-		return sqlSession.insert(NAMESPACE + "setProductAddConfirm", productDTO);
-	}
-	
-	public Integer setProductRequestList(ProductDTO productDTO) throws Exception{
-		return sqlSession.insert(NAMESPACE + "setProductRequestList", productDTO);
+		return sqlSession.update(NAMESPACE + "setProductAddConfirm", productDTO);
 	}
 
 }	

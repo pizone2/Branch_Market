@@ -45,6 +45,13 @@
 		<a href="./update?boardNum=${dto.boardNum}" class="btn btn-outline-success col-3 mx-2">게시물 수정</a>
 		<a href="./list" class="btn btn-success col-3">목록으로</a>
 	</div>
+
+
+
+
+
+
+	
 </div>
 <script>
 const del = document.getElementById("delete");

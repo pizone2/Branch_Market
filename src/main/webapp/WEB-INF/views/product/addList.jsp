@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>위탁상품</title>
+<title>위탁상품 신청 목록</title>
 <c:import url="../template/common_css.jsp"></c:import>
 </head>
 <body>
@@ -15,7 +15,7 @@
 
 <div class="container-fluid my-5">
 	<div class="row mb-4">
-		<h1 class="col-md-7 mx-auto text-center border-bottom border-dark pb-4">위탁상품 리스트</h1>
+		<h1 class="col-md-7 mx-auto text-center border-bottom border-dark pb-4">위탁상품 신청 목록</h1>
 	</div>
 	
 	<div class="row col-md-7 mx-auto">
@@ -26,23 +26,41 @@
 						<th>상품명</th>
 						<th>카테고리</th>
 						<th>이미지</th>
-						<th>품질</th>
 						<th>상품 가격</th>
+						<th>품질</th>
+						<th>등록여부</th>
 						
 					</tr>
 				</thead>
 				<tbody class="table-group-divider">
-					<c:forEach items="${list}" var="dto"> <!-- dto는 page 영역에 담김 -->
-					<c:if test="${dto.productQ ne null}">
+					<c:forEach items="${list}" var="dto">
+					<c:if test="${dto.productQ eq null}">
 						<tr>
 							<td><a>${dto.productNum}</a></td>
-							<td><a href="./detail?productNum=${dto.productNum}">${dto.productTitle}</a></td>
+							<td><a>${dto.productTitle}</a></td>
 							<td><a>${dto.productCategory}</a></td>
 							<td><img src="${dto.productImgName}" alt="" style="height: 100px;"></td>
-							<td><a>${dto.productQ}</a></td>
 							<td><a>${dto.productPrice}</a></td>
+
+							<td>
+								<div class="mb-3">
+									<select class="form-select" aria-label="Default select example" name="productQ" id="productQ${dto.productNum}">
+									<option selected>${dto.productQ}</option>
+									<option value="좋음">아주 좋음</option>
+									<option value="좋음">좋음</option>
+									<option value="보통">보통</option>
+									<option value="나쁨">나쁨</option>
+									<option value="좋음">아주 나쁨</option>
+									</select>
+								</div>
+					 		</td>
+					 		<td>
+						 		<div class="row col-md-7 mx-4">
+									<a class="btn btn-primary col-2 addConfirmBtn" data-productNum="${dto.productNum}">등록</a>
+								</div>
+							</td>
 						</tr>
-					</c:if>	
+						</c:if>
 					</c:forEach>
 				</tbody>
 			</table>
@@ -111,11 +129,9 @@
 			</div>
 			
 			</div>
-			<div class="row col-md-7 mx-auto">
-				<a class="btn btn-primary col-2" href="./add">위탁상품 등록</a>
-			</div>
 		</div>
 	
+		<script src="/resources/js/product/addList.js"></script>
 		<c:import url="../template/common_js.jsp"></c:import>
  </body>
 </html>

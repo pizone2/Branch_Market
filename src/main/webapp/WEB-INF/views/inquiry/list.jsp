@@ -38,13 +38,13 @@
 					  <ul class="pagination">
 					  	<li class="page-item" data-page="1">
 					      <a class="page-link" data-page="1" aria-label="Previous" href="#">
-					        <span aria-hidden="true">&lsaquo;</span>
+					        <span aria-hidden="true">&laquo;</span>
 					      </a>
 					    </li>
 					    
 					    <li class="page-item ${pager.before?'disabled':''}" data-page="${pager.startNum - 1}">
 					      <a class="page-link" data-page="${pager.startNum - 1}" aria-label="Previous" href="#">
-					        <span aria-hidden="true">&laquo;</span>
+					        <span aria-hidden="true">&lsaquo;</span>
 					      </a>
 					    </li>
 					    <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
@@ -54,12 +54,12 @@
 
 					    <li class="page-item ${pager.after eq false ? 'disabled' : ''}" data-page="${pager.lastNum + 1}">
 					      <a class="page-link" data-page="${pager.lastNum + 1}" aria-label="Next" href="#">
-					        <span aria-hidden="true">&raquo;</span>
+					        <span aria-hidden="true">&rsaquo;</span>
 					      </a>
 					    </li>
 					    <li class="page-item" data-page="${pager.totalPage}">
 					      <a class="page-link" data-page="${pager.totalPage}" aria-label="Next" href="#">
-					        <span aria-hidden="true">&rsaquo;</span>
+					        <span aria-hidden="true">&raquo;</span>
 					      </a>
 					    </li>
 					  </ul>

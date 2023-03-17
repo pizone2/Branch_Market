@@ -54,7 +54,7 @@
  			SELECT SEQ.NEXTVAL FROM DUAL
  		</selectKey>
  		INSERT INTO PRODUCT 
- 		VALUES(#{productNum}, #{memberId} ,#{productTitle}, #{productPrice}, #{productDetail},#{productCategory} , #{productQ}, #{productImgName})
+ 		VALUES(#{productNum}, #{memberId} ,#{productTitle}, #{productPrice}, #{productDetail},#{productCategory} , NULL, #{productImgName})
  	</insert>
   
   <delete id="setProductDelete" parameterType="ProductDTO">
@@ -63,8 +63,37 @@
   </delete>
   
   <update id="setProductUpdate" parameterType="ProductDTO">
-  	UPDATE PRODUCT SET PRODUCTTITLE = #{productTitle}, PRODUCTPRICE = #{productPrice}, PRODUCTDETAIL = #{productDetail}, PRODUCTCATEGORY = #{productCategory}, PRODUCTQ = #{productQ}
+  	UPDATE PRODUCT SET PRODUCTTITLE = #{productTitle}, PRODUCTPRICE = #{productPrice}, PRODUCTDETAIL = #{productDetail}, PRODUCTCATEGORY = #{productCategory}
   	WHERE PRODUCTNUM = #{productNum}
   </update>
+  
+  <update id="setProductAddConfirm" parameterType="ProductDTO">
+  	UPDATE PRODUCT SET PRODUCTQ = #{productQ}
+  	WHERE PRODUCTNUM = #{productNum}
+  </update>
+  
+  <select id="getProductAddList" parameterType="Pager" resultType="ProductDTO">
+  	SELECT * FROM 
+  		(
+  			SELECT ROWNUM R, P.*FROM
+  				(
+  					SELECT * FROM PRODUCT
+  					WHERE 
+  						<choose>
+  							<when test="kind == 'contents'">
+  								PRODUCTDETAIL
+  							</when>
+  							<otherwise>
+  								PRODUCTTITLE
+  							</otherwise>
+  						</choose>
+  					LIKE '%' || #{search} || '%'
+  					AND PRODUCTQ IS NULL
+  					ORDER BY PRODUCTNUM DESC
+  					
+  				)P
+  		)
+  	WHERE R BETWEEN #{startRow} AND #{lastRow}
+  </select>
   
   </mapper>

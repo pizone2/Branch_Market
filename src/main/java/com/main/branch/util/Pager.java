@@ -8,8 +8,16 @@ public class Pager {
 	private Integer commentsNum;
 	private String category;
 	private String memberId;
+	private Integer inquiryNum;
 	
 	
+	
+	public Integer getInquiryNum() {
+		return inquiryNum;
+	}
+	public void setInquiryNum(Integer inquiryNum) {
+		this.inquiryNum = inquiryNum;
+	}
 	public String getMemberId() {
 		return memberId;
 	}

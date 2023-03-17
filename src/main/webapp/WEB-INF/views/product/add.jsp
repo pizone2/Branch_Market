@@ -41,20 +41,11 @@
 			  <option value="E쿠폰/티켓">E쿠폰/티켓</option>
 			</select>
 	    </div>
-	    
+		
 		<div class="mb-3">
-			<label for="productQ" class="form-label">상품 상태</label>
-		    <select class="form-select" aria-label="Default select example" name="productQ" id="productQ">
-			  <option value="좋음">아주 좋음</option>
-			  <option value="좋음">좋음</option>
-			  <option value="보통">보통</option>
-			  <option value="나쁨">나쁨</option>
-			  <option value="좋음">아주 나쁨</option>
-			</select>
+			<input type="file" parameter="">
 		</div>
 		
- 		
-
 		<div class="mb-3">
 			<label for="productDetail" class="form-label">상세설명</label>
 			<textarea name="productDetail" class="form-control" id="productDetail" placeholder="설명 입력" rows="7"></textarea>
