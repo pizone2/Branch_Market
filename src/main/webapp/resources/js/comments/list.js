@@ -1,5 +1,6 @@
 
 //@@@@@@@@@@@@@@@@@@@@@@@@@ 답글달기 폼 생성@@@@@@@@@@@@@@@@@@@@@@@
+
 // 답글 버튼 클릭 이벤트
 $('.rep').click(function() {
         // 부모 댓글의 ID 가져오기
@@ -112,7 +113,7 @@ $("#replyAddBtn").on("click", function () {
     type: 'POST',
     url: '../comments/add',
     data: {
-        boardNum: 3,
+        boardNum: boardNum,
         memberId: '작성자 아이디',
         commentsContents: newReplyText
     },
@@ -156,7 +157,7 @@ $(".update").on("click", function(e) {
             },
             body: "commentsNum="+$(this).attr("data-comment-num")+"&commentsContents="+$('#reply_text').val()
         }).then( (response) => response.text())
-          .then( (res) => {
+        .then( (res) => {
             if(res.trim()>0){
                 alert('수정 성공');
                 $("#closeModal").click();
@@ -164,15 +165,15 @@ $(".update").on("click", function(e) {
             }else {
                 alert('수정 실패');
             }
-          })
-          .catch(()=>{
+        })
+        .catch(()=>{
             alert('관리자에게 문의 하세요');
-          })
+        })
     });
 });
 //@@@@@@@@@@@@@@@@@@@@  답글 UPDATE @@@@@@@@@@@@@@@@@@@@@@@@@
-$(document).on('click', '.update', function(e) {
-   
+$(document).on('click', '.newDate', function(e) {
+
     console.log("UPDATE ON CLICK")
     let num = $(this).attr("data-comment-num");
     $("#replyContents").val($("#commentsContents"+num).text());
@@ -191,7 +192,7 @@ $(document).on('click', '.update', function(e) {
             },
             body: "replyNum="+$(this).attr("data-comment-num")+"&replyContents="+$('#reply_text').val()
         }).then( (response) => response.text())
-          .then( (res) => {
+        .then( (res) => {
             if(res.trim()>0){
                 alert('수정 성공');
                 $("#closeModal").click();
@@ -200,10 +201,10 @@ $(document).on('click', '.update', function(e) {
                 alert('수정 실패');
                 $("#closeModal").click();
             }
-          })
-          .catch(()=>{
+        })
+        .catch(()=>{
             alert('관리자에게 문의 하세요');
-          })
+        })
     });
 });
 

@@ -4,7 +4,7 @@
 <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
 <table class="table table-striped">
 	<c:forEach items="${list}" var="dto"> 
-		<tr id="${dto.replyNum}">
+		<tr id="${dto.replyNum}" style="background-color:bisque ;">
 			
 		<td>${dto.replyNum}</td>
 		<td>${dto.commentsNum}</td>
@@ -16,7 +16,7 @@
 			<button class="btn btn-danger del" id="del${dto.replyNum}" data-comment-num="${dto.replyNum}">
 				DELETE
 			</button>		 			
-			<button class="btn btn-info update" id="replies" data-bs-toggle="modal" data-target="#modifyModal"  data-comment-num="${dto.replyNum}">
+			<button class="btn btn-info update newDate" id="replies" data-bs-toggle="modal" data-target="#modifyModal"  data-comment-num="${dto.replyNum}">
 				UPDATE
 			</button>			
 		</td>
@@ -24,7 +24,7 @@
 	</c:forEach>
 </table>
 <!-- @@@@@@@@@@@@@@@@@@@@@@  UPDATE 댓글모달창 @@@@@@@@@@@@@@@@@@@@@@@-->
-<div class="modal fade" id="modifyModal" role="dialog">
+<!-- <div class="modal fade" id="modifyModal" role="dialog">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -45,4 +45,4 @@
                 <button type="button" class="btn btn-danger modalDelBtn">삭제</button>
             </div>
         </div>
-    </div>
+    </div> -->

@@ -100,7 +100,7 @@ public class ProductController {
 	}
 	
 	@GetMapping("addList")
-	public ModelAndView setProductAddList(ProductDTO productDTO, Pager pager) throws Exception{
+	public ModelAndView setProductAddList(Pager pager) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		List<ProductDTO> ar = productService.getProductList(pager);
 		

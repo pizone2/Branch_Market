@@ -33,7 +33,7 @@
   							</otherwise>
   						</choose>
   					LIKE '%' || #{search} || '%'
-  					
+  					AND PRODUCTQ IS NOT NULL
   					ORDER BY PRODUCTNUM DESC
   				)P
   		)
