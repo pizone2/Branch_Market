@@ -66,7 +66,7 @@ public class CommentsController {
 	@PostMapping("update")
 	public ModelAndView setCommentsUpdate(CommentsDTO commentsDTO)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		
+		System.out.println("update");
 		int result = commentsService.setCommentsUpdate(commentsDTO);
 		
 		mv.addObject("result", result);
