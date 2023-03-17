@@ -60,6 +60,8 @@
 				  <div class = "row">
 						<input type="hidden" name="page" id="page">
 						<input type="hidden" name="category" id="category" value="${pager.category}">
+
+
 						<div class="col-auto">
 							<label for="kind" class="visually-hidden">Kind</label>
 							<select name="kind" class="form-select" id="kind" aria-label="Default select example">
