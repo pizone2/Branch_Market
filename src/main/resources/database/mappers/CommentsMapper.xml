@@ -19,8 +19,8 @@
   	</sql>
  
 <!--TotalCount--> 
-	<select id="getTotalCount" resultType="Integer">
-  		SELECT COUNT(COMMENTSNUM) FROM COMMENTS
+	<select id="getTotalCount" parameterType="Pager" resultType="Integer">
+  		SELECT COUNT(COMMENTSNUM) FROM COMMENTS WHERE boardNum = #{boardNum}
   			<!-- <include refid="commentsCondition"></include> -->
     	  
   	</select>
@@ -32,6 +32,7 @@
 			  		(	
 			  			SELECT * FROM COMMENTS
 			  			<!-- <include refid="commentsCondition"></include> -->
+			  			WHERE boardNum = #{boardNum}
 			  			ORDER BY COMMENTSNUM DESC
 			  		)C
 	  		)

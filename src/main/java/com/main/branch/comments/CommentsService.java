@@ -22,8 +22,8 @@ public class CommentsService {
 	
 	
 	public List<CommentsDTO> getCommentsList(Pager pager) throws Exception {
-		System.out.println(commentsDAO.getTotalCount());
-		pager.makeNum(commentsDAO.getTotalCount());
+	//	System.out.println(commentsDAO.getTotalCount());
+		pager.makeNum(commentsDAO.getTotalCount(pager));
 		pager.makeRow();
 		
 		return commentsDAO.getCommentsList(pager);		

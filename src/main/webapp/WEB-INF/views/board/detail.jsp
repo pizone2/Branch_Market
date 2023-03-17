@@ -10,6 +10,8 @@
 </head>
 <body>
 <div class="container-fluid my-5">
+	<div hidden id="boardNum" data-boardNum = "${dto.boardNum}"></div>
+
 	<div class="row mb-4 ">
 		<h1 class="col-md-7 mx-auto text-center border-bottom border-dark pb-4">Board Detail Page</h1>
 	</div>
@@ -50,21 +52,15 @@
 		<a href="./delete?boardNum=${dto.boardNum}" class="btn btn-outline-danger col-3" id="delete">게시물 삭제</a>
 		<a href="./update?boardNum=${dto.boardNum}" class="btn btn-outline-success col-3 mx-2">게시물 수정</a>
 		<a href="./list" class="btn btn-success col-3">목록으로</a>
-	</div>
-
-
-
-
-
-
-	
+	</div>	
 </div>
+<div id="commentsList"></div>
 <script>
 const del = document.getElementById("delete");
 const frm = document.getElementById("frm");
 
 del.addEventListener("click", function(){
-    let check = window.confirm("정말 삭제ㄱ?");
+    let check = window.confirm("정말 삭제ㄱrrrrrrrrrrr?");
     if(check){
         frm.setAttribute("action","./delete");
         frm.setAttribute("method","post");
@@ -73,6 +69,7 @@ del.addEventListener("click", function(){
 
 })
 </script>
-<script src="/resources/js/board/board.js"></script>	
+<script src="/resources/js/board/board.js"></script>
+  <c:import url="../template/common_js.jsp"></c:import>
 </body>
 </html>

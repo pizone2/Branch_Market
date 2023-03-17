@@ -40,8 +40,8 @@ public class CommentsDAO {
 	}
 	
 	//TotalCount??
-	public int getTotalCount() throws Exception {
-		return sqlSession.selectOne(NAMESPACE+"getTotalCount");
+	public int getTotalCount(Pager pager) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getTotalCount",pager);
 	}
 
 	

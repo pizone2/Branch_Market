@@ -29,11 +29,8 @@ public class CommentsController {
 	public ModelAndView getCommentsList (Pager pager)throws Exception{
 		ModelAndView mv = new ModelAndView();
 	
-		
 		List<CommentsDTO> ar = commentsService.getCommentsList(pager); // 댓글가져옴
 
-
-		
 		mv.addObject("list", ar);
 		mv.setViewName("comments/list");
 	

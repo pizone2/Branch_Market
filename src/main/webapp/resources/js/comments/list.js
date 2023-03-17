@@ -113,7 +113,7 @@ $("#replyAddBtn").on("click", function () {
     type: 'POST',
     url: '../comments/add',
     data: {
-        boardNum: 3,
+        boardNum: boardNum,
         memberId: '작성자 아이디',
         commentsContents: newReplyText
     },
