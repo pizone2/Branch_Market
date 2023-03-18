@@ -43,12 +43,16 @@
 	            	<input type="text" name="boardTitle" class="form-control my-2" id="boardTitle" placeholder="제목 입력"><br>
 	        	 </div>
 	        	 <div class="fw-bold fs-5 col-12">
-		            <p>카테고리</lp>
+		            <p>카테고리</p>
 	        	  	<select class="form-select" name="boardCategory" id="boardCategory" aria-label="Default select example">
-					  <option name="boardCategory" id="boardCategory" selected>카테고리를 선택해주세요</option>
-					  <option for="boardCategory" value="여성패션">여성패션</option>
-					  <option for="boardCategory" value="남성패션">남성패션</option>
-					  <option for="boardCategory" value="기타">기타</option>
+					  <option value="여성패션">여성패션</option>
+					  <option value="남성패션">남성패션</option>
+				      <option value="가구/인테리어">가구/인테리어</option>
+				      <option value="생활/주방">생활/주방</option>
+				      <option value="가전제품">가전제품</option>
+				      <option value="전자기기(디지털,컴퓨터)">전자기기(디지털,컴퓨터)</option>
+					  <option value="E쿠폰/티켓">E쿠폰/티켓</option>
+					  <option value="기타">기타</option>
 					</select>
 		         </div>
 		         <div class="fw-bold fs-5 col-12">

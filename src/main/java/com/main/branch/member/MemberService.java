@@ -27,8 +27,7 @@ public class MemberService {
 			memberDTO.setMemberPw(memberDTO2.getMemberPw());
 			String newPw = UUID.randomUUID().toString().substring(0, 7);
 			memberDTO.setChangeMemberPw(newPw);
-		//	System.out.println(newPw);
-			
+
 			int result = memberDAO.setMemberUpdatePw(memberDTO);
 			if(result > 0) {
 				

@@ -1,17 +1,18 @@
 let boardNum = $('#boardNum').attr('data-boardNum');
-$.ajax({
-    url:'/comments/list',
-    type:'get',
-    data:{
-        'boardNum':boardNum
-    },
-    success:(response)=>{
-        response = response.trim();
-        console.log(response);
-        $('#commentsList').html(response);
-    }
-})
-
+function getCommentsList() {
+    $.ajax({
+        url:'/comments/list',
+        type:'get',
+        data:{
+            'boardNum':boardNum
+        },
+        success:(response)=>{
+            response = response.trim();
+            $('#commentsList').html(response);
+        }
+    })
+}
+getCommentsList();
 // --------------------------------------------------------
 const picAdd = document.getElementById("picAdd");
 const picDelete = document.getElementById("picDelete");

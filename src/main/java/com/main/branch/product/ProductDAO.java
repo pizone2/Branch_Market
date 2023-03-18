@@ -41,11 +41,14 @@ public class ProductDAO {
 	}
 	
 	public List<ProductDTO> getProductAddList(Pager pager) throws Exception{
-		return sqlSession.selectList(NAMESPACE + "setProductAddList", pager);
+		return sqlSession.selectList(NAMESPACE + "getProductAddList", pager);
 	}
 	
 	public Integer setProductAddConfirm(ProductDTO productDTO) throws Exception{	//신청확인 DB저장
 		return sqlSession.update(NAMESPACE + "setProductAddConfirm", productDTO);
+	}
+	public Integer getProductAddCount(Pager pager)throws Exception{
+		return sqlSession.selectOne(NAMESPACE + "getProductAddCount", pager);
 	}
 
 }	

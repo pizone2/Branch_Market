@@ -9,9 +9,16 @@ public class Pager {
 	private String category;
 	private String memberId;
 	private Integer inquiryNum;
+	private String state;
 	
 	
 	
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
 	public Integer getInquiryNum() {
 		return inquiryNum;
 	}

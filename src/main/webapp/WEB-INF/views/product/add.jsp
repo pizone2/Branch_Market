@@ -43,7 +43,8 @@
 	    </div>
 		
 		<div class="mb-3">
-			<input type="file" parameter="">
+			<label for="filecs" class="form-label">썸네일 이미지</label><br>
+			<input type="file" name="filecs" id="filecs">
 		</div>
 		
 		<div class="mb-3">

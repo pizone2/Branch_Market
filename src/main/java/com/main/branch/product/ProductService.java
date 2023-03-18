@@ -49,7 +49,7 @@ public class ProductService {
 //		productDTO.setMemberId(memberDTO.getMemberId());
 		productDTO.setMemberId("이주형");
 		
-		if(!filecs.isEmpty()) { //pic.getSize() !=0
+		if(filecs != null) { //pic.getSize() !=0
 			
 			//1. File을 HDD에 저장 경로
 			// Project 경로가 아닌 OS가 이용하는 경로
@@ -60,14 +60,9 @@ public class ProductService {
 			productDTO.setProductImgName("/resources/upload/product/"+fileName);
 			System.out.println(filecs);
 			System.out.println(filecs.getOriginalFilename());
-			//2. DB에 저장
-			
-			result = productDAO.setProductAdd(productDTO);
 		}
-		else {
-			result = productDAO.setProductAdd(productDTO);
-		}
-		return result;
+		
+		return productDAO.setProductAdd(productDTO);
 	}
 	
 	public Integer setProductDelete(ProductDTO productDTO) throws Exception{
@@ -87,7 +82,7 @@ public class ProductService {
 
 	public List<ProductDTO> getProductAddList(Pager pager) throws Exception{
 		
-		Integer totalCount = productDAO.getProductCount(pager);
+		Integer totalCount = productDAO.getProductAddCount(pager);
 		
 		pager.makeNum(totalCount);
 		pager.makeRow();

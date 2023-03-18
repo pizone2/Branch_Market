@@ -102,8 +102,7 @@ public class ProductController {
 	@GetMapping("addList")
 	public ModelAndView setProductAddList(Pager pager) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		List<ProductDTO> ar = productService.getProductList(pager);
-		
+		List<ProductDTO> ar = productService.getProductAddList(pager);
 		mv.setViewName("product/addList");
 		mv.addObject("list", ar);
 		mv.addObject("pager", pager);
@@ -120,6 +119,16 @@ public class ProductController {
 		mv.setViewName("redirect:./list");
 		
 		return mv;
+	}
+	@PostMapping("insertNaverData")
+	public ModelAndView setInsertNaverData(ProductDTO productDTO)throws Exception{
+		ModelAndView modelAndView = new ModelAndView();
+		
+		int result = productService.setProductAdd(productDTO, null);
+		result = productService.setProductAddConfirm(productDTO);
+		modelAndView.addObject("result", result);
+		modelAndView.setViewName("/common/ajaxResult");
+		return modelAndView;
 	}
 	
 }

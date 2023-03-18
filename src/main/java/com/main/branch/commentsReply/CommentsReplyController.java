@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.main.branch.comments.CommentsDTO;
+import com.main.branch.member.MemberDTO;
 import com.main.branch.util.Pager;
 
 
@@ -42,6 +43,10 @@ public class CommentsReplyController {
 		public ModelAndView setCommentsReplyAdd(CommentsReplyDTO commentsReplyDTO,HttpSession session)throws Exception{
 			ModelAndView mv = new ModelAndView();
 			
+			// 나중에 주석해제
+//			MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+//			commentsReplyDTO.setMemberId(memberDTO.getMemberId());
+			commentsReplyDTO.setMemberId("사람");
 			int result = commentsReplyService.setCommentsReplyAdd(commentsReplyDTO, session);
 			
 			mv.addObject("result", result);

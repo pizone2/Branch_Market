@@ -315,20 +315,6 @@ public class MemberController {
 		return modelAndView;
 	}
 	
-	@GetMapping("/getTest")
-	public ModelAndView getTest(Pager pager) {
-		ModelAndView modelAndView = new ModelAndView();
-		
-		pager.setPage(2); // 페이지 번호
-		pager.setPerPage(20); // 페이지당 몇개 보여줄지 10~100
-		pager.makeRow();
-		pager.setSearch("장난감"); // 사용자 검색어
-		// Client ID, Client Secret
-		String datas = Naver.getShoppingData(null, null, pager);
-		modelAndView.addObject("result", datas);
-		modelAndView.setViewName("/common/ajaxResult");
-		return modelAndView;
-	}
 	
 	@GetMapping("/postTest")
 	public ModelAndView test2() {
@@ -346,6 +332,21 @@ public class MemberController {
 	public ModelAndView postTestServer(String name) {
 		ModelAndView modelAndView = new ModelAndView();
 		modelAndView.addObject("result", "name is " + name);
+		modelAndView.setViewName("/common/ajaxResult");
+		return modelAndView;
+	}
+	
+	@GetMapping("/getNaverData")
+	public ModelAndView getNaverData(Pager pager) {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		pager.setPage(1); // 페이지 번호
+		pager.setPerPage(100); // 페이지당 몇개 보여줄지 10~100
+		pager.makeRow();
+		// pager.setSearch("장난감"); // 사용자 검색어 pager에 이미 있음
+		// Client ID, Client Secret
+		String datas = Naver.getShoppingData(null, null, pager);
+		modelAndView.addObject("result", datas);
 		modelAndView.setViewName("/common/ajaxResult");
 		return modelAndView;
 	}

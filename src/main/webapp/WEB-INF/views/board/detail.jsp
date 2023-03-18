@@ -69,7 +69,8 @@ del.addEventListener("click", function(){
 
 })
 </script>
-<script src="/resources/js/board/board.js"></script>
   <c:import url="../template/common_js.jsp"></c:import>
+  <script src="/resources/js/board/board.js"></script>
+
 </body>
 </html>
