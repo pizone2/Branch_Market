@@ -19,7 +19,7 @@ var replyFormHtml = '<tr class="reply-form">' +
     '<td colspan="6">' +
     '<form>' +
     '<input type="hidden" id="newReplyText" name="parent_id" value="' + parentId + '">' +
-    '<textarea name="reply_content" class="w-100 form-control" placeholder="답글입력..."></textarea>' +
+    '<textarea name="reply_content" id="reply_content" class="w-100 form-control" placeholder="답글입력..."></textarea>' +
     '<button class="btn btn-success add mb-1 write_reply">등록</button>' +
     '</form>' +
     '</td>' +
@@ -32,6 +32,7 @@ parentRow.after(replyFormHtml);
 $(document).on("click", ".add", function(e) {
 console.log("답글등록 TEST")
 
+let reply_content = $('#reply_content').val();
 var newReplyText = $('#newReplyText').val();
 // AJAX 요청
 $.ajax({
@@ -40,18 +41,19 @@ url: '../commentsReply/add',
 data: {
     commentsNum: newReplyText,
     memberId: '작성자 아이디',
-    replyContents: newReplyText
+    replyContents: reply_content
 },
 jdbcTypeForNull: 'NULL',
 
 success: function(result) {
     if (result) {
         alert("완료");
+        location.reload();
     } else {
         alert("전송된 값 없음");
     }
         // 성공적으로 댓글을 추가한 경우, 페이지 리로드
-    location.reload();
+    // location.reload();
 },
 error: function(error) {
         // 오류가 발생한 경우, 적절한 처리를 수행
