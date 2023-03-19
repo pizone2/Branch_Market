@@ -51,12 +51,12 @@
 		<div class="row">
 			<nav aria-label="Page navigation example">
 			  <ul class="pagination">
+			  
 			  	<li class="page-item">
 			      <a class="page-link" href="#" aria-label="Previous" data-board-page="1">
 			        <span aria-hidden="true">&laquo;</span>
 			      </a>
 			    </li>
-			  
 			  
 			    <li class="page-item ${pager.before?'disabled':''}">
 			      <a class="page-link" href="#" aria-label="Previous" data-board-page="${pager.startNum-1}">
@@ -69,17 +69,13 @@
 			    </c:forEach>
 			    
 			    <li class="page-item ${pager.after eq false ? 'disabled':''}"><%-- ${pager.after eq false ? 'disabled':''} --%>
-	
 			      <a class="page-link" href="#"  aria-label="Next" data-board-page="${pager.lastNum+1}">
-			      
 			        <span aria-hidden="true">&rsaquo;</span>
 			      </a>
 			    </li>
 			    
-			    <li class="page-item"><%-- ${pager.after eq false ? 'disabled':''} --%>
-	
+			    <li class="page-item${pager.after eq false ? 'disabled':''}">
 			      <a class="page-link" href="#"  aria-label="Next" data-board-page="${pager.totalPage}">
-			      
 			        <span aria-hidden="true">&raquo;</span>
 			      </a>
 			    </li>
