@@ -18,11 +18,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.main.branch.util.ApiCallManager;
 import com.main.branch.util.Naver;
 import com.main.branch.util.Pager;
+import org.springframework.http.HttpHeaders;
 
 @Controller
 @RequestMapping(value = "/member/**")
