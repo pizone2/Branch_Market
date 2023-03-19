@@ -38,11 +38,10 @@ public class MemberController {
 	private HttpServletRequest request;
 	@Autowired
 	private HttpServletResponse response;
-	
+
 	@GetMapping("/list")
 	public ModelAndView getMemberList() {
 		ModelAndView modelAndView = new ModelAndView();
-		
 		List<MemberDTO> memberDTOs = memberService.getMemberList();
 		
 		modelAndView.addObject("memberDtos", memberDTOs);

@@ -11,10 +11,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping("/kakaoPay")
-public class KakaoController {
+public class KakaoPayController {
     
     @Autowired
-    private KakaoService kakaoService;
+    private KakaoPayService kakaoService;
     
     
     @PostMapping("/ready")
@@ -25,8 +25,9 @@ public class KakaoController {
     @GetMapping("/approval")
     public String approval(String pg_token) {
        KakaoPayApprovalVO kakaoPayApprovalVO = kakaoService.approval(pg_token);
+       // 이 정보들 가지고 사용자 결제내역 db insert
        System.out.println(kakaoPayApprovalVO.toString());
-       System.out.println(kakaoPayApprovalVO);
+       System.out.println(kakaoPayApprovalVO.getAmount().getTotal());
        
        return "redirect: " + "/";
     }

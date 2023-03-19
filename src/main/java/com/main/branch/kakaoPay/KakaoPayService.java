@@ -13,23 +13,22 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 @Service
-public class KakaoService {
+public class KakaoPayService {
  
     private static final String HOST = "https://kapi.kakao.com";
     
     private KakaoPayReadyVO kakaoPayReadyVO;
     private KakaoPayApprovalVO kakaoPayApprovalVO;
-    private String adminKey = "80017936b7c49e1e933d3ab31b0f44bf";
+    private String adminKey = null;
     private String cid = "TC0ONETIME";
-    private String partner_order_id = "1001";
+    private String partner_order_id = "1001"; // 해시로 처리
     private String approval_url = "http://localhost/kakaoPay/approval";
     private String cancel_url = "http://localhost/kakaoPay/cancel";
     private String fail_url = "http://localhost/kakaoPay/fail";
-
+    
     
     public String ready() {
         RestTemplate restTemplate = new RestTemplate();
- 
         // 서버로 요청할 Header
         HttpHeaders headers = new HttpHeaders();
         headers.add("Authorization", "KakaoAK " + adminKey);
@@ -53,6 +52,7 @@ public class KakaoService {
  
         try {
             kakaoPayReadyVO = restTemplate.postForObject(new URI(HOST + "/v1/payment/ready"), body, KakaoPayReadyVO.class);           
+            System.out.println("ready tid:  " + kakaoPayReadyVO.getTid());
             return kakaoPayReadyVO.getNext_redirect_pc_url();
  
         } catch (RestClientException e) {
@@ -68,7 +68,6 @@ public class KakaoService {
     }
     
     public KakaoPayApprovalVO approval(String pg_token) {
-    	
     	// 이거 값 왜 저장되어있음?
         System.out.println("approval tid :  " + kakaoPayReadyVO.getTid());
         
@@ -83,7 +82,7 @@ public class KakaoService {
         // 서버로 요청할 Body
         MultiValueMap<String, String> params = new LinkedMultiValueMap<String, String>();
         params.add("cid", "TC0ONETIME");
-        params.add("tid", kakaoPayReadyVO.getTid());
+        params.add("tid", kakaoPayReadyVO.getTid()); // 원래 db나 세션으로 받아야함
         params.add("partner_order_id", "1001");
         params.add("partner_user_id", "leejuhu");
         params.add("pg_token", pg_token);

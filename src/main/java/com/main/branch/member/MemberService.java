@@ -20,8 +20,8 @@ public class MemberService {
 	@Autowired
 	private MailSender mailSender;
 	
+	
 	public int getMemberFindPw(MemberDTO memberDTO) {
-		
 		MemberDTO memberDTO2 = memberDAO.getMemberDetail(memberDTO);
 		if(memberDTO2 != null &&memberDTO.getMemberEmail().equals(memberDTO2.getMemberEmail())) {
 			memberDTO.setMemberPw(memberDTO2.getMemberPw());
