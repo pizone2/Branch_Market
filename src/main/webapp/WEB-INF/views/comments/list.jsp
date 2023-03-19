@@ -1,15 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<c:import url="../template/common_css.jsp"></c:import>
-</head>
-<body>
-<!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
 <table class="table table-striped">
 	<c:forEach items="${list}" var="dto"> 
 		<tr id="${dto.commentsNum}">
@@ -23,7 +14,7 @@
 				<button class="btn btn-danger del" id="del" data-comment-num="${dto.commentsNum}">
 					DELETE
 				</button>		 			
-				<button class="btn btn-info update" id="replies" data-bs-toggle="modal" data-target="#modifyModal"  data-comment-num="${dto.commentsNum}">
+				<button class="btn btn-info update" id="replies" data-bs-toggle="modal" data-bs-target="#modifyModal"  data-comment-num="${dto.commentsNum}">
 					UPDATE
 				</button>
 				<button class="btn btn rep" data-comment-num="${dto.commentsNum}">
@@ -55,7 +46,6 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">댓글 수정창</h4>
             </div>
             <div class="modal-body">
@@ -67,16 +57,12 @@
             
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal" id="closeModal">닫기</button>
+                <button type="button" class="btn btn-default pull-left" data-bs-dismiss="modal" id="closeModal">닫기</button>
                 <button type="button" class="btn btn-success modalModBtn"  data-comment-num="" id="contentsConfirm">수정</button>
                 
             </div>
         </div>
     </div>
+</div> 
 
-
-
-<script src="../resources/js/comments/list.js"></script>
-<c:import url="../template/common_js.jsp"></c:import>
-</body>
-</html>
+<script src="/resources/js/comments/list.js"></script>

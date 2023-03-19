@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.main.branch.member.MemberDTO;
 import com.main.branch.util.Pager;
 
 
@@ -29,11 +30,8 @@ public class CommentsController {
 	public ModelAndView getCommentsList (Pager pager)throws Exception{
 		ModelAndView mv = new ModelAndView();
 	
-		
 		List<CommentsDTO> ar = commentsService.getCommentsList(pager); // 댓글가져옴
 
-
-		
 		mv.addObject("list", ar);
 		mv.setViewName("comments/list");
 	
@@ -43,7 +41,10 @@ public class CommentsController {
 	@PostMapping("add")
 	public ModelAndView setCommentsAdd(CommentsDTO commentsDTO,HttpSession session)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		
+		// 나중에 주석해제
+//		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+//		commentsDTO.setMemberId(memberDTO.getMemberId());
+		commentsDTO.setMemberId("사람");
 		int result = commentsService.setCommentsAdd(commentsDTO, session);
 		
 		mv.addObject("result", result);

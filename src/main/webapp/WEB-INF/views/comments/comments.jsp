@@ -1,14 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<c:import url="../template/common_css.jsp"></c:import>
-</head>
-<body>
     <!-- 댓글 목록을 출력할 HTML 코드 -->
 	<table id="rtb">
 		<thead>
@@ -80,7 +72,6 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">댓글 수정창</h4>
             </div>
             <div class="modal-body">
@@ -92,16 +83,10 @@
                
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">닫기</button>
+                <button type="button" class="btn btn-default pull-left" data-bs-dismiss="modal">닫기</button>
                 <button type="button" class="btn btn-success modalModBtn"  data-comment-num="" id="contentsConfirm">수정</button>
                 <button type="button" class="btn btn-danger modalDelBtn">삭제</button>
             </div>
         </div>
     </div>
-
-
-
-<script src="../resources/js/comments/list.js"></script>
-<c:import url="../template/common_js.jsp"></c:import>
-</body>
-</html>
+<script src="/resources/js/comments/comments.js"></script>

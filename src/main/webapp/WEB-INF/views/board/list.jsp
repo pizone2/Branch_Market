@@ -42,41 +42,65 @@
 			<nav aria-label="Page navigation example">
 				<ul class="pagination">
 					<li class="page-item ${pager.before?'disabled':'' }">
-						<a class="page-link text-success" href="./list?page=1&kind=${pager.kind}&search=${pager.search}" aria-label="Previous" data-board-page="1">
+						<a class="page-link text-success" href="./list?page=1&kind=${pager.kind}&search=${pager.search}&category=${pager.category}&state=${pager.state}" aria-label="Previous" data-board-page="1">
 							<span aria-hidden="true">&laquo;</span>
 						</a>
 					</li>
 					<li class="page-item ${pager.before?'disabled':'' }">
-						<a class="page-link text-success" href="./list?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}" aria-label="Previous" data-board-page="${pager.startNum-1}">
+						<a class="page-link text-success" href="./list?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}&category=${pager.category}&state=${pager.state}" aria-label="Previous" data-board-page="${pager.startNum-1}">
 							<span aria-hidden="true">&lsaquo;</span>
 						</a>
 					</li>
 					<c:if test="${empty pager.lastRow}">
-						<li class="page-item"><a class="page-link text-success" href="./list?page=1&kind=${pager.kind}&search=${pager.search}" data-board-page=1>1</a></li>
+						<li class="page-item"><a class="page-link text-success" href="./list?page=1&kind=${pager.kind}&search=${pager.search}&category=${pager.category}&state=${pager.state}" data-board-page=1>1</a></li>
 					</c:if>
 					<c:if test="${not empty pager.perPage}">
 						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-							<li class="page-item"><a class="page-link text-success" href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}" data-board-page="${i}">${i}</a></li>
+							<li class="page-item"><a class="page-link text-success" href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}&category=${pager.category}&state=${pager.state}" data-board-page="${i}">${i}</a></li>
 						</c:forEach>
 					</c:if>
 					<li class="page-item ${pager.after eq false?'disabled' :''}" >
-						<a class="page-link text-success" href="./list?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}"  aria-label="Next" data-board-page="${pager.lastNum+1}">
+						<a class="page-link text-success" href="./list?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}&category=${pager.category}&state=${pager.state}"  aria-label="Next" data-board-page="${pager.lastNum+1}">
 							<span aria-hidden="true">&rsaquo;</span>
 						</a>
 					</li>
 					<li class="page-item ${pager.after eq false?'disabled' :''}" >
-						<a class="page-link text-success" href="./list?page=${pager.totalPage}&kind=${pager.kind}&search=${pager.search}"  aria-label="Next" data-board-page="${pager.totalPage}">
+						<a class="page-link text-success" href="./list?page=${pager.totalPage}&kind=${pager.kind}&search=${pager.search}&category=${pager.category}&state=${pager.state}"  aria-label="Next" data-board-page="${pager.totalPage}">
 							<span aria-hidden="true">&raquo;</span>
 						</a>
 					</li>
 				</ul>
 			</nav>
 		</div>	
-		
+
 		<!-- 검색창 -->	
 		<div class="row">
 			<form class="row g-3" action="./list" method="get" id="searchForm">
 				<input type="hidden" name="page" value="1" id="page">
+				 <div class="fw-bold fs-5 col-12">
+		            <p>카테고리</p>
+	        	  	<select class="form-select" name="category" id="category" aria-label="Default select example">
+					  <option ${pager.category eq '' ? 'selected':''} value="">모두 보기</option>
+					  <option ${pager.category eq '여성패션' ? 'selected':''} value="여성패션">여성패션</option>
+					  <option ${pager.category eq '남성패션' ? 'selected':''} value="남성패션">남성패션</option>
+				      <option ${pager.category eq '가구/인테리어' ? 'selected':''} value="가구/인테리어">가구/인테리어</option>
+				      <option ${pager.category eq '생활/주방' ? 'selected':''} value="생활/주방">생활/주방</option>
+				      <option ${pager.category eq '가전제품' ? 'selected':''} value="가전제품">가전제품</option>
+				      <option ${pager.category eq '전자기기(디지털,컴퓨터)' ? 'selected':''} value="전자기기(디지털,컴퓨터)">전자기기(디지털,컴퓨터)</option>
+					  <option ${pager.category eq 'E쿠폰/티켓' ? 'selected':''} value="E쿠폰/티켓">E쿠폰/티켓</option>
+					  <option ${pager.category eq '기타' ? 'selected':''} value="기타">기타</option>
+					</select>
+		         </div>
+		         
+		          <div class="fw-bold fs-5 col-12">
+		            <p>판매/구매</p>
+	        	  	<select class="form-select" name="state" id="state" aria-label="Default select example">
+					  <option value="">모두</option>
+					  <option ${pager.state eq '판매' ? 'selected':''} value="판매">판매</option>
+					  <option ${pager.state eq '구매' ? 'selected':''} value="구매">구매</option>
+					 </select>
+				  </div>
+				  
 				<div class="col-auto">
 					<label for="kind" class="visually-hidden">kind</label>
 					<select class="form-select" name="kind" id="kind" aria-label="Default select example">
