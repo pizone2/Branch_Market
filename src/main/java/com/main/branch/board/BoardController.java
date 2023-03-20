@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.main.branch.member.MemberDTO;
 import com.main.branch.util.Pager;
 
 import oracle.jdbc.proxy.annotation.Post;
@@ -21,6 +22,8 @@ import oracle.jdbc.proxy.annotation.Post;
 public class BoardController {
 	@Autowired
 	private BoardService boardService;
+	@Autowired
+	private HttpSession httpSession;
 	
 	@GetMapping("list")
 	public ModelAndView getBoardList(Pager pager) throws Exception{
@@ -35,6 +38,14 @@ public class BoardController {
 	public ModelAndView getBoardDetail(BoardDTO boardDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		boardDTO = boardService.getBoardDetail(boardDTO);
+		
+		BoardPicDTO boardPicDTO = boardService.checkAlreadyBoardPic(boardDTO);
+		if(boardPicDTO == null) {
+			mv.addObject("checkPic", 0);
+		}else {
+			mv.addObject("checkPic", 1);
+		}
+		
 		mv.addObject("dto", boardDTO);
 		mv.setViewName("board/detail");
 		return mv;
@@ -94,8 +105,32 @@ public class BoardController {
 		return mv;
 	}
 	
+	// 로그인 했을때만 가능
+	@GetMapping("myList")
+	public ModelAndView getBoardMyList(Pager pager) throws Exception {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("member");
+		pager.setMemberId(memberDTO.getMemberId());
+		List<BoardDTO> boardDTOs = boardService.getBoardList(pager);
+		modelAndView.addObject("boardDTOs", boardDTOs);
+		modelAndView.setViewName("/board/myList");
+		
+		return modelAndView;
+	}
+	@GetMapping("/getTopList")
+	public ModelAndView getBoardTopList(Pager pager)throws Exception{
+		ModelAndView modelAndView = new ModelAndView();
+		List<BoardDTO> boardDTOs = boardService.getBoardTopList();
+		modelAndView.addObject("boardDTOs", boardDTOs);
+		modelAndView.setViewName("/board/topList");
+		return modelAndView;
+	}
+	
+	
 	//-------------------------
 	
+	// ajax
 	@PostMapping("picAdd")
 	public ModelAndView setBoardPicAdd(BoardPicDTO boardPicDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -105,7 +140,7 @@ public class BoardController {
 		return mv;
 	}
 	
-	
+	// ajax
 	@PostMapping("picDelete")
 	public ModelAndView setBoardPicDelete(BoardPicDTO boardPicDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -115,11 +150,12 @@ public class BoardController {
 		return mv;
 	}
 	
-	
-	@GetMapping("picList")
+	// ajax
+	@PostMapping("picList")
 	public ModelAndView getBoardPicList(BoardPicDTO boardPicDTO)throws Exception{
 		ModelAndView modelAndView = new ModelAndView();
 		List<BoardDTO> boardDTOs = boardService.getBoardMyPicList(boardPicDTO);
+		
 		modelAndView.addObject("boardDTOs", boardDTOs);
 		modelAndView.setViewName("/board/picList");
 		return modelAndView;

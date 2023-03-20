@@ -19,7 +19,7 @@ public class KakaoPayService {
     
     private KakaoPayReadyVO kakaoPayReadyVO;
     private KakaoPayApprovalVO kakaoPayApprovalVO;
-    private String adminKey = null;
+    private String adminKey = "";
     private String cid = "TC0ONETIME";
     private String partner_order_id = "1001"; // 해시로 처리
     private String approval_url = "http://localhost/kakaoPay/approval";
@@ -40,7 +40,7 @@ public class KakaoPayService {
         params.add("cid", cid);
         params.add("partner_order_id", "1001");
         params.add("partner_user_id", "leejuhu"); // session
-        params.add("item_name", "맛있는 아이스크림"); // dto
+        params.add("item_name", "선물!!"); // dto
         params.add("quantity", "2"); // dto
         params.add("total_amount", "120"); // dto
         params.add("tax_free_amount", "100"); // dto
