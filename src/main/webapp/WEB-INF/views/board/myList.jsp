@@ -42,30 +42,30 @@
 			<nav aria-label="Page navigation example">
 				<ul class="pagination">
 					<li class="page-item ${pager.before?'disabled':'' }">
-						<a class="page-link text-success" href="./list?page=1&kind=${pager.kind}&search=${pager.search}&category=${pager.category}&state=${pager.state}" aria-label="Previous" data-board-page="1">
+						<a class="page-link text-success" href="./myList?page=1&kind=${pager.kind}&search=${pager.search}&category=${pager.category}&state=${pager.state}" aria-label="Previous" data-board-page="1">
 							<span aria-hidden="true">&laquo;</span>
 						</a>
 					</li>
 					<li class="page-item ${pager.before?'disabled':'' }">
-						<a class="page-link text-success" href="./list?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}&category=${pager.category}&state=${pager.state}" aria-label="Previous" data-board-page="${pager.startNum-1}">
+						<a class="page-link text-success" href="./myList?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}&category=${pager.category}&state=${pager.state}" aria-label="Previous" data-board-page="${pager.startNum-1}">
 							<span aria-hidden="true">&lsaquo;</span>
 						</a>
 					</li>
 					<c:if test="${empty pager.lastRow}">
-						<li class="page-item"><a class="page-link text-success" href="./list?page=1&kind=${pager.kind}&search=${pager.search}&category=${pager.category}&state=${pager.state}" data-board-page=1>1</a></li>
+						<li class="page-item"><a class="page-link text-success" href="./myList?page=1&kind=${pager.kind}&search=${pager.search}&category=${pager.category}&state=${pager.state}" data-board-page=1>1</a></li>
 					</c:if>
 					<c:if test="${not empty pager.perPage}">
 						<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-							<li class="page-item"><a class="page-link text-success" href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}&category=${pager.category}&state=${pager.state}" data-board-page="${i}">${i}</a></li>
+							<li class="page-item"><a class="page-link text-success" href="./myList?page=${i}&kind=${pager.kind}&search=${pager.search}&category=${pager.category}&state=${pager.state}" data-board-page="${i}">${i}</a></li>
 						</c:forEach>
 					</c:if>
 					<li class="page-item ${pager.after eq false?'disabled' :''}" >
-						<a class="page-link text-success" href="./list?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}&category=${pager.category}&state=${pager.state}"  aria-label="Next" data-board-page="${pager.lastNum+1}">
+						<a class="page-link text-success" href="./myList?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}&category=${pager.category}&state=${pager.state}"  aria-label="Next" data-board-page="${pager.lastNum+1}">
 							<span aria-hidden="true">&rsaquo;</span>
 						</a>
 					</li>
 					<li class="page-item ${pager.after eq false?'disabled' :''}" >
-						<a class="page-link text-success" href="./list?page=${pager.totalPage}&kind=${pager.kind}&search=${pager.search}&category=${pager.category}&state=${pager.state}"  aria-label="Next" data-board-page="${pager.totalPage}">
+						<a class="page-link text-success" href="./myList?page=${pager.totalPage}&kind=${pager.kind}&search=${pager.search}&category=${pager.category}&state=${pager.state}"  aria-label="Next" data-board-page="${pager.totalPage}">
 							<span aria-hidden="true">&raquo;</span>
 						</a>
 					</li>
@@ -75,7 +75,7 @@
 
 		<!-- 검색창 -->	
 		<div class="row">
-			<form class="row g-3" action="./list" method="get" id="searchForm">
+			<form class="row g-3" action="./myList" method="get" id="searchForm">
 				<input type="hidden" name="page" value="1" id="page">
 				 <div class="fw-bold fs-5 col-12">
 		            <p>카테고리</p>
