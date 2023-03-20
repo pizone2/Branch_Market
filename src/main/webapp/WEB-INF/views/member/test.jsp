@@ -18,9 +18,10 @@
 </a>
 <p id="token-result"></p>
 
-<form action="/kakaoPay/ready" method="post">
-    <input type="submit" id="buyBtn" value="결제하기">
+<form action="/kakaoPay/ready" method="post" id="buyForm">
+    <img src="/resources/images/payment_icon_yellow_small.png" alt=""  id="buyBtn">
 </form>
+
 <input type="button" value="네이버 데이터 가져오기" id="getNaverDataBtn">
 
 <div id="testAjax"></div>

@@ -53,6 +53,8 @@ public class BoardController {
 
 	@GetMapping("add")
 	public ModelAndView setBoardAdd(ModelAndView mv) throws Exception{
+		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("member");
+		mv.addObject("memberId", memberDTO.getMemberId());
 		mv.setViewName("board/add");
 		return mv;
 	}

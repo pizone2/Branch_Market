@@ -21,7 +21,7 @@
 	 		<if test="state != null and state != ''">
 	 			AND boardState = #{state}
 	 		</if>
-	 		<if test="memberId != null and memberId != ''">
+	 		<if test="kind !='writer' and memberId != null and memberId != ''">
 	 			AND memberId = #{memberId}
 	 		</if> 		
  		</trim>
@@ -69,7 +69,7 @@
  	<select id="getBoardTopList" resultType="BoardDTO">
  		SELECT * FROM(
 			SELECT ROWNUM R,A.* FROM
-			(SELECT * FROM BOARD) A
+			(SELECT * FROM BOARD ORDER BY boardHit DESC) A
 		)WHERE R BETWEEN 1 AND 5
  	</select>
  	

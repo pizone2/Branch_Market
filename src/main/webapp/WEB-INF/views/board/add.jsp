@@ -20,7 +20,7 @@
 	    	<div class="row">
 	        	<div class="fw-bold fs-5 col-12">
 	           		<p>작성자</p>
-	           		<input type="text" name="memberId" class="form-control" id="memberId" placeholder="이름 입력"><br>
+	           		<input type="text" name="memberId" value="${memberId}"  readonly="readonly" class="form-control" id="memberId" placeholder="이름 입력"><br>
 	        	</div>
 	         	<div class="fw-bold fs-5 col-12">
 	            	<p>제목</p>
