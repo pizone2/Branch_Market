@@ -15,13 +15,13 @@
 				</otherwise>
 			</choose>
 			LIKE '%' || #{search} || '%' AND inquiryNum = #{inquiryNum}
-
  	</sql>
  	<select id="getInqCommentsList" parameterType="Pager" resultType="InqCommentsDTO">
  		SELECT * FROM(
 		SELECT ROWNUM R,A.* FROM
 		(
 			SELECT * FROM INQCOMMENTS <include refid="searchCondition"></include>
+			ORDER BY inqCommentsNum DESC
 			) A
 		)
 		WHERE R BETWEEN #{startRow} AND #{lastRow}

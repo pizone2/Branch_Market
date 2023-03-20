@@ -39,11 +39,13 @@
 			  <option value="가전제품">가전제품</option>
 			  <option value="전자기기(디지털,컴퓨터)">전자기기(디지털,컴퓨터)</option>
 			  <option value="E쿠폰/티켓">E쿠폰/티켓</option>
+			  <option value="기타">기타</option>
 			</select>
 	    </div>
 		
 		<div class="mb-3">
-			<input type="file" parameter="">
+			<label for="filecs" class="form-label">썸네일 이미지</label><br>
+			<input type="file" name="filecs" id="filecs">
 		</div>
 		
 		<div class="mb-3">

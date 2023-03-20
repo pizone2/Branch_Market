@@ -15,6 +15,12 @@
  				MEMBERID LIKE '%' || #{search} || '%'
  			</if>
  		</where>
+ 		<if test="category != null and category !=''">
+ 			AND boardCategory = #{category}
+ 		</if>
+ 		<if test="state != null and state != ''">
+ 			AND boardState = #{state}
+ 		</if>
  	</sql>
  
  	<select id="getTotalCount" resultType="Integer" parameterType="Pager">

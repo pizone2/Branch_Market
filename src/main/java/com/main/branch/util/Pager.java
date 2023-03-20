@@ -9,9 +9,16 @@ public class Pager {
 	private String category;
 	private String memberId;
 	private Integer inquiryNum;
+	private String state;
 	
 	
 	
+	public String getState() {
+		return state;
+	}
+	public void setState(String state) {
+		this.state = state;
+	}
 	public Integer getInquiryNum() {
 		return inquiryNum;
 	}
@@ -206,7 +213,7 @@ public class Pager {
 	
 	public Integer getPerPage() {
 		if(this.perPage == null || this.perPage == 0) {
-			this.perPage = 20;
+			this.perPage = 10;
 		}
 		
 		return perPage;

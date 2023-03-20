@@ -70,7 +70,15 @@
 				<div class = "row">
 					  <form class="row g-3" action="./myList" method="get" id="paginingForm">
 						  <input type="hidden" name="page" id="page">
-						  <input type="hidden" name="category" id="category" value="${pager.category}">
+						  <!-- <input type="hidden" name="category" id="category" value="${pager.category}"> -->
+						  <select name="category" id="category">
+							<option ${pager.category eq '환불/취소' ? 'selected' : ''} value="환불/취소">환불/취소</option>
+							<option ${pager.category eq '신고' ? 'selected' : ''} value="신고">신고</option>
+							<option ${pager.category eq '배송' ? 'selected' : ''} value="배송">배송</option>
+							<option ${pager.category eq '기타' ? 'selected' : ''} value="기타">기타</option>
+							<option ${pager.category eq '' ? 'selected' : ''} value="">모두</option>
+						</select>
+
 						  <div class="col-auto">
 						    <label for="kind" class="visually-hidden">Kind</label>
 						    <select name="kind" class="form-select" id="kind" aria-label="Default select example">
