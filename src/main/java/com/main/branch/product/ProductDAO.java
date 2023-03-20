@@ -52,4 +52,11 @@ public class ProductDAO {
 		return sqlSession.selectOne(NAMESPACE + "getProductAddCount", pager);
 	}
 	
+	public Integer setProductHit(ProductDTO productDTO) throws Exception{
+		return sqlSession.update(NAMESPACE + "setProductHit", productDTO);
+	}
+	
+	public List<ProductDTO> getProductMyList(ProductDTO productDTO) throws Exception{
+		return sqlSession.selectList(NAMESPACE + "getProductMyList", productDTO);
+	}
 }	

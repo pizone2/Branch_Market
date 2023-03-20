@@ -10,6 +10,7 @@ public class ProductDTO {
 	private String productCategory;
 	private String productQ;
 	private String productImgName;
+	private Integer productHit;
 	
 	
 	public Integer getProductNum() {
@@ -59,5 +60,11 @@ public class ProductDTO {
 	}
 	public void setProductImgName(String productImgName) {
 		this.productImgName = productImgName;
+	}
+	public Integer getProductHit() {
+		return productHit;
+	}
+	public void setProductHit(Integer productHit) {
+		this.productHit = productHit;
 	}
 }

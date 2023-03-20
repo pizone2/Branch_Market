@@ -39,7 +39,11 @@ public class ProductService {
 	}
 	
 	public ProductDTO getProductDetail(ProductDTO productDTO) throws Exception{
-		return productDAO.getProductDetail(productDTO);
+	    ProductDTO productDetail = productDAO.getProductDetail(productDTO);
+	    productDAO.setProductHit(productDTO);
+	    productDAO.setProductUpdate(productDetail);
+	    
+	    return productDetail;
 	}
 	
 	public Integer setProductAdd(ProductDTO productDTO, MultipartFile filecs) throws Exception{
@@ -92,6 +96,16 @@ public class ProductService {
 	
 	public Integer setProductAddConfirm(ProductDTO productDTO) throws Exception{
 		return productDAO.setProductAddConfirm(productDTO);
+	}
+	
+	public List<ProductDTO> getProductMyList(Pager pager) throws Exception{
+		
+		Integer totalCount = productDAO.getProductCount(pager);
+		
+		pager.makeNum(totalCount);
+		pager.makeRow();
+		
+		return productDAO.getProductList(pager);
 	}
 	
 }

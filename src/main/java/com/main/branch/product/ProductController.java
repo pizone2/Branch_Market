@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.main.branch.member.MemberDTO;
 import com.main.branch.util.Pager;
 
 @Controller
@@ -120,6 +121,7 @@ public class ProductController {
 		
 		return mv;
 	}
+	
 	@PostMapping("insertNaverData")
 	public ModelAndView setInsertNaverData(ProductDTO productDTO)throws Exception{
 		ModelAndView modelAndView = new ModelAndView();
@@ -131,4 +133,18 @@ public class ProductController {
 		return modelAndView;
 	}
 	
+	@GetMapping("myList")
+	public ModelAndView getProductMyList(Pager pager, HttpSession session) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		pager.setMemberId(memberDTO.getMemberId());
+		
+		List<ProductDTO> ar = productService.getProductList(pager);
+		
+		mv.setViewName("product/myList");
+		mv.addObject("list", ar);
+		mv.addObject("pager", pager);
+		
+		return mv;
+	}
 }
