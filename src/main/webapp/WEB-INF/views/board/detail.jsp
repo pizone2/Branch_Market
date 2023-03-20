@@ -10,8 +10,8 @@
 </head>
 <body>
 <div class="container-fluid my-5">
-	<div hidden id="boardNum" data-boardNum = "${dto.boardNum}"></div>
-
+	<div hidden id="datas" data-boardNum = "${dto.boardNum}"></div>
+	
 	<div class="row mb-4 ">
 		<h1 class="col-md-7 mx-auto text-center border-bottom border-dark pb-4">Board Detail Page</h1>
 	</div>
@@ -22,8 +22,12 @@
 			  <input type="text" readonly class="form-control" id="boardTitle" value="${dto.boardTitle}">
 			</div>
 			<div class="col">
-				<button type="submit" class="btn btn-outline-success col-3" id="picAdd" data-board-boardNum="${dto.boardNum}">Pic</button>
-				<button type="submit" class="btn btn-outline-danger col-3" id="picDelete">Pic</button>
+				<c:if test="${checkPic eq 0}">
+					<button type="submit" class="btn btn-outline-success col-3" id="picAdd" data-board-boardNum="${dto.boardNum}">Pic</button>
+				</c:if>
+				<c:if test="${checkPic eq 1}">
+					<button type="submit" class="btn btn-outline-danger col-3" id="picDelete">Pic</button>
+				</c:if>
 			</div>
 		</div>
 		

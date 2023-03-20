@@ -1,4 +1,4 @@
-let boardNum = $('#boardNum').attr('data-boardNum');
+let boardNum = $('#datas').attr('data-boardNum');
 function getCommentsList() {
     $.ajax({
         url:'/comments/list',
@@ -18,20 +18,23 @@ const picAdd = document.getElementById("picAdd");
 const picDelete = document.getElementById("picDelete");
 
 $("#picAdd").click(function(){
-	
     fetch("../board/picAdd",{
         method:'POST',
+        headers: {"Content-type" : "application/x-www-form-urlencoded"},
+        body: "boardNum=" + boardNum
     }).then((response)=>response.text())
     .then((res)=>{
         console.log(res.trim());
         if(res.trim()==1){
         alert('상품이 Pic되었습니다!');
         }
-    })
+     })
 })
 $('#picDelete').click(()=>{
     fetch('../board/picDelete',{
-        method:'POST'
+        method:'POST',
+        headers: {"Content-type" : "application/x-www-form-urlencoded"},
+        body: "boardNum=" + boardNum
     }).then((response)=>{
         return response.text();
     }).then((res)=>{

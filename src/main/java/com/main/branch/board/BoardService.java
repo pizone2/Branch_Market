@@ -19,13 +19,13 @@ public class BoardService {
 	private HttpSession httpSession;
 	
 	public List<BoardDTO> getBoardList (Pager pager) throws Exception{
-		pager.setPerPage(10);
 		pager.makeRow();
 		pager.makeNum(boardDAO.getTotalCount(pager));
 		return boardDAO.getBoardList(pager);
 	}
 	
 	public BoardDTO getBoardDetail(BoardDTO boardDTO) throws Exception{
+		boardDAO.setBoardHitAdd(boardDTO);
 		return boardDAO.getBoardDetail(boardDTO);
 	}
 	
@@ -39,6 +39,9 @@ public class BoardService {
 	
 	public int setBoardUpdate(BoardDTO boardDTO) throws Exception{
 		return boardDAO.setBoardUpdate(boardDTO);
+	}
+	public List<BoardDTO> getBoardTopList()throws Exception{
+		return boardDAO.getBoardTopList();
 	}
 	
 	//-----------------------------
@@ -71,5 +74,13 @@ public class BoardService {
 		}
 		
 		return boardDTOs;
+	}
+	public BoardPicDTO checkAlreadyBoardPic(BoardDTO boardDTO)throws Exception{
+		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("member");
+		if(memberDTO == null)return null;
+		else {
+			boardDTO.setMemberId(memberDTO.getMemberId());
+			return boardDAO.checkAlreadyBoardPic(boardDTO);
+		}
 	}
 }
