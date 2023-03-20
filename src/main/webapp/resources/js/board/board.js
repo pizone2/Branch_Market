@@ -23,8 +23,20 @@ $("#picAdd").click(function(){
         method:'POST',
     }).then((response)=>response.text())
     .then((res)=>{
+        console.log(res.trim());
         if(res.trim()==1){
         alert('상품이 Pic되었습니다!');
+        }
+    })
+})
+$('#picDelete').click(()=>{
+    fetch('../board/picDelete',{
+        method:'POST'
+    }).then((response)=>{
+        return response.text();
+    }).then((res)=>{
+        if(res.trim() == 1){
+            alert('상품 pic 취소');
         }
     })
 })

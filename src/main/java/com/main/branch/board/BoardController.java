@@ -97,9 +97,9 @@ public class BoardController {
 	//-------------------------
 	
 	@PostMapping("picAdd")
-	public ModelAndView setBoardPicAdd(BoardDTO boardDTO) throws Exception{
+	public ModelAndView setBoardPicAdd(BoardPicDTO boardPicDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		int result = boardService.SetBoardPicAdd(boardDTO);
+		int result = boardService.SetBoardPicAdd(boardPicDTO);
 		mv.addObject("result",result);
 		mv.setViewName("common/ajaxResult");
 		return mv;
@@ -107,12 +107,21 @@ public class BoardController {
 	
 	
 	@PostMapping("picDelete")
-	public ModelAndView setBoardPicDelete(BoardDTO boardDTO) throws Exception{
+	public ModelAndView setBoardPicDelete(BoardPicDTO boardPicDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		int result = boardService.setBoardPicDelete(boardDTO,null);
+		int result = boardService.setBoardPicDelete(boardPicDTO);
 		mv.addObject("result",result);
 		mv.setViewName("common/ajaxResult");
 		return mv;
 	}
-
+	
+	
+	@GetMapping("picList")
+	public ModelAndView getBoardPicList(BoardPicDTO boardPicDTO)throws Exception{
+		ModelAndView modelAndView = new ModelAndView();
+		List<BoardDTO> boardDTOs = boardService.getBoardMyPicList(boardPicDTO);
+		modelAndView.addObject("boardDTOs", boardDTOs);
+		modelAndView.setViewName("/board/picList");
+		return modelAndView;
+	}
 }

@@ -7,8 +7,10 @@
   	<typeAliases>
   		<!-- ex )) <typeAlias type="com.iu.s1.product.ProductDTO" alias="ProductDTO"/> -->
   		<typeAlias type="com.main.branch.board.BoardDTO" alias="BoardDTO"/>
+  		<typeAlias type="com.main.branch.board.BoardPicDTO" alias="BoardPicDTO"/>
   		
   		<typeAlias type="com.main.branch.product.ProductDTO" alias="ProductDTO"/>
+  		<typeAlias type="com.main.branch.product.ProductPicDTO" alias="ProductPicDTO"/>
   		
   		<typeAlias type="com.main.branch.review.ReviewDTO" alias="ReviewDTO"/>
   		  		

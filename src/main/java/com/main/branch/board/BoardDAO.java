@@ -41,10 +41,13 @@ public class BoardDAO {
 
 	
 	//----------------------------------
-	public int setBoardPicAdd(BoardDTO boardDTO) throws Exception{
-		return sqlSession.insert(NAMESPACE+"setBoardPicAdd", boardDTO);
+	public int setBoardPicAdd(BoardPicDTO boardPicDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"setBoardPicAdd", boardPicDTO);
 	}
-	public int setBoardPicDelete(BoardDTO boardDTO) throws Exception{
-		return sqlSession.delete(NAMESPACE+"setBoardPicDelete", boardDTO);
+	public int setBoardPicDelete(BoardPicDTO boardPicDTO) throws Exception{
+		return sqlSession.delete(NAMESPACE+"setBoardPicDelete", boardPicDTO);
+	}
+	public List<BoardPicDTO> getBoardPicList(BoardPicDTO boardPicDTO) throws Exception{
+		return sqlSession.selectList(NAMESPACE + "getBoardPicList", boardPicDTO);
 	}
 }

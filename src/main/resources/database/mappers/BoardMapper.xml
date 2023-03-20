@@ -63,12 +63,16 @@
  	
  	
  	<!--  -->
- 	<insert id="setBoardPicAdd" parameterType="BoardDTO">
- 		INSERT INTO BOARDPIC VALUES ((SELECT BOARDNUM FROM BOARD WHERE BOARDNUM=#{boardNum}),(SELECT MEMBERID FROM BOARD WHERE BOARDNUM=#{boardNum}))
+ 	<insert id="setBoardPicAdd" parameterType="BoardPicDTO">
+ 		INSERT INTO BOARDPIC VALUES (#{boardNum},#{memberId})
  	</insert>
  	
- 	<delete id="setBoardPicDelete" parameterType="BoardDTO">
- 		DELETE BOARDPIC WHERE BOARDNUM=#{boardNum}
+ 	<delete id="setBoardPicDelete" parameterType="BoardPicDTO">
+ 		DELETE BOARDPIC WHERE BOARDNUM=#{boardNum} AND memberId = #{memberId}
  	</delete>
+ 	
+ 	<select id="getBoardPicList" parameterType="BoardPicDTO" resultType="BoardPicDTO">
+ 		SELECT * FROM BOARDPIC WHERE memberId = #{memberId}
+ 	</select>
  	
  </mapper>
