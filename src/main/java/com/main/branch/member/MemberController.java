@@ -346,7 +346,7 @@ public class MemberController {
 		pager.makeRow();
 		// pager.setSearch("장난감"); // 사용자 검색어 pager에 이미 있음
 		// Client ID, Client Secret
-		String datas = Naver.getShoppingData(null, null, pager);
+		String datas = Naver.getShoppingData("eFIJY0Ok7qZfi_ryWCOt", "RQHegogpKg", pager);
 		modelAndView.addObject("result", datas);
 		modelAndView.setViewName("/common/ajaxResult");
 		return modelAndView;
