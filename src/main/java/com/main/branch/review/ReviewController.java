@@ -19,18 +19,18 @@ public class ReviewController {
 	
 	
 	// ---------------------- 리스트 가져오기
-	@GetMapping("/list")
-	public ModelAndView getInqCommentsList(Pager pager) {
+	@GetMapping("list")
+	public ModelAndView getReviewList(Pager pager) {
 		ModelAndView modelAndView = new ModelAndView();
-		List<ReviewDTO> reviewDTO = reviewService.getReviewList(pager);
+		List<ReviewDTO> reviewDTOs = reviewService.getReviewList(pager);
 		
-		modelAndView.addObject("reviewDTO", reviewDTO);
-		modelAndView.setViewName("/common/reviewCommentsList");
+		modelAndView.addObject("reviewDTOs", reviewDTOs);
+		modelAndView.setViewName("/common/reviewList");
 		return modelAndView;
 	}
 	// ----------------- 추가하기
-	@PostMapping("/add")
-	public ModelAndView setreviewAdd(ReviewDTO reviewDTO) {
+	@PostMapping("add")
+	public ModelAndView setReviewAdd(ReviewDTO reviewDTO) {
 		ModelAndView modelAndView = new ModelAndView();
 		int reuslt = reviewService.setReviewAdd(reviewDTO);
 		if(reuslt > 0) {
@@ -42,7 +42,7 @@ public class ReviewController {
 		return modelAndView;
 	}
 	// -------------------- 수정하기
-	@PostMapping("/update")
+	@PostMapping("update")
 	public ModelAndView setReviewUpdate(ReviewDTO reviewDTO) {
 		ModelAndView modelAndView = new ModelAndView();
 		
@@ -58,7 +58,7 @@ public class ReviewController {
 		return modelAndView;
 	}
 	// ----------------- 삭제하기
-	@PostMapping("/delete")
+	@PostMapping("delete")
 	public ModelAndView setReviewDelete(ReviewDTO reviewDTO) {
 		ModelAndView modelAndView = new ModelAndView();
 		int reuslt = reviewService.setReviewDelete(reviewDTO);

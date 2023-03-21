@@ -31,7 +31,7 @@
 					</tr>
 				</thead>
 				<tbody class="table-group-divider">
-					<c:forEach items="${list}" var="dto"> <!-- dto는 page 영역에 담김 -->
+					<c:forEach items="${productDTOs}" var="dto"> 
 					
 						<tr>
 							<td><a>${dto.productNum}</a></td>

@@ -1,5 +1,6 @@
 package com.main.branch.product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -9,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.main.branch.board.BoardDTO;
+import com.main.branch.board.BoardPicDTO;
 import com.main.branch.member.MemberDTO;
 import com.main.branch.util.FileManager;
 import com.main.branch.util.Pager;
@@ -30,10 +33,8 @@ public class ProductService {
 	
 	public List<ProductDTO> getProductList(Pager pager) throws Exception{
 		
-		Integer totalCount = productDAO.getProductCount(pager);
-		
-		pager.makeNum(totalCount);
 		pager.makeRow();
+		pager.makeNum(productDAO.getProductCount(pager));
 		
 		return productDAO.getProductList(pager);
 	}
@@ -48,10 +49,9 @@ public class ProductService {
 	
 	public Integer setProductAdd(ProductDTO productDTO, MultipartFile filecs) throws Exception{
 		Integer result;
-		// ----------- 나중에 주석 해제
-//		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("member");
-//		productDTO.setMemberId(memberDTO.getMemberId());
-		productDTO.setMemberId("이주형");
+		
+		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("member");
+		productDTO.setMemberId(memberDTO.getMemberId());
 		
 		if(filecs != null) { //pic.getSize() !=0
 			
@@ -76,9 +76,8 @@ public class ProductService {
 	public Integer setProductUpdate(ProductDTO productDTO, MultipartFile [] files) throws Exception{
 		Integer result;
 		// ----------- 나중에 주석 해제
-//		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("member");
-//		productDTO.setMemberId(memberDTO.getMemberId());
-		productDTO.setMemberId("이주형");
+		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("member");
+		productDTO.setMemberId(memberDTO.getMemberId());
 		
 		result = productDAO.setProductUpdate(productDTO);
 		return result;
@@ -98,14 +97,51 @@ public class ProductService {
 		return productDAO.setProductAddConfirm(productDTO);
 	}
 	
-	public List<ProductDTO> getProductMyList(Pager pager) throws Exception{
+	public List<ProductDTO> getProductTopList()throws Exception{
+		return productDAO.getProductTopList();
+	}
+	
+	//----------------------------
+	
+	public int setProductPicAdd(ProductPicDTO productPicDTO) throws Exception{
+		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("member");
+		productPicDTO.setMemberId(memberDTO.getMemberId());
 		
-		Integer totalCount = productDAO.getProductCount(pager);
+		return productDAO.setProductPicAdd(productPicDTO);
+	}
+	
+	public int setProductPicDelete(ProductPicDTO productPicDTO) throws Exception{
+		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("member");
+		productPicDTO.setMemberId(memberDTO.getMemberId());
 		
-		pager.makeNum(totalCount);
-		pager.makeRow();
+		return productDAO.setProductPicDelete(productPicDTO);
+	}
+	
+	public List<ProductDTO> getProductPicMyList(ProductPicDTO productPicDTO)throws Exception{
+		// 멤버 아이디를 가져옴
+		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("member");
+		productPicDTO.setMemberId(memberDTO.getMemberId());
 		
-		return productDAO.getProductList(pager);
+		List<ProductPicDTO> productPicDTOs = productDAO.getProductPicMyList(productPicDTO);
+		List<ProductDTO> productDTOs = new ArrayList<ProductDTO>();
+		
+		for(ProductPicDTO dto : productPicDTOs) {
+			ProductDTO productDTO = new ProductDTO();
+			productDTO.setProductNum(dto.getProductNum());
+			productDTO = productDAO.getProductDetail(productDTO);
+			productDTOs.add(productDTO);
+		}
+		
+		return productDTOs;
+	}
+	
+	public ProductPicDTO checkAlreadyProductPic(ProductDTO productDTO)throws Exception{
+		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("member");
+		if(memberDTO == null)return null;
+		else {
+			productDTO.setMemberId(memberDTO.getMemberId());
+			return productDAO.checkAlreadyProductPic(productDTO);
+		}
 	}
 	
 }

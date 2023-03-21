@@ -13,7 +13,7 @@ public class ReviewDAO {
 	
 	@Autowired
 	private SqlSession sqlSession;
-	private final String NAMESPACE = "com.main.branch.review.";
+	private final String NAMESPACE = "com.main.branch.review.ReviewDAO";
 	
 	public List<ReviewDTO> getReviewList(Pager pager){
 		return sqlSession.selectList(NAMESPACE + "getReviewList", pager);

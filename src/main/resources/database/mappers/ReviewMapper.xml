@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.main.branch.review.ReviewDAO">
+ 
+ 	<sql id="searchCondition">
+ 			WHERE
+			<choose>
+				<when test="kind == 'memberId'">
+					MEMBERID
+				</when>
+				<otherwise>
+					REVIEWCONTENTS
+				</otherwise>
+			</choose>
+			LIKE '%' || #{search} || '%' AND PRODUCTNUM = #{productNum}
+ 	</sql>
+ 	<select id="getReviewList" parameterType="Pager" resultType="ReviewDTO">
+ 		SELECT * FROM(
+		SELECT ROWNUM R, A.* FROM
+		(
+			SELECT * FROM REVIEW <include refid="searchCondition"></include>
+			ORDER BY REVIEWNUM DESC
+			) A
+		)
+		WHERE R BETWEEN #{startRow} AND #{lastRow}
+ 	</select>
+ 	<select id="getReviewCount" parameterType="Pager" resultType="Integer">
+ 		SELECT COUNT(*) FROM REVIEW <include refid="searchCondition"></include>
+ 	</select>
+ 	
+ 	<insert id="setReviewAdd" parameterType="ReviewDTO">
+ 		INSERT INTO REVIEW VALUES(SEQ.NEXTVAL,#{reviewNum},#{memberId},#{reviewContents})
+ 	</insert>
+ 	
+ 	<update id="setReviewUpdate" parameterType="ReviewDTO">
+ 		UPDATE REVIEW SET REVIEWCONTENTS = #{reviewContents} WHERE REVIEWNUM = #{reviewNum}
+ 	</update>
+ 	
+ 	<delete id="setReviewDelete" parameterType="ReviewDTO">
+ 		DELETE REVIEW WHERE REVIEWNUM = #{reviewNum}
+ 	</delete>
+ 	
+ </mapper>
+ 
+<!--  private Integer inqCommentsNum;
+	private Integer inquiryNum;
+	private String memberId;
+	private String inqCommentsContents; -->

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.main.branch.board.BoardDTO;
+import com.main.branch.board.BoardPicDTO;
 import com.main.branch.member.MemberDTO;
 import com.main.branch.util.Pager;
 
@@ -22,16 +24,16 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
+	@Autowired
+	private HttpSession session;
+	
 	@GetMapping("list")
 	public ModelAndView getProductList(Pager pager) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
 		List<ProductDTO> ar = productService.getProductList(pager);
-		
-		mv.setViewName("product/list");
 		mv.addObject("list", ar);
-		mv.addObject("pager", pager);
-		
+		mv.setViewName("product/list");
 		return mv;
 	}
 	
@@ -134,17 +136,58 @@ public class ProductController {
 	}
 	
 	@GetMapping("myList")
-	public ModelAndView getProductMyList(Pager pager, HttpSession session) throws Exception{
+	public ModelAndView getProductMyList(Pager pager) throws Exception{
 		ModelAndView mv = new ModelAndView();
+		
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 		pager.setMemberId(memberDTO.getMemberId());
-		
-		List<ProductDTO> ar = productService.getProductList(pager);
-		
-		mv.setViewName("product/myList");
-		mv.addObject("list", ar);
-		mv.addObject("pager", pager);
+		List<ProductDTO> productDTOs = productService.getProductList(pager);
+		mv.addObject("productDTOs", productDTOs);
+		mv.setViewName("/product/myList");
 		
 		return mv;
 	}
+	
+	@GetMapping("topList")
+	public ModelAndView getProductTopList(Pager pager)throws Exception{
+		ModelAndView modelAndView = new ModelAndView();
+		List<ProductDTO> productDTOs = productService.getProductTopList();
+		modelAndView.addObject("productDTOs", productDTOs);
+		modelAndView.setViewName("/product/topList");
+		return modelAndView;
+	}
+	
+	//----------------
+	
+	// ajax
+	@PostMapping("picAdd")
+	public ModelAndView setProductPicAdd(ProductPicDTO productPicDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = productService.setProductPicAdd(productPicDTO);
+		mv.addObject("result",result);
+		mv.setViewName("common/ajaxResult");
+		return mv;
+	}
+	
+	// ajax
+	@PostMapping("picDelete")
+	public ModelAndView setProductPicDelete(ProductPicDTO productPicDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = productService.setProductPicDelete(productPicDTO);
+		mv.addObject("result",result);
+		mv.setViewName("common/ajaxResult");
+		return mv;
+	}
+	
+	// ajax
+	@PostMapping("picList")
+	public ModelAndView getProductPicMyList(ProductPicDTO productPicDTO)throws Exception{
+		ModelAndView modelAndView = new ModelAndView();
+		List<ProductDTO> productDTOs = productService.getProductPicMyList(productPicDTO);
+		
+		modelAndView.addObject("productDTOs", productDTOs);
+		modelAndView.setViewName("/product/picList");
+		return modelAndView;
+	}
+	
 }
