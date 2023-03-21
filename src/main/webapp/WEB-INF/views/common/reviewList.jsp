@@ -10,12 +10,12 @@
 	  </tr>
 	</thead>
 	<tbody>
-			<c:forEach items="${reviewDTO}" var="reviewDTO">
+			<c:forEach items="${reviewDTOs}" var="reviewDTO">
 				<tr>
 					<td><h5 id="reviewContents${reviewDTO.reviewNum}">${reviewDTO.reviewContents}</h5></td>
 					<td><h5>${reviewDTO.memberId}</h5></td>
-					<td><input type="button" value="수정하기" class="btn btn-primary" data-update-reviewNum="${reviewDTO.reviewNum}"
-					data-bs-toggle="modal" data-bs-target="#exampleModal" ></td>
+					<td><input type="button" value="수정하기" class="btn btn-primary update" data-update-reviewNum="${reviewDTO.reviewNum}" data-update-contents="${reviewDTO.reviewContents}"
+					data-bs-toggle="modal" data-bs-target="#exampleModal" id="reviewUpdateBtn" ></td>
 					<td><input type="button" value="삭제하기" data-delete-reviewNum="${reviewDTO.reviewNum}" class="btn btn-danger"></td>
 				</tr>
 			</c:forEach>

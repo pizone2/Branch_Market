@@ -6,8 +6,15 @@ public class ReviewDTO {
 		private Integer productNum;
 		private String memberId;
 		private String reviewContents;
+		private Integer reviewScore;
 		
 		
+		public Integer getReviewScore() {
+			return reviewScore;
+		}
+		public void setReviewScore(Integer reviewScore) {
+			this.reviewScore = reviewScore;
+		}
 		public Integer getReviewNum() {
 			return reviewNum;
 		}

@@ -31,11 +31,11 @@
  	</select>
  	
  	<insert id="setReviewAdd" parameterType="ReviewDTO">
- 		INSERT INTO REVIEW VALUES(SEQ.NEXTVAL,#{reviewNum},#{memberId},#{reviewContents})
+ 		INSERT INTO REVIEW VALUES(SEQ.NEXTVAL,#{productNum},#{memberId},#{reviewContents},#{reviewScore})
  	</insert>
  	
  	<update id="setReviewUpdate" parameterType="ReviewDTO">
- 		UPDATE REVIEW SET REVIEWCONTENTS = #{reviewContents} WHERE REVIEWNUM = #{reviewNum}
+ 		UPDATE REVIEW SET REVIEWCONTENTS = #{reviewContents},reviewScore = #{reviewScore} WHERE REVIEWNUM = #{reviewNum}
  	</update>
  	
  	<delete id="setReviewDelete" parameterType="ReviewDTO">
