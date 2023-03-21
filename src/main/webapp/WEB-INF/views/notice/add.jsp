@@ -12,20 +12,13 @@
 </head>
 <body>
     <form action="./add" method="post">
-        제목<input type="text" name="inquiryTitle">
-        내용<textarea name="inquiryDetail" id="inquiryDetail" cols="30" rows="10"></textarea>
-        카테고리
-        <select name="inquiryCategory" id="pet-select">
-            <option value="환불/취소">환불/취소</option>
-            <option value="신고">신고</option>
-            <option value="배송">배송</option>
-            <option value="기타">기타</option>
-        </select>
+        제목<input type="text" name="noticeTitle">
+        내용<textarea name="noticeContents" id="noticeContents" cols="30" rows="10"></textarea>
         <input type="submit" value="글 작성">
     </form>
     <c:import url="../template/common_js.jsp"></c:import>
     <script>
-    	$('#inquiryDetail').summernote();
+    	$('#noticeContents').summernote();
     </script>
 </body>
 </html>

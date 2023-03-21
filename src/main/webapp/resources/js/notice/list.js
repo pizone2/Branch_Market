@@ -4,7 +4,7 @@ $('.page-link').click((e)=>{
     $('#paginingForm').submit();
 })
 $('.del').click((e)=>{
-    let inquiryNum = $(e.target).attr('data-inquiryNum');
+    let noticeNum = $(e.target).attr('data-noticeNum');
     let isGo = confirm('정말 삭제 하시겠습니까?');
     console.log(isGo);
     if(isGo == true){
@@ -12,7 +12,7 @@ $('.del').click((e)=>{
             url:'./delete',
             type:'post',
             data:{
-                'inquiryNum':inquiryNum
+                'noticeNum':noticeNum
             },
             success:(response)=>{
                 response = response.trim();
@@ -21,7 +21,7 @@ $('.del').click((e)=>{
                 }else{
                     alert('삭제 실패!')
                 }
-                location.href = "/";
+                location.reload();
             }
         })
     }

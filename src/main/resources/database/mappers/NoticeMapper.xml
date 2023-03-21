@@ -24,6 +24,24 @@
  	<select id="getNoticeCount" parameterType="Pager" resultType="Integer">
  		SELECT COUNT(*) FROM NOTICE <include refid="searchCondition"></include>
  	</select>
+ 	<insert id="setNoticeAdd" parameterType="NoticeDTO">
+ 		<selectKey order="BEFORE" keyProperty="noticeNum" resultType="Integer">
+ 			SELECT SEQ.NEXTVAL FROM DUAL
+ 		</selectKey>
+ 		INSERT INTO NOTICE VALUES(#{noticeNum},#{memberId},#{noticeTitle},#{noticeContents},SYSDATE,0)
+ 	</insert>
+ 	<select id="getNoticeDetail" parameterType="NoticeDTO" resultType="NoticeDTO">
+ 		SELECT * FROM NOTICE WHERE noticeNum = #{noticeNum}
+ 	</select>
+ 	<delete id="setNoticeDelete" parameterType="NoticeDTO">
+ 		DELETE NOTICE WHERE noticeNum = #{noticeNum}
+ 	</delete>
+ 	<update id="setNoticeUpdate" parameterType="NoticeDTO">
+ 		UPDATE NOTICE SET noticeTitle = #{noticeTitle}, noticeContents = #{noticeContents} WHERE noticeNum = #{noticeNum}
+ 	</update>
+ 	<update id="setNoticeHitAdd" parameterType="NoticeDTO">
+ 		UPDATE NOTICE SET noticeHit = noticeHit + 1 WHERE noticeNum = #{noticeNum}
+ 	</update>
  </mapper>
  
 <!--  private Integer noticeNum;

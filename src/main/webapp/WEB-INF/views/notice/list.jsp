@@ -32,15 +32,16 @@
 	   	  	<tr>
 				<td><h2>${dto.noticeNum}</h2></td>
 				<td><h2>${dto.memberId}</h2></td>
-				<td><a href="./detail?inquiryNum=${dto.noticeNum}"><h2>${dto.noticeTitle}</h2></a></td>
+				<td><a href="./detail?noticeNum=${dto.noticeNum}"><h2>${dto.noticeTitle}</h2></a></td>
 				<td><h2>${dto.noticeContents}</h2></td>
 				<td><h2>${dto.noticeHit}</h2></td>
-				<td><button class="btn btn-danger del" data-noticeNum="${dto.noticeNum}">삭제</button></td>
+				<td><a class="btn btn-primary" href="./update?noticeNum=${dto.noticeNum}">업데이트</a></td>
+				<td><button class="btn btn-danger del" data-noticeNum="${dto.noticeNum}">삭제</button></td>			
 			</tr>
 		</c:forEach>
   </tbody>
 </table>
-
+		<a class="btn btn-primary" href="./add">추가</a>
 		<!-- pagining -->
 	      <div class = "row" id="pagining">
 		        	 <nav aria-label="Page navigation example">

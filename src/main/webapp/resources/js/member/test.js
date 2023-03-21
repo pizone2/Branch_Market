@@ -9,6 +9,7 @@ $('#getNaverDataBtn').click(()=>{
             url:"/member/getNaverData?search=" + search,
             success:(response)=>{
                 response = JSON.parse(response);
+  
                 $(response.items).each((index,item)=>{
                     item.title = item.title.replace(/<[^>]*>?/g, '');
                     $.ajax({
@@ -38,6 +39,7 @@ $('#getNaverDataBtn').click(()=>{
 $('#buyBtn').click(()=>{
     $('#buyForm').submit();
 })
+
 
 //------------------------ 카카오 로그인
 
