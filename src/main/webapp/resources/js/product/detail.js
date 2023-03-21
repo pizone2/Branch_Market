@@ -13,12 +13,13 @@ function getReviewList(){
 getReviewList();
 
 // ------------- 추가
-$('#reviewAddBtn').click(()=>{
+$('#reviewAddBtn').click((e)=>{
     $('#datas').attr('data-work-state','add');
+    $('#inputData').val('');
 })
 
 // -------------- 업데이트
-$('#reviewUpdateBtn').click((e)=>{
+$('#reviewList').on('click','#reviewUpdateBtn',(e)=>{
     $('#datas').attr('data-work-state','update');
     
     let reviewNum = $(e.target).attr('data-update-reviewNum');
@@ -31,13 +32,12 @@ $('#reviewUpdateBtn').click((e)=>{
 })
 
 // --------- 폼에서 확인버튼 눌렀을때
-$('#submitDataBtn').click(()=>{
+$('#submitDataBtn').click((e)=>{
     let workState = $('#datas').attr('data-work-state');
+    let reviewScore = $('#reviewScore').html();
+    let reviewContents = $("#inputData").val();
 
     if(workState == 'add'){
-        let reviewContents = $("#inputData").val();
-        let reviewScore = $('#reviewScore').html();
-    
         $.ajax({
             url:'/review/add',
             type:'post',
@@ -56,8 +56,6 @@ $('#submitDataBtn').click(()=>{
             }
         })
     }else if(workState == 'update'){
-        let reviewContents = $("#inputData").val();
-        let reviewScore = $('#reviewScore').html();
         let reviewNum = $('#datas').attr('data-update-reviewNum');
 
         $.ajax({
@@ -81,6 +79,7 @@ $('#submitDataBtn').click(()=>{
 })
 
 $('#reviewList').on('click','input[data-delete-reviewNum]',(e)=>{
+        let reviewNum = $(e.target).attr('data-delete-reviewNum');
         $.ajax({
             url:'/review/delete',
             type:'post',
@@ -97,7 +96,11 @@ $('#reviewList').on('click','input[data-delete-reviewNum]',(e)=>{
         })
 });
 
-
+$('#reviewList').on('click','.page-link',(e)=>{
+    let pageNum = $(e.target).attr('data-page');
+    $('#page').val(pageNum);
+    $('#paginingForm').submit();
+})
 
 
 

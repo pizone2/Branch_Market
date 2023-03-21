@@ -58,15 +58,14 @@
 				  
 				  <!-- 검색창 -->
 				  <div class = "row">
+					<form action="./list" method="get" id="paginingForm">
 						<input type="hidden" name="page" id="page">
 						<input type="hidden" name="category" id="category" value="${pager.category}">
-
-
 						<div class="col-auto">
 							<label for="kind" class="visually-hidden">Kind</label>
 							<select name="kind" class="form-select" id="kind" aria-label="Default select example">
 							<option value="memberId" ${pager.kind eq 'memberId' ? 'selected' : ''} >작성자</option>
-							<option value="inqCommentsContents" ${pager.kind eq 'inqCommentsContents' ? 'selected' : ''}>내용</option>
+							<option value="reviewContents" ${pager.kind eq 'reviewContents' ? 'selected' : ''}>내용</option>
 							</select>
 						</div>
 						<div class="col-auto">
@@ -76,4 +75,5 @@
 						<div class="col-auto">
 							<button type="submit" class="btn btn-primary mb-3" id="searchBtn">검색</button>
 						</div>
+					</form>
 				  </div>
