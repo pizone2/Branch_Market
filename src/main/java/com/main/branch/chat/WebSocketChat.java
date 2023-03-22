@@ -19,7 +19,7 @@ import org.springframework.stereotype.Controller;
 @ServerEndpoint(value="/echo.do")
 public class WebSocketChat {
     
-    private static final List<Session> sessionList=new ArrayList<Session>();;
+    private static final List<Session> sessionList=new ArrayList<Session>();
     private static final Logger logger = LoggerFactory.getLogger(WebSocketChat.class);
     
     public WebSocketChat() {
@@ -66,10 +66,12 @@ public class WebSocketChat {
      * @param session
      */
     @OnMessage
-    public void onMessage(String message,Session session) {
+    public void onMessage(String data,Session session) {
     	
-    	String sender = message.split(",")[1];
-    	message = message.split(",")[0];
+       	String roomNum = data.split(",")[0];
+    	String message = data.split(",")[1];
+    	String sender = data.split(",")[2];
+
     	
         logger.info("Message From "+sender + ": "+message);
         try {

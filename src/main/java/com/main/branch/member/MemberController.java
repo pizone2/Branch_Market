@@ -278,12 +278,6 @@ public class MemberController {
 		modelAndView.setViewName("/common/result");
 		return modelAndView;
 	}
-	@GetMapping("/chat")
-	public ModelAndView startChat() {
-		ModelAndView modelAndView = new ModelAndView();
-		modelAndView.setViewName("/chat/chat");
-		return modelAndView;
-	}
 	
 	
 	

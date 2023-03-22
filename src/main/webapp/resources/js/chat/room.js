@@ -1,5 +1,6 @@
 var ws;
 var messages = document.getElementById("messages");
+const roomNum = new URL(location.href).searchParams.get('roomNum');
 
 function openSocket(){
 	if(ws !== undefined && ws.readyState !== WebSocket.CLOSED ){
@@ -30,7 +31,7 @@ function openSocket(){
 
 function send(){
 	// var text=document.getElementById("messageinput").value+","+document.getElementById("sender").value;
-	var text = document.getElementById("messageinput").value+","+document.getElementById("sender").value;
+	var text = roomNum + "," + $("#messageinput").val()+","+ $("#sender").val();
 	ws.send(text);
 	text = "";
 }

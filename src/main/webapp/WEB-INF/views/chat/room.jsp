@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<c:import url="../template/common_css.jsp"></c:import>
 <title>Simple Chat</title>
 </head>
 <body>
@@ -18,10 +20,28 @@
         <button type="button" onclick="javascript:clearText();">대화내용 지우기</button>
     </div>
 	
+	<c:if test="${not empty messageDTOs}">
+		<c:forEach items="messageDTOs" var="dto">
+			<h5>roomNum : ${dto.roomNum}</h5>
+			<h5>sendId : ${dto.sendId}</h5>
+			<h5>receiveId : ${dto.receiveId}</h5>
+			<h5>contents : ${dto.contents}</h5>
+		</c:forEach>
+	</c:if>
+	
     <!-- Server responses get written here -->
     <div id="messages">
     </div>
     
-  <script src="/resources/js/chat/chat.js"></script>
+     <c:import url="../template/common_js.jsp"></c:import>
+  <script src="/resources/js/chat/room.js"></script>
 </body>
 </html>
+
+	<!-- private Integer messageNum;
+	private Integer roomNum;
+	private String sendId;
+	private String receiveId;
+	private String contents;
+	private Date sendDate;
+	private Integer isRead; -->
