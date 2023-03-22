@@ -19,7 +19,6 @@ function openSocket(){
 	ws.onmessage = function(event){
 		console.log('writeResponse');
 		console.log(event);
-		console.log(event.data)
 		writeResponse(event.data);
 	};
 	

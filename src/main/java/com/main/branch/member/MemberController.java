@@ -227,6 +227,7 @@ public class MemberController {
 		memberDTO = memberService.setMemberLogin(memberDTO);
 		if(memberDTO != null) {
 			httpSession.setAttribute("member", memberDTO);
+			httpSession.setAttribute("id", memberDTO.getMemberId());
 			modelAndView.setViewName("redirect: /");
 		}else {
 			modelAndView.addObject("message", "로그인 실패!");
@@ -277,7 +278,12 @@ public class MemberController {
 		modelAndView.setViewName("/common/result");
 		return modelAndView;
 	}
-	
+	@GetMapping("/chat")
+	public ModelAndView startChat() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("/chat/chat");
+		return modelAndView;
+	}
 	
 	
 	
