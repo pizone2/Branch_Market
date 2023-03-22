@@ -136,16 +136,17 @@ public class ProductController {
 	}
 	
 	@GetMapping("myList")
-	public ModelAndView getProductMyList(Pager pager) throws Exception{
-		ModelAndView mv = new ModelAndView();
+	public ModelAndView getProductMyList(Pager pager) throws Exception {
+		ModelAndView modelAndView = new ModelAndView();
 		
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 		pager.setMemberId(memberDTO.getMemberId());
-		List<ProductDTO> productDTOs = productService.getProductList(pager);
-		mv.addObject("productDTOs", productDTOs);
-		mv.setViewName("/product/myList");
 		
-		return mv;
+		List<ProductDTO> productDTOs = productService.getProductMyList(pager);
+		modelAndView.addObject("productDTOs", productDTOs);
+		modelAndView.setViewName("/product/myList");
+		
+		return modelAndView;
 	}
 	
 	@GetMapping("topList")
@@ -180,7 +181,7 @@ public class ProductController {
 	}
 	
 	// ajax
-	@PostMapping("picList")
+	@GetMapping("picList")
 	public ModelAndView getProductPicMyList(ProductPicDTO productPicDTO)throws Exception{
 		ModelAndView modelAndView = new ModelAndView();
 		List<ProductDTO> productDTOs = productService.getProductPicMyList(productPicDTO);

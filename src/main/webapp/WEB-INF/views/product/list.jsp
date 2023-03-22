@@ -40,7 +40,7 @@
 							<td><a>${dto.productCategory}</a></td>
 							<td><img src="${dto.productImgName}" alt="" style="height: 100px;"></td>
 							<td><a>${dto.productQ}</a></td>
-							<td><a>${dto.productPrice}</a></td>
+							<td><a>${dto.productPrice}</a>원</td>
 						</tr>
 					</c:if>
 					</c:forEach>

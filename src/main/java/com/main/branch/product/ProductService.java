@@ -33,10 +33,18 @@ public class ProductService {
 	
 	public List<ProductDTO> getProductList(Pager pager) throws Exception{
 		
-		pager.makeRow();
 		pager.makeNum(productDAO.getProductCount(pager));
+		pager.makeRow();
 		
 		return productDAO.getProductList(pager);
+	}
+	
+	public List<ProductDTO> getProductMyList(Pager pager) throws Exception{
+		
+		pager.makeNum(productDAO.getProductCount(pager));
+		pager.makeRow();
+		
+		return productDAO.getProductMyList(pager);
 	}
 	
 	public ProductDTO getProductDetail(ProductDTO productDTO) throws Exception{
