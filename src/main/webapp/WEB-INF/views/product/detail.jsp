@@ -20,15 +20,24 @@
 		<h3>${dto.productTitle}</h3>
 		<h3>${dto.productDetail}</h3>
 		<h3>${dto.productQ}</h3>
-		<h3>${dto.productPrice}</h3>
+		<h3>${dto.productPrice}원</h3>
 		
 		<div class="row col-md-7">
 				<a class="btn btn-primary col-2" href="./list">목록으로</a>
 				<a class="btn btn-info col-2" href="./update?productNum=${dto.productNum}">수정</a>
 				<a class="btn btn-danger col-2" href="./delete?productNum=${dto.productNum}">삭제</a>
+			</div>
 		</div>
 	</div>
-</div>
+	
+			<div class="col">
+				<c:if test="${checkPic eq 0}">
+					<button type="submit" class="btn btn-outline-success col-3" id="picAdd" data-product-productNum="${dto.productNum}">장바구니에 추가</button>
+				</c:if>
+				<c:if test="${checkPic eq 1}">
+					<button type="submit" class="btn btn-outline-danger col-3" id="picDelete">장바구니에서 삭제</button>
+				</c:if>
+			</div>
 
 <input type="button" value="리뷰 작성" id="reviewAddBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
 <div id="reviewList"></div>

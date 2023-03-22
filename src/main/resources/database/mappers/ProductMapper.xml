@@ -43,6 +43,21 @@
   	SELECT SEQ_SEQ.NEXTVAL FROM DUAL
   </select>
   
+  <select id="getProductMyList" parameterType="Pager" resultType="ProductDTO">
+  	SELECT * FROM 
+  		(
+  			SELECT ROWNUM R, P.*FROM
+  				(
+  					SELECT * FROM PRODUCT
+  					
+  					WHERE MEMBERID = #{memberId}
+  						
+  					ORDER BY PRODUCTNUM DESC
+  				)P
+  		)
+  	WHERE R BETWEEN #{startRow} AND #{lastRow}
+  </select>
+  
   <select id="getProductDetail" parameterType="ProductDTO" resultType="ProductDTO">
   	SELECT * FROM PRODUCT
   	WHERE PRODUCTNUM = #{productNum}

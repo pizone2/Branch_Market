@@ -84,6 +84,10 @@
 		</div>
 	</div>
 </div>
+	<!-- <form action="./myList" id="searchForm">
+		<input hidden="hidden" id="page" name="page">
+		
+	</form> -->
 	<script src="/resources/js/product/pageing.js"></script>
 	<c:import url="../template/common_js.jsp"></c:import>
  </body>
