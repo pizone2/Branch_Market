@@ -10,7 +10,6 @@
 </head>
 <body>
     <div>
-        <button type="button" onclick="openSocket();">대화방 참여</button>
         <button type="button" onclick="closeSocket();">대회방 나가기</button>
     	<br/><br/><br/>
   		메세지 입력 : 
@@ -23,10 +22,10 @@
 	<c:if test="${not empty messageDTOs}">
 		<c:forEach items="${messageDTOs}" var="dto">
 			<c:if test="${sessionScope.id eq dto.sendId }">
-				나 : ${dto.contents} <br>
+				<br> 나 : ${dto.contents}
 			</c:if>
 			<c:if test="${sessionScope.id ne dto.sendId }">
-				${dto.sendId} : ${dto.contents} <br>
+				<br> ${dto.sendId} : ${dto.contents}
 			</c:if>
 		</c:forEach>
 	</c:if>

@@ -68,9 +68,7 @@ public class KakaoPayService {
     }
     
     public KakaoPayApprovalVO approval(String pg_token) {
-    	// 이거 값 왜 저장되어있음?
-        System.out.println("approval tid :  " + kakaoPayReadyVO.getTid());
-        
+
         RestTemplate restTemplate = new RestTemplate();
  
         // 서버로 요청할 Header

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import javax.inject.Inject;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnMessage;
@@ -20,8 +21,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
+import com.main.branch.config.ServerEndpointConfigurator;
+
 @Controller
-@ServerEndpoint(value="/echo.do")
+@ServerEndpoint(value="/echo.do",configurator = ServerEndpointConfigurator.class)
 public class WebSocketChat {
     
 	
@@ -38,7 +41,7 @@ public class WebSocketChat {
         logger.info("Open session id:"+session.getId());
         try {
             final Basic basic=session.getBasicRemote();
-            basic.sendText("대화방에 연결 되었습니다.");
+//            basic.sendText("대화방에 연결 되었습니다.");
         }catch (Exception e) {
             // TODO: handle exception
             System.out.println(e.getMessage());
@@ -53,11 +56,12 @@ public class WebSocketChat {
      * @param message
      */
     private void sendAllSessionToMessage(Session self, String sender, String contents, String roomNum) {
-        try {
+    	
+    	try {
         	// 자신을 제외한 세션에 접속하고 채팅방에 소속된 사람들에게 메세지 보냄
             for(Session session : WebSocketChat.sessionList) {
                 if(!session.getId().equals(self.getId())) {
-                	session.getBasicRemote().sendText(sender+" : "+contents);
+                	session.getBasicRemote().sendText(roomNum + "," + sender+" : "+contents);
                 }
             }
         }catch (Exception e) {
@@ -83,7 +87,7 @@ public class WebSocketChat {
         logger.info("Message From "+sender + ": "+contents);
         try {
             final Basic basic=session.getBasicRemote();
-            basic.sendText("<나> : "+contents);
+            basic.sendText(roomNum + "," + "나 : " + contents);
         }catch (Exception e) {
             // TODO: handle exception
             System.out.println(e.getMessage());
