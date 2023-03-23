@@ -43,6 +43,13 @@ public class ProductController {
 		
 		productDTO = productService.getProductDetail(productDTO);
 		
+		ProductPicDTO productPicDTO = productService.checkAlreadyProductPic(productDTO);
+		if(productPicDTO == null) {
+			mv.addObject("checkPic", 0);
+		}else {
+			mv.addObject("checkPic", 1);
+		}
+		
 		mv.setViewName("product/detail");
 		mv.addObject("dto", productDTO);
 		
@@ -185,6 +192,12 @@ public class ProductController {
 	public ModelAndView getProductPicMyList(ProductPicDTO productPicDTO)throws Exception{
 		ModelAndView modelAndView = new ModelAndView();
 		List<ProductDTO> productDTOs = productService.getProductPicMyList(productPicDTO);
+		
+		if(productDTOs == null) {
+			modelAndView.addObject("checkPic", 0);
+		}else {
+			modelAndView.addObject("checkPic", 1);
+		}
 		
 		modelAndView.addObject("productDTOs", productDTOs);
 		modelAndView.setViewName("/product/picList");
