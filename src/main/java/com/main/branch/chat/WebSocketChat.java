@@ -1,7 +1,11 @@
 package com.main.branch.chat;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
@@ -13,12 +17,14 @@ import javax.websocket.server.ServerEndpoint;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 @Controller
 @ServerEndpoint(value="/echo.do")
 public class WebSocketChat {
     
+	
     private static final List<Session> sessionList=new ArrayList<Session>();
     private static final Logger logger = LoggerFactory.getLogger(WebSocketChat.class);
     
@@ -46,17 +52,17 @@ public class WebSocketChat {
      * @param sender
      * @param message
      */
-    private void sendAllSessionToMessage(Session self, String sender, String message) {
-    	
+    private void sendAllSessionToMessage(Session self, String sender, String contents, String roomNum) {
         try {
+        	// 자신을 제외한 세션에 접속하고 채팅방에 소속된 사람들에게 메세지 보냄
             for(Session session : WebSocketChat.sessionList) {
-                if(!self.getId().equals(session.getId())) {
-                    session.getBasicRemote().sendText(sender+" : "+message);
+                if(!session.getId().equals(self.getId())) {
+                	session.getBasicRemote().sendText(sender+" : "+contents);
                 }
             }
         }catch (Exception e) {
             // TODO: handle exception
-            System.out.println(e.getMessage());
+            System.out.println(e);
         }
     }
     
@@ -65,23 +71,24 @@ public class WebSocketChat {
      * @param message
      * @param session
      */
+    // 사용자가 메세지를 보냈을때
     @OnMessage
     public void onMessage(String data,Session session) {
     	
        	String roomNum = data.split(",")[0];
-    	String message = data.split(",")[1];
+    	String contents = data.split(",")[1];
     	String sender = data.split(",")[2];
 
     	
-        logger.info("Message From "+sender + ": "+message);
+        logger.info("Message From "+sender + ": "+contents);
         try {
             final Basic basic=session.getBasicRemote();
-            basic.sendText("<나> : "+message);
+            basic.sendText("<나> : "+contents);
         }catch (Exception e) {
             // TODO: handle exception
             System.out.println(e.getMessage());
         }
-        sendAllSessionToMessage(session, sender, message);
+        sendAllSessionToMessage(session, sender, contents, roomNum);
     }
     
     @OnError

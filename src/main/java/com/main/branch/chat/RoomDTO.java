@@ -3,6 +3,8 @@ package com.main.branch.chat;
 public class RoomDTO {
 	private Integer roomNum;
 	private String roomTitle;
+	
+	
 	public Integer getRoomNum() {
 		return roomNum;
 	}

@@ -21,11 +21,13 @@
     </div>
 	
 	<c:if test="${not empty messageDTOs}">
-		<c:forEach items="messageDTOs" var="dto">
-			<h5>roomNum : ${dto.roomNum}</h5>
-			<h5>sendId : ${dto.sendId}</h5>
-			<h5>receiveId : ${dto.receiveId}</h5>
-			<h5>contents : ${dto.contents}</h5>
+		<c:forEach items="${messageDTOs}" var="dto">
+			<c:if test="${sessionScope.id eq dto.sendId }">
+				나 : ${dto.contents} <br>
+			</c:if>
+			<c:if test="${sessionScope.id ne dto.sendId }">
+				${dto.sendId} : ${dto.contents} <br>
+			</c:if>
 		</c:forEach>
 	</c:if>
 	

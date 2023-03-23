@@ -3,7 +3,38 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.main.branch.chat.RoomDAO">
- 	<select id="getRoomMessageList" parameterType="RoomDTO" resultType="MessageDTO">
- 		SELECT * FROM MESSAGE WHERE roomNum = #{roomNum} 
+ 	<select id="getRoomMessageList" parameterType="MessageDTO" resultType="MessageDTO">
+ 		SELECT * FROM MESSAGE WHERE roomNum = #{roomNum} and isRead != -2 and isRead != -1 and receiveId = #{receiveId}
+ 		ORDER BY sendDate
  	</select>
+ 	<select id="getMyRoomList" parameterType="MemberDTO" resultType="RoomDTO">
+ 		SELECT distinct(roomNum) FROM message WHERE sendId = #{memberId} OR receiveId = #{memberId}
+ 	</select>
+ 	
+ 	<select id="getRoomParticipantsList" parameterType="RoomDTO" resultType="MessageDTO">
+ 		SELECT distinct(sendId) FROM MESSAGE WHERE roomNum = #{roomNum} and (isRead = -2 or isRead = -1)
+ 	</select>
+ 	
+ 	<select id="getRoomDetail" parameterType="RoomDTO" resultType="RoomDTO">
+ 		SELECT * FROM ROOM WHERE roomNum = #{roomNum}
+ 	</select>
+ 	<insert id="setRoomAdd" parameterType="RoomDTO">
+ 		<selectKey order="BEFORE" keyProperty="roomNum" resultType="Integer">
+ 			SELECT SEQ.NEXTVAL FROM DUAL
+ 		</selectKey>
+ 		INSERT INTO ROOM VALUES(#{roomNum},#{roomTitle})
+ 	</insert>
+ 	
+ 	<insert id="setRoomMessageAdd" parameterType="MessageDTO">
+ 		INSERT INTO MESSAGE VALUES(SEQ.NEXTVAL,#{roomNum},#{sendId},#{receiveId},#{contents},SYSDATE,#{isRead})
+ 	</insert>
+ 	
  </mapper>
+ 
+<!--  private Integer messageNum;
+	private Integer roomNum;
+	private String sendId;
+	private String receiveId;
+	private String contents;
+	private Date sendDate;
+	private Integer isRead; -->

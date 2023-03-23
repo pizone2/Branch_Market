@@ -8,7 +8,7 @@ function openSocket(){
 		return;
 	}
 	//웹소켓 객체 만드는 코드
-	ws = new WebSocket("ws://localhost:80/echo.do");
+	ws = new WebSocket("ws://192.168.1.109:80/echo.do");
 	
 	ws.onopen = function(event){
 		if(event.data === undefined){
@@ -17,8 +17,8 @@ function openSocket(){
 		writeResponse(event.data);
 	};
 	
+	// 메세지를 서버에서 받았을때 작동
 	ws.onmessage = function(event){
-		console.log('writeResponse');
 		console.log(event);
 		writeResponse(event.data);
 	};
@@ -30,10 +30,23 @@ function openSocket(){
 }
 
 function send(){
+	let contents =  $("#messageinput").val();
 	// var text=document.getElementById("messageinput").value+","+document.getElementById("sender").value;
-	var text = roomNum + "," + $("#messageinput").val()+","+ $("#sender").val();
+	var text = roomNum + "," + contents +","+ $("#sender").val();
 	ws.send(text);
 	text = "";
+
+	$.ajax({
+		url:"/chat/messageAdd",
+		type:"post",
+		data:{
+			'roomNum':roomNum,
+			'contents':contents,
+		},
+		success:(response)=>{
+			console.log(response);
+		}
+	})
 }
 
 function closeSocket(){
