@@ -1,16 +1,19 @@
 var ws;
 var messages = document.getElementById("messages");
-const roomNum = new URL(location.href).searchParams.get('roomNum');
+const roomNum = location.href.substring(location.href.lastIndexOf('/') + 1);
+console.log(roomNum);
 
 openSocket();
+
 function openSocket(){
 	if(ws !== undefined && ws.readyState !== WebSocket.CLOSED ){
 		writeResponse("WebSocket is already opened.");
 		return;
 	}
 	//웹소켓 객체 만드는 코드
-	ws = new WebSocket("ws://192.168.0.19:80/echo.do");
+	ws = new WebSocket("ws://localhost:80/echo.do/" + roomNum);
 	
+	// 소켓이 처음 열렸을때 작동하는 코드?
 	ws.onopen = function(event){
 		if(event.data === undefined){
 			return;
@@ -20,13 +23,9 @@ function openSocket(){
 	
 	// 메세지를 서버에서 받았을때 작동
 	ws.onmessage = function(event){
-		let divIndex = event.data.indexOf(',');
-		let resRoomNum = event.data.substr(0,divIndex);
-		let resContents = event.data.substr(divIndex + 1);
-
-		if(resRoomNum == roomNum){
-			writeResponse(resContents);
-		}
+		console.log(event.data);
+		let resContents = event.data;
+		writeResponse(resContents);
 	};
 	
 	ws.onclose = function(event){

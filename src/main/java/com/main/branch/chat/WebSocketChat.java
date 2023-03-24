@@ -14,22 +14,23 @@ import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.RemoteEndpoint.Basic;
 import javax.websocket.Session;
+import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.main.branch.config.ServerEndpointConfigurator;
 
 @Controller
-@ServerEndpoint(value="/echo.do",configurator = ServerEndpointConfigurator.class)
+@ServerEndpoint(value="/echo.do/{roomNum}",configurator = ServerEndpointConfigurator.class)
 public class WebSocketChat {
     
-	
-    private static final List<Session> sessionList=new ArrayList<Session>();
-    private static final Logger logger = LoggerFactory.getLogger(WebSocketChat.class);
+	private static final Map<String,List<Session>> sessionList = new HashMap<String,List<Session>>();
+	private static final Logger logger = LoggerFactory.getLogger(WebSocketChat.class);
     
     public WebSocketChat() {
         // TODO Auto-generated constructor stub
@@ -37,16 +38,24 @@ public class WebSocketChat {
     }
     
     @OnOpen
-    public void onOpen(Session session) {
+    public void onOpen(Session session,@PathParam("roomNum") String roomNum) {
+    	List<Session> sessions = sessionList.get(roomNum);
+    	if(sessions == null) {
+    		sessions = new ArrayList<Session>();
+    		sessionList.put(roomNum, sessions);
+    	}
+        sessionList.get(roomNum).add(session);
+        
+    	System.out.println("처음 접속한 roomNum= " + roomNum);
         logger.info("Open session id:"+session.getId());
+        
         try {
             final Basic basic=session.getBasicRemote();
-//            basic.sendText("대화방에 연결 되었습니다.");
+            basic.sendText("대화방에 연결 되었습니다.");
         }catch (Exception e) {
             // TODO: handle exception
             System.out.println(e.getMessage());
         }
-        sessionList.add(session);
     }
     
     /*
@@ -59,9 +68,9 @@ public class WebSocketChat {
     	
     	try {
         	// 자신을 제외한 세션에 접속하고 채팅방에 소속된 사람들에게 메세지 보냄
-            for(Session session : WebSocketChat.sessionList) {
+            for(Session session : sessionList.get(roomNum)) {
                 if(!session.getId().equals(self.getId())) {
-                	session.getBasicRemote().sendText(roomNum + "," + sender+" : "+contents);
+                	session.getBasicRemote().sendText(sender+" : "+contents);
                 }
             }
         }catch (Exception e) {
@@ -78,6 +87,7 @@ public class WebSocketChat {
     // 사용자가 메세지를 보냈을때
     @OnMessage
     public void onMessage(String data,Session session) {
+    	System.out.println(data);
     	
        	String roomNum = data.split(",")[0];
     	String contents = data.split(",")[1];
@@ -87,7 +97,7 @@ public class WebSocketChat {
         logger.info("Message From "+sender + ": "+contents);
         try {
             final Basic basic=session.getBasicRemote();
-            basic.sendText(roomNum + "," + "나 : " + contents);
+            basic.sendText("나 : " + contents);
         }catch (Exception e) {
             // TODO: handle exception
             System.out.println(e.getMessage());
@@ -101,8 +111,9 @@ public class WebSocketChat {
     }
     
     @OnClose
-    public void onClose(Session session) {
+    public void onClose(Session session,@PathParam("roomNum") String roomNum) {
         logger.info("Session "+session.getId()+" has ended");
-        sessionList.remove(session);
+        System.out.println(roomNum);
+        sessionList.get(roomNum).remove(session);
     }
 }

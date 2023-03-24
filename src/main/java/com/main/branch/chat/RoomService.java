@@ -41,9 +41,9 @@ public class RoomService {
             insertDTO.setReceiveId(dto.getSendId());
             insertDTO.setContents(contents);
             if(sender.equals(dto.getSendId())) {
-            	insertDTO.setIsRead(0);
-            }else {
             	insertDTO.setIsRead(1);
+            }else {
+            	insertDTO.setIsRead(0);
             }
             result = roomDAO.setRoomMessageAdd(insertDTO);
     	}
@@ -61,11 +61,11 @@ public class RoomService {
 		}
 		return roomDTOs; 
 	}
+	
+	// 제목만 있음
 	public int setRoomAdd(String[] participants, RoomDTO roomDTO) {
 		// 방 만들기
 		int result = roomDAO.setRoomAdd(roomDTO);
-		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("member");
-		
 		// --------- 참가자 전용 확인은 isRead가 -2 또는 -1임
 		
 		MessageDTO messageDTO = new MessageDTO();
@@ -74,23 +74,26 @@ public class RoomService {
 		messageDTO.setReceiveId("");
 		
 		// 1:1 채팅방일때 read -2
-		if(participants.length == 1) {
-			messageDTO.setIsRead(-2);
+		if(participants.length == 2) {
 			
-			messageDTO.setSendId(memberDTO.getMemberId());
+			messageDTO.setIsRead(-2);
+			// 참가자 목록 조회용
+			messageDTO.setSendId(participants[0]);
+			result = roomDAO.setRoomMessageAdd(messageDTO);
+			// 참가자 목록 조회용
+			messageDTO.setSendId(participants[1]);
 			result = roomDAO.setRoomMessageAdd(messageDTO);
 			
-			// 보내는 사람 설정
+			// 1 : 1 채팅방 존재 한번에 찾기 용
+			messageDTO.setIsRead(-3);
 			messageDTO.setSendId(participants[0]);
-			// 받는 사람 설정 
+			messageDTO.setReceiveId(participants[1]);
 			result = roomDAO.setRoomMessageAdd(messageDTO);
 		}
 		// 1:n 채팅방일때 read -1
 		else {
 			messageDTO.setIsRead(-1);
-			messageDTO.setSendId(memberDTO.getMemberId());
-			result = roomDAO.setRoomMessageAdd(messageDTO);
-			
+
 			for(String participant : participants) {
 				// 보내는 사람 설정
 				messageDTO.setSendId(participant);
@@ -98,5 +101,30 @@ public class RoomService {
 			}
 		}	
 		return result;
+	}
+	public List<RoomDTO> getRoomList(){
+		return roomDAO.getRoomList();
+	}
+	public RoomDTO setOneToOneChat(MessageDTO messageDTO) {
+
+		RoomDTO roomDTO = roomDAO.setOneToOneChat(messageDTO);
+		
+		// 이전에 업던 방이면
+		if(roomDTO == null) {
+			String [] participants = new String[0];
+			participants[0] = messageDTO.getReceiveId();
+			participants[1] = messageDTO.getSendId();
+			// 방 만들기
+			this.setRoomAdd(participants, roomDTO);
+		}
+		
+		return roomDTO;
+	}
+	// roomNum, sendid만 설정하면 나머지 다 넣어줌 (1 : n) 채팅일때만
+	public int setMemberAddRoom(MessageDTO messageDTO) {
+		messageDTO.setContents("");
+		messageDTO.setIsRead(-1);
+		messageDTO.setReceiveId("");
+		return roomDAO.setRoomMessageAdd(messageDTO);
 	}
 }

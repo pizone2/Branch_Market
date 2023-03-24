@@ -9,7 +9,7 @@ public class MessageDTO {
 	private String receiveId;
 	private String contents;
 	private Date sendDate;
-	private Integer isRead;
+	private Integer isRead; // (-3 1:1 채팅 존재여부 -2 1:1채팅멤버, -1 1:n채팅멤버  0 안읽음, 1읽음)
 	
 	public Integer getMessageNum() {
 		return messageNum;

@@ -32,5 +32,13 @@ public class RoomDAO {
 	public List<MessageDTO> getRoomParticipantsList(RoomDTO roomDTO){
 		return sqlSession.selectList(NAMESPACE + "getRoomParticipantsList", roomDTO);
 	}
-	
+	public List<RoomDTO> getRoomList(){
+		return sqlSession.selectList(NAMESPACE + "getRoomList");
+	}
+	public RoomDTO setOneToOneChat(MessageDTO messageDTO) {
+		return sqlSession.selectOne(NAMESPACE + "setOneToOneChat", messageDTO);
+	}
+	public MessageDTO checkAlreadyParticipant(MessageDTO messageDTO) {
+		return sqlSession.selectOne(NAMESPACE + "checkAlreadyParticipant", messageDTO);
+	}
 }

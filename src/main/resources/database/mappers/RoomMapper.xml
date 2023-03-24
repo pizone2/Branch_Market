@@ -3,6 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.main.branch.chat.RoomDAO">
+ 	
+ 	<select id="getRoomList" resultType="RoomDTO">
+ 		SELECT * FROM ROOM 
+ 	</select>
  	<select id="getRoomMessageList" parameterType="MessageDTO" resultType="MessageDTO">
  		SELECT * FROM MESSAGE WHERE roomNum = #{roomNum} and isRead != -2 and isRead != -1 and receiveId = #{receiveId}
  		ORDER BY sendDate
@@ -29,6 +33,17 @@
  		INSERT INTO MESSAGE VALUES(SEQ.NEXTVAL,#{roomNum},#{sendId},#{receiveId},#{contents},SYSDATE,#{isRead})
  	</insert>
  	
+	<select id="setOneToOneChat" parameterType="MessageDTO" resultType="RoomDTO">
+ 		SELECT roomNum FROM MESSAGE WHERE 
+ 		((sendId = #{sendId} AND receiveId = #{receiveId})
+ 			OR
+ 		(sendId = #{receiveId} AND receiveId = #{sendId}))
+ 			AND
+ 		isRead = -3
+ 	</select>
+ 	<select id="checkAlreadyParticipant" parameterType="MessageDTO" resultType="MessageDTO">
+ 		SELECT * FROM MESSAGE WHERE roomNum = #{roomNum} AND sendId = #{sendId} AND (isRead = -1 OR isRead = -2)
+ 	</select>
  </mapper>
  
 <!--  private Integer messageNum;

@@ -9,6 +9,7 @@
 <c:import url="../template/common_css.jsp"></c:import>
 </head>
 <body>
+
 	<c:forEach items="${roomDTOs}" var="dto">
 		<h5>채팅방 번호 ${dto.roomNum}</h5>
 		<h5>채팅방 제목 <a href="./room/${dto.roomNum}">${dto.roomTitle}</a></h5>
