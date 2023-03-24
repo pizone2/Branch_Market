@@ -83,7 +83,13 @@ public class ProductController {
 		
 		Integer result = productService.setProductDelete(productDTO);
 		
-		mv.setViewName("redirect:./list");
+		String message = "삭제 실패";
+		if(result>0) {
+			message = "게시물이 삭제되었습니다";
+		}
+		mv.addObject("result", message);
+		mv.addObject("url", "./list");
+		mv.setViewName("common/result");
 		
 		return mv;
 	}

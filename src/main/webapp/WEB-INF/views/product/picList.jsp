@@ -21,7 +21,7 @@
 				<h5>productTitle = ${dto.productTitle}</h5>
 				<h5>productImgName=<img src="${dto.productImgName}" alt="" style="height: 100px;"></h5>
 				<h5>productPrice = ${dto.productPrice}</h5>
-	
+			
 				<button type="submit" class="btn btn-outline-danger col-3" id="picDelete">장바구니에서 삭제</button>
 				
 			</c:forEach>
