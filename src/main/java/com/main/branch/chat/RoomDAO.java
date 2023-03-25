@@ -44,4 +44,7 @@ public class RoomDAO {
 	public int delRecordMessage(MessageDTO messageDTO) {
 		return sqlSession.delete(NAMESPACE + "delRecordMessage", messageDTO);
 	}
+	public int setQuitRoom(MessageDTO messageDTO) {
+		return sqlSession.delete(NAMESPACE + "setQuitRoom", messageDTO);
+	}
 }

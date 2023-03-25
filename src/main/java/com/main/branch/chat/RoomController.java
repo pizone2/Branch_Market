@@ -42,7 +42,7 @@ public class RoomController {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		int result = roomService.setRoomAdd(participants, roomDTO);
-		modelAndView.setViewName("redirect: ./myRoomList");
+		modelAndView.setViewName("redirect: ./room/" + roomDTO.getRoomNum());
 		return modelAndView;
 	}
 	
@@ -122,6 +122,27 @@ public class RoomController {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		int result = roomService.delRecordMessage(messageDTO);
+		
+		modelAndView.addObject("result", result);
+		modelAndView.setViewName("/common/ajaxResult");
+		return modelAndView;
+	}
+	@PostMapping("/memberInviteRoom")
+	public ModelAndView setMemberInviteRoom(Integer roomNum, String memberId) {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		int result = roomService.setMemberInviteRoom(roomNum, memberId);
+		
+		modelAndView.addObject("result", result);
+		modelAndView.setViewName("/common/ajaxResult");
+		return modelAndView;
+	}
+	// roomNum 받아옴
+	@PostMapping("/quitRoom")
+	public ModelAndView setQuitRoom(MessageDTO messageDTO) {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		int result = roomService.setQuitRoom(messageDTO);
 		
 		modelAndView.addObject("result", result);
 		modelAndView.setViewName("/common/ajaxResult");

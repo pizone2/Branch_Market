@@ -12,7 +12,7 @@
     <form action="./roomAdd" method="post" id="makeRoomForm">
         <input type="text" name="roomTitle" id="" placeholder="방 제목 입력">
         <input type="button" value="참가자 추가하기" id="addParticipantsBtn">
-        <input type="hidden" name="participants" value="${sessionScope.id}">
+        <input type="hidden" name="participants" value="${sessionScope.id}" id="sendId">
         <div id="participantList"></div>
         <input type="button" value="방 만들기" id="makeRoomBtn">
     </form>

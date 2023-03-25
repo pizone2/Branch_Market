@@ -11,9 +11,9 @@ function openSocket(){
 		return;
 	}
 	//웹소켓 객체 만드는 코드
-	ws = new WebSocket("ws://localhost:80/echo.do/" + roomNum);
+	ws = new WebSocket("ws://192.168.0.19:80/echo.do/" + roomNum);
 	
-	// 소켓이 처음 열렸을때 작동하는 코드?
+	// 소켓이 처음 열렸을때 작동하는 코드
 	ws.onopen = function(event){
 		if(event.data === undefined){
 			return;
@@ -23,13 +23,13 @@ function openSocket(){
 	
 	// 메세지를 서버에서 받았을때 작동
 	ws.onmessage = function(event){
-		console.log(event.data);
 		let resContents = event.data;
 		writeResponse(resContents);
 	};
 	
 	ws.onclose = function(event){
 		writeResponse("대화 종료");
+		location.href = "./myRoomList";
 	}
 	
 }
@@ -49,13 +49,24 @@ function send(){
 			'contents':contents,
 		},
 		success:(response)=>{
-			console.log(response);
+			
 		}
 	})
 }
 
 function closeSocket(){
 	ws.close();
+	$.ajax({
+		url:"/chat/quitRoom",
+		type:"post",
+		data:{
+			'roomNum':roomNum
+		},
+		success:(response)=>{
+			
+		}
+	})
+	location.href="../myRoomList";
 }
 
 function writeResponse(text){
@@ -78,6 +89,17 @@ function clearText(){
 
 $('#modalSubmitBtn').click(()=>{
 	$.ajax({
-		url:'/chat/'
+		url:'/chat/memberInviteRoom',
+		type:'post',
+		data:{
+			'roomNum':roomNum,
+			'memberId':$('#inviteMemberText').val()
+		},
+		success:(res)=>{
+			
+		}
 	})
+
+	$('#inviteMemberText').val("");
+	$('#modalCloseBtn').click();
 })

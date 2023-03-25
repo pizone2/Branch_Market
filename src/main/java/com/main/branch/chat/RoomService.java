@@ -109,7 +109,6 @@ public class RoomService {
 	public RoomDTO setOneToOneChat(MessageDTO messageDTO) {
 
 		RoomDTO roomDTO = roomDAO.setOneToOneChat(messageDTO);
-		
 		// 이전에 업던 방이면
 		if(roomDTO == null) {
 			String [] participants = new String[2];
@@ -142,5 +141,13 @@ public class RoomService {
 		messageDTO.setReceiveId(memberDTO.getMemberId());
 		
 		return roomDAO.delRecordMessage(messageDTO);
+	}
+	public int setQuitRoom(MessageDTO messageDTO) {
+		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("member");
+		messageDTO.setReceiveId(memberDTO.getMemberId());
+		messageDTO.setSendId(memberDTO.getMemberId());
+		
+		roomDAO.delRecordMessage(messageDTO);
+		return roomDAO.setQuitRoom(messageDTO);
 	}
 }

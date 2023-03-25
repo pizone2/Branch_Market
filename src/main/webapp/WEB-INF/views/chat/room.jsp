@@ -45,7 +45,7 @@
 		</div>
 		<textarea id="inviteMemberText" cols="30" rows="10"></textarea>
 		<div class="modal-footer">
-		  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+		  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="modalCloseBtn">Close</button>
 		  <button type="button" class="btn btn-primary" id="modalSubmitBtn">초대하기</button>
 		</div>
 	  </div>
