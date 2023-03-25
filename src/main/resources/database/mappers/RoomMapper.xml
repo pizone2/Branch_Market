@@ -5,7 +5,9 @@
  <mapper namespace="com.main.branch.chat.RoomDAO">
  	
  	<select id="getRoomList" resultType="RoomDTO">
- 		SELECT * FROM ROOM 
+ 		SELECT A.roomNum,A.roomTitle FROM ROOM A
+		JOIN MESSAGE B ON A.roomNum = B.roomNum AND B.ISREAD = -1
+		GROUP BY A.roomNum,A.roomTitle
  	</select>
  	<select id="getRoomMessageList" parameterType="MessageDTO" resultType="MessageDTO">
  		SELECT * FROM MESSAGE WHERE roomNum = #{roomNum} and isRead != -2 and isRead != -1 and receiveId = #{receiveId}
@@ -44,6 +46,11 @@
  	<select id="checkAlreadyParticipant" parameterType="MessageDTO" resultType="MessageDTO">
  		SELECT * FROM MESSAGE WHERE roomNum = #{roomNum} AND sendId = #{sendId} AND (isRead = -1 OR isRead = -2)
  	</select>
+ 	
+ 	<delete id="delRecordMessage" parameterType="MessageDTO">
+ 		DELETE MESSAGE 
+ 		WHERE roomNum = #{roomNum} AND (isRead = 0 OR isRead = 1) AND receiveId = #{receiveId}
+ 	</delete>
  </mapper>
  
 <!--  private Integer messageNum;

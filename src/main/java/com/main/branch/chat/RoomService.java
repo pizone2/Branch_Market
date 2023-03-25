@@ -95,6 +95,7 @@ public class RoomService {
 			messageDTO.setIsRead(-1);
 
 			for(String participant : participants) {
+				if(participant == null || participant == "")continue;
 				// 보내는 사람 설정
 				messageDTO.setSendId(participant);
 				result = roomDAO.setRoomMessageAdd(messageDTO);
@@ -111,20 +112,35 @@ public class RoomService {
 		
 		// 이전에 업던 방이면
 		if(roomDTO == null) {
-			String [] participants = new String[0];
+			String [] participants = new String[2];
 			participants[0] = messageDTO.getReceiveId();
 			participants[1] = messageDTO.getSendId();
+			// 방제 임의 설정
+			roomDTO = new RoomDTO();
+			roomDTO.setRoomTitle(participants[0] + " : " + participants[1]);
 			// 방 만들기
 			this.setRoomAdd(participants, roomDTO);
 		}
 		
 		return roomDTO;
 	}
-	// roomNum, sendid만 설정하면 나머지 다 넣어줌 (1 : n) 채팅일때만
-	public int setMemberAddRoom(MessageDTO messageDTO) {
+
+	// 초대하기 1 : n 일때만가능
+	public int setMemberInviteRoom(Integer roomNum, String memberId) {
+		MessageDTO messageDTO = new MessageDTO();
+		messageDTO.setRoomNum(roomNum);
+		messageDTO.setSendId(memberId);
 		messageDTO.setContents("");
 		messageDTO.setIsRead(-1);
 		messageDTO.setReceiveId("");
 		return roomDAO.setRoomMessageAdd(messageDTO);
+	}
+	
+	// reciveId roomNum 있어야함
+	public int delRecordMessage(MessageDTO messageDTO) {
+		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("member");
+		messageDTO.setReceiveId(memberDTO.getMemberId());
+		
+		return roomDAO.delRecordMessage(messageDTO);
 	}
 }

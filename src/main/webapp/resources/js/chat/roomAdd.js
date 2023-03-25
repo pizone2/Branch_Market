@@ -1,7 +1,7 @@
 let ParticipantsCount = 0;
 $('#addParticipantsBtn').click(()=>{
     let input = '참가자 ' + ++ParticipantsCount + ' <input type="text" name="participants"><br>';
-    $('#participantList').html($('#participantList').html() + input);
+    $('#participantList').append(input);
 })
 
 $('#makeRoomBtn').click(()=>{

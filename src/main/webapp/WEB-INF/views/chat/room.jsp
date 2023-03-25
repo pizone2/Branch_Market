@@ -16,7 +16,8 @@
         <input type="text" id="sender" value="${sessionScope.id}" style="display: none;">
         <input type="text" id="messageinput">
         <button type="button" onclick="send();">메세지 전송</button>
-        <button type="button" onclick="javascript:clearText();">대화내용 지우기</button>
+        <button type="button" onclick="clearText();">대화내용 지우기</button>
+		<button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">초대하기</button>
     </div>
 	
 	<c:if test="${not empty messageDTOs}">
@@ -31,10 +32,27 @@
 	</c:if>
 	
     <!-- Server responses get written here -->
-    <div id="messages">
-    </div>
+    <div id="messages"></div>
     
-     <c:import url="../template/common_js.jsp"></c:import>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+	  <div class="modal-content">
+		<div class="modal-header">
+		  <h1 class="modal-title fs-5" id="exampleModalLabel">초대하기</h1>
+		  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<textarea id="inviteMemberText" cols="30" rows="10"></textarea>
+		<div class="modal-footer">
+		  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+		  <button type="button" class="btn btn-primary" id="modalSubmitBtn">초대하기</button>
+		</div>
+	  </div>
+	</div>
+  </div>
+
+    <c:import url="../template/common_js.jsp"></c:import>
   <script src="/resources/js/chat/room.js"></script>
 </body>
 </html>

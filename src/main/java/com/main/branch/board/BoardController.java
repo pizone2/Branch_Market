@@ -37,8 +37,6 @@ public class BoardController {
 	@GetMapping("detail")
 	public ModelAndView getBoardDetail(BoardDTO boardDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		boardDTO = boardService.getBoardDetail(boardDTO);
-		
 		BoardPicDTO boardPicDTO = boardService.checkAlreadyBoardPic(boardDTO);
 		if(boardPicDTO == null) {
 			mv.addObject("checkPic", 0);
@@ -46,6 +44,8 @@ public class BoardController {
 			mv.addObject("checkPic", 1);
 		}
 		
+		boardDTO = boardService.getBoardDetail(boardDTO);
+
 		mv.addObject("dto", boardDTO);
 		mv.setViewName("board/detail");
 		return mv;

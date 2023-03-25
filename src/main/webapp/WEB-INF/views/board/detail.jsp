@@ -56,6 +56,13 @@
 		<a href="./delete?boardNum=${dto.boardNum}" class="btn btn-outline-danger col-3" id="delete">게시물 삭제</a>
 		<a href="./update?boardNum=${dto.boardNum}" class="btn btn-outline-success col-3 mx-2">게시물 수정</a>
 		<a href="./list" class="btn btn-success col-3">목록으로</a>
+		<c:if test="${sessionScope.id ne dto.memberId }">
+			<form action="/chat/oneToOneChat" method="post">
+				<input type="hidden" name="sendId" value="${sessionScope.id}">
+				<input type="hidden" name="receiveId" value="${dto.memberId}">
+				<input type="submit" value="채팅하기" id="chatBtn">
+			</form>
+		</c:if>
 	</div>	
 </div>
 <div id="commentsList"></div>

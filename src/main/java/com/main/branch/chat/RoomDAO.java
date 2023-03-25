@@ -41,4 +41,7 @@ public class RoomDAO {
 	public MessageDTO checkAlreadyParticipant(MessageDTO messageDTO) {
 		return sqlSession.selectOne(NAMESPACE + "checkAlreadyParticipant", messageDTO);
 	}
+	public int delRecordMessage(MessageDTO messageDTO) {
+		return sqlSession.delete(NAMESPACE + "delRecordMessage", messageDTO);
+	}
 }

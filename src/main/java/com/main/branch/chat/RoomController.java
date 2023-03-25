@@ -77,11 +77,7 @@ public class RoomController {
 		messageDTO.setSendId(memberDTO.getMemberId());
 		messageDTO = roomDAO.checkAlreadyParticipant(messageDTO);
 		if(messageDTO == null) {
-			messageDTO.setRoomNum(roomNum);
-			messageDTO.setSendId(memberDTO.getMemberId());
-			
-			// isReady -1로 채팅방에 추가
-			roomService.setMemberAddRoom(messageDTO);
+			roomService.setMemberInviteRoom(roomNum,memberDTO.getMemberId());
 		}
 		
 		modelAndView.setViewName("/chat/room");
@@ -111,14 +107,24 @@ public class RoomController {
 	}
 	
 	// 채팅하기 버튼
-	// 1 : 1 채팅방이 이미 있는지 없는지 체크, 매개변수는 대화 신청받은 사람 recId, sendId 둘다 매개변수로 받음
+	// 1 : 1 채팅방이 이미 있는지 없는지 체크, 매개변수는 대화 신청받은 사람 sendId, receiveId 둘다 매개변수로 받음
 	@PostMapping("/oneToOneChat")
 	public ModelAndView setOneToOneChat(MessageDTO messageDTO) {
 		ModelAndView modelAndView = new ModelAndView();
-		
 		RoomDTO roomDTO = roomService.setOneToOneChat(messageDTO);
 		
-		modelAndView.setViewName("redirect: ./chat/" + roomDTO.getRoomNum());
+		modelAndView.setViewName("redirect: ./room/" + roomDTO.getRoomNum());
+		return modelAndView;
+	}
+	// roomNum 받아옴
+	@PostMapping("/delRecordMessage")
+	public ModelAndView delRecordMessage(MessageDTO messageDTO) {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		int result = roomService.delRecordMessage(messageDTO);
+		
+		modelAndView.addObject("result", result);
+		modelAndView.setViewName("/common/ajaxResult");
 		return modelAndView;
 	}
 }

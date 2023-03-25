@@ -18,7 +18,7 @@ function openSocket(){
 		if(event.data === undefined){
 			return;
 		}
-		//writeResponse(event.data);
+		writeResponse(event.data);
 	};
 	
 	// 메세지를 서버에서 받았을때 작동
@@ -39,7 +39,7 @@ function send(){
 	// var text=document.getElementById("messageinput").value+","+document.getElementById("sender").value;
 	var text = roomNum + "," + contents +","+ $("#sender").val();
 	ws.send(text);
-	text = "";
+	$("#messageinput").val("");
 
 	$.ajax({
 		url:"/chat/messageAdd",
@@ -64,4 +64,20 @@ function writeResponse(text){
 
 function clearText(){
 	messages.parentNode.removeChild(messages)
+	$.ajax({
+		url:'/chat/delRecordMessage',
+		type:'post',
+		data:{
+			'roomNum':roomNum
+		},
+		success:(res)=>{
+
+		}
+	})
 }
+
+$('#modalSubmitBtn').click(()=>{
+	$.ajax({
+		url:'/chat/'
+	})
+})
