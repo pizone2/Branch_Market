@@ -51,7 +51,7 @@ public class WebSocketChat {
         
         try {
             final Basic basic=session.getBasicRemote();
-            basic.sendText("대화방에 연결 되었습니다.");
+            basic.sendText("<br> 대화방에 연결 되었습니다.");
         }catch (Exception e) {
             // TODO: handle exception
             System.out.println(e.getMessage());

@@ -25,10 +25,20 @@ function openSocket(){
 	ws.onmessage = function(event){
 		let resContents = event.data;
 		writeResponse(resContents);
+		$.ajax({
+			url:'/chat/updateMemberRead',
+			type:'post',
+			data:{
+				'roomNum':roomNum
+			},
+			success:(res)=>{
+
+			}
+		})
 	};
 	
 	ws.onclose = function(event){
-		writeResponse("대화 종료");
+		writeResponse("<br> 대화 종료");
 		location.href = "./myRoomList";
 	}
 	
@@ -36,12 +46,11 @@ function openSocket(){
 
 function send(){
 	let contents =  $("#messageinput").val();
-	// var text=document.getElementById("messageinput").value+","+document.getElementById("sender").value;
-	var text = roomNum + "," + contents +","+ $("#sender").val();
-	ws.send(text);
 	$("#messageinput").val("");
+	var text = roomNum + "," + contents +","+ $("#sender").val();
 
 	$.ajax({
+		async:false,
 		url:"/chat/messageAdd",
 		type:"post",
 		data:{
@@ -52,6 +61,9 @@ function send(){
 			
 		}
 	})
+
+	ws.send(text);
+
 }
 
 function closeSocket(){
@@ -74,7 +86,7 @@ function writeResponse(text){
 }
 
 function clearText(){
-	messages.parentNode.removeChild(messages)
+	$('#messages').html("");
 	$.ajax({
 		url:'/chat/delRecordMessage',
 		type:'post',
