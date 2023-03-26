@@ -4,7 +4,16 @@ public class RoomDTO {
 	private Integer roomNum;
 	private String roomTitle;
 	
+	private Integer unReadCnt;
 	
+	
+	
+	public Integer getUnReadCnt() {
+		return unReadCnt;
+	}
+	public void setUnReadCnt(Integer unReadCnt) {
+		this.unReadCnt = unReadCnt;
+	}
 	public Integer getRoomNum() {
 		return roomNum;
 	}

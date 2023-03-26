@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.main.branch.member.MemberDTO;
+import com.main.branch.util.Pager;
 
 @Repository
 public class RoomDAO {
@@ -17,8 +18,8 @@ public class RoomDAO {
 	public List<MessageDTO> getRoomMessageList(MessageDTO messageDTO){
 		return sqlSession.selectList(NAMESPACE + "getRoomMessageList", messageDTO);
 	}
-	public List<RoomDTO> getMyRoomList(MemberDTO memberDTO){
-		return sqlSession.selectList(NAMESPACE + "getMyRoomList", memberDTO);
+	public List<RoomDTO> getMyRoomList(Pager pager){
+		return sqlSession.selectList(NAMESPACE + "getMyRoomList", pager);
 	}
 	public RoomDTO getRoomDetail(RoomDTO roomDTO) {
 		return sqlSession.selectOne(NAMESPACE + "getRoomDetail", roomDTO);
@@ -32,8 +33,8 @@ public class RoomDAO {
 	public List<MessageDTO> getRoomParticipantsList(RoomDTO roomDTO){
 		return sqlSession.selectList(NAMESPACE + "getRoomParticipantsList", roomDTO);
 	}
-	public List<RoomDTO> getRoomList(){
-		return sqlSession.selectList(NAMESPACE + "getRoomList");
+	public List<RoomDTO> getRoomList(Pager pager){
+		return sqlSession.selectList(NAMESPACE + "getRoomList",pager);
 	}
 	public RoomDTO setOneToOneChat(MessageDTO messageDTO) {
 		return sqlSession.selectOne(NAMESPACE + "setOneToOneChat", messageDTO);
@@ -46,5 +47,20 @@ public class RoomDAO {
 	}
 	public int setQuitRoom(MessageDTO messageDTO) {
 		return sqlSession.delete(NAMESPACE + "setQuitRoom", messageDTO);
+	}
+	public MessageDTO checkRoomMember(MessageDTO messageDTO) {
+		return sqlSession.selectOne(NAMESPACE + "checkRoomMember", messageDTO);
+	}
+	public MessageDTO checkOneToOneChat(MessageDTO messageDTO) {
+		return sqlSession.selectOne(NAMESPACE + "checkOneToOneChat", messageDTO);
+	}
+	public MessageDTO checkParticipantOneChat(MessageDTO messageDTO) {
+		return sqlSession.selectOne(NAMESPACE + "checkParticipantOneChat", messageDTO);
+	}
+	public int getUnreadMessageCnt(MessageDTO messageDTO) {
+		return sqlSession.selectOne(NAMESPACE + "getUnreadMessageCnt", messageDTO);
+	}
+	public int updateMemberRead(MessageDTO messageDTO) {
+		return sqlSession.update(NAMESPACE + "updateMemberRead", messageDTO);
 	}
 }

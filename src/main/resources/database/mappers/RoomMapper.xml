@@ -4,18 +4,22 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.main.branch.chat.RoomDAO">
  	
- 	<select id="getRoomList" resultType="RoomDTO">
+ 	<select id="getRoomList" parameterType="Pager" resultType="RoomDTO">
  		SELECT A.roomNum,A.roomTitle FROM ROOM A
 		JOIN MESSAGE B ON A.roomNum = B.roomNum AND B.ISREAD = -1
-		GROUP BY A.roomNum,A.roomTitle
+		GROUP BY A.roomNum,A.roomTitle HAVING A.roomTitle LIKE '%' || #{search} || '%'
  	</select>
  	<select id="getRoomMessageList" parameterType="MessageDTO" resultType="MessageDTO">
- 		SELECT * FROM MESSAGE WHERE roomNum = #{roomNum} and isRead != -2 and isRead != -1 and receiveId = #{receiveId}
+ 		SELECT * FROM MESSAGE WHERE roomNum = #{roomNum} and (isRead = 0 OR isRead = 1) and receiveId = #{receiveId}
  		ORDER BY sendDate
  	</select>
  	<select id="getMyRoomList" parameterType="MemberDTO" resultType="RoomDTO">
- 		SELECT distinct(roomNum) FROM message WHERE (sendId = #{memberId} OR receiveId = #{memberId}) AND
- 		(isRead = -1 OR isRead = -2)
+ 		SELECT * FROM ROOM 
+ 		WHERE roomNum IN (
+ 			SELECT distinct(roomNum) FROM message 
+		 		WHERE (sendId = #{memberId} OR receiveId = #{memberId}) 
+		 		AND (isRead = -1 OR isRead = -2))
+ 		AND roomTitle LIKE '%' || #{search} || '%'
  	</select>
  	
  	<select id="getRoomParticipantsList" parameterType="RoomDTO" resultType="MessageDTO">
@@ -54,8 +58,25 @@
  	</delete>
  	<delete id="setQuitRoom" parameterType="MessageDTO">
  		DELETE MESSAGE
- 		WHERE roomNum = #{roomNum} AND (isRead = -1 AND sendId = #{sendId})
+ 		WHERE roomNum = #{roomNum} AND ((isRead = -1 OR isRead = -2) AND sendId = #{sendId})
  	</delete>
+ 	<select id="checkRoomMember" parameterType="MessageDTO" resultType="MessageDTO">
+ 		SELECT * FROM MESSAGE WHERE roomNum = #{roomNum} AND sendId = #{sendId} AND isRead = #{isRead}
+ 	</select>
+ 	<select id="checkOneToOneChat" parameterType="MessageDTO" resultType="MessageDTO">
+ 		SELECT * FROM MESSAGE WHERE roomNum = #{roomNum} AND isRead = -3
+ 	</select>
+ 	<select id="checkParticipantOneChat" parameterType="MessageDTO" resultType="MessageDTO">
+ 		SELECT * FROM MESSAGE 
+ 		WHERE roomNum = #{roomNum} AND isRead = -3 AND (sendId = #{sendId} OR receiveId = #{sendId})
+ 	</select>
+ 	
+ 	<update id="updateMemberRead" parameterType="MessageDTO">
+ 		UPDATE MESSAGE SET isRead = 1 WHERE isRead = 0 AND receiveId = #{receiveId} AND roomNum = #{roomNum}
+ 	</update>
+ 	<select id="getUnreadMessageCnt" parameterType="MessageDTO" resultType="Integer">
+ 		SELECT COUNT(*) FROM MESSAGE WHERE isRead = 0 AND receiveId = #{receiveId} AND roomNum = #{roomNum}
+ 	</select>
  </mapper>
  
 <!--  private Integer messageNum;

@@ -17,22 +17,26 @@
         <input type="text" id="messageinput">
         <button type="button" onclick="send();">메세지 전송</button>
         <button type="button" onclick="clearText();">대화내용 지우기</button>
-		<button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">초대하기</button>
+        
+        <!-- 1 : 1 채팅이 아닐때만 보임 -->
+        <c:if test="${empty oneToOneChat }">
+			<button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">초대하기</button>
+		</c:if>
     </div>
 	
-	<c:if test="${not empty messageDTOs}">
-		<c:forEach items="${messageDTOs}" var="dto">
-			<c:if test="${sessionScope.id eq dto.sendId }">
-				<br> 나 : ${dto.contents}
-			</c:if>
-			<c:if test="${sessionScope.id ne dto.sendId }">
-				<br> ${dto.sendId} : ${dto.contents}
-			</c:if>
-		</c:forEach>
-	</c:if>
-	
     <!-- Server responses get written here -->
-    <div id="messages"></div>
+    <div id="messages">
+		<c:if test="${not empty messageDTOs}">
+			<c:forEach items="${messageDTOs}" var="dto">
+				<c:if test="${sessionScope.id eq dto.sendId }">
+					<br> 나 : ${dto.contents}
+				</c:if>
+				<c:if test="${sessionScope.id ne dto.sendId }">
+					<br> ${dto.sendId} : ${dto.contents}
+				</c:if>
+			</c:forEach>
+		</c:if>
+	</div>
     
   
   <!-- Modal -->

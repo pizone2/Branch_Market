@@ -8,8 +8,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.main.branch.member.MemberDTO;
+import com.main.branch.util.Pager;
 
 @Service
 public class RoomService {
@@ -52,9 +54,9 @@ public class RoomService {
 	public List<MessageDTO> getRoomMessageList(MessageDTO messageDTO){
 		return roomDAO.getRoomMessageList(messageDTO);
 	}
-	public List<RoomDTO> getMyRoomList(MemberDTO memberDTO){
+	public List<RoomDTO> getMyRoomList(Pager pager){
 		// 내가 들어간 채팅 리스트의 pk를 가져옴
-		List<RoomDTO> roomDTOs = roomDAO.getMyRoomList(memberDTO); 
+		List<RoomDTO> roomDTOs = roomDAO.getMyRoomList(pager); 
 		// pk가지고 조회해서 가져옴
 		for(int i = 0; i< roomDTOs.size();i++) {
 			roomDTOs.set(i, roomDAO.getRoomDetail(roomDTOs.get(i)));
@@ -103,11 +105,12 @@ public class RoomService {
 		}	
 		return result;
 	}
-	public List<RoomDTO> getRoomList(){
-		return roomDAO.getRoomList();
+	public List<RoomDTO> getRoomList(Pager pager){
+		return roomDAO.getRoomList(pager);
 	}
 	public RoomDTO setOneToOneChat(MessageDTO messageDTO) {
-
+		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("member");
+		
 		RoomDTO roomDTO = roomDAO.setOneToOneChat(messageDTO);
 		// 이전에 업던 방이면
 		if(roomDTO == null) {
@@ -120,19 +123,34 @@ public class RoomService {
 			// 방 만들기
 			this.setRoomAdd(participants, roomDTO);
 		}
-		
+		// 방은 위에서 만들거나 있는 상태고 참가 상태확인
+		setMemberInviteRoom(roomDTO.getRoomNum(), memberDTO.getMemberId(), -2);
 		return roomDTO;
 	}
 
-	// 초대하기 1 : n 일때만가능
-	public int setMemberInviteRoom(Integer roomNum, String memberId) {
+	// isReady -2 or -1 목록만 추가
+	public int setMemberInviteRoom(Integer roomNum, String memberId,Integer isReady) {
+		
+		// 방은 있지만 보이는 목록에 없는 상태확인
 		MessageDTO messageDTO = new MessageDTO();
 		messageDTO.setRoomNum(roomNum);
 		messageDTO.setSendId(memberId);
-		messageDTO.setContents("");
-		messageDTO.setIsRead(-1);
-		messageDTO.setReceiveId("");
-		return roomDAO.setRoomMessageAdd(messageDTO);
+		messageDTO.setIsRead(isReady);
+		messageDTO = roomDAO.checkRoomMember(messageDTO);
+		// 방은 있는데 목록만 없으면 목록추가
+		if(messageDTO == null) {
+			messageDTO = new MessageDTO();
+			messageDTO.setRoomNum(roomNum);
+			messageDTO.setSendId(memberId);
+			messageDTO.setContents("");
+			messageDTO.setIsRead(isReady);
+			messageDTO.setReceiveId("");
+			return roomDAO.setRoomMessageAdd(messageDTO);
+		}else {
+			return 1;
+		}
+		
+		
 	}
 	
 	// reciveId roomNum 있어야함
@@ -150,4 +168,44 @@ public class RoomService {
 		roomDAO.delRecordMessage(messageDTO);
 		return roomDAO.setQuitRoom(messageDTO);
 	}
+	public int checkOneToOneChat(Integer roomNum) {
+		ModelAndView modelAndView = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("member");
+		MessageDTO messageDTO = new MessageDTO();
+		
+		messageDTO.setRoomNum(roomNum);
+		messageDTO = roomDAO.checkOneToOneChat(messageDTO);
+		if(messageDTO != null) {
+			messageDTO.setSendId(memberDTO.getMemberId());
+			messageDTO.setRoomNum(roomNum);
+			messageDTO = roomDAO.checkParticipantOneChat(messageDTO);
+			if(messageDTO == null) {
+				System.out.println("1:1 채팅은 참가자만 접근가능");
+				return 0;
+			}
+		}
+		return 1;
+	}
+	public int updateMemberRead(Integer roomNum) {
+		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("member");
+		
+		MessageDTO messageDTO = new MessageDTO();
+		messageDTO.setReceiveId(memberDTO.getMemberId());
+		messageDTO.setRoomNum(roomNum);
+		return roomDAO.updateMemberRead(messageDTO);
+	}
+	public void setUnreadMessageCnt(List<RoomDTO> roomDTOs) {
+		MemberDTO memberDTO =(MemberDTO) httpSession.getAttribute("member");
+		
+		// 방 별로 읽지읺는 메세지 수
+		for(RoomDTO roomDTO : roomDTOs) {
+			MessageDTO messageDTO = new MessageDTO();
+			messageDTO.setRoomNum(roomDTO.getRoomNum());
+			messageDTO.setReceiveId(memberDTO.getMemberId());
+			
+			int unReadCnt = roomDAO.getUnreadMessageCnt(messageDTO);
+			roomDTO.setUnReadCnt(unReadCnt);
+		}
+	}
+	
 }
