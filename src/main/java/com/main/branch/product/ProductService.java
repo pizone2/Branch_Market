@@ -151,5 +151,8 @@ public class ProductService {
 			return productDAO.checkAlreadyProductPic(productDTO);
 		}
 	}
-	
+	// 판매 중 업데이트
+	public Integer setProductUpdateState(ProductDTO productDTO)throws Exception{
+		return productDAO.setProductUpdateState(productDTO);
+	}
 }

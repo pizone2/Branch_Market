@@ -45,7 +45,9 @@ public class ProductDAO {
 	public Integer setProductUpdate(ProductDTO productDTO) throws Exception{
 		return sqlSession.update(NAMESPACE + "setProductUpdate", productDTO);
 	}
-	
+	public Integer setProductUpdateState(ProductDTO productDTO)throws Exception{
+		return sqlSession.update(NAMESPACE + "setProductUpdateState", productDTO);
+	}
 	//----------------
 	public List<ProductDTO> getProductAddList(Pager pager) throws Exception{
 		return sqlSession.selectList(NAMESPACE + "getProductAddList", pager);

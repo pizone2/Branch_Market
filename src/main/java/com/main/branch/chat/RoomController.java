@@ -32,7 +32,6 @@ public class RoomController {
 	
 	// (-3 1:1 채팅 존재여부 -2 1:1채팅멤버, -1 1:n채팅멤버  0 안읽음, 1읽음)
 	
-	// 방 만들기..
 	@GetMapping("/roomAdd")
 	public ModelAndView setRoomAdd() {
 		ModelAndView modelAndView = new ModelAndView();		
@@ -142,7 +141,7 @@ public class RoomController {
 		return modelAndView;
 	}
 	
-	// 채팅하기 버튼
+	
 	// 1 : 1 채팅방이 이미 있는지 없는지 체크, 매개변수는 대화 신청받은 사람 sendId, receiveId 둘다 매개변수로 받음
 	@PostMapping("/oneToOneChat")
 	public ModelAndView setOneToOneChat(MessageDTO messageDTO) {

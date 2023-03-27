@@ -11,8 +11,16 @@ public class ProductDTO {
 	private String productQ;
 	private String productImgName;
 	private Integer productHit;
+	private Integer state;
 	
 	
+	
+	public Integer getState() {
+		return state;
+	}
+	public void setState(Integer state) {
+		this.state = state;
+	}
 	public Integer getProductNum() {
 		return productNum;
 	}

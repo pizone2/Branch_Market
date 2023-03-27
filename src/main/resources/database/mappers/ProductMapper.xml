@@ -68,7 +68,7 @@
  			SELECT SEQ.NEXTVAL FROM DUAL
  		</selectKey>
  		INSERT INTO PRODUCT 
- 		VALUES(#{productNum}, #{memberId} ,#{productTitle}, #{productPrice}, #{productDetail},#{productCategory} , NULL, #{productImgName}, 0)
+ 		VALUES(#{productNum}, #{memberId} ,#{productTitle}, #{productPrice}, #{productDetail},#{productCategory} , NULL, #{productImgName}, 0,0)
  	</insert>
   
   <delete id="setProductDelete" parameterType="ProductDTO">
@@ -134,5 +134,8 @@
  	<select id="checkAlreadyProductPic" parameterType="ProductDTO" resultType="ProductPicDTO">
  		SELECT * FROM PRODUCTPIC WHERE PRODUCTNUM=#{productNum} AND memberId = #{memberId}
  	</select>
-  
+  	
+  	<update id="setProductUpdateState" parameterType="ProductDTO">
+  		UPDATE PRODUCT SET state = 1 WHERE PRODUCTNUM=#{productNum} 
+  	</update>
   </mapper>
