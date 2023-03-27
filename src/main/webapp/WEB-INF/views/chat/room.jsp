@@ -56,8 +56,10 @@
 	</div>
   </div>
 
+
     <c:import url="../template/common_js.jsp"></c:import>
   <script src="/resources/js/chat/room.js"></script>
+
 </body>
 </html>
 

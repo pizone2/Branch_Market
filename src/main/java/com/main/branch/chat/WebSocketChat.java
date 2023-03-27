@@ -51,7 +51,6 @@ public class WebSocketChat {
         
         try {
             final Basic basic=session.getBasicRemote();
-            basic.sendText("<br> 대화방에 연결 되었습니다.");
         }catch (Exception e) {
             // TODO: handle exception
             System.out.println(e.getMessage());
@@ -70,7 +69,7 @@ public class WebSocketChat {
         	// 자신을 제외한 세션에 접속하고 채팅방에 소속된 사람들에게 메세지 보냄
             for(Session session : sessionList.get(roomNum)) {
                 if(!session.getId().equals(self.getId())) {
-                	session.getBasicRemote().sendText(sender+" : "+contents);
+                	session.getBasicRemote().sendText("1,"+contents);
                 }
             }
         }catch (Exception e) {
@@ -97,7 +96,7 @@ public class WebSocketChat {
         logger.info("Message From "+sender + ": "+contents);
         try {
             final Basic basic=session.getBasicRemote();
-            basic.sendText("나 : " + contents);
+            basic.sendText("0," + contents);
         }catch (Exception e) {
             // TODO: handle exception
             System.out.println(e.getMessage());

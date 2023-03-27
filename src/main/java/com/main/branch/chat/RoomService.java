@@ -52,6 +52,9 @@ public class RoomService {
     	return result;
 	}
 	public List<MessageDTO> getRoomMessageList(MessageDTO messageDTO){
+		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("member");
+		messageDTO.setReceiveId(memberDTO.getMemberId());
+		
 		return roomDAO.getRoomMessageList(messageDTO);
 	}
 	public List<RoomDTO> getMyRoomList(Pager pager){

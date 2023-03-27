@@ -1,6 +1,7 @@
 package com.main.branch.chat;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -93,7 +94,7 @@ public class RoomController {
 		}
 		modelAndView.setViewName("/chat/room");
 		
-		// 1 : 1 채팅인지 확인해서 채팅하기 버튼 없애기
+		// 1 : 1 채팅인지 확인해서 초대하기 버튼 없애기
 		MessageDTO oneToOneChat = new MessageDTO();
 		oneToOneChat.setRoomNum(roomNum);
 		oneToOneChat = roomDAO.checkOneToOneChat(messageDTO);
@@ -116,6 +117,18 @@ public class RoomController {
 		modelAndView.setViewName("/common/ajaxResult");
 		return modelAndView;
 	}
+	// roomNum 받음
+	@PostMapping("/getRoomMessageList")
+	public ModelAndView getRoomMessageList(MessageDTO messageDTO) {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		// 메세지 뿌리기
+		List<MessageDTO> messageDTOs = roomService.getRoomMessageList(messageDTO);
+		modelAndView.addObject("messageDTOs", messageDTOs);
+		modelAndView.setViewName("/common/roomMessageList");
+		
+		return modelAndView;
+	}
 	
 	// 1 : n 모든 채팅방 보기
 	@GetMapping("/roomList")
@@ -136,7 +149,8 @@ public class RoomController {
 		ModelAndView modelAndView = new ModelAndView();
 		RoomDTO roomDTO = roomService.setOneToOneChat(messageDTO);
 		
-		modelAndView.setViewName("redirect: ./room/" + roomDTO.getRoomNum());
+		modelAndView.addObject("result", roomDTO.getRoomNum());
+		modelAndView.setViewName("/common/ajaxResult");
 		return modelAndView;
 	}
 	// roomNum 받아옴

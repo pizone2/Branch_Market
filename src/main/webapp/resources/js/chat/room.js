@@ -41,7 +41,6 @@ function openSocket(){
 		writeResponse("<br> 대화 종료");
 		location.href = "./myRoomList";
 	}
-	
 }
 
 function send(){
@@ -115,3 +114,4 @@ $('#modalSubmitBtn').click(()=>{
 	$('#inviteMemberText').val("");
 	$('#modalCloseBtn').click();
 })
+
