@@ -305,13 +305,6 @@ public class MemberController {
 	public ModelAndView test() {
 		ModelAndView modelAndView = new ModelAndView();
 		
-		SimpleMailMessage smm = new SimpleMailMessage();
-		smm.setFrom("computer8857@gmail.com");
-		smm.setTo("leejuhu@nate.com");
-		smm.setSubject("안녕하세용!");
-		smm.setText("ㅎㅇㅎㅇ");
-		//mailSender.send(smm);
-			
 		modelAndView.setViewName("/member/test");
 		return modelAndView;
 	}

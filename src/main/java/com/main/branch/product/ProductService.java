@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,15 +24,16 @@ public class ProductService {
 
 	@Autowired
 	private ProductDAO productDAO;
-	
 	@Autowired
 	private FileManager fileManager;
-	
 	@Autowired
 	private ServletContext servletContext;
-	
 	@Autowired
 	private HttpSession httpSession;
+	@Autowired
+	private HttpServletRequest request;
+	@Autowired
+	private HttpServletResponse response;
 	
 	public List<ProductDTO> getProductList(Pager pager) throws Exception{
 		
@@ -52,9 +56,35 @@ public class ProductService {
 	    productDAO.setProductHit(productDTO);
 	    productDAO.setProductUpdate(productDetail);
 	    
+		Cookie[] cookies = request.getCookies();
+		String recentProduct = null;
+		for(Cookie cookie : cookies) {
+			if(cookie.getName().equals("recentProduct")) {
+				recentProduct = cookie.getValue();
+				recentProduct += (String.valueOf(productDTO.getProductNum()) + ":");
+				String[]recentProducts = recentProduct.split(":");
+				if(recentProducts.length > 5) {
+					recentProduct = "";
+					for(int i = recentProducts.length- 5;i < recentProducts.length;i++) {
+						recentProduct += (recentProducts[i] + ":");
+					}
+				}
+				cookie.setPath("/");
+				cookie.setMaxAge(60*60*24*7);
+				cookie.setValue(recentProduct);
+				response.addCookie(cookie);
+			}
+		}
+		if(recentProduct == null) {
+			Cookie cookie = new Cookie("recentProduct",String.valueOf(productDTO.getProductNum()) + ":" );
+			cookie.setPath("/");
+			cookie.setMaxAge(60*60*24*7);
+			response.addCookie(cookie);
+		}
+	    
 	    return productDetail;
 	}
-	
+
 	public Integer setProductAdd(ProductDTO productDTO, MultipartFile filecs) throws Exception{
 		Integer result;
 		

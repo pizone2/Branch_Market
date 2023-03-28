@@ -1,7 +1,13 @@
 package com.main.branch.product;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +29,14 @@ public class ProductController {
 
 	@Autowired
 	private ProductService productService;
-	
+	@Autowired
+	private ProductDAO productDAO;
 	@Autowired
 	private HttpSession session;
+	@Autowired
+	private HttpServletRequest request;
+	@Autowired
+	private HttpServletResponse response;
 	
 	@GetMapping("list")
 	public ModelAndView getProductList(Pager pager) throws Exception{
@@ -42,6 +53,7 @@ public class ProductController {
 		ModelAndView mv = new ModelAndView();
 		
 		productDTO = productService.getProductDetail(productDTO);
+		
 		
 		ProductPicDTO productPicDTO = productService.checkAlreadyProductPic(productDTO);
 		if(productPicDTO == null) {
@@ -98,7 +110,7 @@ public class ProductController {
 	public ModelAndView setProductUpdate(ProductDTO productDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
-		productDTO = productService.getProductDetail(productDTO);
+		productDTO = productDAO.getProductDetail(productDTO);
 		mv.setViewName("product/update");
 		mv.addObject("dto", productDTO);
 		
@@ -170,7 +182,31 @@ public class ProductController {
 		modelAndView.setViewName("/product/topList");
 		return modelAndView;
 	}
-	
+	@GetMapping("recentProduct")
+	public ModelAndView getRecentProduct() throws Exception{
+		ModelAndView modelAndView = new ModelAndView();
+		
+		Cookie[] cookies = request.getCookies();
+		String recentProduct = null;
+		for(Cookie cookie : cookies) {
+			System.out.println(cookie.getValue() + " + " + cookie.getName());
+			if(cookie.getName().equals("recentProduct")) {
+				recentProduct = cookie.getValue();
+			}
+		}	
+		List<ProductDTO> productDTOs = new ArrayList<ProductDTO>();
+		String[] productNums =  recentProduct.split(":");
+		for(String productNum : productNums) {
+			ProductDTO productDTO = new ProductDTO();
+			productDTO.setProductNum(Integer.parseInt(productNum));
+			productDTO = productDAO.getProductDetail(productDTO);
+			productDTOs.add(productDTO);
+		}
+		Collections.reverse(productDTOs);
+		modelAndView.addObject("productDTOs", productDTOs);
+		modelAndView.setViewName("/product/recentProduct");
+		return modelAndView;
+	}
 	//----------------
 	
 	// ajax
