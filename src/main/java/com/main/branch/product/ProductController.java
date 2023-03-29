@@ -195,12 +195,14 @@ public class ProductController {
 			}
 		}	
 		List<ProductDTO> productDTOs = new ArrayList<ProductDTO>();
-		String[] productNums =  recentProduct.split(":");
-		for(String productNum : productNums) {
-			ProductDTO productDTO = new ProductDTO();
-			productDTO.setProductNum(Integer.parseInt(productNum));
-			productDTO = productDAO.getProductDetail(productDTO);
-			productDTOs.add(productDTO);
+		if(recentProduct != null) {
+			String[] productNums =  recentProduct.split(":");
+			for(String productNum : productNums) {
+				ProductDTO productDTO = new ProductDTO();
+				productDTO.setProductNum(Integer.parseInt(productNum));
+				productDTO = productDAO.getProductDetail(productDTO);
+				productDTOs.add(productDTO);
+			}
 		}
 		Collections.reverse(productDTOs);
 		modelAndView.addObject("productDTOs", productDTOs);
