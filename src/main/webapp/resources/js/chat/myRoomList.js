@@ -32,7 +32,7 @@ function openSocket(roomNum){
 		return;
 	}
 	//웹소켓 객체 만드는 코드
-	ws = new WebSocket("ws://192.168.0.19:80/echo.do/" + roomNum);
+	ws = new WebSocket("ws://localhost:80/echo.do/" + roomNum);
 	
 	// 소켓이 처음 열렸을때 작동하는 코드
 	ws.onopen = function(event){
