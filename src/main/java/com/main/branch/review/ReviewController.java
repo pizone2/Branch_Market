@@ -30,7 +30,7 @@ public class ReviewController {
 	}
 	// ----------------- 추가하기
 	@PostMapping("add")
-	public ModelAndView setReviewAdd(ReviewDTO reviewDTO) {
+	public ModelAndView setReviewAdd(ReviewDTO reviewDTO) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		int reuslt = reviewService.setReviewAdd(reviewDTO);
 		if(reuslt > 0) {
