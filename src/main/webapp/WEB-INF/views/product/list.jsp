@@ -33,15 +33,17 @@
 				</thead>
 				<tbody class="table-group-divider">
 					<c:forEach items="${list}" var="dto"> <!-- dto는 page 영역에 담김 -->
-					<c:if test="${dto.productQ ne null}">
-						<tr>
-							<td><a>${dto.productNum}</a></td>
-							<td><a href="./detail?productNum=${dto.productNum}">${dto.productTitle}</a></td>
-							<td><a>${dto.productCategory}</a></td>
-							<td><img src="${dto.productImgName}" alt="" style="height: 100px;"></td>
-							<td><a>${dto.productQ}</a></td>
-							<td><a>${dto.productPrice}</a>원</td>
-						</tr>
+					<c:if test="${dto.state eq 0}">
+						<c:if test="${dto.productQ ne null}">
+							<tr>
+								<td><a>${dto.productNum}</a></td>
+								<td><a href="./detail?productNum=${dto.productNum}">${dto.productTitle}</a></td>
+								<td><a>${dto.productCategory}</a></td>
+								<td><img src="${dto.productImgName}" alt="" style="height: 100px;"></td>
+								<td><a>${dto.productQ}</a></td>
+								<td><a>${dto.productPrice}</a>원</td>
+							</tr>
+						</c:if>
 					</c:if>
 					</c:forEach>
 				</tbody>

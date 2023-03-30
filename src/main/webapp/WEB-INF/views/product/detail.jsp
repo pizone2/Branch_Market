@@ -33,28 +33,28 @@
 				</c:if>
 			</div>
 		</div>
-		
+			
 		<div class="row">
 			<div class="input-group mb-3 col">
-			  <span class="input-group-text">카테고리</span>
-			  <input type="text" readonly class="form-control" id="productCategory" value="${dto.productCategory}">
+				<span class="input-group-text">카테고리</span>
+				<input type="text" readonly class="form-control" id="productCategory" value="${dto.productCategory}">
 			</div>
 		</div>
 		
 		<div class="input-group">
-		 <div class="input-group">
-			  <span class="input-group-text">내용</span>
-			  <span name="productDetail" readonly class="form-control" id="productDetail" rows="5" th:utext>${dto.productDetail}</span>
+			<div class="input-group">
+				<span class="input-group-text">내용</span>
+				<span name="productDetail" readonly class="form-control" id="productDetail" rows="5" th:utext>${dto.productDetail}</span>
 		</div>
 		
 		<div class="input-group mb-3 col">
-			  <span class="input-group-text">상품 품질</span>
-			  <input type="text" readonly class="form-control" id="productQ" value="${dto.productQ}">
+			<span class="input-group-text">상품 품질</span>
+			<input type="text" readonly class="form-control" id="productQ" value="${dto.productQ}">
 		</div>
 		
 		<div class="input-group mb-3 col">
-			  <span class="input-group-text">상품 가격</span>
-			  <input type="text" readonly class="form-control" id="productPrice" value="${dto.productPrice}원">
+			<span class="input-group-text">상품 가격</span>
+			<input type="text" readonly class="form-control" id="productPrice" value="${dto.productPrice}원">
 		</div>
 	    
 	<div class="row col-md-7 mx-auto my-4 justify-content-center">

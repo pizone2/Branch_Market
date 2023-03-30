@@ -68,7 +68,7 @@
  			SELECT SEQ.NEXTVAL FROM DUAL
  		</selectKey>
  		INSERT INTO PRODUCT 
- 		VALUES(#{productNum}, #{memberId} ,#{productTitle}, #{productPrice}, #{productDetail},#{productCategory} , NULL, #{productImgName}, 0,0)
+ 		VALUES(#{productNum}, #{memberId} ,#{productTitle}, #{productPrice}, #{productDetail},#{productCategory} , NULL, #{productImgName}, 0, 0)
  	</insert>
   
   <delete id="setProductDelete" parameterType="ProductDTO">
