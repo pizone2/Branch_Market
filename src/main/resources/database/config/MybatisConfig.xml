@@ -27,6 +27,8 @@
   		<typeAlias type="com.main.branch.chat.RoomDTO" alias="RoomDTO"/>
   		<typeAlias type="com.main.branch.chat.MessageDTO" alias="MessageDTO"/>
   		
+  		<typeAlias type="com.main.branch.event.EventDTO" alias="EventDTO"/>
+  		
   		<typeAlias type="com.main.branch.util.Pager" alias="Pager"/>
   		<typeAlias type="java.lang.String" alias="String"/>
   		<typeAlias type="java.lang.Integer" alias="Integer"/>
