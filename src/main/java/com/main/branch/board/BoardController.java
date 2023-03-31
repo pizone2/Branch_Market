@@ -153,7 +153,7 @@ public class BoardController {
 	}
 	
 	// ajax
-	@PostMapping("picList")
+	@GetMapping("picList")
 	public ModelAndView getBoardPicList(BoardPicDTO boardPicDTO)throws Exception{
 		ModelAndView modelAndView = new ModelAndView();
 		List<BoardDTO> boardDTOs = boardService.getBoardMyPicList(boardPicDTO);
