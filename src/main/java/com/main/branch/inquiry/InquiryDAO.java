@@ -34,4 +34,7 @@ public class InquiryDAO {
 	public int setInquiryDelete(InquiryDTO inquiryDTO) {
 		return sqlSession.delete(NAMESPACE + "setInquiryDelete", inquiryDTO);
 	}
+	public InquiryDTO getInquriyDetailRowNum(InquiryDTO inquiryDTO) {
+		return sqlSession.selectOne(NAMESPACE + "getInquriyDetailRowNum", inquiryDTO);
+	}
 }

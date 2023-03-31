@@ -1,11 +1,22 @@
 package com.main.branch.inquiry;
 
 public class InquiryDTO {
+	private Integer r;
+	
 	private Integer inquiryNum;
 	private String memberId;
 	private String inquiryTitle;
 	private String inquiryDetail;
 	private String inquiryCategory;
+	
+	
+	
+	public Integer getR() {
+		return r;
+	}
+	public void setR(Integer r) {
+		this.r = r;
+	}
 	public Integer getInquiryNum() {
 		return inquiryNum;
 	}

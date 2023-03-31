@@ -4,8 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+    <meta name="description" content="Ogani Template">
+    <meta name="keywords" content="Ogani, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>inquiry detail</title>
 <c:import url="../template/common_css.jsp"></c:import>
 <link rel="stylesheet" href="/resources/css/inquiry/detail.css">
 </head>
@@ -34,7 +38,7 @@
      <table class="table">
         <caption>표 제목</caption>
         <tr><th>No.</th><th>제목</th><th>작성자</th><th>작성일</th><th>카테고리</th></tr>
-        <tr><td>1</td><td>${inquiryDTO.inquiryTitle}</td><td>${inquiryDTO.memberId}</td><td>2023-03-24</td><td>${inquiryDTO.inquiryCategory}</td></tr>        
+        <tr><td>${inquiryDTO.r}</td><td>${inquiryDTO.inquiryTitle}</td><td>${inquiryDTO.memberId}</td><td>2023-03-24</td><td>${inquiryDTO.inquiryCategory}</td></tr>        
     </table> 
         <br>
         <br>
@@ -48,8 +52,13 @@
 
     <table class="table border-top-0">
         <caption>표 제목</caption>
-        <tr><th>이전글</th><td>이미 위탁한 상품의 가격을 변경가능한가요?</td> </tr>
-        <tr><th>다음글</th><td>위탁판매 배송기간은 보통 어떻게 되죠?</td></tr>
+        <c:if test="${not empty preInquiryDTO.inquiryTitle }">
+      	        <tr><th>이전글</th><td><a href="./detail?inquiryNum=${preInquiryDTO.inquiryNum}">${preInquiryDTO.inquiryTitle}</a></td> </tr>
+        </c:if>
+         <c:if test="${not empty nextInquiryDTO.inquiryTitle }">
+      	        <tr><th>다음글</th><td><a href="./detail?inquiryNum=${nextInquiryDTO.inquiryNum}">${nextInquiryDTO.inquiryTitle}</a></td> </tr>
+        </c:if>
+
         <br>
     </table> 
     <br><br>
