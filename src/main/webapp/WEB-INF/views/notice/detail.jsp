@@ -41,28 +41,32 @@
                 <table class="table">
                     <caption>표 제목</caption>
                     <tr><th>No.</th><th>제목</th><th>작성자</th><th>작성일</th><th>조회수</th></tr>
-                    <tr><td>1</td><td>${noticeDTO.noticeTitle}</td><td>${noticeDTO.memberId}</td><td>${noticeDTO.noticeDate}</td><td>${noticeDTO.noticeHit}</td></tr>        
+                    <tr><td>${noticeDTO.r}</td><td>${noticeDTO.noticeTitle}</td><td>${noticeDTO.memberId}</td><td>${date}</td><td>${noticeDTO.noticeHit}</td></tr>        
                 </table> 
 					${noticeDTO.noticeContents}
 					<table class="table border-top-0">
 						<caption>표 제목</caption>
-						<tr><th>이전글</th><td>이미 위탁한 상품의 가격을 변경가능한가요?</td> </tr>
-						<tr><th>다음글</th><td>위탁판매 배송기간은 보통 어떻게 되죠?</td></tr>
+						<c:if test="${not empty preNoticeDTO}">
+							<tr><th>이전글</th><td><a href="./detail?noticeNum=${preNoticeDTO.noticeNum}">${preNoticeDTO.noticeTitle}</a></td> </tr>
+						</c:if>
+						<c:if test="${not empty nextNoticeDTO}">
+							<tr><th>다음글</th><td><a href="./detail?noticeNum=${nextNoticeDTO.noticeNum}">${nextNoticeDTO.noticeTitle}</a></td></tr>
+						</c:if>
 						<br>
                 </table> 
                 <br><br>
                 <div class="list">
                     <!--권한을 가지고 있는 사람만 보임 -->
-                    <button class="btn btn-info"><a href="./notice-update.html"></a> 수정 </button>
-                    <button class="btn btn-danger"><a href="#"></a> 삭제 </button>
+                    <button class="btn btn-info"><a href="./update?noticeNum=${noticeDTO.noticeNum}">수정</a></button>
+                    <button class="btn btn-danger del" data-noticeNum="${noticeDTO.noticeNum}">삭제</button>
                     <!--모든 사람에게 보임 -->
-                    <button class="btn btn-success"><a href="./notice-list.html"></a>목록으로</button>
+                    <button class="btn btn-success"><a href="./list">목록으로</a></button>
                 </div>
             </div>
         </div>
     </section>
 
-  
+    <script src="/resources/js/notice/detail.js"></script>
 	<c:import url="../template/footer.jsp"></c:import>
     <c:import url="../template/common_js.jsp"></c:import>
 </body>

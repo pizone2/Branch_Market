@@ -55,13 +55,13 @@ public class InquiryController {
 	@PostMapping("/update")
 	public ModelAndView setInquriyUpdate(InquiryDTO inquiryDTO, ModelAndView modelAndView) {
 		String message = "";
-		String url = "/";
+		String url = "./detail?inquiryNum=" + inquiryDTO.getInquiryNum();
+		
 		int result = inquiryService.setInquriyUpdate(inquiryDTO);
 		if(result > 0) {
 			message = "업데이트 완료!";
 		}else {
 			message = "업데이트 실패";
-			url = "./update";
 		}
 		
 		modelAndView.addObject("message", message);

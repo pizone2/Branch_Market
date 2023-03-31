@@ -61,6 +61,8 @@
 
         <br>
     </table> 
+	<button class="btn btn-danger del" data-inquiryNum="${inquiryDTO.inquiryNum}">삭제</button>
+	<button class="btn btn-primary"><a href="./update?inquiryNum=${inquiryDTO.inquiryNum}" style="color: aliceblue;">수정</a></button>
     <br><br>
 	<div class="form-floating">
 		<textarea class="form-control" placeholder="댓글을 남겨 주세요" id="inqCommentsContents" style="height: 100px"></textarea>

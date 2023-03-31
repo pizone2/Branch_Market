@@ -76,7 +76,7 @@
                             <h3>&nbsp;</h3>
                             <div class="d-flex justify-content-center">
                                 <button type="button" class="site-btn mr-4"><a href="/">취소</a></button>                                                     
-                                <button type="submit" class="site-btn">추가</button>     
+                                <button type="submit" class="site-btn">수정</button>     
                             </div>   
                             <h1>&nbsp;</h1>                                                                                                                      
                         </div> 

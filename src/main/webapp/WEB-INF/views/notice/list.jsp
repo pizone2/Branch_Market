@@ -13,7 +13,7 @@
 	<c:import url="../template/common_css.jsp"></c:import>
 </head>
 <body>
-
+	<c:import url="../template/header.jsp"></c:import>
 	<!-- private Integer noticeNum;
 	private String memberId;
 	private String noticeTitle;
@@ -47,19 +47,17 @@
                     <table class="boardTable table table-hover">
                         <thead class="table-success">
                             <tr>
-                                <th>Num</th> <th>Title</th><th>writer</th><th>Date</th> <th>Hit</th> <th>업데이트</th> <th>삭제</th>
+                                <th>Num</th> <th>Title</th><th>writer</th><th>Date</th> <th>Hit</th>
                             </tr>
                         </thead>
                         <tbody>
 							<c:forEach items="${noticeDTOs}" var="dto">
 								<tr scope="row">
-									<td><h2>${dto.noticeNum}</h2></td>
-									<td><a href="./detail?noticeNum=${dto.noticeNum}"><h2>${dto.noticeTitle}</h2></a></td>
+									<td><h2>${dto.r}</h2></td>
+									<td><h2><a href="./detail?noticeNum=${dto.noticeNum}" style="color: cadetblue;">${dto.noticeTitle}</a></h2></td>
 									<td><h2>${dto.memberId}</h2></td>
-									<td><h2>${dto.noticeDate}</h2></td>
-									<td><h2>${dto.noticeHit}</h2></td>
-									<td><a class="btn btn-primary" href="./update?noticeNum=${dto.noticeNum}">업데이트</a></td>
-									<td><button class="btn btn-danger del" data-noticeNum="${dto.noticeNum}">삭제</button></td>			
+									<td><h2>${dto.date}</h2></td>
+									<td><h2>${dto.noticeHit}</h2></td>		
 								</tr>
 							</c:forEach>
                         </tbody>

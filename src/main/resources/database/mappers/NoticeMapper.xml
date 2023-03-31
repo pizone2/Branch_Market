@@ -18,7 +18,8 @@
  	<select id="getNoticeList" parameterType="Pager" resultType="NoticeDTO">
  		SELECT * from(
 			SELECT rownum r,a.* FROM
-				(SELECT * FROM notice <include refid="searchCondition"></include>) a)
+				(SELECT * FROM notice <include refid="searchCondition"></include> 
+				ORDER BY noticeNum DESC ) a)
 		WHERE r BETWEEN #{startRow} AND #{lastRow}
  	</select>
  	<select id="getNoticeCount" parameterType="Pager" resultType="Integer">
@@ -31,7 +32,16 @@
  		INSERT INTO NOTICE VALUES(#{noticeNum},#{memberId},#{noticeTitle},#{noticeContents},SYSDATE,0)
  	</insert>
  	<select id="getNoticeDetail" parameterType="NoticeDTO" resultType="NoticeDTO">
- 		SELECT * FROM NOTICE WHERE noticeNum = #{noticeNum}
+ 		SELECT * FROM(
+	 		SELECT ROWNUM R,A.* 
+	 			FROM(SELECT * FROM NOTICE ORDER BY noticeNum DESC) A
+ 		)WHERE noticeNum = #{noticeNum}
+ 	</select>
+ 	<select id="getNoticeDetailRowNum" parameterType="NoticeDTO" resultType="NoticeDTO">
+ 		SELECT * FROM
+	 		(SELECT ROWNUM R, A.* FROM 
+	 			(SELECT * FROM NOTICE ORDER BY noticeNum DESC) A)
+	 	WHERE R = #{r}
  	</select>
  	<delete id="setNoticeDelete" parameterType="NoticeDTO">
  		DELETE NOTICE WHERE noticeNum = #{noticeNum}
