@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="com.main.branch.notify.NotifyDAO">
+
+  <sql id="searchCondition">
+  		<choose>
+  			 <when test="kind == 'message'">
+  			 	WHERE NOTIFYMESSAGE LIKE '%' || #{search} || '%'
+  			 </when>
+  			 <otherwise>
+  			 	WHERE NOTIFYNUM LIKE '%' || #{search} || '%'
+  			 </otherwise>
+  		</choose>
+  </sql>
+  
+  <select id="getNotifyCount" parameterType="Pager" resultType="Integer">
+  	SELECT COUNT(NOTIFYNUM) FROM NOTIFY
+  		<include refid="searchCondition"></include>
+  </select>
+  
+  <select id="getNotifyList" parameterType="Pager" resultType="NotifyDTO">
+  	SELECT * FROM 
+  		(
+  			SELECT ROWNUM R, P.*FROM
+  				(
+  					SELECT * FROM NOTIFY
+  					ORDER BY NOTIFYNUM DESC
+  				)P
+  		)
+  	WHERE R BETWEEN #{startRow} AND #{lastRow}
+  </select>
+  
+  <select id="getProductNum" resultType="Integer">
+  	SELECT SEQ_SEQ.NEXTVAL FROM DUAL
+  </select>
+  
+<!--   <select id="getNotifyList" parameterType="Pager" resultType="NotifyDTO">
+  	SELECT * FROM 
+  		(
+  			SELECT ROWNUM R, P.*FROM
+  				(
+  					SELECT * FROM NOTIFY
+  					
+  					WHERE MEMBERID = #{memberId}
+  						
+  					ORDER BY NOTIFYNUM DESC
+  				)P
+  		)
+  	WHERE R BETWEEN #{startRow} AND #{lastRow}
+  </select> -->
+ 
+  <insert id="setNotifyAdd" parameterType="NotifyDTO">
+ 		<selectKey keyProperty="notifyNum" resultType="Integer" order="BEFORE">
+ 			SELECT SEQ.NEXTVAL FROM DUAL
+ 		</selectKey>
+ 		INSERT INTO NOTIFY 
+ 		VALUES(#{notifyNum}, #{memberId} ,#{notifyMessage}, sysdate)
+ 	</insert>
+  
+  <delete id="setNotifyDelete" parameterType="NotifyDTO">
+	DELETE  NOTIFY
+	WHERE NOTIFYNUM = #{notifyNum}  
+  </delete>
+ 
+  </mapper>

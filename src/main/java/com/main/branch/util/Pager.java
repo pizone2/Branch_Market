@@ -10,9 +10,16 @@ public class Pager {
 	private String memberId;
 	private Integer inquiryNum;
 	private String state;
+	private Integer productNum;
 	
 	
 	
+	public Integer getProductNum() {
+		return productNum;
+	}
+	public void setProductNum(Integer productNum) {
+		this.productNum = productNum;
+	}
 	public String getState() {
 		return state;
 	}

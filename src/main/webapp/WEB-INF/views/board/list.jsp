@@ -111,7 +111,7 @@
 				</div>
 				<div class="col-auto">
 					<label for="search" class="visually-hidden">search</label>
-					<input type="text" class="form-control" value="${pager.search}"" name="search" id="search" placeholder="검색어를 입력하세요">
+					<input type="text" class="form-control" value="${pager.search}" name="search" id="search" placeholder="검색어를 입력하세요">
 				</div>
 				<div class="col-auto">
 					<button type="submit" class="btn btn-success mb-3">검색</button>

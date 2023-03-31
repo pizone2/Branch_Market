@@ -13,7 +13,7 @@
 <body>
     <form action="./add" method="post">
         제목<input type="text" name="inquiryTitle">
-        내용<textarea name="inquiryDetail" id="inquiryDetail" cols="30" rows="10">${inquiryDTO.inquiryDetail}</textarea>
+        내용<textarea name="inquiryDetail" id="inquiryDetail" cols="30" rows="10"></textarea>
         카테고리
         <select name="inquiryCategory" id="pet-select">
             <option value="환불/취소">환불/취소</option>

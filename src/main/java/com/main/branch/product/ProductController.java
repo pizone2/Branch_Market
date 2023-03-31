@@ -1,7 +1,13 @@
 package com.main.branch.product;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.main.branch.board.BoardDTO;
+import com.main.branch.board.BoardPicDTO;
+import com.main.branch.member.MemberDTO;
 import com.main.branch.util.Pager;
 
 @Controller
@@ -20,17 +29,22 @@ public class ProductController {
 
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private ProductDAO productDAO;
+	@Autowired
+	private HttpSession session;
+	@Autowired
+	private HttpServletRequest request;
+	@Autowired
+	private HttpServletResponse response;
 	
 	@GetMapping("list")
 	public ModelAndView getProductList(Pager pager) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
 		List<ProductDTO> ar = productService.getProductList(pager);
-		
-		mv.setViewName("product/list");
 		mv.addObject("list", ar);
-		mv.addObject("pager", pager);
-		
+		mv.setViewName("product/list");
 		return mv;
 	}
 	
@@ -39,6 +53,14 @@ public class ProductController {
 		ModelAndView mv = new ModelAndView();
 		
 		productDTO = productService.getProductDetail(productDTO);
+		
+		
+		ProductPicDTO productPicDTO = productService.checkAlreadyProductPic(productDTO);
+		if(productPicDTO == null) {
+			mv.addObject("checkPic", 0);
+		}else {
+			mv.addObject("checkPic", 1);
+		}
 		
 		mv.setViewName("product/detail");
 		mv.addObject("dto", productDTO);
@@ -73,7 +95,13 @@ public class ProductController {
 		
 		Integer result = productService.setProductDelete(productDTO);
 		
-		mv.setViewName("redirect:./list");
+		String message = "삭제 실패";
+		if(result>0) {
+			message = "게시물이 삭제되었습니다";
+		}
+		mv.addObject("result", message);
+		mv.addObject("url", "./list");
+		mv.setViewName("common/result");
 		
 		return mv;
 	}
@@ -82,7 +110,7 @@ public class ProductController {
 	public ModelAndView setProductUpdate(ProductDTO productDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
-		productDTO = productService.getProductDetail(productDTO);
+		productDTO = productDAO.getProductDetail(productDTO);
 		mv.setViewName("product/update");
 		mv.addObject("dto", productDTO);
 		
@@ -120,6 +148,7 @@ public class ProductController {
 		
 		return mv;
 	}
+	
 	@PostMapping("insertNaverData")
 	public ModelAndView setInsertNaverData(ProductDTO productDTO)throws Exception{
 		ModelAndView modelAndView = new ModelAndView();
@@ -128,6 +157,94 @@ public class ProductController {
 		result = productService.setProductAddConfirm(productDTO);
 		modelAndView.addObject("result", result);
 		modelAndView.setViewName("/common/ajaxResult");
+		return modelAndView;
+	}
+	
+	@GetMapping("myList")
+	public ModelAndView getProductMyList(Pager pager) throws Exception {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		pager.setMemberId(memberDTO.getMemberId());
+		
+		List<ProductDTO> productDTOs = productService.getProductMyList(pager);
+		modelAndView.addObject("productDTOs", productDTOs);
+		modelAndView.setViewName("/product/myList");
+		
+		return modelAndView;
+	}
+	
+	@GetMapping("topList")
+	public ModelAndView getProductTopList(Pager pager)throws Exception{
+		ModelAndView modelAndView = new ModelAndView();
+		List<ProductDTO> productDTOs = productService.getProductTopList();
+		modelAndView.addObject("productDTOs", productDTOs);
+		modelAndView.setViewName("/product/topList");
+		return modelAndView;
+	}
+	@GetMapping("recentProduct")
+	public ModelAndView getRecentProduct() throws Exception{
+		ModelAndView modelAndView = new ModelAndView();
+		
+		Cookie[] cookies = request.getCookies();
+		String recentProduct = null;
+		for(Cookie cookie : cookies) {
+			System.out.println(cookie.getValue() + " + " + cookie.getName());
+			if(cookie.getName().equals("recentProduct")) {
+				recentProduct = cookie.getValue();
+			}
+		}	
+		List<ProductDTO> productDTOs = new ArrayList<ProductDTO>();
+		if(recentProduct != null) {
+			String[] productNums =  recentProduct.split(":");
+			for(String productNum : productNums) {
+				ProductDTO productDTO = new ProductDTO();
+				productDTO.setProductNum(Integer.parseInt(productNum));
+				productDTO = productDAO.getProductDetail(productDTO);
+				productDTOs.add(productDTO);
+			}
+		}
+		Collections.reverse(productDTOs);
+		modelAndView.addObject("productDTOs", productDTOs);
+		modelAndView.setViewName("/product/recentProduct");
+		return modelAndView;
+	}
+	//----------------
+	
+	// ajax
+	@PostMapping("picAdd")
+	public ModelAndView setProductPicAdd(ProductPicDTO productPicDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = productService.setProductPicAdd(productPicDTO);
+		mv.addObject("result",result);
+		mv.setViewName("common/ajaxResult");
+		return mv;
+	}
+	
+	// ajax
+	@PostMapping("picDelete")
+	public ModelAndView setProductPicDelete(ProductPicDTO productPicDTO) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = productService.setProductPicDelete(productPicDTO);
+		mv.addObject("result",result);
+		mv.setViewName("common/ajaxResult");
+		return mv;
+	}
+	
+	// ajax
+	@GetMapping("picList")
+	public ModelAndView getProductPicMyList(ProductPicDTO productPicDTO)throws Exception{
+		ModelAndView modelAndView = new ModelAndView();
+		List<ProductDTO> productDTOs = productService.getProductPicMyList(productPicDTO);
+		
+		if(productDTOs == null) {
+			modelAndView.addObject("checkPic", 0);
+		}else {
+			modelAndView.addObject("checkPic", 1);
+		}
+		
+		modelAndView.addObject("productDTOs", productDTOs);
+		modelAndView.setViewName("/product/picList");
 		return modelAndView;
 	}
 	

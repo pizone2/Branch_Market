@@ -227,6 +227,7 @@ public class MemberController {
 		memberDTO = memberService.setMemberLogin(memberDTO);
 		if(memberDTO != null) {
 			httpSession.setAttribute("member", memberDTO);
+			httpSession.setAttribute("id", memberDTO.getMemberId());
 			modelAndView.setViewName("redirect: /");
 		}else {
 			modelAndView.addObject("message", "로그인 실패!");
@@ -295,7 +296,6 @@ public class MemberController {
 	
 	
 	
-	
 	// -------------------------테스트 전용---------------------------------
 	
 	@Autowired
@@ -305,13 +305,6 @@ public class MemberController {
 	public ModelAndView test() {
 		ModelAndView modelAndView = new ModelAndView();
 		
-		SimpleMailMessage smm = new SimpleMailMessage();
-		smm.setFrom("computer8857@gmail.com");
-		smm.setTo("leejuhu@nate.com");
-		smm.setSubject("안녕하세용!");
-		smm.setText("ㅎㅇㅎㅇ");
-		//mailSender.send(smm);
-			
 		modelAndView.setViewName("/member/test");
 		return modelAndView;
 	}
@@ -346,7 +339,7 @@ public class MemberController {
 		pager.makeRow();
 		// pager.setSearch("장난감"); // 사용자 검색어 pager에 이미 있음
 		// Client ID, Client Secret
-		String datas = Naver.getShoppingData(null, null, pager);
+		String datas = Naver.getShoppingData("eFIJY0Ok7qZfi_ryWCOt", "RQHegogpKg", pager);
 		modelAndView.addObject("result", datas);
 		modelAndView.setViewName("/common/ajaxResult");
 		return modelAndView;

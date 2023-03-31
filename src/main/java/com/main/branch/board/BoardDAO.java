@@ -38,13 +38,23 @@ public class BoardDAO {
 	public int setBoardUpdate(BoardDTO boardDTO) throws Exception{
 		return sqlSession.update(NAMESPACE+"setBoardUpdate", boardDTO);
 	}
-
-	
-	//----------------------------------
-	public int setBoardPicAdd(BoardDTO boardDTO) throws Exception{
-		return sqlSession.insert(NAMESPACE+"setBoardPicAdd", boardDTO);
+	public int setBoardHitAdd(BoardDTO boardDTO)throws Exception{
+		return sqlSession.update(NAMESPACE + "setBoardHitAdd", boardDTO);
 	}
-	public int setBoardPicDelete(BoardDTO boardDTO) throws Exception{
-		return sqlSession.delete(NAMESPACE+"setBoardPicDelete", boardDTO);
+	public List<BoardDTO> getBoardTopList()throws Exception{
+		return sqlSession.selectList(NAMESPACE + "getBoardTopList", NAMESPACE);
+	}
+	//----------------------------------
+	public int setBoardPicAdd(BoardPicDTO boardPicDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"setBoardPicAdd", boardPicDTO);
+	}
+	public int setBoardPicDelete(BoardPicDTO boardPicDTO) throws Exception{
+		return sqlSession.delete(NAMESPACE+"setBoardPicDelete", boardPicDTO);
+	}
+	public List<BoardPicDTO> getBoardPicList(BoardPicDTO boardPicDTO) throws Exception{
+		return sqlSession.selectList(NAMESPACE + "getBoardPicList", boardPicDTO);
+	}
+	public BoardPicDTO checkAlreadyBoardPic(BoardDTO boardDTO)throws Exception{
+		return sqlSession.selectOne(NAMESPACE + "checkAlreadyBoardPic", boardDTO);
 	}
 }

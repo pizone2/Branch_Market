@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.main.branch.notice.NoticeDAO">
+ 	<sql id="searchCondition">
+ 		WHERE
+ 		<choose>
+ 			<when test="kind == 'noticeTitle'">
+ 				noticeTitle LIKE '%' || #{search} || '%'
+ 			</when>
+ 			<otherwise>
+ 				noticeContents LIKE '%' || #{search} || '%'
+ 			</otherwise>
+ 		</choose>
+ 	</sql>
+ 	
+ 	<select id="getNoticeList" parameterType="Pager" resultType="NoticeDTO">
+ 		SELECT * from(
+			SELECT rownum r,a.* FROM
+				(SELECT * FROM notice <include refid="searchCondition"></include>) a)
+		WHERE r BETWEEN #{startRow} AND #{lastRow}
+ 	</select>
+ 	<select id="getNoticeCount" parameterType="Pager" resultType="Integer">
+ 		SELECT COUNT(*) FROM NOTICE <include refid="searchCondition"></include>
+ 	</select>
+ 	<insert id="setNoticeAdd" parameterType="NoticeDTO">
+ 		<selectKey order="BEFORE" keyProperty="noticeNum" resultType="Integer">
+ 			SELECT SEQ.NEXTVAL FROM DUAL
+ 		</selectKey>
+ 		INSERT INTO NOTICE VALUES(#{noticeNum},#{memberId},#{noticeTitle},#{noticeContents},SYSDATE,0)
+ 	</insert>
+ 	<select id="getNoticeDetail" parameterType="NoticeDTO" resultType="NoticeDTO">
+ 		SELECT * FROM NOTICE WHERE noticeNum = #{noticeNum}
+ 	</select>
+ 	<delete id="setNoticeDelete" parameterType="NoticeDTO">
+ 		DELETE NOTICE WHERE noticeNum = #{noticeNum}
+ 	</delete>
+ 	<update id="setNoticeUpdate" parameterType="NoticeDTO">
+ 		UPDATE NOTICE SET noticeTitle = #{noticeTitle}, noticeContents = #{noticeContents} WHERE noticeNum = #{noticeNum}
+ 	</update>
+ 	<update id="setNoticeHitAdd" parameterType="NoticeDTO">
+ 		UPDATE NOTICE SET noticeHit = noticeHit + 1 WHERE noticeNum = #{noticeNum}
+ 	</update>
+ </mapper>
+ 
+<!--  private Integer noticeNum;
+	private String memberId;
+	private String noticeTitle;
+	private String noticeContents;
+	private Date noticeDate;
+	private Integer noticeHit; -->

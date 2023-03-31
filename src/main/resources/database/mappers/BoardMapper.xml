@@ -4,23 +4,28 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="com.main.branch.board.BoardDAO">
  	<sql id="boardCondition">
- 		<where>
- 			<if test="kind=='title'">
- 				BOARDTITLE LIKE '%' || #{search} ||'%'
- 			</if>
- 			<if test="kind=='contents'">
- 				BOARDCONTENTS LIKE '%' || #{search} || '%'
- 			</if>
- 			<if test="kind=='writer'">
- 				MEMBERID LIKE '%' || #{search} || '%'
- 			</if>
- 		</where>
- 		<if test="category != null and category !=''">
- 			AND boardCategory = #{category}
- 		</if>
- 		<if test="state != null and state != ''">
- 			AND boardState = #{state}
- 		</if>
+ 		<trim prefix="WHERE" prefixOverrides="AND">
+			<if test="kind=='title'">
+				BOARDTITLE LIKE '%' || #{search} ||'%'
+			</if>
+			<if test="kind=='contents'">
+				BOARDCONTENTS LIKE '%' || #{search} || '%'
+			</if>
+			<if test="kind=='writer'">
+				MEMBERID LIKE '%' || #{search} || '%'
+			</if>
+	
+	 		<if test="category != null and category !=''">
+	 			AND boardCategory = #{category}
+	 		</if>
+	 		<if test="state != null and state != ''">
+	 			AND boardState = #{state}
+	 		</if>
+	 		<if test="kind !='writer' and memberId != null and memberId != ''">
+	 			AND memberId = #{memberId}
+	 		</if> 		
+ 		</trim>
+
  	</sql>
  
  	<select id="getTotalCount" resultType="Integer" parameterType="Pager">
@@ -58,17 +63,29 @@
  		UPDATE BOARD SET BOARDTITLE=#{boardTitle}, BOARDCONTENTS=#{boardContents},BOARDPRICE=#{boardPrice},BOARDSTATE=#{boardState},BOARDCATEGORY= #{boardCategory} 
  		WHERE BOARDNUM=#{boardNum}
  	</update>
+ 	<update id="setBoardHitAdd" parameterType="BoardDTO">
+ 		UPDATE BOARD SET boardHit = boardHit + 1 WHERE BOARDNUM = #{boardNum}
+ 	</update>
+ 	<select id="getBoardTopList" resultType="BoardDTO">
+ 		SELECT * FROM(
+			SELECT ROWNUM R,A.* FROM
+			(SELECT * FROM BOARD ORDER BY boardHit DESC) A
+		)WHERE R BETWEEN 1 AND 5
+ 	</select>
  	
- 	
- 	
- 	
- 	<!--  -->
- 	<insert id="setBoardPicAdd" parameterType="BoardDTO">
- 		INSERT INTO BOARDPIC VALUES ((SELECT BOARDNUM FROM BOARD WHERE BOARDNUM=#{boardNum}),(SELECT MEMBERID FROM BOARD WHERE BOARDNUM=#{boardNum}))
+ 	<!-- pic -->
+ 	<insert id="setBoardPicAdd" parameterType="BoardPicDTO">
+ 		INSERT INTO BOARDPIC VALUES (#{boardNum},#{memberId})
  	</insert>
  	
- 	<delete id="setBoardPicDelete" parameterType="BoardDTO">
- 		DELETE BOARDPIC WHERE BOARDNUM=#{boardNum}
+ 	<delete id="setBoardPicDelete" parameterType="BoardPicDTO">
+ 		DELETE BOARDPIC WHERE BOARDNUM=#{boardNum} AND memberId = #{memberId}
  	</delete>
  	
+ 	<select id="getBoardPicList" parameterType="BoardPicDTO" resultType="BoardPicDTO">
+ 		SELECT * FROM BOARDPIC WHERE memberId = #{memberId}
+ 	</select>
+ 	<select id="checkAlreadyBoardPic" parameterType="BoardDTO" resultType="BoardPicDTO">
+ 		SELECT * FROM BOARDPIC WHERE BOARDNUM=#{boardNum} AND memberId = #{memberId}
+ 	</select>
  </mapper>

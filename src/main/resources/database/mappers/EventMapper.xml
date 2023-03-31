@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.main.branch.event.EventDAO">
+ 	<select id="getEventList" resultType="EventDTO">
+ 		SELECT * FROM EVENT
+ 	</select>
+ 	
+ 	<insert id="setEventAdd" parameterType="EventDTO">
+ 		<selectKey keyProperty="eventNum" order="BEFORE" resultType="Integer">
+ 			SELECT SEQ.NEXTVAL FROM DUAL
+ 		</selectKey>
+ 		INSERT INTO EVENT VALUES(#{eventNum},#{fileName},#{oriName})
+ 	</insert>
+ 	
+ 	<delete id="setEventDelete" parameterType="EventDTO">
+ 		DELETE EVENT WHERE eventNum = #{eventNum}
+ 	</delete>
+ 	
+ </mapper>
+ 
+<!--  private Integer eventNum;
+	private String fileName;
+	private String oriName; -->

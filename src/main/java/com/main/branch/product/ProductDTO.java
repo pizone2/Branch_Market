@@ -10,8 +10,17 @@ public class ProductDTO {
 	private String productCategory;
 	private String productQ;
 	private String productImgName;
+	private Integer productHit;
+	private Integer state;
 	
 	
+	
+	public Integer getState() {
+		return state;
+	}
+	public void setState(Integer state) {
+		this.state = state;
+	}
 	public Integer getProductNum() {
 		return productNum;
 	}
@@ -59,5 +68,11 @@ public class ProductDTO {
 	}
 	public void setProductImgName(String productImgName) {
 		this.productImgName = productImgName;
+	}
+	public Integer getProductHit() {
+		return productHit;
+	}
+	public void setProductHit(Integer productHit) {
+		this.productHit = productHit;
 	}
 }

@@ -43,17 +43,32 @@
   	SELECT SEQ_SEQ.NEXTVAL FROM DUAL
   </select>
   
+  <select id="getProductMyList" parameterType="Pager" resultType="ProductDTO">
+  	SELECT * FROM 
+  		(
+  			SELECT ROWNUM R, P.*FROM
+  				(
+  					SELECT * FROM PRODUCT
+  					
+  					WHERE MEMBERID = #{memberId}
+  						
+  					ORDER BY PRODUCTNUM DESC
+  				)P
+  		)
+  	WHERE R BETWEEN #{startRow} AND #{lastRow}
+  </select>
+  
   <select id="getProductDetail" parameterType="ProductDTO" resultType="ProductDTO">
   	SELECT * FROM PRODUCT
   	WHERE PRODUCTNUM = #{productNum}
   </select>
   
-  <insert id="setProductAdd" parameterType="productDTO">
+  <insert id="setProductAdd" parameterType="ProductDTO">
  		<selectKey keyProperty="productNum" resultType="Integer" order="BEFORE">
  			SELECT SEQ.NEXTVAL FROM DUAL
  		</selectKey>
  		INSERT INTO PRODUCT 
- 		VALUES(#{productNum}, #{memberId} ,#{productTitle}, #{productPrice}, #{productDetail},#{productCategory} , NULL, #{productImgName})
+ 		VALUES(#{productNum}, #{memberId} ,#{productTitle}, #{productPrice}, #{productDetail},#{productCategory} , NULL, #{productImgName}, 0, 0)
  	</insert>
   
   <delete id="setProductDelete" parameterType="ProductDTO">
@@ -91,4 +106,36 @@
   	WHERE R BETWEEN #{startRow} AND #{lastRow}
   </select>
   
+  <update id="setProductHit" parameterType="Integer">
+  		UPDATE PRODUCT SET
+  		PRODUCTHIT = PRODUCTHIT + 1
+  		WHERE PRODUCTNUM = #{productNum}
+  </update>
+  
+  <select id="getProductTopList" resultType="ProductDTO">
+ 		SELECT * FROM(
+			SELECT ROWNUM R, A.* FROM
+			(SELECT * FROM PRODUCT ORDER BY PRODUCTHit DESC) A
+		)WHERE R BETWEEN 1 AND 5
+ 	</select>
+ 	
+ 	<!-- pic -->
+ 	<insert id="setProductPicAdd" parameterType="ProductPicDTO">
+ 		INSERT INTO PRODUCTPIC VALUES (#{productNum},#{memberId})
+ 	</insert>
+ 	
+ 	<delete id="setProductPicDelete" parameterType="ProductPicDTO">
+ 		DELETE PRODUCTPIC WHERE PRODUCTNUM=#{productNum} AND memberId = #{memberId}
+ 	</delete>
+ 	
+ 	<select id="getProductPicMyList" parameterType="ProductPicDTO" resultType="ProductPicDTO">
+ 		SELECT * FROM PRODUCTPIC WHERE memberId = #{memberId}
+ 	</select>
+ 	<select id="checkAlreadyProductPic" parameterType="ProductDTO" resultType="ProductPicDTO">
+ 		SELECT * FROM PRODUCTPIC WHERE PRODUCTNUM=#{productNum} AND memberId = #{memberId}
+ 	</select>
+  	
+  	<update id="setProductUpdateState" parameterType="ProductDTO">
+  		UPDATE PRODUCT SET state = 1 WHERE PRODUCTNUM=#{productNum} 
+  	</update>
   </mapper>
