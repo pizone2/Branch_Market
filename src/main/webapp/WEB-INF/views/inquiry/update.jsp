@@ -7,11 +7,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../template/common_css.jsp"></c:import>
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 </head>
 <body>
-
+    <c:import url="../template/header.jsp"></c:import>
+    
     <form action="./update" method="post">
         <input type="hidden" name="inquiryNum" value="${inquiryDTO.inquiryNum}">
         제목<input type="text" name="inquiryTitle" value="${inquiryDTO.inquiryTitle}">
