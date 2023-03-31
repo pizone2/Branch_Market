@@ -8,7 +8,7 @@ const page = document.getElementById("page");
 for(let p of pl){
     p.addEventListener("click",function(){
         console.log(p)
-        let v = p.getAttribute('data-board-page');
+        let v = p.getAttribute('data-product-page');
         page.value = v;
         searchForm.submit();
     })
