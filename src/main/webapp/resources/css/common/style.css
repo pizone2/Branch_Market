@@ -417,10 +417,10 @@ ol {
 -----------------------*/
 .header{
 	
-	background-image: url('../img/leaves.png') ;
+	background-image: url('/resources/images/leaves.png') ;
 }
 .header__top {
-	background-image: url('../img/leaves.png') ;
+	background-image: url('/resources/images/leaves.png') ;
 }
 
 /*header top Left*/
