@@ -1,5 +1,7 @@
 package com.main.branch.notice;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,8 @@ import com.main.branch.util.Pager;
 public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
+	@Autowired
+	private NoticeDAO noticeDAO;
 	
 	@GetMapping("/list")
 	public ModelAndView getNoticeList(Pager pager){
@@ -58,8 +62,21 @@ public class NoticeController {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		noticeDTO = noticeService.getNoticeDetail(noticeDTO);
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+		String date = dateFormat.format(noticeDTO.getNoticeDate());
 		
+		NoticeDTO preNoticeDTO = new NoticeDTO();
+		preNoticeDTO.setR(noticeDTO.getR() - 1);
+		preNoticeDTO = noticeDAO.getNoticeDetailRowNum(preNoticeDTO);
+		
+		NoticeDTO nextNoticeDTO = new NoticeDTO();
+		nextNoticeDTO.setR(noticeDTO.getR() + 1);
+		nextNoticeDTO = noticeDAO.getNoticeDetailRowNum(nextNoticeDTO);
+		
+		modelAndView.addObject("date", date);
 		modelAndView.addObject("noticeDTO", noticeDTO);
+		modelAndView.addObject("preNoticeDTO", preNoticeDTO);
+		modelAndView.addObject("nextNoticeDTO", nextNoticeDTO);
 		modelAndView.setViewName("/notice/detail");
 		return modelAndView;
 	}
@@ -67,7 +84,6 @@ public class NoticeController {
 	@PostMapping("/delete")
 	public ModelAndView setNoticeDelete(NoticeDTO noticeDTO) {
 		ModelAndView modelAndView = new ModelAndView();
-		
 		int result = noticeService.setNoticeDelete(noticeDTO);
 		
 		if(result > 0) {

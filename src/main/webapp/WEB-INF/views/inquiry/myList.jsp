@@ -4,36 +4,92 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+    <meta name="description" content="Ogani Template">
+    <meta name="keywords" content="Ogani, unica, creative, html">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ogani | Template</title>
 <c:import url="../template/common_css.jsp"></c:import>
 </head>
 <body>
+	<c:import url="../template/header.jsp"></c:import>
+	 <!-- Banner Section Begin -->
+	 <section class="hero hero-normal">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <hr>
+                </div>
+                <div class="col-lg-12 text-center">
+                    <div class="background-page">
+                        <div class="banner-text"><h2>MyPage</h2></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Banner Section End -->
 
-<table class="table table-success">
-  <thead>
-    <tr>
-      <th scope="col">아이디</th>
-      <th scope="col">문의 제목</th>
-      <th scope="col">문의 내용</th>
-      <th scope="col">문의 카테고리</th>
-    </tr>
-  </thead>
-  <tbody>
-	   	<c:forEach items="${inquiryDTOs}" var="inquiryDTO">
-	   	  	<tr>
-				<td><h2>${inquiryDTO.memberId}</h2></td>
-				<td><a href="./detail?inquiryNum=${inquiryDTO.inquiryNum}"><h2>${inquiryDTO.inquiryTitle}</h2></a></td>
-				<td><h2>${inquiryDTO.inquiryDetail}</h2></td>
-				<td><h2>${inquiryDTO.inquiryCategory}</h2></td>
-				<td><button class="btn btn-danger del" data-inquiryNum="${inquiryDTO.inquiryNum}">삭제</button></td>
-			</tr>
-		</c:forEach>
-  </tbody>
-</table>
+    <!-- Blog Details Section Begin -->
+    <section class="blog-details spad">
+        <div class="container">
+            <div class="mypage-text">
+                <h4></h4>
+            </div>
+            <div class="row">
+                <div class="col-lg-4 col-md-5 order-md-1 order-2">
+                    <div class="blog__sidebar">
+                    
+                        <div class="blog__sidebar__item">
+                            <h3>Category</h3>
+                            <ul>
+                                <li><a href="/member/myPage">내 계정</a></li>
+                                <li><a href="/product/myList">내 신청 상품 내역</a></li>
+                                <li><a href="#">내 구매 내역</a></li>
+                                <li><a href="/inquiry/myList">내 문의 내역</a></li>
+                                <li><a href="/product/recentProduct">최근 본 상품 :)</a></li>
+                            </ul>
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-8 col-md-7 order-md-1 order-1">
+                    <div class="blog__details__text">
+                        <div style="text-align : center;">
+                            <h2>내 문의 내역</h2>
+                        </div>
+                        <table class="boardTable table table-hover">
+                            <thead class="table-success">
+                                <tr>
+                                    <th>Num</th> <th>Title</th> <th>Writer</th> <th>Category</th> <th>del</th>
+                                </tr>
+                            </thead>
+                            <tbody>	
+								<c:forEach items="${inquiryDTOs}" var="inquiryDTO">
+									<tr>
+										<td scope="row"><h2>${inquiryDTO.r}</h2></td>
+										<td><a href="./detail?inquiryNum=${inquiryDTO.inquiryNum}"><h2>${inquiryDTO.inquiryTitle}</h2></a></td>
+										<td><h2>${inquiryDTO.memberId}</h2></td>
+										<td><h2>${inquiryDTO.inquiryCategory}</h2></td>
 
+										<td><button class="btn btn-danger del" data-inquiryNum="${inquiryDTO.inquiryNum}">삭제</button></td>
+									</tr>
+								</c:forEach>
+										
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+	<div class="container">
 		<!-- pagining -->
-	      <div class = "row" id="pagining">
+	      <div class = "row mx-auto d-flex justify-content-center" id="pagining">
 		        	 <nav aria-label="Page navigation example">
 					  <ul class="pagination">
 					  	<li class="page-item" data-page="1">
@@ -67,7 +123,7 @@
 			</div>
 				
 				<!-- 검색창 -->
-				<div class = "row">
+				<div class = "row mx-auto">
 					  <form class="row g-3" action="./myList" method="get" id="paginingForm">
 						  <input type="hidden" name="page" id="page">
 						  <!-- <input type="hidden" name="category" id="category" value="${pager.category}"> -->
@@ -80,14 +136,14 @@
 						</select>
 
 						  <div class="col-auto">
-						    <label for="kind" class="visually-hidden">Kind</label>
+						    <!-- <label for="kind" class="visually-hidden">Kind</label> -->
 						    <select name="kind" class="form-select" id="kind" aria-label="Default select example">
 							  <option value="inquiryTitle" ${pager.kind eq 'inquiryTitle' ? 'selected' : ''} >제목</option>
 							  <option value="inquiryDetail" ${pager.kind eq 'inquiryDetail' ? 'selected' : ''}>내용</option>
 							</select>
 						  </div>
 						  <div class="col-auto">
-						    <label for="search" class="visually-hidden">Search</label>
+						    <!-- <label for="search" class="visually-hidden">Search</label> -->
 						    <input type="text" class="form-control" name="search" id="search" placeholder="검색어를 입력 하세요." value="${pager.search}">
 						  </div>
 						  <div class="col-auto">
@@ -95,7 +151,8 @@
 						  </div>
 					</form>
 				</div>
-	
+		</div>
+				<c:import url="../template/footer.jsp"></c:import>
 				<script src="/resources/js/inquiry/list.js"></script>
   				<c:import url="../template/common_js.jsp"></c:import>
 </body>

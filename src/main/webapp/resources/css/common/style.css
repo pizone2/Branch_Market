@@ -417,10 +417,10 @@ ol {
 -----------------------*/
 .header{
 	
-	background-image: url('../img/leaves.png') ;
+	background-image: url('/resources/images/leaves.png') ;
 }
 .header__top {
-	background-image: url('../img/leaves.png') ;
+	background-image: url('/resources/images/leaves.png') ;
 }
 
 /*header top Left*/
@@ -640,7 +640,7 @@ header__menu	color: #252525;
 -----------------------*/
 /* banner CSS */
 .background-page{
-	background-image: url("../img/banner.png");
+	background-image: url("/resources/images/banner.png");
 	background-size: cover;
 	width: 1140px;
 	height: 140px;

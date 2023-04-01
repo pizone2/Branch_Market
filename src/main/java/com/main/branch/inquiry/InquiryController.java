@@ -20,6 +20,8 @@ public class InquiryController {
 	@Autowired
 	private InquiryService inquiryService;
 	@Autowired
+	private InquiryDAO inquiryDAO;
+	@Autowired
 	private HttpSession httpSession;
 	
 	// --------------- 홈페이지
@@ -53,13 +55,13 @@ public class InquiryController {
 	@PostMapping("/update")
 	public ModelAndView setInquriyUpdate(InquiryDTO inquiryDTO, ModelAndView modelAndView) {
 		String message = "";
-		String url = "/";
+		String url = "./detail?inquiryNum=" + inquiryDTO.getInquiryNum();
+		
 		int result = inquiryService.setInquriyUpdate(inquiryDTO);
 		if(result > 0) {
 			message = "업데이트 완료!";
 		}else {
 			message = "업데이트 실패";
-			url = "./update";
 		}
 		
 		modelAndView.addObject("message", message);
@@ -132,6 +134,20 @@ public class InquiryController {
 		ModelAndView modelAndView = new ModelAndView();
 		inquiryDTO = inquiryService.getInquriyDetail(inquiryDTO);
 		modelAndView.addObject("inquiryDTO", inquiryDTO);
+		
+		// rowNum으로 이전글 다음글 가져오기
+
+		InquiryDTO preInquiryDTO = new InquiryDTO();
+		preInquiryDTO.setR(inquiryDTO.getR() - 1);
+		preInquiryDTO = inquiryDAO.getInquriyDetailRowNum(preInquiryDTO);
+		
+		InquiryDTO nextInquiryDTO = new InquiryDTO();
+		nextInquiryDTO.setR(inquiryDTO.getR() + 1);
+		nextInquiryDTO = inquiryDAO.getInquriyDetailRowNum(nextInquiryDTO);
+		
+		modelAndView.addObject("preInquiryDTO", preInquiryDTO);
+		modelAndView.addObject("nextInquiryDTO", nextInquiryDTO);
+		
 		modelAndView.setViewName("/inquiry/detail");
 		return modelAndView;
 		

@@ -26,7 +26,6 @@
 				<td><a href="./detail?inquiryNum=${inquiryDTO.inquiryNum}"><h2>${inquiryDTO.inquiryTitle}</h2></a></td>
 				<td><h2>${inquiryDTO.inquiryDetail}</h2></td>
 				<td><h2>${inquiryDTO.inquiryCategory}</h2></td>
-				<td><button class="btn btn-danger del" data-inquiryNum="${inquiryDTO.inquiryNum}">삭제</button></td>
 			</tr>
 		</c:forEach>
   </tbody>

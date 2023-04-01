@@ -23,12 +23,12 @@
  	</sql>
  	<select id="getInquiryList" parameterType="Pager" resultType="InquiryDTO">
  		SELECT * FROM(
-		SELECT ROWNUM R,A.*
-			FROM(
-				SELECT * FROM Inquiry <include refid="listSearchCondition"></include> 
-				ORDER BY inquiryNum DESC
-			) A
-		)
+			SELECT ROWNUM R,A.*
+				FROM(
+					SELECT * FROM Inquiry <include refid="listSearchCondition"></include> 
+					ORDER BY inquiryNum DESC
+				) A
+			)
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
  	</select>
  	<select id="getInquiryCount" parameterType="Pager" resultType="Integer">
@@ -46,7 +46,18 @@
  		INSERT INTO INQUIRY VALUES(#{inquiryNum},#{memberId},#{inquiryTitle},#{inquiryDetail},#{inquiryCategory})
  	</insert>
  	<select id="getInquriyDetail" parameterType="InquiryDTO" resultType="InquiryDTO">
- 		SELECT * FROM INQUIRY WHERE inquiryNum = #{inquiryNum}
+ 		SELECT * FROM(
+		SELECT ROWNUM r,A.* FROM 
+		(SELECT * FROM INQUIRY ORDER BY inquiryNum DESC) A)
+		WHERE inquiryNum = #{inquiryNum}
+<!--  		SELECT * FROM INQUIRY WHERE inquiryNum = #{inquiryNum} -->
+ 	</select>
+ 	
+ 	<select id="getInquriyDetailRowNum" parameterType="InquiryDTO" resultType="InquiryDTO">
+ 		SELECT * FROM(
+		SELECT ROWNUM r,A.* FROM 
+		(SELECT * FROM INQUIRY ORDER BY inquiryNum DESC) A)
+		WHERE r = #{r}
  	</select>
  	<delete id="setInquiryDelete" parameterType="InquiryDTO">
  		DELETE INQUIRY WHERE inquiryNum = #{inquiryNum}

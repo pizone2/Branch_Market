@@ -35,4 +35,7 @@ public class NoticeDAO {
 	public int setNoticeHitAdd(NoticeDTO noticeDTO) {
 		return sqlSession.update(NAMESPAECE + "setNoticeHitAdd", noticeDTO);
 	}
+	public NoticeDTO getNoticeDetailRowNum(NoticeDTO noticeDTO) {
+		return sqlSession.selectOne(NAMESPAECE + "getNoticeDetailRowNum", noticeDTO);
+	}
 }
