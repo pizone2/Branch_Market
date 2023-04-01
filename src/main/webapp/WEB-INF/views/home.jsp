@@ -115,6 +115,85 @@
     </section>
 	<!-- product end -->
 
+	<h1 class="home-main-title text-center home-hot-title">
+        중고거래 인기 게시글
+    </h1>
+
+    <div class="container">
+        <div class="wrapper">
+        <h1></h1>
+        </div>
+    </div>
+
+    <section class="hero">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6"> <!--판매-->
+                    <div class="row d-flex justify-content-center mt-100 mb-100">
+                        
+                                
+                    <div class="col-lg-12">
+                        
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h4 class="card-title m-b-0">판매</h4>
+                            </div>
+                            <ul class="list-style-none">
+                       		    <c:forEach items="${boardSellTopDTOs}" var="dto">
+	                                <li class="d-flex no-block card-body border-top">
+	                                    <i class="fa fa-gift w-30px m-t-5"></i>
+	                                    <div>
+	                                        <a href="/board/detail?boardNum=${dto.boardNum}" class="m-b-0 font-medium p-0" data-abc="true">${dto.boardTitle}</a>
+	                                        <span class="text-muted">${dto.boardContents}</span>
+	                                    </div>
+	                                    <div class="ml-auto">
+	                                        <div class="tetx-right">
+	                                            <h5 class="text-muted m-b-0">${dto.boardDate}</h5>
+	                                        </div>
+	                                    </div>
+	                                </li>
+	                            </c:forEach>
+                            </ul>
+                        </div>
+
+                    </div>
+                    </div>
+                </div>
+                <div class="col-lg-6"> <!--구매-->
+                    <div class="row d-flex justify-content-center mt-100 mb-100">
+                        
+                                
+                    <div class="col-lg-12">
+                        
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h4 class="card-title m-b-0">구매</h4>
+                            </div>
+                            <ul class="list-style-none">
+                       		    <c:forEach items="${boardBuyTopDTOs}" var="dto">
+	                                <li class="d-flex no-block card-body border-top">
+	                                    <i class="fa fa-gift w-30px m-t-5"></i>
+	                                    <div>
+	                                        <a href="/board/detail?boardNum=${dto.boardNum}" class="m-b-0 font-medium p-0" data-abc="true">${dto.boardTitle}</a>
+	                                        <span class="text-muted">${dto.boardContents}</span>
+	                                    </div>
+	                                    <div class="ml-auto">
+	                                        <div class="tetx-right">
+	                                            <h5 class="text-muted m-b-0">${dto.boardDate}</h5>
+	                                        </div>
+	                                    </div>
+	                                </li>
+	                            </c:forEach>
+                            </ul>
+                        </div>
+
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Categories Section End -->
 	
     <c:import url="./template/footer.jsp"></c:import>
 	<c:import url="./template/common_js.jsp"></c:import>

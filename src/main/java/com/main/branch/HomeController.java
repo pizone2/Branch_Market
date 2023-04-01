@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.main.branch.board.BoardDAO;
+import com.main.branch.board.BoardDTO;
+import com.main.branch.board.BoardService;
 import com.main.branch.event.EventDAO;
 import com.main.branch.event.EventDTO;
 import com.main.branch.notice.NoticeDAO;
@@ -31,6 +34,8 @@ public class HomeController {
 	private EventDAO eventDAO;
 	@Autowired
 	private ProductDAO productDAO;
+	@Autowired
+	private BoardService boardService;
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home() throws Exception {
@@ -44,6 +49,12 @@ public class HomeController {
 		
 		List<ProductDTO> productDTOs = productDAO.getProductTopList();
 		modelAndView.addObject("productDTOs", productDTOs);
+		
+		List<BoardDTO> boardSellTopDTOs = boardService.getBoardSellTopList();
+		modelAndView.addObject("boardSellTopDTOs", boardSellTopDTOs);
+		
+		List<BoardDTO> boardBuyTopDTOs = boardService.getBoardBuyTopList();
+		modelAndView.addObject("boardBuyTopDTOs", boardBuyTopDTOs);
 		
 		modelAndView.setViewName("/home");
 		return modelAndView;
