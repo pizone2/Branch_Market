@@ -42,7 +42,7 @@
 								<span>카테고리</span>
 							</div>
 							<ul>
-								<li><a>모두보</a></li>
+								<li><a href="#">모두보기</a></li>
 								<li><a href="#">여성패션</a></li>
 								<li><a href="#">남성패션</a></li>
 								<li><a href="#">가구/인테리어</a></li>
@@ -55,17 +55,24 @@
 						</div>
 						<div class="hero__search my-3">
 							<div class="hero__search_btn">
-								<form action="#">
-									<div class="input-group mb-3">
-										<input type="text" class="form-control"  aria-label="Recipient's username" aria-describedby="button-addon2">
-										<button class="btn btn-outline-success" type="submit" id="button-addon2">검색</button>
-									  </div>
+								<form class="row g-3" action="./list" method="get" id="searchForm">
+									<input type="hidden" name="page" value="1" id="page">
+								  <div class="col-auto">
+									<select class="form-select" name="kind" id="kind" aria-label="Default select example">
+									  <option value="title" ${pager.kind eq 'productTitle' ? 'selected':''} >제목</option>
+									  <option value="contents" ${pager.kind eq 'productDetail' ? 'selected':''}>내용</option>
+									</select>
+								  </div>
+								  <div class="col-auto">
+									<input type="text" class="form-control" value="${pager.search}"" name="search" id="search" placeholder="검색어를 입력하세요">
+									<button type="submit" class="btn btn-success mb-3">검색</button>
+								  </div>
 								</form>
 							</div>
 						</div>
 						<div>
-							<button class="state-btn btn mb-3"><a href="./add">위탁 판매 추가</a></button>
-							<button class="state-btn btn"><a href="./addList">위탁 판매 신청</a></button>
+							<button class="state-btn btn mb-3"><a href="./add">위탁 판매 등록</a></button>
+							<button class="state-btn btn"><a href="./addList">위탁 판매 등록 신청</a></button>
 						</div>
 					</div>
 					</form>
@@ -97,33 +104,37 @@
 							<nav aria-label="Page navigation example">
 								<ul class="pagination">
 								
-									<li class="page-item">
-									<a class="page-link" href="#" aria-label="Previous" data-product-page="1">
-									<span aria-hidden="true">&laquo;</span>
-									</a>
-								</li>
-								
-								<li class="page-item ${pager.before?'disabled':''}">
-									<a class="page-link" href="#" aria-label="Previous" data-product-page="${pager.startNum-1}">
-									<span aria-hidden="true">&lsaquo;</span>
-									</a>
-								</li>
-								
-								<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-								<li class="page-item"><a class="page-link" href="#" data-product-page="${i}" >${i}</a></li>
-								</c:forEach>
-								
-								<li class="page-item ${pager.after eq false ? 'disabled':''}">
-									<a class="page-link" href="#"  aria-label="Next" data-product-page="${pager.lastNum+1}">
-									<span aria-hidden="true">&rsaquo;</span>
-									</a>
-								</li>
-								
-								<li class="page-item${pager.after eq false ? 'disabled':''}">
-									<a class="page-link" href="#"  aria-label="Next" data-product-page="${pager.totalPage}">
-									<span aria-hidden="true">&raquo;</span>
-									</a>
-								</li>
+									<li class="page-item ${pager.before ? 'disabled' : ''}">
+										<a class="page-link" href="./list?page=1&kind=${pager.kind}&search=${pager.search}" aria-label="Previous">
+										  <span aria-hidden="true">&laquo;</span>
+										</a>
+									  </li>
+									
+									
+									  <li class="page-item ${pager.before ? 'disabled' : ''}">
+										<a class="page-link" href="./list?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}" aria-label="Previous">
+										  <span aria-hidden="true">&lsaquo;</span>
+										</a>
+									  </li>
+									  
+									  
+									  <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+										  <li class="page-item"><a class="page-link" href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+									  </c:forEach>
+									  
+									  
+									   <li class="page-item ${pager.after eq false ? 'disabled' : ''}">
+										<a class="page-link"  href="./list?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}" aria-label="Next">
+										  <span aria-hidden="true">&rsaquo;</span>
+										</a>
+									  </li>
+									  
+									  
+									  <li class="page-item ${pager.after eq false ? 'disabled' : ''}">
+										<a class="page-link"  href="./list?page=${pager.totalPage}&kind=${pager.kind}&search=${pager.search}" aria-label="Next">
+										  <span aria-hidden="true">&raquo;</span>
+										</a>
+									  </li>
 							</ul>
 						  </nav>
 						</div>
