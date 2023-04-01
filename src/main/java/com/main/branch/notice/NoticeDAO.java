@@ -38,4 +38,7 @@ public class NoticeDAO {
 	public NoticeDTO getNoticeDetailRowNum(NoticeDTO noticeDTO) {
 		return sqlSession.selectOne(NAMESPAECE + "getNoticeDetailRowNum", noticeDTO);
 	}
+	public List<NoticeDTO> getNoticeTopList(){
+		return sqlSession.selectList(NAMESPAECE + "getNoticeTopList");
+	}
 }
