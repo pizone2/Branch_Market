@@ -66,7 +66,7 @@
                 </div>
 
                 <!-- pagining -->
-	     		 <div class = "row col-12" id="pagining">
+	     		 <div class = "row col-12 d-flex justify-content-center" id="pagining">
 							<nav aria-label="Page navigation example">
 							<ul class="pagination">
 								<li class="page-item" data-page="1">
@@ -114,7 +114,7 @@
 								  <button type="submit" class="btn btn-primary" style="width: auto;">검색</button>
 								</div>
 						  </form>
-						  <button class="add-btn btn btn-danger"><a href="./add">공지사항 올리기</a></button>
+						  <button class="btn btn-danger"><a href="./add">공지사항 올리기</a></button>
                         </div>
                     </div>
                 </div>

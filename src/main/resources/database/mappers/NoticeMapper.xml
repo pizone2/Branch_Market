@@ -52,6 +52,14 @@
  	<update id="setNoticeHitAdd" parameterType="NoticeDTO">
  		UPDATE NOTICE SET noticeHit = noticeHit + 1 WHERE noticeNum = #{noticeNum}
  	</update>
+ 	<select id="getNoticeTopList" resultType="NoticeDTO">
+ 		SELECT * FROM(
+		SELECT ROWNUM R,A.*
+		FROM(
+			SELECT * FROM NOTICE
+		 		ORDER BY noticeNum DESC) A)
+		 WHERE R BETWEEN 1 AND 5
+ 	</select>
  </mapper>
  
 <!--  private Integer noticeNum;
