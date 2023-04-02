@@ -7,15 +7,88 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../template/common_css.jsp"></c:import>
-<link rel="stylesheet" href="/resources/css/Whatsapp_Chat_Box_POPUP.css">
+<link rel="stylesheet" href="/resources/css/chat/chatPage.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
 </head>
 <body>
+	<c:import url="../template/header.jsp"></c:import>
+
 	<div id="datas"></div>
 	<input type="hidden" id="sender" value="${sessionScope.id}">
 	<!-- 검색창 -->
-	<div class = "row">
+	<div class="container">
+        <div class="row">
+                <div class="chat_container col-md-8 mx-auto">
+                    <div class="job-box">
+                        <div class="job-box-filter">
+                            <div class="row">
+                                <div class="col-md-10">
+									<form action="./myRoomList" method="get" id="paginingForm">
+										<div class="filter-search-box">
+											<h3>채팅방 리스트</h3>
+											<!-- <label style="display:inline">Search:<input type="search" name="search" class="form-control input-sm"
+													placeholder=""></label>
+											<button type="submit" class="btn btn-primary">검색</button> -->
+                                  		</div>
+									</form>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inbox-message">
+                            <ul>
+								<c:forEach items="${roomDTOs}" var="dto">
+									<c:if test="${dto.contents ne null}">
+										<li style="height: 100px;" id="chatList${dto.roomNum}">
+											<%-- <h5>채팅방 번호 ${dto.roomNum}</h5>
+											<h5>채팅방 제목 <a href="./room/${dto.roomNum}">${dto.roomTitle}</a></h5>
+											<h5>안 읽은 메세지 수 ${dto.unReadCnt}</h5>
+											<button>채팅하기</button> --%>
+	
+											<div class="message-avatar">
+												<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+											</div>
+											<div class="message-body">
+												<div class="message-body-heading">
+													<h5>
+														<c:if test="${dto.isRead eq -3}">
+															<c:if test="${dto.sendId eq sessionScope.id }">
+																${dto.receiveId}
+															</c:if>
+															<c:if test="${dto.sendId ne sessionScope.id }">
+																${dto.sendId}
+															</c:if>
+														</c:if>
+														<c:if test="${dto.isRead eq -1}">
+															${dto.roomTitle}
+														</c:if>
+														
+														<c:if test="${dto.unReadCnt ne 0}">
+															<span class="unread">Unread ${dto.unReadCnt}</span>
+														</c:if>
+													</h5>
+													
+													<span>
+														7 hours ago
+														<div><button class="enterChatBtn" data-roomNum="${dto.roomNum}">채팅하기</button></div>
+														<div><button class="quitChatBtn" data-roomNum="${dto.roomNum}">나가기</button></div>
+													</span>
+												</div>
+												<p id="contents${dto.roomNum}">${dto.contents}</p>
+											</div>
+										</li>
+									</c:if>
+								</c:forEach>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+
+	<!-- sddddddddddddddddddddddddddddd -->
+	<!-- <div class = "row">
 		<form class="row g-3" action="./myRoomList" method="get" id="paginingForm">
 			<div class="col-auto">
 				<label for="search" class="visually-hidden">Search</label>
@@ -32,11 +105,11 @@
 		<h5>채팅방 제목 <a href="./room/${dto.roomNum}">${dto.roomTitle}</a></h5>
 		<h5>안 읽은 메세지 수 ${dto.unReadCnt}</h5>
 		<button class="enterChatBtn" data-roomNum="${dto.roomNum}">채팅하기</button>
-	</c:forEach>
+	</c:forEach> -->
 	
 
 		<!-- 채팅창  -->
-		<div class="container">
+		<div class="container" style="position: absolute; z-index: 1;">
 			<div>
 				<!-- 헤드 부분 -->
 				<aside id="sidebar_secondary" class="tabbed_sidebar ng-scope chat_sidebar bg-success-subtle">
@@ -59,14 +132,14 @@
 	
 					<!-- 메세지 리스트 -->
 					<div id="chat" class="chat_box_wrapper chat_box_small chat_box_active"
-						style="opacity: 1; display: block; transform: translateX(0px);">
+						style="opacity: 1; display: block; transform: translateX(0px); background-color: palegreen;">
 						<div class="chat_box touchscroll chat_box_colors_a">
 							<div id="messageList">
 							</div>
 						</div>
 					</div>
 					<!-- 메세지 제출폼 -->
-					<div class="chat_submit_box">
+					<div class="chat_submit_box" style="background-color: palegreen;">
 						<div class="uk-input-group">
 							<div class="gurdeep-chat-box">
 								<span style="vertical-align: sub;" class="uk-input-group-addon">
@@ -80,7 +153,9 @@
 					</div>
 			</div>
 		</div>
+		
 	<script src="/resources/js/chat/myRoomList.js"></script>
+	 <c:import url="../template/footer.jsp"></c:import>
     <c:import url="../template/common_js.jsp"></c:import>
 </body>
 </html>

@@ -1,8 +1,9 @@
 $(".enterChatBtn").click(function (e) {
+    console.log(e.target);
+    console.log(this);
 	$('#sidebar_secondary').addClass('popup-box-on');
-    let roomNum = $(e.target).attr('data-roomNum');
+    let roomNum = $(this).attr('data-roomNum');
     $('#datas').attr('data-roomNum',roomNum);
-
     // 메세지 불러오기
     $.ajax({
         url:'/chat/getRoomMessageList',
@@ -15,9 +16,26 @@ $(".enterChatBtn").click(function (e) {
             $('#messageList').html(res);
         }
     })
+    $('.unread').remove();
+    updateMemberRead(roomNum);
+    
     // 웹 소켓 연결하기
     openSocket(roomNum);
 });
+$('.quitChatBtn').click(function(e){
+    let roomNum = $(this).attr('data-roomNum');
+    $.ajax({
+        url:"/chat/quitRoom",
+        type:"post",
+        data:{
+            'roomNum':roomNum
+        },
+        success:(res)=>{
+            console.log(res);
+        }
+    })
+    $('#chatList' + roomNum).remove();
+})
 
 $("#removeClass").click(function () {
 	$('#sidebar_secondary').removeClass('popup-box-on');
@@ -56,16 +74,13 @@ function openSocket(roomNum){
         }
         let date = new Date();
 		writeResponse(chat_message_right,contents,date);
-		$.ajax({
-			url:'/chat/updateMemberRead',
-			type:'post',
-			data:{
-				'roomNum':roomNum
-			},
-			success:(res)=>{
+		updateMemberRead(roomNum);
 
-			}
-		})
+        if(contents.length > 40){
+            contents = contents.substring(0,40);
+            contents+="...";
+        }
+        $('#contents' + roomNum).html(contents);
 	};
 	
 	ws.onclose = function(event){
@@ -123,4 +138,16 @@ function pressEnter(event){
     if(event.keyCode == 13){
         send();
     }
+}
+function updateMemberRead(roomNum){
+    $.ajax({
+        url:'/chat/updateMemberRead',
+        type:'post',
+        data:{
+            'roomNum':roomNum
+        },
+        success:(res)=>{
+
+        }
+    })
 }

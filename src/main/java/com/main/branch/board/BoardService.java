@@ -47,11 +47,8 @@ public class BoardService {
 		for(BoardDTO boardDTO : boardDTOs) {
 			String contents = boardDTO.getBoardContents();
 			contents = Parser.html2text(contents);
-			if(contents.length() > 40) {
-				contents = contents.substring(0, 40);
-				contents += "...";
-				boardDTO.setBoardContents(contents);
-			}
+			contents = Parser.longStringToShort(contents);
+			boardDTO.setBoardContents(contents);
 		}
 		return boardDTOs;
 	}
@@ -61,11 +58,8 @@ public class BoardService {
 		for(BoardDTO boardDTO : boardDTOs) {
 			String contents = boardDTO.getBoardContents();
 			contents = Parser.html2text(contents);
-			if(contents.length() > 40) {
-				contents = contents.substring(0, 40);
-				contents += "...";
-				boardDTO.setBoardContents(contents);
-			}
+			contents = Parser.longStringToShort(contents);
+			boardDTO.setBoardContents(contents);
 		}
 		return boardDTOs;
 	}
