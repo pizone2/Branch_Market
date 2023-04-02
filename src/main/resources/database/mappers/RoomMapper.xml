@@ -60,7 +60,7 @@
  	</delete>
  	<delete id="setQuitRoom" parameterType="MessageDTO">
  		DELETE MESSAGE
- 		WHERE roomNum = #{roomNum} AND ((isRead = -1 OR isRead = -2) AND sendId = #{sendId})
+ 		WHERE roomNum = #{roomNum} AND ((isRead = -1) AND sendId = #{sendId})
  	</delete>
  	<select id="checkRoomMember" parameterType="MessageDTO" resultType="MessageDTO">
  		SELECT * FROM MESSAGE WHERE roomNum = #{roomNum} AND sendId = #{sendId} AND isRead = #{isRead}

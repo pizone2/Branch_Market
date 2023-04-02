@@ -6,4 +6,11 @@ public class Parser {
 	public static String html2text(String html) {
 	    return Jsoup.parse(html).text();
 	}
+	public static String longStringToShort(String contents) {
+		if(contents.length() > 40) {
+			contents = contents.substring(0, 40);
+			contents += "...";
+		}
+		return contents;
+	}
 }

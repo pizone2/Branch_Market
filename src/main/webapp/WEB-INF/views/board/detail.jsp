@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Board Detail</title>
 <c:import url="../template/common_css.jsp"></c:import>
-<link rel="stylesheet" href="/resources/css/Whatsapp_Chat_Box_POPUP.css">
+<link rel="stylesheet" href="/resources/css/chat/chatPage.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
 </head>

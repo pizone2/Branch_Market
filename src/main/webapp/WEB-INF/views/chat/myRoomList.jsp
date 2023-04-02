@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../template/common_css.jsp"></c:import>
-<link rel="stylesheet" href="/resources/css/chat/myRoomList.css">
+<link rel="stylesheet" href="/resources/css/chat/chatPage.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
 </head>
@@ -38,44 +38,46 @@
                         <div class="inbox-message">
                             <ul>
 								<c:forEach items="${roomDTOs}" var="dto">
-									<li>
-										<%-- <h5>채팅방 번호 ${dto.roomNum}</h5>
-										<h5>채팅방 제목 <a href="./room/${dto.roomNum}">${dto.roomTitle}</a></h5>
-										<h5>안 읽은 메세지 수 ${dto.unReadCnt}</h5>
-										<button class="enterChatBtn" data-roomNum="${dto.roomNum}">채팅하기</button> --%>
-
-										<div class="message-avatar">
-											<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
-										</div>
-										<div class="message-body">
-											<div class="message-body-heading">
-												<h5>
-													<c:if test="${dto.isRead eq -3}">
-														<c:if test="${dto.sendId eq sessionScope.id }">
-															${dto.receiveId}
-														</c:if>
-														<c:if test="${dto.sendId ne sessionScope.id }">
-															${dto.sendId}
-														</c:if>
-													</c:if>
-													<c:if test="${dto.isRead eq -1}">
-														${dto.roomTitle}
-													</c:if>
-													
-													<c:if test="${dto.unReadCnt ne 0}">
-														<span class="unread">Unread ${dto.unReadCnt}</span>
-													</c:if>
-												</h5>
-												
-												<span>
-													7 hours ago
-													<div><button class="enterChatBtn" data-roomNum="${dto.roomNum}">채팅하기</button></div>
-												</span>
-												
+									<c:if test="${dto.contents ne null}">
+										<li style="height: 100px;" id="chatList${dto.roomNum}">
+											<%-- <h5>채팅방 번호 ${dto.roomNum}</h5>
+											<h5>채팅방 제목 <a href="./room/${dto.roomNum}">${dto.roomTitle}</a></h5>
+											<h5>안 읽은 메세지 수 ${dto.unReadCnt}</h5>
+											<button>채팅하기</button> --%>
+	
+											<div class="message-avatar">
+												<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
 											</div>
-											<p>최근 메세지 가져오기</p>
-										</div>
-									</li>
+											<div class="message-body">
+												<div class="message-body-heading">
+													<h5>
+														<c:if test="${dto.isRead eq -3}">
+															<c:if test="${dto.sendId eq sessionScope.id }">
+																${dto.receiveId}
+															</c:if>
+															<c:if test="${dto.sendId ne sessionScope.id }">
+																${dto.sendId}
+															</c:if>
+														</c:if>
+														<c:if test="${dto.isRead eq -1}">
+															${dto.roomTitle}
+														</c:if>
+														
+														<c:if test="${dto.unReadCnt ne 0}">
+															<span class="unread">Unread ${dto.unReadCnt}</span>
+														</c:if>
+													</h5>
+													
+													<span>
+														7 hours ago
+														<div><button class="enterChatBtn" data-roomNum="${dto.roomNum}">채팅하기</button></div>
+														<div><button class="quitChatBtn" data-roomNum="${dto.roomNum}">나가기</button></div>
+													</span>
+												</div>
+												<p id="contents${dto.roomNum}">${dto.contents}</p>
+											</div>
+										</li>
+									</c:if>
 								</c:forEach>
                             </ul>
                         </div>
