@@ -1,6 +1,9 @@
 package com.main.branch.chat;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -123,6 +126,7 @@ public class RoomController {
 		
 		// 메세지 뿌리기
 		List<MessageDTO> messageDTOs = roomService.getRoomMessageList(messageDTO);
+		
 		modelAndView.addObject("messageDTOs", messageDTOs);
 		modelAndView.setViewName("/common/roomMessageList");
 		

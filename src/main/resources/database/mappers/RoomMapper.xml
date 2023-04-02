@@ -14,12 +14,14 @@
  		ORDER BY sendDate
  	</select>
  	<select id="getMyRoomList" parameterType="MemberDTO" resultType="RoomDTO">
- 		SELECT * FROM ROOM 
- 		WHERE roomNum IN (
- 			SELECT distinct(roomNum) FROM message 
-		 		WHERE (sendId = #{memberId} OR receiveId = #{memberId}) 
-		 		AND (isRead = -1 OR isRead = -2))
- 		AND roomTitle LIKE '%' || #{search} || '%'
+ 		SELECT * FROM MESSAGE M
+ 			JOIN ROOM R ON M.roomNum = R.roomNum 
+	 		WHERE M.roomNum IN (
+		 		SELECT distinct(roomNum) FROM ROOM 
+		 		WHERE roomTitle LIKE '%' || #{search} || '%'
+	 		) 
+ 			AND (M.sendId = #{memberId} OR M.receiveId = #{memberId}) 
+			AND (M.isRead = -1 OR M.isRead = -3)
  	</select>
  	
  	<select id="getRoomParticipantsList" parameterType="RoomDTO" resultType="MessageDTO">

@@ -1,8 +1,8 @@
 $(".enterChatBtn").click(function (e) {
+    console.log(e.target);
 	$('#sidebar_secondary').addClass('popup-box-on');
     let roomNum = $(e.target).attr('data-roomNum');
     $('#datas').attr('data-roomNum',roomNum);
-
     // 메세지 불러오기
     $.ajax({
         url:'/chat/getRoomMessageList',
@@ -15,6 +15,9 @@ $(".enterChatBtn").click(function (e) {
             $('#messageList').html(res);
         }
     })
+    $('.unread').remove();
+    updateMemberRead(roomNum);
+    
     // 웹 소켓 연결하기
     openSocket(roomNum);
 });
@@ -56,16 +59,7 @@ function openSocket(roomNum){
         }
         let date = new Date();
 		writeResponse(chat_message_right,contents,date);
-		$.ajax({
-			url:'/chat/updateMemberRead',
-			type:'post',
-			data:{
-				'roomNum':roomNum
-			},
-			success:(res)=>{
-
-			}
-		})
+		updateMemberRead(roomNum);
 	};
 	
 	ws.onclose = function(event){
@@ -123,4 +117,16 @@ function pressEnter(event){
     if(event.keyCode == 13){
         send();
     }
+}
+function updateMemberRead(roomNum){
+    $.ajax({
+        url:'/chat/updateMemberRead',
+        type:'post',
+        data:{
+            'roomNum':roomNum
+        },
+        success:(res)=>{
+
+        }
+    })
 }
