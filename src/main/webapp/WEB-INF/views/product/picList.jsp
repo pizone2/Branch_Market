@@ -64,12 +64,12 @@
                                     <td class="shoping__cart__price">
                                         <fmt:formatNumber value="${dto.productPrice}" pattern="#,###"/>원
                                     </td>
-									<c:if test="${checkPic eq 1}">
-										<td class="shoping__cart__item__close">
-											<span class="icon_close" type="submit" id="picDelete">
+									
+										<td class="shoping__cart__item__close" id="picDelete">
+											<span class="icon_close" type="submit" >
 											</span>
 										</td> 
-									</c:if>
+									
                                 </tr>
 							</c:forEach> 
 						</tbody>

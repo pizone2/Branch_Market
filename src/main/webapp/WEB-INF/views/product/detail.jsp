@@ -116,7 +116,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title related__product__title">
-                        <h2>Related Product</h2>
+                        <h2>관련 위탁 상품</h2>
                     </div>
                 </div>
             </div>
@@ -199,8 +199,8 @@
 		  <textarea name="" id="inputData" cols="30" rows="10"></textarea>
 		</div>
 		<div class="modal-footer">
-		  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="submitFormClose">Close</button>
-		  <button type="button" class="btn btn-primary" id="submitDataBtn">Save changes</button>
+		  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="submitFormClose">취소</button>
+		  <button type="button" class="btn btn-primary" id="submitDataBtn">확인</button>
 		</div>
 	  </div>
 	</div>
