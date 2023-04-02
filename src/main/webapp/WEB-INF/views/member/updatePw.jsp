@@ -55,7 +55,7 @@
                             <!-- <p>ADDRESS<span>*</span></p> -->
                             <input  type="password" name="checkMemberPw" id="checkMemberPw" placeholder="변경 할 비밀번호를 확인." class="checkout__input__add">
                             <div id = "checkMemberPwMsg"></div>
-                            <button type="button" class="site-btn" id="btn">변경하기</button>                                                     
+                            <button type="submit" class="site-btn" id="btn">변경하기</button>                                                     
                         </div>                                                                            
                     </div>
                 </div>                    
@@ -70,7 +70,7 @@
 
 
 
-
+<!-- 
  //이벤트 아이디 바꾸기
     <form action="./updatePw" method="post" id="updateForm">
         현재 비밀번호 입력<input type="password" name="memberPw">
@@ -78,8 +78,8 @@
         <div id = "changeMemberPwMsg"></div>
         변경 할 비밀번호 확인<input type="password" name="checkMemberPw" id="checkMemberPw">
         <div id = "checkMemberPwMsg"></div>
-        <input type="button" value="변경하기" id="btn">
-    </form>
+        <input type="submit" value="변경하기" id="btn">
+    </form> -->
 	
 	<script src="/resources/js/member/add.js"></script>
      <c:import url="../template/footer.jsp"></c:import>
