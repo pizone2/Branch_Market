@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,9 +44,13 @@
                 </div>
                 <div class="product_details col-lg-6 col-md-6">
                     <div class="product__details__text">
-                        <h3>${dto.productTitle}</h3>
-                        <div class="product__details__price">${dto.productPrice}원</div>
-                        <p>상품 상태 : ${dto.productQ}</p>
+                        <h3 >${dto.productTitle}</h3>
+                        <div class="product__details__price mb-3 mt-3">
+							<fmt:formatNumber value="${dto.productPrice}" pattern="#,###"/>원
+						</div>
+                        <div class="mt-3">
+							<p>상품 품질 : ${dto.productQ}</p>
+						</div>
                         <div class="co1-8">
                             <a href="../product/picList" class="btn-icon btn btn-success">구매</a>
 							<c:if test="${checkPic eq 0}">
@@ -55,16 +60,6 @@
 								<a href="#" class="heart-icon"><i class="icon-heart fa fa-shopping-cart" type="submit" id="picDelete"></i></a>
 							</c:if>
                         </div>
-
-						<!-- <div class="col">
-							<c:if test="${checkPic eq 0}">
-								<button type="submit" class="btn btn-outline-success col-3" id="picAdd" data-product-productNum="${dto.productNum}">장바구니에 추가</button>
-							</c:if>
-							<c:if test="${checkPic eq 1}">
-								<button type="submit" class="btn btn-outline-danger col-3" id="picDelete">장바구니에서 삭제</button>
-							</c:if>
-						</div>
-					</div> -->
                         
 					<div class="product__details__pic__slider owl-carousel my-5">
 						<img data-imgbigurl="${dto.productDetail}"
