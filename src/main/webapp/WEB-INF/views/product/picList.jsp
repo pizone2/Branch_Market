@@ -37,7 +37,7 @@
                                 <tr>                                    
                                     <th class="shoping__product">
                                         <label>
-                                            <input type="checkbox" id="cbx_chkAll" onclick="checkAll()">
+                                            <input type="checkbox" id="chkAll" onclick="checkAll()">
                                             <span class="product-name">위탁 상품</span>
                                         </label>
                                     </th>
@@ -47,10 +47,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-								<c:forEach items="${productDTOs}" var="dto">
+								<c:forEach items="${productDTOs}" var="dto" varStatus="i">
                                 <tr>
                                     <td class="shoping__cart__item" >
-                                        <input type="checkbox" id="acc" name="chk"> 
+                                        <input type="checkbox" id="acc" class="chk" data-price = ${dto.productPrice} data-productNum = ${dto.productNum} data-productCount = ${productDTOs.size()}> 
                                         <h8>&nbsp;</h8>   
                                                                                                             
                                         <img src="${dto.productImgName}" alt="" style="width: 200px; height: 200px;">
@@ -89,8 +89,8 @@
                     <div class="shoping__checkout">
                         <!-- <h5>장바구니 </h5> -->
                         <ul>                           
-                            <li>총 주문금액 <span id="totalPrice"></span>원</li>
-                        </ul>
+                            <li>총 주문금액 <span id="totalPrice"></span></li>
+                        </ul><span>원</span>
                         <a href="#" class="primary-btn">주문하기</a>
                     </div>
                 </div>
