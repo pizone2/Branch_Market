@@ -33,7 +33,7 @@ public class InquiryController {
 		return modelAndView;
 	}
 	
-	// ---------------- 리스트 가져오기
+	// ---------------- 리스트 가져오기 ajax
 	@GetMapping("/list")
 	public ModelAndView getInquiryList(Pager pager) {
 		ModelAndView modelAndView = new ModelAndView();
