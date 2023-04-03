@@ -2,7 +2,78 @@
     pageEncoding="UTF-8"%>
   <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
   
-  <table class="table table-success">
+  <div class="container mt-5">
+
+	<div class="row  d-flex justify-content-center">
+
+		<div class="col-md-10">
+
+			<!-- <div class="headings d-flex justify-content-between align-items-center mb-3">
+				<h5>Unread comments(6)</h5>
+			</div> -->
+			<div class="input-group mb-3">
+				<input type="text" class="form-control" placeholder="댓글을 작성해주세요" aria-label="Recipient's username" id="inqCommentsContents" aria-describedby="button-addon2">
+				<button class="btn btn-outline-secondary" type="button" id="submitBtn">등록</button>
+			</div>
+			
+			<c:forEach items="${inqCommentsDTOs}" var="inqCommentsDTO" varStatus="i">
+				<div class="card p-3 ${i.first ? 'mt-2' : ''}">
+					<div class="d-flex justify-content-between align-items-center">
+				<div class="user d-flex flex-row align-items-center">
+					<img src="https://i.imgur.com/hczKIze.jpg" width="30" class="user-imgs rounded-circle mr-2">
+					<span><small class="font-weight-bold comments-name">${inqCommentsDTO.memberId}</small> <small class="font-weight-bold">
+						<h5 id="inqCommentsContents${inqCommentsDTO.inqCommentsNum}">${inqCommentsDTO.inqCommentsContents}</h5>
+					</small></span>                    
+				</div>
+				</div>
+				<div class="action d-flex justify-content-between mt-2 align-items-center">
+					<div class="reply px-4">
+						<span class="dots"></span>
+						<small class="" data-toggle="modal" data-target="#ModalCommentsUpdateForm" data-update-inqCommentsNum="${inqCommentsDTO.inqCommentsNum}">
+                            수정
+                        </small>
+						<span class="dots"></span>
+						<small type="button" data-delete-inqCommentNum="${inqCommentsDTO.inqCommentsNum}">삭제</small>              
+					</div>                   
+				</div>
+				</div>
+			</c:forEach>         
+		</div>            
+	</div>        
+</div>
+
+
+
+<!-- 댓글 수정 모달 -->
+<div id="ModalCommentsUpdateForm" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+			<div class="modal-header">
+				<h3 class="modal-title fs-5" id="exampleModalLabel">댓글 수정하기</h3>
+			</div>
+            <div class="modal-body">
+				<div class="form-group">
+					<label class="control-label">댓글 내용</label>
+					<div>
+						<input type="text" class="form-control input-lg" value="" id="updateContents">
+					</div>
+				</div>
+            </div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-success modalModBtn"  data-comment-num="" id="updateSaveBtn" onclick="location.reload()">
+					수정
+				</button>
+				<button type="button" class="btn btn-default pull-left" data-bs-dismiss="modal" id="updateModalCloseBtn" onclick="location.reload()" >
+					닫기
+				</button>
+			</div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<!-- -------------------------------------------------------------------- -->
+  <!-- <table class="table table-success">
 	<thead>
 	  <tr>
 		<th scope="col">글내용</th>
@@ -20,10 +91,10 @@
 				</tr>
 			</c:forEach>
 	</tbody>
-  </table>
+  </table> -->
   
 		  <!-- pagining -->
-			<div class = "row" id="pagining">
+			<!-- <div class = "row" id="pagining">
 					   <nav aria-label="Page navigation example">
 						<ul class="pagination">
 							<li class="page-item" data-page="1">
@@ -54,10 +125,10 @@
 						  </li>
 						</ul>
 					  </nav>
-			  </div>
+			  </div> -->
 				  
 				  <!-- 검색창 -->
-				  <div class = "row">
+				  <!-- <div class = "row">
 						<input type="hidden" name="page" id="page">
 						<input type="hidden" name="category" id="category" value="${pager.category}">
 
@@ -76,7 +147,7 @@
 						<div class="col-auto">
 							<button type="submit" class="btn btn-primary mb-3" id="searchBtn">검색</button>
 						</div>
-				  </div>
+				  </div> -->
 
 
   

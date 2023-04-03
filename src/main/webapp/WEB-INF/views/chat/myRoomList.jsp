@@ -64,12 +64,11 @@
 														</c:if>
 														
 														<c:if test="${dto.unReadCnt ne 0}">
-															<span class="unread">Unread ${dto.unReadCnt}</span>
+															<span id="unread${dto.roomNum}" class="unread">Unread ${dto.unReadCnt}</span>
 														</c:if>
 													</h5>
 													
 													<span>
-														7 hours ago
 														<div><button class="enterChatBtn" data-roomNum="${dto.roomNum}">채팅하기</button></div>
 														<div><button class="quitChatBtn" data-roomNum="${dto.roomNum}">나가기</button></div>
 													</span>
@@ -113,7 +112,7 @@
 			<div>
 				<!-- 헤드 부분 -->
 				<aside id="sidebar_secondary" class="tabbed_sidebar ng-scope chat_sidebar bg-success-subtle">
-					<div class="popup-head">
+					<div class="popup-head" id="messageHead">
 						<div class="popup-head-left pull-left"><a Design and Developmenta
 								title="Gurdeep Osahan (Web Designer)" target="_blank"
 								href="https://web.facebook.com/iamgurdeeposahan">

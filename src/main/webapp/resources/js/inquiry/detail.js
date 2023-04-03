@@ -40,7 +40,7 @@ function getCommentList(page, kind, search,inquiryNum){
 getCommentList(1,"","",inquiryNum);
 
 // ---------------------------- 댓글 추가
-$('#submitBtn').click(()=>{
+$('#commentsList').on('click','#submitBtn',(e)=>{
     $.ajax({
         url:'/inqComments/add',
         type:'post',
@@ -60,15 +60,17 @@ $('#submitBtn').click(()=>{
         }
     })
 })
+
 // ------------------- 댓글 수정
-$('#commentsList').on('click','input[data-update-inqCommentsNum]',(e)=>{
+$('#commentsList').on('click','small[data-update-inqCommentsNum]',(e)=>{
+    console.log(e.target);
     let inqCommentsNum = $(e.target).attr('data-update-inqCommentsNum');
     $('#datas').attr('data-inqCommentsNum',inqCommentsNum);
 
     let contents = $('#inqCommentsContents' + inqCommentsNum).html();
     $('#updateContents').val(contents);
 })
-$('#updateSaveBtn').click(()=>{
+$('#commentsList').on('click','#updateSaveBtn',()=>{
     $.ajax({
         url:'/inqComments/update',
         type:'post',
@@ -89,7 +91,7 @@ $('#updateSaveBtn').click(()=>{
     })
 })
 // ----------------- 삭제하기
-$('#commentsList').on('click','input[data-delete-inqCommentNum]',(e)=>{
+$('#commentsList').on('click','small[data-delete-inqCommentNum]',(e)=>{
     let inqCommentsNum = $(e.target).attr('data-delete-inqCommentNum');
     $('#datas').attr('data-inqCommentsNum',inqCommentsNum);
 
