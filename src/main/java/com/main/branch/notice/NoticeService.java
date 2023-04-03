@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.main.branch.member.MemberDTO;
 import com.main.branch.util.Pager;
+import com.main.branch.util.Parser;
 
 @Service
 public class NoticeService {
@@ -46,4 +47,17 @@ public class NoticeService {
 	public int setNoticeUpdate(NoticeDTO noticeDTO) {
 		return noticeDAO.setNoticeUpdate(noticeDTO);
 	}
+	public List<NoticeDTO> getNoticeTopList(){
+		List<NoticeDTO> noticeDTOs = noticeDAO.getNoticeTopList();
+		for(NoticeDTO dto : noticeDTOs) {
+			dto.setNoticeContents(Parser.html2text(dto.getNoticeContents()));
+			if(dto.getNoticeContents().length() > 40) {
+				String contents = dto.getNoticeContents().substring(0, 40);
+				contents += "...";
+				dto.setNoticeContents(contents);
+			}
+		}
+		return noticeDTOs;
+	}
+	
 }

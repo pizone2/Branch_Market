@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,64 +11,163 @@
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
+
 <link rel="stylesheet" href="/resources/css/review/review.css">
 <div class="container-fluid my-5">
 	<div id="datas" data-productNum = "${dto.productNum}"></div>
 	
-	<div class="row mb-4 ">
-		<h1 class="col-md-7 mx-auto text-center border-bottom border-dark pb-4">위탁상품 상세 정보 페이지</h1>
-	</div>
-	
-	<div class="row col-md-7 mx-auto">
-		<div class="row">
-			<div class="input-group mb-3 col">
-			  <span class="input-group-text">제목</span>
-			  <input type="text" readonly class="form-control" id="productTitle" value="${dto.productTitle}">
-			</div>
-			<div class="col">
-				<c:if test="${checkPic eq 0}">
-					<button type="submit" class="btn btn-outline-success col-3" id="picAdd" data-product-productNum="${dto.productNum}">장바구니에 추가</button>
-				</c:if>
-				<c:if test="${checkPic eq 1}">
-					<button type="submit" class="btn btn-outline-danger col-3" id="picDelete">장바구니에서 삭제</button>
-				</c:if>
-			</div>
-		</div>
-			
-		<div class="row">
-			<div class="input-group mb-3 col">
-				<span class="input-group-text">카테고리</span>
-				<input type="text" readonly class="form-control" id="productCategory" value="${dto.productCategory}">
-			</div>
-		</div>
+	<!-- Hero Section Begin -->
+    <section class="hero hero-normal">
+        <div class="container">
+            <div class="row">
+                
+                <div class="col-lg-12">
+
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Hero Section End -->
+    <!-- Product Details Section Begin -->
+    <section class="product-details spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="product__details__pic">
+                        <div class="product__details__pic__item">
+                            <img class="product__details__pic__item--large"
+                                src="${dto.productImgName}" alt="">
+                        </div>
+                        
+                    </div>
+                </div>
+                <div class="product_details col-lg-6 col-md-6">
+                    <div class="product__details__text">
+                        <h3 >${dto.productTitle}</h3>
+                        <div class="product__details__price mb-3 mt-3">
+							<fmt:formatNumber value="${dto.productPrice}" pattern="#,###"/>원
+						</div>
+                        <div class="mt-3">
+							<p>상품 품질 : ${dto.productQ}</p>
+						</div>
+                        <div class="co1-8">
+                            <a href="../product/picList" class="btn-icon btn btn-success">구매</a>
+							<c:if test="${checkPic eq 0}">
+								<a href="#" class="heart-icon"><i class="icon-heart fa fa-shopping-cart" type="submit" id="picAdd" data-product-productNum="${dto.productNum}"></i></a>
+							</c:if>
+							<c:if test="${checkPic eq 1}">
+								<a href="#" class="heart-icon"><i class="icon-heart fa fa-shopping-cart" type="submit" id="picDelete"></i></a>
+							</c:if>
+                        </div>
+                        
+					<div class="product__details__pic__slider owl-carousel my-5">
+						<img data-imgbigurl="${dto.productDetail}"
+							src="" alt="">
+					</div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="product__details__tab">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                                <div class="product__details__tab__desc">
+                                    <table class="table">
+                                        <thead class="table-success">
+                                            <tr>
+                                                <th scope="col">번호</th>
+                                                <th scope="col">닉네임</th>
+                                                <th scope="col">내용</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>Mark</td>
+                                                <td>내용1</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="input-group mb-3">
+                                        <input type="text" class="form-control" placeholder="리뷰를 작성해주세요"aria-describedby="button-add">
+                                        <button class="btn btn-success" type="button" id="button-add">등록</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="list">
+        <!--권한을 가지고 있는 사람만 보임 -->
+        <button class="form-update btn btn-info"><a href="./update?productNum=${dto.productNum}">수정</a></button>
+        <button class="form-delete btn btn-danger"><a href="./delete?productNum=${dto.productNum}" id="delete">삭제</a></button>
 		
-		<div class="input-group">
-			<div class="input-group">
-				<span class="input-group-text">내용</span>
-				<span name="productDetail" readonly class="form-control" id="productDetail" rows="5" th:utext>${dto.productDetail}</span>
-		</div>
-		
-		<div class="input-group mb-3 col">
-			<span class="input-group-text">상품 품질</span>
-			<input type="text" readonly class="form-control" id="productQ" value="${dto.productQ}">
-		</div>
-		
-		<div class="input-group mb-3 col">
-			<span class="input-group-text">상품 가격</span>
-			<input type="text" readonly class="form-control" id="productPrice" value="${dto.productPrice}원">
-		</div>
-	    
-	<div class="row col-md-7 mx-auto my-4 justify-content-center">
-		<a href="./delete?productNum=${dto.productNum}" class="btn btn-outline-danger col-3" id="delete">상품 삭제</a>
-		<a href="./update?productNum=${dto.productNum}" class="btn btn-outline-success col-3 mx-2">상품 수정</a>
-		<a href="./list" class="btn btn-success col-3">목록으로</a>
-	</div>	
+        <!--모든 사람에게 보임 -->
+        <button class="form-list btn btn-success"><a href="./list">목록으로</a></button>
+    </div>
+    <!-- Product Details Section End -->
+
+    <!-- Related Product Section Begin -->
+    <section class="related-product">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title related__product__title">
+                        <h2>관련 위탁 상품</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="img/kong.jpg"></div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Crab Pool Security</a></h6>
+                            <h5>$30.00</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="img/kong2.jpg"></div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Crab Pool Security</a></h6>
+                            <h5>$30.00</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="img/kong3.jpg"></div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Crab Pool Security</a></h6>
+                            <h5>$30.00</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="img/kong5.jpg"></div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Crab Pool Security</a></h6>
+                            <h5>$30.00</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Related Product Section End -->
+
 </div>
 </div>
 </div>
 
-<input type="button" value="리뷰 작성" id="reviewAddBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-<div id="reviewList"></div>
+<!-- <input type="button" value="리뷰 작성" id="reviewAddBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+<div id="reviewList"></div> -->
 
   
   <!-- Modal -->
@@ -99,8 +199,8 @@
 		  <textarea name="" id="inputData" cols="30" rows="10"></textarea>
 		</div>
 		<div class="modal-footer">
-		  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="submitFormClose">Close</button>
-		  <button type="button" class="btn btn-primary" id="submitDataBtn">Save changes</button>
+		  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="submitFormClose">취소</button>
+		  <button type="button" class="btn btn-primary" id="submitDataBtn">확인</button>
 		</div>
 	  </div>
 	</div>
@@ -117,11 +217,11 @@ del.addEventListener("click", function(){
         frm.setAttribute("method","post");
         frm.submit();
     }
-
 })
 </script>
 <script src="/resources/js/product/productPic.js"></script>
 <script src="/resources/js/product/detail.js"></script>
-<c:import url="../template/common_js.jsp" ></c:import>
+<c:import url="../template/common_js.jsp"></c:import>
+<c:import url="../template/footer.jsp"></c:import>
 </body>
 </html>

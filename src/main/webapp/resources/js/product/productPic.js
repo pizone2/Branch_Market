@@ -27,3 +27,17 @@ $('#picDelete').click(()=>{
         }
     })
 })
+
+ 
+
+function checkAll() {
+    var checkboxes = document.getElementsByName('chk');
+    var totalPrice = 0;
+    for (var i = 0; i < checkboxes.length; i++) {
+      checkboxes[i].checked = document.getElementById('cbx_chkAll').checked;
+      if (checkboxes[i].checked) {
+        totalPrice += parseInt(checkboxes[i].parentNode.nextSibling.textContent.replace(",", ""));
+      }
+    }
+    document.getElementById('totalPrice').textContent = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  }

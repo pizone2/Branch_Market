@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.main.branch.member.MemberDTO;
 import com.main.branch.util.Pager;
+import com.main.branch.util.Parser;
 
 @Service
 public class BoardService {
@@ -40,10 +41,28 @@ public class BoardService {
 	public int setBoardUpdate(BoardDTO boardDTO) throws Exception{
 		return boardDAO.setBoardUpdate(boardDTO);
 	}
-	public List<BoardDTO> getBoardTopList()throws Exception{
-		return boardDAO.getBoardTopList();
+	public List<BoardDTO> getBoardSellTopList()throws Exception{
+		List<BoardDTO> boardDTOs = boardDAO.getBoardSellTopList();
+		
+		for(BoardDTO boardDTO : boardDTOs) {
+			String contents = boardDTO.getBoardContents();
+			contents = Parser.html2text(contents);
+			contents = Parser.longStringToShort(contents);
+			boardDTO.setBoardContents(contents);
+		}
+		return boardDTOs;
 	}
-	
+	public List<BoardDTO> getBoardBuyTopList()throws Exception{
+		List<BoardDTO> boardDTOs = boardDAO.getBoardBuyTopList();
+		
+		for(BoardDTO boardDTO : boardDTOs) {
+			String contents = boardDTO.getBoardContents();
+			contents = Parser.html2text(contents);
+			contents = Parser.longStringToShort(contents);
+			boardDTO.setBoardContents(contents);
+		}
+		return boardDTOs;
+	}
 	//-----------------------------
 	public int SetBoardPicAdd(BoardPicDTO boardPicDTO) throws Exception{
 		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("member");

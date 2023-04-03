@@ -2,38 +2,62 @@ package com.main.branch;
 
 import java.text.DateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
-/**
- * Handles requests for the application home page.
- */
+import com.main.branch.board.BoardDAO;
+import com.main.branch.board.BoardDTO;
+import com.main.branch.board.BoardService;
+import com.main.branch.event.EventDAO;
+import com.main.branch.event.EventDTO;
+import com.main.branch.notice.NoticeDAO;
+import com.main.branch.notice.NoticeDTO;
+import com.main.branch.notice.NoticeService;
+import com.main.branch.product.ProductDAO;
+import com.main.branch.product.ProductDTO;
+
 @Controller
 public class HomeController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	@Autowired
+	private NoticeService noticeService;
+	@Autowired
+	private EventDAO eventDAO;
+	@Autowired
+	private ProductDAO productDAO;
+	@Autowired
+	private BoardService boardService;
 	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+	public ModelAndView home() throws Exception {
+		ModelAndView modelAndView = new ModelAndView();
 		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		List<NoticeDTO> noticeTopDTOs = noticeService.getNoticeTopList();
+		modelAndView.addObject("noticeTopDTOs", noticeTopDTOs);
 		
-		String formattedDate = dateFormat.format(date);
+		List<EventDTO> eventDTOs = eventDAO.getEventList();
+		modelAndView.addObject("eventDTOs", eventDTOs);
 		
-		model.addAttribute("serverTime", formattedDate );
+		List<ProductDTO> productDTOs = productDAO.getProductTopList();
+		modelAndView.addObject("productDTOs", productDTOs);
 		
-		return "home";
+		List<BoardDTO> boardSellTopDTOs = boardService.getBoardSellTopList();
+		modelAndView.addObject("boardSellTopDTOs", boardSellTopDTOs);
+		
+		List<BoardDTO> boardBuyTopDTOs = boardService.getBoardBuyTopList();
+		modelAndView.addObject("boardBuyTopDTOs", boardBuyTopDTOs);
+		
+		modelAndView.setViewName("/home");
+		return modelAndView;
 	}
 	
 }

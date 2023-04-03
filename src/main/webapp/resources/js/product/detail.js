@@ -112,10 +112,6 @@ $('#reviewList').on('click','.page-link',(e)=>{
 
 
 
-
-
-
-
 // -----------------------------------------
 // star rating
 var starRating = function(){

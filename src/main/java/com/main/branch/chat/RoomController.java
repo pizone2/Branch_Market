@@ -1,6 +1,9 @@
 package com.main.branch.chat;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -55,6 +58,7 @@ public class RoomController {
 		pager.setMemberId(memberDTO.getMemberId());
 		
 		List<RoomDTO> roomDTOs = roomService.getMyRoomList(pager);
+		
 		
 		// 방 별로 읽지읺는 메세지 수
 		roomService.setUnreadMessageCnt(roomDTOs);
@@ -123,6 +127,7 @@ public class RoomController {
 		
 		// 메세지 뿌리기
 		List<MessageDTO> messageDTOs = roomService.getRoomMessageList(messageDTO);
+		
 		modelAndView.addObject("messageDTOs", messageDTOs);
 		modelAndView.setViewName("/common/roomMessageList");
 		

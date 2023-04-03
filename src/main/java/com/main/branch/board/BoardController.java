@@ -120,14 +120,14 @@ public class BoardController {
 		
 		return modelAndView;
 	}
-	@GetMapping("/getTopList")
-	public ModelAndView getBoardTopList(Pager pager)throws Exception{
-		ModelAndView modelAndView = new ModelAndView();
-		List<BoardDTO> boardDTOs = boardService.getBoardTopList();
-		modelAndView.addObject("boardDTOs", boardDTOs);
-		modelAndView.setViewName("/board/topList");
-		return modelAndView;
-	}
+//	@GetMapping("/getTopList")
+//	public ModelAndView getBoardTopList(Pager pager)throws Exception{
+//		ModelAndView modelAndView = new ModelAndView();
+//		List<BoardDTO> boardDTOs = boardService.getBoardTopList();
+//		modelAndView.addObject("boardDTOs", boardDTOs);
+//		modelAndView.setViewName("/board/topList");
+//		return modelAndView;
+//	}
 	
 	
 	//-------------------------

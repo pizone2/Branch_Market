@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.main.branch.member.MemberDTO;
 import com.main.branch.util.Pager;
+import com.main.branch.util.Parser;
 
 @Service
 public class RoomService {
@@ -60,10 +61,21 @@ public class RoomService {
 	public List<RoomDTO> getMyRoomList(Pager pager){
 		// 내가 들어간 채팅 리스트의 pk를 가져옴
 		List<RoomDTO> roomDTOs = roomDAO.getMyRoomList(pager); 
-		// pk가지고 조회해서 가져옴
-		for(int i = 0; i< roomDTOs.size();i++) {
-			roomDTOs.set(i, roomDAO.getRoomDetail(roomDTOs.get(i)));
+		
+		// 최근 메세지 세팅
+		for(RoomDTO roomDTO : roomDTOs) {
+			MessageDTO messageDTO = new MessageDTO();
+			messageDTO.setRoomNum(roomDTO.getRoomNum());
+			List<MessageDTO> messageDTOs = getRoomMessageList(messageDTO);
+			
+			if(messageDTOs.size() > 0) {
+				roomDTO.setContents(Parser.longStringToShort(messageDTOs.get(messageDTOs.size() - 1).getContents()));
+			}
 		}
+		// pk가지고 조회해서 가져옴
+//		for(int i = 0; i< roomDTOs.size();i++) {
+//			roomDTOs.set(i, roomDAO.getRoomDetail(roomDTOs.get(i)));
+//		}
 		return roomDTOs; 
 	}
 	

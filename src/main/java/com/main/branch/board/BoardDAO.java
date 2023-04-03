@@ -41,8 +41,11 @@ public class BoardDAO {
 	public int setBoardHitAdd(BoardDTO boardDTO)throws Exception{
 		return sqlSession.update(NAMESPACE + "setBoardHitAdd", boardDTO);
 	}
-	public List<BoardDTO> getBoardTopList()throws Exception{
-		return sqlSession.selectList(NAMESPACE + "getBoardTopList", NAMESPACE);
+	public List<BoardDTO> getBoardSellTopList()throws Exception{
+		return sqlSession.selectList(NAMESPACE + "getBoardSellTopList");
+	}
+	public List<BoardDTO> getBoardBuyTopList() throws Exception{
+		return sqlSession.selectList(NAMESPACE + "getBoardBuyTopList");
 	}
 	//----------------------------------
 	public int setBoardPicAdd(BoardPicDTO boardPicDTO) throws Exception{
