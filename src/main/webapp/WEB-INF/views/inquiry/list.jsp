@@ -82,6 +82,7 @@
 					  </ul>
 					</nav>
 			<!-- </div> -->
+			<h2>&nbsp</h2>
 				
 				<!-- 검색창 -->
 				<div class = "row">

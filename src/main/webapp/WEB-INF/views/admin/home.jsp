@@ -35,10 +35,10 @@
                 <div class="category-bar col-lg-3">         
                     
                 <div class="manager-list col-lg-2">
-                    <div class="mb-4">
+                    <div class="mb-3">
                         <button class="state-btn btn"><a href="./banner-update.html">이벤트 배너 수정</a></button>
                     </div>
-                    <div class="mb-4">
+                    <div class="mb-3">
                         <button class="state-btn btn"><a href="./memberList">회원정보 관리</a></button>
                     </div>
                     <div>
@@ -48,87 +48,7 @@
 
                 </div>
                 <div class="col-lg-9">
-                    <!-- @@@@@@@@@@@@@@@@@@@@@@@@@  위탁상품 신청 목록  @@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
-                
-                    <h2 class="mx-auto mb-4">위탁상품 신청 목록</h2>
-
-                    <table class="boardTable table table-hover">
-                        <thead class="table-success">
-                            <tr>
-                                <th>상품번호</th> <th>상품명</th> <th>카테고리</th> <th>이미지</th><th>상품가격</th><th>품질</th><th>등록여부</th> 
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="add-tr">
-                                <th scope="row">1</th>
-                                <td><a href="./board-details.html">목걸이</a></td>
-                                <td>여성패션</td>
-                                <td><img src="img/kong3.jpg" alt="" style="height: 100px; width: 120px;"></td>
-                                <td>20000</td>
-                                <td>
-                                    <div class="mb-3">
-                                    <select class="form-select" aria-label="Default select example" name="productQ" id="productQ${dto.productNum}">
-                                    <option selected>품질</option>
-                                    <option value="아주 좋음">아주 좋음</option>
-                                    <option value="좋음">좋음</option>
-                                    <option value="보통">보통</option>
-                                    <option value="나쁨">나쁨</option>
-                                    <option value="아주 나쁨">아주 나쁨</option>
-                                    </select>
-                                    </div>
-                                </td>
-                                <td>
-                                <button class="product-add-btn btn">등록</button>
-                                <button class="product-add-btn btn">삭제</button>
-                                </td>
-                            </tr>
-                            <tr class="add-tr">
-                                <th scope="row">1</th>
-                                <td><a href="./board-details.html">목걸이</a></td>
-                                <td>여성패션</td>
-                                <td><img src="img/kong3.jpg" alt="" style="height: 100px; width: 120px;"></td>
-                                <td>20000</td>
-                                <td>
-                                    <div class="mb-3">
-                                    <select class="form-select" aria-label="Default select example" name="productQ" id="productQ${dto.productNum}">
-                                    <option selected>품질</option>
-                                    <option value="아주 좋음">아주 좋음</option>
-                                    <option value="좋음">좋음</option>
-                                    <option value="보통">보통</option>
-                                    <option value="나쁨">나쁨</option>
-                                    <option value="아주 나쁨">아주 나쁨</option>
-                                    </select>
-                                    </div>
-                                </td>
-                                <td>
-                                <button class="product-add-btn btn">등록</button>
-                                <button class="product-add-btn btn">삭제</button>
-                                </td>
-                            </tr>
-                          
-                           
-
-                        </tbody>
-                    </table>
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination my-5">
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                            <li class="page-item"><a class="page-link" href="#">5</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+              
                     <style> 
                         h2{
                             text-align: center;
@@ -142,8 +62,8 @@
                         }
                     </style>
                     
-                    
-                    <div id="inquiryList"></div>
+                    <div id="productAddList"></div>
+                    <div id="inquiryList" class="mt-5"></div>
 
                
                 </div>
