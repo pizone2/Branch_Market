@@ -37,6 +37,7 @@ public class ProductService {
 	
 	public List<ProductDTO> getProductList(Pager pager) throws Exception{
 		
+		pager.setPerPage(12);
 		pager.makeNum(productDAO.getProductCount(pager));
 		pager.makeRow();
 		

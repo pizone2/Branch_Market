@@ -53,12 +53,14 @@
 						</div>
                         <div class="co1-8">
                             <a href="../product/picList" class="btn-icon btn btn-success">구매</a>
-							<c:if test="${checkPic eq 0}">
-								<a href="#" class="heart-icon"><i class="icon-heart fa fa-shopping-cart" type="submit" id="picAdd" data-product-productNum="${dto.productNum}"></i></a>
-							</c:if>
-							<c:if test="${checkPic eq 1}">
-								<a href="#" class="heart-icon"><i class="icon-heart fa fa-check" type="submit" id="picDelete"></i></a>
-							</c:if>
+                            <div id="picIcon">
+                                <c:if test="${checkPic eq 0}">
+                                    <a href="#" class="heart-icon" id="picAdd"><i class="icon-heart fa fa-shopping-cart" type="submit" data-product-productNum="${dto.productNum}"></i></a>
+                                </c:if>
+                                <c:if test="${checkPic eq 1}">
+                                    <a href="#" class="heart-icon" id="picDelete"><i class="icon-heart fa fa-check" type="submit"></i></a>
+                                </c:if>
+                             </div>
                         </div>
                         
 					<div class="product__details__pic__slider owl-carousel my-5">

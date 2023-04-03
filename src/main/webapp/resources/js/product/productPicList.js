@@ -1,4 +1,8 @@
 const picDelete = document.getElementById("picDelete");
+const totalPrice = $('#totalPrice');
+const chkAll = $('#chkAll');
+let selectedCount = 0;
+let totalPriceData = 0;
 
 $('#picDelete').click(()=>{
   fetch('../product/picDelete',{
@@ -15,13 +19,41 @@ $('#picDelete').click(()=>{
 })
 
 function checkAll() {
-    var checkboxes = document.getElementsByName('chk');
-    var totalPrice = 0;
-    for (var i = 0; i < checkboxes.length; i++) {
-      checkboxes[i].checked = document.getElementById('cbx_chkAll').checked;
-      if (checkboxes[i].checked) {
-        totalPrice += parseInt(checkboxes[i].parentNode.nextSibling.textContent.replace(",", ""));
+    let chks = document.getElementsByClassName('chk');
+    totalPriceData = 0;
+    selectedCount = 0;
+    for(let e of chks){
+      $(e).prop('checked',$(chkAll).prop('checked'));
+
+      if($(e).prop('checked')){
+        price = $(e).attr('data-price');
+        price = parseInt(price);
+        totalPriceData+=price;
+        selectedCount++;
       }
     }
-    document.getElementById('totalPrice').textContent = totalPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    $(totalPrice).html(totalPriceData).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+}
+
+$('.chk').click(function(){
+  let price = $(this).attr('data-price');
+  price = parseInt(price);
+  let productNum = $(this).attr('data-productNum');
+  let productCount = $(this).attr('data-productCount');
+
+  console.log($(this).prop('checked'));
+  if($(this).prop('checked')){
+    totalPriceData += price;
+    selectedCount++;
+  }else{
+    totalPriceData -= price;
+    selectedCount--;
   }
+
+  $(totalPrice).html(totalPriceData).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+  if(selectedCount == productCount){
+    $(chkAll).prop('checked',true);
+  }else{
+    $(chkAll).prop('checked',false);
+  }
+})

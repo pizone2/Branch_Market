@@ -53,11 +53,11 @@
                         <tbody>
 							<c:forEach items="${noticeDTOs}" var="dto">
 								<tr scope="row">
-									<td><h2>${dto.r}</h2></td>
-									<td><h2><a href="./detail?noticeNum=${dto.noticeNum}" style="color: cadetblue;">${dto.noticeTitle}</a></h2></td>
-									<td><h2>${dto.memberId}</h2></td>
-									<td><h2>${dto.date}</h2></td>
-									<td><h2>${dto.noticeHit}</h2></td>		
+									<td>${dto.r}</td>
+									<td><a href="./detail?noticeNum=${dto.noticeNum}" style="color: cadetblue;">${dto.noticeTitle}</a></h2></td>
+									<td>${dto.memberId}</td>
+									<td>${dto.date}</td>
+									<td>${dto.noticeHit}</td>		
 								</tr>
 							</c:forEach>
                         </tbody>
@@ -111,10 +111,10 @@
 									<option value="noticeContents" ${pager.kind eq 'noticeContents' ? 'selected' : ''}>내용</option>
 								  </select>
 								  <input type="text" class="form-control" name="search" id="search" placeholder="검색어를 입력 하세요." value="${pager.search}">
-								  <button type="submit" class="btn btn-primary" style="width: auto;">검색</button>
+								  <button type="submit" class="btn btn-primary" style="width: 100px;">검색</button>
 								</div>
 						  </form>
-						  <button class="btn btn-danger"><a href="./add">공지사항 올리기</a></button>
+						  <button class="add-btn btn btn-primary mt-2"><a href="./add">공지사항 올리기</a></button>
                         </div>
                     </div>
                 </div>

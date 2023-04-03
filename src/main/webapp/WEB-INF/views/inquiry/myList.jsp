@@ -62,7 +62,7 @@
                         <table class="boardTable table table-hover">
                             <thead class="table-success">
                                 <tr>
-                                    <th>Num</th> <th>Title</th> <th>Writer</th> <th>Category</th> <th>del</th>
+                                    <th>Num</th> <th>Title</th> <th>Writer</th> <th>Category</th>
                                 </tr>
                             </thead>
                             <tbody>	
@@ -73,7 +73,7 @@
 										<td><h2>${inquiryDTO.memberId}</h2></td>
 										<td><h2>${inquiryDTO.inquiryCategory}</h2></td>
 
-										<td><button class="btn btn-danger del" data-inquiryNum="${inquiryDTO.inquiryNum}">삭제</button></td>
+										<!-- <td><button class="btn btn-danger del" data-inquiryNum="${inquiryDTO.inquiryNum}">삭제</button></td> -->
 									</tr>
 								</c:forEach>
 										

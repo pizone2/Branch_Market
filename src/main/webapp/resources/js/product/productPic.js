@@ -1,7 +1,7 @@
 const picAdd = document.getElementById("picAdd");
 const picDelete = document.getElementById("picDelete");
 
-$("#picAdd").click(function(){
+$('#picIcon').on('click','#picAdd',function(){
     fetch("../product/picAdd",{
         method:'POST',
         headers: {"Content-type" : "application/x-www-form-urlencoded"},
@@ -13,8 +13,10 @@ $("#picAdd").click(function(){
         alert('장바구니에 추가 완료!');
         }
      })
+     $('#picIcon').html('<a href="#" class="heart-icon"><i class="icon-heart fa fa-check" type="submit" id="picDelete"></i></a>')
+    
 })
-$('#picDelete').click(()=>{
+$('#picIcon').on('click','#picDelete',function(){
     fetch('../product/picDelete',{
         method:'POST',
         headers: {"Content-type" : "application/x-www-form-urlencoded"},
@@ -26,5 +28,6 @@ $('#picDelete').click(()=>{
             alert('장바구니에서 삭제 완료');
         }
     })
+    $('#picIcon').html('<a href="#" class="heart-icon"><i class="icon-heart fa fa-shopping-cart" type="submit" id="picAdd" data-product-productNum="${dto.productNum}"></i></a>')
+    
 })
-

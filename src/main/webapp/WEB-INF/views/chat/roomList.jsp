@@ -7,11 +7,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <c:import url="../template/common_css.jsp"></c:import>
-<link rel="stylesheet" href="/resources/css/Whatsapp_Chat_Box_POPUP.css">
+<link rel="stylesheet" href="/resources/css/chat/chatPage.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
 
 </head>
 <body>
+	<c:import url="../template/header.jsp"></c:import>
+	
+	
 	<input type="hidden" id="datas">
 	<input type="hidden" id="sender" value="${sessionScope.id}">
 	<a href="./roomAdd">방 만들기</a>
@@ -36,7 +39,7 @@
 	
 
 	<!-- 채팅창  -->
-	<div class="container">
+	<div class="container" style="position: absolute; z-index: 1;">
         <div>
             <!-- 헤드 부분 -->
             <aside id="sidebar_secondary" class="tabbed_sidebar ng-scope chat_sidebar bg-success-subtle">
@@ -59,14 +62,14 @@
 
                 <!-- 메세지 리스트 -->
                 <div id="chat" class="chat_box_wrapper chat_box_small chat_box_active"
-                    style="opacity: 1; display: block; transform: translateX(0px);">
+                    style="opacity: 1; display: block; transform: translateX(0px); background-color: palegreen;">
                     <div class="chat_box touchscroll chat_box_colors_a">
                         <div id="messageList">
 						</div>
                     </div>
                 </div>
 				<!-- 메세지 제출폼 -->
-                <div class="chat_submit_box">
+                <div class="chat_submit_box" style="background-color: palegreen;">
                     <div class="uk-input-group">
                         <div class="gurdeep-chat-box">
                             <span style="vertical-align: sub;" class="uk-input-group-addon">
@@ -82,6 +85,8 @@
     </div>
     </div>
 
+
+	<c:import url="../template/footer.jsp"></c:import>
     <c:import url="../template/common_js.jsp"></c:import>
 	<script src="/resources/js/chat/roomList.js"></script>
 </body>

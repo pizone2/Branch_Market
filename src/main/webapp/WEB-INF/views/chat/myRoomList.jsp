@@ -35,6 +35,9 @@
                                 </div>
                             </div>
                         </div>
+            			
+            			<hr class="border border-primary border-2 opacity-50">
+            			
                         <div class="inbox-message">
                             <ul>
 								<c:forEach items="${roomDTOs}" var="dto">
@@ -46,7 +49,7 @@
 											<button>채팅하기</button> --%>
 	
 											<div class="message-avatar">
-												<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="">
+												<img src="/resources/images/profileImg.png" alt="">
 											</div>
 											<div class="message-body">
 												<div class="message-body-heading">
@@ -69,8 +72,8 @@
 													</h5>
 													
 													<span>
-														<div><button class="enterChatBtn" data-roomNum="${dto.roomNum}">채팅하기</button></div>
-														<div><button class="quitChatBtn" data-roomNum="${dto.roomNum}">나가기</button></div>
+														<div><button class="enterChatBtn btn btn-outline-success py-1 px-1 btn-sm" data-roomNum="${dto.roomNum}">채팅하기</button></div>
+														<div><button class="quitChatBtn btn btn-outline-success py-1 px-1 btn-sm" data-roomNum="${dto.roomNum}">나가기</button></div>
 													</span>
 												</div>
 												<p id="contents${dto.roomNum}">${dto.contents}</p>

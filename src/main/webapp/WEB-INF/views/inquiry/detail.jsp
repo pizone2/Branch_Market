@@ -38,8 +38,13 @@
 
      <table class="table">
         <caption>표 제목</caption>
-        <tr><th>No.</th><th>제목</th><th>작성자</th><th>작성일</th><th>카테고리</th></tr>
-        <tr><td>${inquiryDTO.r}</td><td>${inquiryDTO.inquiryTitle}</td><td>${inquiryDTO.memberId}</td><td>2023-03-24</td><td>${inquiryDTO.inquiryCategory}</td></tr>        
+        <tr><th>No.</th><th>제목</th><th>작성자</th><th>작성일</th><th>카테고리</th><th></th></tr>
+        <tr><td>${inquiryDTO.r}</td><td>${inquiryDTO.inquiryTitle}</td><td>${inquiryDTO.memberId}</td><td>2023-03-24</td><td>${inquiryDTO.inquiryCategory}</td>
+            <td>
+                <button class="btn btn-secondary"><a href="./update?inquiryNum=${inquiryDTO.inquiryNum}" style="color: aliceblue;">수정</a></button> 
+                <button class="btn btn-secondary del" data-inquiryNum="${inquiryDTO.inquiryNum}">삭제</button>           
+            </td>
+        </tr>        
     </table> 
         <br>
         <br>
@@ -50,7 +55,6 @@
         <br>
         <br>
     
-
     <table class="table border-top-0">
         <caption>표 제목</caption>
         <c:if test="${not empty preInquiryDTO.inquiryTitle }">
@@ -62,14 +66,8 @@
 
         <br>
     </table> 
-	<button class="btn btn-danger del" data-inquiryNum="${inquiryDTO.inquiryNum}">삭제</button>
-	<button class="btn btn-primary"><a href="./update?inquiryNum=${inquiryDTO.inquiryNum}" style="color: aliceblue;">수정</a></button>
-    <br><br>
 
-	<!-- <div class="form-floating">
-		<textarea class="form-control" placeholder="댓글을 남겨 주세요" id="inqCommentsContents" style="height: 100px"></textarea>
-		<input type="button" value="작성" id="submitBtn">
-	</div> -->
+    <br><br>
 
 	<div id="commentsList"></div>
 

@@ -49,13 +49,14 @@ public class NotifyController {
 		
 		Integer result = notifyService.setNotifyAdd(notifyDTO);
 		
-		
+		mv.addObject("result", result);
+		mv.setViewName("/common/ajaxResult");
 		
 		return mv;
 		
 	}
 	
-	@GetMapping("delete")
+	@PostMapping("delete")
 	public ModelAndView setNotifyDelete(NotifyDTO notifyDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
