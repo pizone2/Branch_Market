@@ -3,24 +3,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>위탁상품 신청 목록</title>
-<c:import url="../template/common_css.jsp"></c:import>
-</head>
-<body>
-<c:import url="../template/header.jsp"></c:import>
 
-<div class="container-fluid my-5">
-	<div class="row mb-4">
-		<h1 class="col-md-7 mx-auto text-center border-bottom border-dark pb-4">위탁상품 신청 목록</h1>
-	</div>
-	
-	<div class="row col-md-7 mx-auto">
-		<table class="table table-hover">
-				<thead>
+<c:import url="../template/common_css.jsp"></c:import>
+
+ <h2 class="mx-auto mb-4">위탁상품 신청 목록</h2>
+		<table class="boardTable table table-hover">
+                        <thead class="table-success">
 					<tr>
 						<th>상품번호</th>
 						<th>상품명</th>
@@ -55,9 +43,9 @@
 								</div>
 					 		</td>
 					 		<td>
-						 		<div class="row col-md-7 mx-4">
-									<a class="btn btn-primary col-2 addConfirmBtn" data-productNum="${dto.productNum}">등록</a>
-								</div>
+						 		<!-- <div class="row col-md-7 mx-4"> -->
+									<a class="btn btn-outline-success addConfirmBtn" data-productNum="${dto.productNum}">등록</a>
+								<!-- </div> -->
 							</td>
 						</tr>
 						</c:if>
@@ -65,9 +53,11 @@
 				</tbody>
 			</table>
 			
+			
+			
 				<!-- paging -->
-		<div class="row">
-			<nav aria-label="Page navigation example">
+		<!-- <div class="row"> -->
+			<nav aria-label="Page navigation example ">
 			  <ul class="pagination">
 			  
 			  	<li class="page-item">
@@ -100,14 +90,16 @@
 			    
 			  </ul>
 			</nav>
-		</div>
+			
+			<h2>&nbsp</h2>
+		<!-- </div> -->
 			
 			<!-- 검색창 -->
 			<div class="row">
 				<form class="row g-3" action="./addList" method="get" id="searchForm">
 				<input type="hidden" id="page" name="page">
 				<div class="fw-bold fs-5 col-12">
-		            <p>카테고리</p>
+		           <!--  <p>카테고리</p> -->
 	        	  	<select class="form-select" name="category" id="category" aria-label="Default select example">
 					  <option ${pager.category eq '' ? 'selected':''} value="">모두 보기</option>
 					  <option ${pager.category eq '여성패션' ? 'selected':''} value="여성패션">여성패션</option>
@@ -122,19 +114,19 @@
 	         </div>
 	         
 	         <div class="col-auto">
-				    <label for="kind" class="visually-hidden">Kind</label>
+				    <!-- <label for="kind" class="visually-hidden">Kind</label> -->
 				    <select class="form-select" name="kind" id="kind" aria-label="Default select example">
 						<option ${pager.kind eq 'title' ? 'selected' : '' } value="title">상품명</option>
 						<option ${pager.kind eq 'contents' ? 'selected' : '' } value="contents">상품내용</option>
 					  </select>
 				  </div>
 				  <div class="col-auto">
-				    <label for="search" class="visually-hidden">Search</label>
+				    <!-- <label for="search" class="visually-hidden">Search</label> -->
 				    <input type="text" class="form-control" value="${pager.search}" name="search" id="search" placeholder="검색어를 입력하세요">
 				  </div>
 				  
 				  <div class="col-auto">
-				    <button type="submit" class="btn btn-primary mb-3">검색</button>
+				    <button type="submit" class="btn btn-outline-success">검색</button>
 				  </div>
 				</form>
 			</div>
@@ -144,6 +136,4 @@
 	
 		<script src="/resources/js/product/pageing.js"></script>
 		<script src="/resources/js/product/addList.js"></script>
-		<c:import url="../template/common_js.jsp"></c:import>
- </body>
-</html>
+		

@@ -9,5 +9,17 @@ function getinquiryList() {
     })
 }
 
+function getproductAddList() {
+    $.ajax({
+        url:'/product/addList',
+
+        success:(response)=>{
+            response = response.trim();
+            $('#productAddList').html(response);
+        }
+    })
+}
+
 getinquiryList();
+getproductAddList();
 
