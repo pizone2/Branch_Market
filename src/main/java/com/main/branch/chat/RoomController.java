@@ -59,7 +59,6 @@ public class RoomController {
 		
 		List<RoomDTO> roomDTOs = roomService.getMyRoomList(pager);
 		
-		
 		// 방 별로 읽지읺는 메세지 수
 		roomService.setUnreadMessageCnt(roomDTOs);
 		
