@@ -11,6 +11,76 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 </head>
 <body>
+<c:import url="../template/header.jsp"></c:import>
+
+<!-- Banner Section Begin -->
+    <section class="hero hero-normal">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <hr>
+                </div>
+                <div class="col-lg-12 text-center">
+                    <div class="background-page">
+                        <div class="banner-text"><h2>중고 거래</h2></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- Banner Section End -->
+
+<!-- Checkout Section Begin -->
+    <section class="checkout spad">
+        <div class="container">
+            <div class="checkout__form">
+                <form action="#">
+                    <div class="row">
+                        <h4 class="join__title mx-auto">게시물 등록</h4>
+                    </div>
+                    <div class="row">                       
+                        <div class="col-lg-7 col-md-6 mx-auto"> 
+                        <div class="fw-bold fs-5 col-12">
+			           		<p>작성자</p>
+			           		<input type="text" name="memberId" value="${memberId}"  readonly="readonly" class="form-control" id="memberId" placeholder="이름 입력"><br>
+			        	</div>
+                            <div class="checkout__input">
+                                <input type="text" placeholder="제목" class="checkout__input__add">                                
+                            </div>                           
+                            <div class="input-state">
+                                <select class="form-select" aria-label="Default select example">
+                                    <!-- <option selected>판매</option> -->
+                                    <option value="1">판매</option>
+                                    <option value="2">구매</option>    
+                                </select> 
+                            </div>                                                                                   
+                            <div class="input-category">
+                                <select class="form-select" aria-label="Default select example">
+                                    <option selected>문의 카테고리</option>
+                                    <option value="1">생활가전</option>
+                                    <option value="2">노트북/PC</option>
+                                    <option value="3">패션잡화</option>
+                                </select> 
+                            </div>
+                            <h1>&nbsp;</h1>
+                            <div class="container">
+                                <textarea class="summernote" name="editordata"></textarea>    
+                            </div>
+
+                            <h3>&nbsp;</h3>
+                            <div class="d-flex justify-content-center">
+                                <button type="submit" class="site-btn mr-4"><a href="./board-list.html">취소</a></button>                                                     
+                                <button type="submit" class="site-btn"><a href="./board-list.html">추가</a></button>     
+                            </div>   
+                            <h1>&nbsp;</h1>                                                                                                                      
+                        </div> 
+                    </div>                    
+                </form>
+            </div>
+        </div>
+    </section>
+    <!-- Checkout Section End --> 
+
 <div class="container-fluid my-5">
 	<div class="row mb-4 ">
 		<h1 class="col-md-7 mx-auto text-center border-bottom border-dark pb-4">Board Add Page</h1>
@@ -45,12 +115,13 @@
 	        	 <div class="fw-bold fs-5 col-12">
 		            <p>카테고리</p>
 	        	  	<select class="form-select" name="boardCategory" id="boardCategory" aria-label="Default select example">
+	        	  	  <option name="boardCategory" id="boardCategory">카테고리를 선택해주세요</option>
 					  <option value="여성패션">여성패션</option>
 					  <option value="남성패션">남성패션</option>
-				      <option value="가구/인테리어">가구/인테리어</option>
-				      <option value="생활/주방">생활/주방</option>
-				      <option value="가전제품">가전제품</option>
-				      <option value="전자기기(디지털,컴퓨터)">전자기기(디지털,컴퓨터)</option>
+					  <option value="가구/인테리어">가구/인테리어</option>
+					  <option value="생활/주방">생활/주방</option>
+					  <option value="가전제품">가전제품</option>
+					  <option value="전자기기">전자기기</option>
 					  <option value="E쿠폰/티켓">E쿠폰/티켓</option>
 					  <option value="기타">기타</option>
 					</select>
@@ -77,5 +148,6 @@
    });
 </script>
 <c:import url="../template/common_js.jsp"></c:import>
+<c:import url="../template/footer.jsp"></c:import>
 </body>
 </html>

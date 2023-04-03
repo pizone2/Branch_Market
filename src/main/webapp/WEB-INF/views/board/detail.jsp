@@ -9,64 +9,140 @@
 <c:import url="../template/common_css.jsp"></c:import>
 <link rel="stylesheet" href="/resources/css/chat/chatPage.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
 </head>
 <body>
-<div class="container-fluid my-5">
-	<div hidden id="datas" data-boardNum = "${dto.boardNum}" data-sendId="${sessionScope.id}" data-receiveId="${dto.memberId}"></div>
+<c:import url="../template/header.jsp"></c:import>
 
+<!-- Product Details Section Begin -->
+	<section class="product-details spad">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-6">
+					<div class="product__details__pic">
+						<div class="product__details__pic__item">
+							<img class="product__details__pic__item--large" src="img/cute.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="product_details col-lg-6 col-md-6">
+                	<div hidden id="datas" data-boardNum = "${dto.boardNum}" data-sendId="${sessionScope.id}" data-receiveId="${dto.memberId}"></div>
+                    <div class="product__details__text">
+                        <!--boardTitle-->
+                        <h3>${dto.boardTitle}</h3>
+                        <!--boardPrice-->
+                        <div class="product__details__price">${dto.boardPrice}원</div>
+                        <!--boardContents-->
+                        <p>${dto.boardContents}</p>
+                        <div class="co1-8">
+                            <a href="#" class="btn-icon btn btn-success">채팅</a>
+                            <a href="#" class="heart-icon"><i class="icon-heart fa fa-heart"></i></a>
+                        </div>
+                        
+                        <div class="product__details__pic__slider owl-carousel my-5">
+                            <img data-imgbigurl="img/kong.jpg"
+                                src="img/kong.jpg" alt="">
+                            <img data-imgbigurl="img/kong2.jpg"
+                                src="img/kong2.jpg" alt="">
+                            <img data-imgbigurl="img/kong3.jpg"
+                                src="img/kong3.jpg" alt="">
+                            <img data-imgbigurl="img/kong4.jpg"
+                                src="img/kong4.jpg" alt="">
+                            <img data-imgbigurl="img/kong5.jpg"
+                                src="img/kong5.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    <div class="product__details__tab">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                                <div class="product__details__tab__desc">
+                                    <table class="table">
+                                        <thead class="table-success">
+                                            <tr>
+                                                <th scope="col">번호</th>
+                                                <th scope="col">닉네임</th>
+                                                <th scope="col">내용</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">1</th>
+                                                <td>Mark</td>
+                                                <td>내용1</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- 댓글  -->
+									<div id="commentsList"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="list">
+        <!--권한을 가지고 있는 사람만 보임 -->
+        <a href="./update?boardNum=${dto.boardNum}" class="btn form-update btn btn-info col-3">수정</a>
+		<a href="./delete?boardNum=${dto.boardNum}" class="btn form-delete btn btn-danger col-3 mx-2" id="delete">삭제</a>
+        <!--모든 사람에게 보임 -->
+        <a href="./list" class="btn form-list btn-success col-3">목록으로</a>
+    </div>
+<!-- Product Details Section End -->
 
-	<div class="row mb-4 ">
-		<h1 class="col-md-7 mx-auto text-center border-bottom border-dark pb-4">Board Detail Page</h1>
-	</div>
-	<div class="row col-md-7 mx-auto">
-		<div class="row">
-			<div class="input-group mb-3 col">
-			  <span class="input-group-text">제목</span>
-			  <input type="text" readonly class="form-control" id="boardTitle" value="${dto.boardTitle}">
-			</div>
-			<div class="col">
-				<c:if test="${checkPic eq 0}">
-					<button type="submit" class="btn btn-outline-success col-3" id="picAdd" data-board-boardNum="${dto.boardNum}">Pic</button>
-				</c:if>
-				<c:if test="${checkPic eq 1}">
-					<button type="submit" class="btn btn-outline-danger col-3" id="picDelete">Pic</button>
-				</c:if>
-			</div>
-		</div>
-		
-		<div class="row">
-			<div class="input-group mb-3 col">
-			  <span class="input-group-text">판매구매</span>
-			  <input type="text" readonly class="form-control" id="boardTitle" value="${dto.boardState}">
-			</div>
-			<div class="input-group mb-3 col">
-			  <span class="input-group-text">가격</span>
-			  <input type="text" readonly class="form-control" id="boardPrice" value="${dto.boardPrice}">
-			</div>
-			<div class="input-group mb-3 col">
-			  <span class="input-group-text">카테고리</span>
-			  <input type="text" readonly class="form-control" id="boardCategory" value="${dto.boardCategory}">
-			</div>
-		</div>
-		
-		<div class="input-group">
-		  <span class="input-group-text">내용</span>
-		  <%-- <textarea name="boardContents" readonly class="form-control" id="boardContents" rows="5" placeholder="내용 입력">${dto.boardContents}</textarea> --%>
-		  <span name="boardContents" readonly class="form-control" id="boardContents" rows="5" th:utext>${dto.boardContents}</span>
-		</div>
-	    
-	<div class="row col-md-7 mx-auto my-4 justify-content-center">
-		<a href="./delete?boardNum=${dto.boardNum}" class="btn btn-outline-danger col-3" id="delete">게시물 삭제</a>
-		<a href="./update?boardNum=${dto.boardNum}" class="btn btn-outline-success col-3 mx-2">게시물 수정</a>
-		<a href="./list" class="btn btn-success col-3">목록으로</a>
-		<c:if test="${sessionScope.id ne dto.memberId }">
-			<input type="button" class="btn btn-primary" value="채팅하기" id="chatBtn">
-		</c:if>
-	</div>	
-</div>
-<div id="commentsList"></div>
-
+<!-- Related Product Section Begin -->
+    <section class="related-product">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-title related__product__title">
+                        <h2>Related Product</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="img/kong.jpg"></div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Crab Pool Security</a></h6>
+                            <h5>$30.00</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="img/kong2.jpg"></div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Crab Pool Security</a></h6>
+                            <h5>$30.00</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="img/kong3.jpg"></div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Crab Pool Security</a></h6>
+                            <h5>$30.00</h5>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                    <div class="product__item">
+                        <div class="product__item__pic set-bg" data-setbg="img/kong5.jpg"></div>
+                        <div class="product__item__text">
+                            <h6><a href="#">Crab Pool Security</a></h6>
+                            <h5>$30.00</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- Related Product Section End -->
 
 <!-- 채팅창  -->
 <div class="container">
@@ -128,8 +204,8 @@ del.addEventListener("click", function(){
 
 })
 </script>
-  <c:import url="../template/common_js.jsp"></c:import>
-  <script src="/resources/js/board/board.js"></script>
-
+<script src="/resources/js/board/board.js"></script>
+<c:import url="../template/common_js.jsp"></c:import>
+<c:import url="../template/footer.jsp"></c:import>
 </body>
 </html>

@@ -298,7 +298,8 @@ img {
 
 body{
     margin-top:20px;
-    background-color:#eee;
+    /*수정*/
+    background-color:white;
     }
     /*================================
     Filter Box Style
