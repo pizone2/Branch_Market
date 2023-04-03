@@ -1,34 +1,3 @@
-
-let isDrag = 0;
-$('#messageHead').on('mouseenter',function(e){
-    isDrag = 1;
-})
-
-$('#messageHead').on('drag',function(e){
-    if(isDrag == 0)return;
-
-    console.log(e.pageX + "  " + e.pageY);
-    console.log(e.clientX + "  " + e.clientY);
-    console.log($(this).width());
-    console.log($(this).height());
-    $('#sidebar_secondary').css({
-        position: 'absolute',
-        left: e.clientX - $(this).height(),
-        top: e.clientY - $(this).width()
-    });
-})
-
-$('#messageHead').on('mouseup',function(e){
-    isDrag = 0;
-    $('#sidebar_secondary').css({
-        position: 'absolute',
-        left: e.clientX - $(this).height(),
-        top: e.clientY - $(this).width()
-    });
-})
-
-
-
 $(".enterChatBtn").click(function (e) {
     console.log(e.target);
     console.log(this);

@@ -116,9 +116,9 @@
 				<!-- 헤드 부분 -->
 				<aside id="sidebar_secondary" class="tabbed_sidebar ng-scope chat_sidebar bg-success-subtle">
 					<div class="popup-head" id="messageHead">
-						<div class="popup-head-left pull-left"><a Design and Developmenta
+						<div class="popup-head-left pull-left" id="chatHead"><a Design and Developmenta
 								title="Gurdeep Osahan (Web Designer)" target="_blank"
-								href="https://web.facebook.com/iamgurdeeposahan">
+								href="#">
 								<img class="md-user-image" alt="Gurdeep Osahan (Web Designer)"
 									title="Gurdeep Osahan (Web Designer)"
 									src="https://bootdey.com/img/Content/avatar/avatar1.png"
@@ -153,9 +153,11 @@
 							</div>
 						</div>			
 					</div>
+				</aside>
 			</div>
 		</div>
 		
+		<script src="/resources/js/chat/chatPage.js"></script>
 	<script src="/resources/js/chat/myRoomList.js"></script>
 	 <c:import url="../template/footer.jsp"></c:import>
     <c:import url="../template/common_js.jsp"></c:import>
