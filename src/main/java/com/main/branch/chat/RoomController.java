@@ -139,12 +139,12 @@ public class RoomController {
 		ModelAndView modelAndView = new ModelAndView();
 		List<RoomDTO> roomDTOs = roomService.getRoomList(pager);
 		modelAndView.addObject("roomDTOs", roomDTOs);
-		roomService.setUnreadMessageCnt(roomDTOs);
 		
 		modelAndView.setViewName("/chat/roomList");
 		return modelAndView;
 	}
 	
+
 	
 	// 1 : 1 채팅방이 이미 있는지 없는지 체크, 매개변수는 대화 신청받은 사람 sendId, receiveId 둘다 매개변수로 받음
 	@PostMapping("/oneToOneChat")
