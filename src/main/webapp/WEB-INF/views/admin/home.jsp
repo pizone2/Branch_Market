@@ -141,60 +141,18 @@
                             text-align: center;
                         }
                     </style>
-
-                      <!-- @@@@@@@@@@@@@@@@@@@@@@@@@  문의 내역  @@@@@@@@@@@@@@@@@@@@@@@@@@@ -->
                     
-                      <h2 class="mx-auto mb-4">문의 내역</h2>
+                    
+                    <div id="inquiryList"></div>
 
-                    <table class="boardTable table table-hover">
-                        <thead class="table-success">
-                            <tr>
-                                 <th scope="col">아이디</th>
-						         <th scope="col">문의 제목</th>
-						         <th scope="col">문의 내용</th>
-						         <th scope="col">문의 카테고리</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <c:forEach items="${inquiryDTOs}" var="inquiryDTO">
-					                   <tr>
-					                  <td>${inquiryDTO.memberId}</td>
-					                  <td><a href="./detail?inquiryNum=${inquiryDTO.inquiryNum}">${inquiryDTO.inquiryTitle}</a></td>
-					                  <td>${inquiryDTO.inquiryDetail}</td>
-					                  <td>${inquiryDTO.inquiryCategory}</td>
-					              </tr>
-					          </c:forEach>
-                            </tr>
-                          
-                        </tbody>
-                    </table>
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination my-5">
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                </a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                            <li class="page-item"><a class="page-link" href="#">5</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
+               
                 </div>
             </div>
         </div>
     </section>
     <!-- Hero Section End -->
     
-    <div id="inquiryList"></div>
+    
     
     
 
