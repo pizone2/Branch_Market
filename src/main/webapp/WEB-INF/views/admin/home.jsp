@@ -82,7 +82,7 @@
                                 <button class="product-add-btn btn">삭제</button>
                                 </td>
                             </tr>
-                            <tr >
+                            <tr class="add-tr">
                                 <th scope="row">1</th>
                                 <td><a href="./board-details.html">목걸이</a></td>
                                 <td>여성패션</td>
@@ -105,144 +105,8 @@
                                 <button class="product-add-btn btn">삭제</button>
                                 </td>
                             </tr>
-                            <tr >
-                                <th scope="row">1</th>
-                                <td><a href="./board-details.html">목걸이</a></td>
-                                <td>여성패션</td>
-                                <td><img src="img/kong3.jpg" alt="" style="height: 100px; width: 120px;"></td>
-                                <td>20000</td>
-                                <td>
-                                    <div class="mb-3">
-                                    <select class="form-select" aria-label="Default select example" name="productQ" id="productQ${dto.productNum}">
-                                    <option selected>품질</option>
-                                    <option value="아주 좋음">아주 좋음</option>
-                                    <option value="좋음">좋음</option>
-                                    <option value="보통">보통</option>
-                                    <option value="나쁨">나쁨</option>
-                                    <option value="아주 나쁨">아주 나쁨</option>
-                                    </select>
-                                    </div>
-                                </td>
-                                <td>
-                                <button class="product-add-btn btn">등록</button>
-                                <button class="product-add-btn btn">삭제</button>
-                                </td>
-                            </tr>
-                            <tr >
-                                <th scope="row">1</th>
-                                <td><a href="./board-details.html">목걸이</a></td>
-                                <td>여성패션</td>
-                                <td><img src="img/kong3.jpg" alt="" style="height: 100px; width: 120px;"></td>
-                                <td>20000</td>
-                                <td>
-                                    <div class="mb-3">
-                                    <select class="form-select" aria-label="Default select example" name="productQ" id="productQ${dto.productNum}">
-                                    <option selected>품질</option>
-                                    <option value="아주 좋음">아주 좋음</option>
-                                    <option value="좋음">좋음</option>
-                                    <option value="보통">보통</option>
-                                    <option value="나쁨">나쁨</option>
-                                    <option value="아주 나쁨">아주 나쁨</option>
-                                    </select>
-                                    </div>
-                                </td>
-                                <td>
-                                <button class="product-add-btn btn">등록</button>
-                                <button class="product-add-btn btn">삭제</button>
-                                </td>
-                            </tr>
-                            <tr >
-                                <th scope="row">1</th>
-                                <td><a href="./board-details.html">목걸이</a></td>
-                                <td>여성패션</td>
-                                <td><img src="img/kong3.jpg" alt="" style="height: 100px; width: 120px;"></td>
-                                <td>20000</td>
-                                <td>
-                                    <div class="mb-3">
-                                    <select class="form-select" aria-label="Default select example" name="productQ" id="productQ${dto.productNum}">
-                                    <option selected>품질</option>
-                                    <option value="아주 좋음">아주 좋음</option>
-                                    <option value="좋음">좋음</option>
-                                    <option value="보통">보통</option>
-                                    <option value="나쁨">나쁨</option>
-                                    <option value="아주 나쁨">아주 나쁨</option>
-                                    </select>
-                                    </div>
-                                </td>
-                                <td>
-                                <button class="product-add-btn btn">등록</button>
-                                <button class="product-add-btn btn">삭제</button>
-                                </td>
-                            </tr>
-                            <tr >
-                                <th scope="row">1</th>
-                                <td><a href="./board-details.html">목걸이</a></td>
-                                <td>여성패션</td>
-                                <td><img src="img/kong3.jpg" alt="" style="height: 100px; width: 120px;"></td>
-                                <td>20000</td>
-                                <td>
-                                    <div class="mb-3">
-                                    <select class="form-select" aria-label="Default select example" name="productQ" id="productQ${dto.productNum}">
-                                    <option selected>품질</option>
-                                    <option value="아주 좋음">아주 좋음</option>
-                                    <option value="좋음">좋음</option>
-                                    <option value="보통">보통</option>
-                                    <option value="나쁨">나쁨</option>
-                                    <option value="아주 나쁨">아주 나쁨</option>
-                                    </select>
-                                    </div>
-                                </td>
-                                <td>
-                                <button class="product-add-btn btn">등록</button>
-                                <button class="product-add-btn btn">삭제</button>
-                                </td>
-                            </tr>
-                            <tr >
-                                <th scope="row">1</th>
-                                <td><a href="./board-details.html">목걸이</a></td>
-                                <td>여성패션</td>
-                                <td><img src="img/kong3.jpg" alt="" style="height: 100px; width: 120px;"></td>
-                                <td>20000</td>
-                                <td>
-                                    <div class="mb-3">
-                                    <select class="form-select" aria-label="Default select example" name="productQ" id="productQ${dto.productNum}">
-                                    <option selected>품질</option>
-                                    <option value="아주 좋음">아주 좋음</option>
-                                    <option value="좋음">좋음</option>
-                                    <option value="보통">보통</option>
-                                    <option value="나쁨">나쁨</option>
-                                    <option value="아주 나쁨">아주 나쁨</option>
-                                    </select>
-                                    </div>
-                                </td>
-                                <td>
-                                <button class="product-add-btn btn">등록</button>
-                                <button class="product-add-btn btn">삭제</button>
-                                </td>
-                            </tr>
-                            <tr >
-                                <th scope="row">1</th>
-                                <td><a href="./board-details.html">목걸이</a></td>
-                                <td>여성패션</td>
-                                <td><img src="img/kong3.jpg" alt="" style="height: 100px; width: 120px;"></td>
-                                <td>20000</td>
-                                <td>
-                                    <div class="mb-3">
-                                    <select class="form-select" aria-label="Default select example" name="productQ" id="productQ${dto.productNum}">
-                                    <option selected>품질</option>
-                                    <option value="아주 좋음">아주 좋음</option>
-                                    <option value="좋음">좋음</option>
-                                    <option value="보통">보통</option>
-                                    <option value="나쁨">나쁨</option>
-                                    <option value="아주 나쁨">아주 나쁨</option>
-                                    </select>
-                                    </div>
-                                </td>
-                                <td>
-                                <button class="product-add-btn btn">등록</button>
-                                <button class="product-add-btn btn">삭제</button>
-                                </td>
-                            </tr>
+                          
+                           
 
                         </tbody>
                     </table>
@@ -285,80 +149,24 @@
                     <table class="boardTable table table-hover">
                         <thead class="table-success">
                             <tr>
-                                <th>Num</th> <th>Title</th> <th>Writer</th> <th>Date</th> <th>Hit</th>  
+                                 <th scope="col">아이디</th>
+						         <th scope="col">문의 제목</th>
+						         <th scope="col">문의 내용</th>
+						         <th scope="col">문의 카테고리</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <th scope="row">1</th>
-                                <td><a href="./board-details.html">Detail Test</a></td>
-                                <td>내용1</td>
-                                <td>날짜1</td>
-                                <td>조회수1</td>
+                                <c:forEach items="${inquiryDTOs}" var="inquiryDTO">
+					                   <tr>
+					                  <td>${inquiryDTO.memberId}</td>
+					                  <td><a href="./detail?inquiryNum=${inquiryDTO.inquiryNum}">${inquiryDTO.inquiryTitle}</a></td>
+					                  <td>${inquiryDTO.inquiryDetail}</td>
+					                  <td>${inquiryDTO.inquiryCategory}</td>
+					              </tr>
+					          </c:forEach>
                             </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>J제목2</td>
-                                <td>내용2</td>
-                                <td>날짜2</td>
-                                <td>조회수2</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>제목3</td>
-                                <td>내용3</td>
-                                <td>날짜3</td>
-                                <td>조회수3</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td>J제목2</td>
-                                <td>내용2</td>
-                                <td>날짜2</td>
-                                <td>조회수2</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">5</th>
-                                <td>제목3</td>
-                                <td>내용3</td>
-                                <td>날짜3</td>
-                                <td>조회수3</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">6</th>
-                                <td>J제목2</td>
-                                <td>내용2</td>
-                                <td>날짜2</td>
-                                <td>조회수2</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">7</th>
-                                <td>제목3</td>
-                                <td>내용3</td>
-                                <td>날짜3</td>
-                                <td>조회수3</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">8</th>
-                                <td>제목3</td>
-                                <td>내용3</td>
-                                <td>날짜3</td>
-                                <td>조회수3</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">9</th>
-                                <td>제목3</td>
-                                <td>내용3</td>
-                                <td>날짜3</td>
-                                <td>조회수3</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">10</th>
-                                <td>제목3</td>
-                                <td>내용3</td>
-                                <td>날짜3</td>
-                                <td>조회수3</td>
-                            </tr>
+                          
                         </tbody>
                     </table>
                     <nav aria-label="Page navigation example">
@@ -385,13 +193,18 @@
         </div>
     </section>
     <!-- Hero Section End -->
+    
+    <div id="inquiryList"></div>
+    
+    
 
+	
 
-	<h3>관리자 페이지 입니다.</h3>
+	<!-- <h3>관리자 페이지 입니다.</h3>
 	<a href="./add" class="btn btn-primary">관리자 추가하기</a>
-	<a href="./memberList" class="btn btn-primary">멤버 리스트 보기</a>
+	<a href="./memberList" class="btn btn-primary">멤버 리스트 보기</a> -->
 	
-	
+	<script src="/resources/js/admin/list.js"></script>
 	<c:import url="../template/footer.jsp"></c:import>
     <c:import url="../template/common_js.jsp"></c:import>
 </body>
