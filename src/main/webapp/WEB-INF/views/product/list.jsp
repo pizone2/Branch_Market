@@ -91,7 +91,6 @@
 										<div class="col-lg-4 col-md-6 col-sm-6">
 											<div class="product__item">
 												<div class="product__item__pic set-bg" data-setbg="${dto.productImgName}">
-													<!-- <img src="${dto.productImgName}" alt="" style="height: 100px;"></td> -->
 												</div>
 												<div class="product__item__text">
 													<h6><a href="./detail?productNum=${dto.productNum}">${dto.productTitle}</a></h6>

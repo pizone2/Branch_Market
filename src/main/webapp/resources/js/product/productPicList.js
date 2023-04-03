@@ -1,15 +1,18 @@
-const deleteButtons = document.querySelectorAll('.shoping__cart__item__close .icon_close');
+const picDelete = document.getElementById("picDelete");
 
-// Add a click event listener to each "x" button
-deleteButtons.forEach(button => {
-  button.addEventListener('click', function() {
-    // Get the parent element of the "x" button, which is the table cell containing the product information
-    const cartItem = this.closest('.shoping__cart__item');
-
-    // Remove the table row containing the product information from the cart
-    cartItem.parentNode.removeChild(cartItem);
-  });
-});
+$('#picDelete').click(()=>{
+  fetch('../product/picDelete',{
+      method:'POST',
+      headers: {"Content-type" : "application/x-www-form-urlencoded"},
+      body: "productNum=" + productNum
+  }).then((response)=>{
+      return response.text();
+  }).then((res)=>{
+      if(res.trim() == 1){
+          alert('장바구니에서 삭제 완료');
+      }
+  })
+})
 
 function checkAll() {
     var checkboxes = document.getElementsByName('chk');

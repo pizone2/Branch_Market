@@ -57,7 +57,7 @@
 								<a href="#" class="heart-icon"><i class="icon-heart fa fa-shopping-cart" type="submit" id="picAdd" data-product-productNum="${dto.productNum}"></i></a>
 							</c:if>
 							<c:if test="${checkPic eq 1}">
-								<a href="#" class="heart-icon"><i class="icon-heart fa fa-shopping-cart" type="submit" id="picDelete"></i></a>
+								<a href="#" class="heart-icon"><i class="icon-heart fa fa-check" type="submit" id="picDelete"></i></a>
 							</c:if>
                         </div>
                         
@@ -123,37 +123,10 @@
             <div class="row">
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/kong.jpg"></div>
+                        <div class="product__item__pic set-bg" data-setbg="${dto.productImgName}"></div>
                         <div class="product__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/kong2.jpg"></div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/kong3.jpg"></div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/kong5.jpg"></div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
+                            <h6><a href="./detail?productNum=${dto.productNum}">${dto.productTitle}</a></h6>
+                            <h5><fmt:formatNumber value="${dto.productPrice}" pattern="#,###"/>원</h5>
                         </div>
                     </div>
                 </div>

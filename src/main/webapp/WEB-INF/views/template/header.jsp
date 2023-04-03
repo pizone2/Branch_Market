@@ -105,7 +105,7 @@
                 <div class="header__cart">
                     <ul>
                         <li><a href="/board/picList"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                        <li><a href="/productPic/list"><i class="fa fa-shopping-cart"></i> <span>3</span></a></li>
+                        <li><a href="/product/picList"><i class="fa fa-shopping-cart"></i> <span>3</span></a></li>
                     </ul>
                 </div>
             </div>
