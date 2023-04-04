@@ -309,6 +309,34 @@ public class MemberController {
 		return modelAndView;
 	}
 	
+	@GetMapping("/payTest")
+	public ModelAndView payTest() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("/member/payTest");
+		return modelAndView;
+	}
+	@PostMapping("/payTest")
+	public ModelAndView payTest(String merchant_uid ) {
+		ModelAndView modelAndView = new ModelAndView();
+		System.out.println(merchant_uid);
+		modelAndView.setViewName("/common/result");
+		return modelAndView;
+	}
+	
+	@GetMapping("/payComplete")
+	public ModelAndView payTest(String merchant_uid,String amount) {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		Map<String, String> params = new HashMap<String, String>();
+		
+		params.put("merchant_uid", merchant_uid);
+		params.put("amount", amount);
+		String message =  ApiCallManager.post("https://api.iamport.kr/payments/prepare", null, params);
+		modelAndView.addObject("message", message);
+		modelAndView.setViewName("/common/result");
+		return modelAndView;
+	}
+	
 	
 	@GetMapping("/postTest")
 	public ModelAndView test2() {
