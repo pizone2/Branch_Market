@@ -19,7 +19,7 @@
  	</delete>
  	
  	<update id="setEventUpdate" parameterType="EventDTO" > 
- 		UPDATE EVENT SET fileName = #{fileName}
+ 		UPDATE EVENT SET fileName = #{fileName}, oriName = #{oriName}
  		WHERE eventNum = #{eventNum}
  	</update>
  	
