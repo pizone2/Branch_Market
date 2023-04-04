@@ -60,4 +60,8 @@ public class BoardDAO {
 	public BoardPicDTO checkAlreadyBoardPic(BoardDTO boardDTO)throws Exception{
 		return sqlSession.selectOne(NAMESPACE + "checkAlreadyBoardPic", boardDTO);
 	}
+	//----------------------------------
+	public int setBoardImgAdd(BoardImgDTO boardImgDTO) throws Exception{
+		return sqlSession.insert(NAMESPACE+"setBoardImgAdd", boardImgDTO);
+	}
 }
