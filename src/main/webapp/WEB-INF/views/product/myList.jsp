@@ -77,9 +77,7 @@
 						</tbody>
 					</table>
 				</div>
-			</div>
-		</div>
-	</div>
+				
 			<!-- paging -->
 			<div class="mx-auto">
 				<nav aria-label="Page navigation example">
@@ -119,7 +117,9 @@
 					</ul>
 			  </nav>
 			</div>
-		
+		</div>
+	</div>
+</div>
 </section>
 <div class="list">
 	<!--권한을 가지고 있는 사람만 보임 -->
