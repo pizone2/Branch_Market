@@ -43,4 +43,8 @@ public class EventService {
 	public int setEventDelete(EventDTO eventDTO) {
 		return eventDAO.setEventDelete(eventDTO);
 	}
+	
+	public int setEventUpdate(MultipartFile multipartFile, EventDTO eventDTO) {
+		return eventDAO.setEventUpdate(eventDTO);
+	}
 }

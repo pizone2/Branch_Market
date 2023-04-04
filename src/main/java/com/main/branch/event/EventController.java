@@ -62,10 +62,10 @@ public class EventController {
 		return modelAndView;
 	}
 	@PostMapping("/update")
-	public ModelAndView setEventUpdate(MultipartFile[] multipartFiles) throws Exception {
+	public ModelAndView setEventUpdate(MultipartFile multipartFile) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
-		System.out.println(multipartFiles.length);
-		int result = eventService.setEventAdd(multipartFiles);
+		EventDTO eventDTO = new EventDTO();
+		int result = eventService.setEventUpdate(multipartFile, eventDTO);
 		String message = "";
 		String url = "/";
 		if(result > 0) {
@@ -73,6 +73,7 @@ public class EventController {
 		}else {
 			message = "수정 실패";
 		}
+		modelAndView.addObject("result", result);
 		modelAndView.addObject("message", message);
 		modelAndView.addObject("url", url);
 		modelAndView.setViewName("/common/result");

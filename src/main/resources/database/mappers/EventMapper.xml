@@ -18,6 +18,11 @@
  		DELETE EVENT WHERE eventNum = #{eventNum}
  	</delete>
  	
+ 	<update id="setEventUpdate" parameterType="EventDTO" > 
+ 		UPDATE EVENT SET fileName = #{fileName}
+ 		WHERE eventNum = #{eventNum}
+ 	</update>
+ 	
  </mapper>
  
 <!--  private Integer eventNum;
