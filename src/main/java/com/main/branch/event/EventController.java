@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -62,10 +63,10 @@ public class EventController {
 		return modelAndView;
 	}
 	@PostMapping("/update")
-	public ModelAndView setEventUpdate(MultipartFile multipartFile) throws Exception {
+	public ModelAndView setEventUpdate(MultipartFile multipartFile, Integer eventNum) throws Exception {
+		
 		ModelAndView modelAndView = new ModelAndView();
-		EventDTO eventDTO = new EventDTO();
-		int result = eventService.setEventUpdate(multipartFile, eventDTO);
+		int result = eventService.setEventUpdate(multipartFile, eventNum);
 		String message = "";
 		String url = "/";
 		if(result > 0) {

@@ -40,11 +40,22 @@ public class EventService {
 		}
 		return result;	
 	}
-	public int setEventDelete(EventDTO eventDTO) {
+	public int setEventDelete(EventDTO eventDTO) throws Exception {
+//		String realPath = servletContext.getRealPath("/resources/upload/event/");
+//		fileManager.fileDelete(realPath, eventDTO.getFileName());
 		return eventDAO.setEventDelete(eventDTO);
 	}
 	
-	public int setEventUpdate(MultipartFile multipartFile, EventDTO eventDTO) {
+	public int setEventUpdate(MultipartFile multipartFile, Integer eventNum) throws Exception {
+		
+		String realPath = servletContext.getRealPath("/resources/upload/event/");
+		String fileName = fileManager.fileSave(multipartFile, realPath);
+		
+		EventDTO eventDTO = new EventDTO();
+		eventDTO.setEventNum(eventNum);
+		eventDTO.setFileName(fileName);
+		eventDTO.setOriName(multipartFile.getOriginalFilename());
+		
 		return eventDAO.setEventUpdate(eventDTO);
 	}
 }

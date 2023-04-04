@@ -142,7 +142,7 @@
         <div class="modal-content">
             <div class="modal-body">
                 <h3 class="mb-4">배너 이미지 수정하기</h3>
-                <form id="imageUpdateForm" enctype="multipart/form-data">
+                <form action="./update" method="post" id="imageUpdateForm" enctype="multipart/form-data">
                     <div class="form-group">
                         <label class="control-label">배너명</label>
                         <div>
@@ -151,11 +151,11 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label">배너 이미지</label>
-                        <input type="file" name="fileName">
+                        <input type="file" name="fileName" id="updateFile">
                     </div>
                     <div class="form-group mt-4" style="text-align: center;">
                         <div>
-                            <button type="submit" class="btn btn-success" data-eventNum="" id="eventConfirm">
+                            <button type="button" class="btn btn-success" data-eventNum="" id="eventConfirm">
                                 수정
                             </button>
                             <button type="button" class="btn btn-success" data-dismiss="modal">
