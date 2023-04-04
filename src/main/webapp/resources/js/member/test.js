@@ -46,7 +46,7 @@ $('#buyBtn').click(()=>{
 //------------------------ 카카오 로그인
 
 // // 인가코드 받기 --------------------------------
-// Kakao.init('8a7051837bf4ec9e76d7f86597cbca09'); // jk
+// Kakao.init(''); // jk
 // function loginWithKakao() {
 //     Kakao.Auth.authorize({
 //         redirectUri: 'http://localhost/member/test',
@@ -62,7 +62,7 @@ $('#buyBtn').click(()=>{
 //         type:'POST',
 //         data:{
 //             'grant_type':'authorization_code',
-//             'client_id':'eddbc5ef2ee1d292eb4abdeded74c44b', // rk
+//             'client_id':'', // rk
 //             'redirect_uri':'http://localhost/member/test',
 //             'code':code
 //         },
