@@ -36,7 +36,7 @@
                             </div>
                         </div>
             			
-            			<hr class="border border-primary border-2 opacity-50">
+            			<hr class="border border-success border-2 opacity-50">
             			
                         <div class="inbox-message">
                             <ul>

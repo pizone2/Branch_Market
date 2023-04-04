@@ -44,12 +44,13 @@
                 </div>
                 <div class="product_details col-lg-6 col-md-6">
                     <div class="product__details__text">
-                        <h3 >${dto.productTitle}</h3>
-                        <div class="product__details__price mb-3 mt-3">
-							<fmt:formatNumber value="${dto.productPrice}" pattern="#,###"/>원
+                        <h3>${dto.productTitle}</h3>
+                        <div class="product__details__price mb-3 mt-3" style="width: 200px; overflow: hidden; text-overflow: ellipsis;">
+                            <fmt:formatNumber value="${dto.productPrice}" pattern="#,###"/>원
 						</div>
                         <div class="mt-3">
-							<p>상품 품질 : ${dto.productQ}</p>
+                            <p>카테고리 : ${dto.productCategory}
+							상품 품질 : ${dto.productQ}</p>
 						</div>
                         <div class="co1-8">
                             <a href="../product/picList" class="btn-icon btn btn-success">구매</a>
@@ -78,16 +79,20 @@
                                         <thead class="table-success">
                                             <tr>
                                                 <th scope="col">번호</th>
-                                                <th scope="col">닉네임</th>
+                                                <th scope="col">아이디</th>
                                                 <th scope="col">내용</th>
+                                                <th scope="col">평점</th>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            <c:forEach items="${reviewDTOs}" var="dtos"> 
                                             <tr>
-                                                <th scope="row">1</th>
-                                                <td>Mark</td>
-                                                <td>내용1</td>
+                                                <th scope="row">${dtos.reviewNum}</th>
+                                                <td>${dtos.memberId}</td>
+                                                <td>${dtos.reviewContents}</td>
+                                                <td>${dtos.reviewScore}</td>
                                             </tr>
+                                            </c:forEach>
                                         </tbody>
                                     </table>
                                     <div class="input-group mb-3">
@@ -104,11 +109,11 @@
     </section>
     <div class="list">
         <!--권한을 가지고 있는 사람만 보임 -->
-        <button class="form-update btn btn-info"><a href="./update?productNum=${dto.productNum}">수정</a></button>
-        <button class="form-delete btn btn-danger"><a href="./delete?productNum=${dto.productNum}" id="delete">삭제</a></button>
+        <a href="./update?productNum=${dto.productNum}"><button class="form-update btn btn-info">수정</button></a>
+        <a href="./delete?productNum=${dto.productNum}" id="delete"><button class="form-delete btn btn-danger">삭제</button></a>
 		
         <!--모든 사람에게 보임 -->
-        <button class="form-list btn btn-success"><a href="./list">목록으로</a></button>
+        <a href="./list"><button class="form-list btn btn-success">목록으로</button></a>
     </div>
     <!-- Product Details Section End -->
 
@@ -138,8 +143,7 @@
     <!-- Related Product Section End -->
 
 </div>
-</div>
-</div>
+
 
 <!-- <input type="button" value="리뷰 작성" id="reviewAddBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
 <div id="reviewList"></div> -->

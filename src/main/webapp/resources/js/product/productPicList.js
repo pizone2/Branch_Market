@@ -1,22 +1,8 @@
-const picDelete = document.getElementById("picDelete");
 const totalPrice = $('#totalPrice');
 const chkAll = $('#chkAll');
 let selectedCount = 0;
 let totalPriceData = 0;
 
-$('#picDelete').click(()=>{
-  fetch('../product/picDelete',{
-      method:'POST',
-      headers: {"Content-type" : "application/x-www-form-urlencoded"},
-      body: "productNum=" + productNum
-  }).then((response)=>{
-      return response.text();
-  }).then((res)=>{
-      if(res.trim() == 1){
-          alert('장바구니에서 삭제 완료');
-      }
-  })
-})
 
 function checkAll() {
     let chks = document.getElementsByClassName('chk');
@@ -32,7 +18,7 @@ function checkAll() {
         selectedCount++;
       }
     }
-    $(totalPrice).html(totalPriceData).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    $(totalPrice).html(totalPriceData.toLocaleString() + "원");
 }
 
 $('.chk').click(function(){
@@ -50,7 +36,10 @@ $('.chk').click(function(){
     selectedCount--;
   }
 
-  $(totalPrice).html(totalPriceData).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+  console.log(totalPriceData)
+  console.log(productCount)
+
+  $(totalPrice).html(totalPriceData.toLocaleString() + "원");
   if(selectedCount == productCount){
     $(chkAll).prop('checked',true);
   }else{

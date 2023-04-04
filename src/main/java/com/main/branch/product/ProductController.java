@@ -226,12 +226,12 @@ public class ProductController {
 	public ModelAndView setProductPicDelete(ProductPicDTO productPicDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		int result = productService.setProductPicDelete(productPicDTO);
-		mv.addObject("result",result);
-		mv.setViewName("common/ajaxResult");
+		//mv.addObject("result",result);
+		mv.setViewName("redirect: ./picList");
 		return mv;
 	}
 	
-	// ajax
+
 	@GetMapping("picList")
 	public ModelAndView getProductPicMyList(ProductPicDTO productPicDTO)throws Exception{
 		ModelAndView modelAndView = new ModelAndView();

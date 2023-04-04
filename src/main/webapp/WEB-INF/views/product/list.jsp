@@ -77,8 +77,8 @@
 							</div>
 						</div>
 						<div>
-							<button class="state-btn btn mb-3"><a href="./add">위탁 판매 등록</a></button>
-							<button class="state-btn btn"><a href="./addList">위탁 판매 등록 신청</a></button>
+							<a href="./add"><button class="state-btn btn mb-3">위탁 판매 등록</button></a>
+							<a href="./addList"><button class="state-btn btn">위탁 판매 등록 신청</button></a>
 						</div>
 					</div>
 					</form>
@@ -139,14 +139,12 @@
 										<a class="page-link"  href="./list?page=${pager.totalPage}&kind=${pager.kind}&search=${pager.search}&category=${pager.category}" aria-label="Next">
 										  <span aria-hidden="true">&raquo;</span>
 										</a>
-									  </li>
-							</ul>
+									</li>
+								</ul>
 						  </nav>
 						</div>
 					</div>
-				
 				</div>
-				
 			</div>
 		</section>
 		<!-- Hero Section End -->

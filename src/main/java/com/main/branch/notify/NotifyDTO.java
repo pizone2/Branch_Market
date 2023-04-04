@@ -4,12 +4,19 @@ import java.sql.Date;
 
 public class NotifyDTO {
 
+	private Integer r;
 	private Integer notifyNum;
 	private String memberId;
 	private String notifyMessage;
 	private Date notifyDate;
 	
 	
+	public Integer getR() {
+		return r;
+	}
+	public void setR(Integer r) {
+		this.r = r;
+	}
 	public Integer getNotifyNum() {
 		return notifyNum;
 	}
