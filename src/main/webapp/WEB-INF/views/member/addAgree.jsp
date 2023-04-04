@@ -37,7 +37,6 @@
                 <h4 class="join__title mx-auto">약관동의 하기</h4>
                 </div>
                     <h3>&nbsp;</h3>
-                    <form action="./findPw" method="post">
                     <div class="row" id="check_row">                       
                         <div class="col-lg-7 col-md-6 mx-auto">                           
                             <div class="checkout__input">
@@ -58,12 +57,6 @@
                            		<div class="information col-lg-6 mx-auto">
                            	  	    동의합니다<input class="form-check-input" type="checkbox" value="" id="check2">
                           		</div>  
-                            
-                            
-                            
-                            
-                            
-                            
                             </div>  
                                                     
                             <h3>&nbsp;</h3>
@@ -72,7 +65,7 @@
                             </div>                                                                                                                              
                             </div> 
                     </div>
-                    </form></div>                                    
+                    </div>                                    
             </div>        
     </section>
 

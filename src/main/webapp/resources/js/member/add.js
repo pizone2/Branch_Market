@@ -2,6 +2,7 @@ let check = [0,0,0,0,0,0];
 
 $('#memberId').blur(()=>{
     $.ajax({
+        async:false,
         url:"/member/checkMemberUnique",
         type:"GET",
         data:{
@@ -18,6 +19,10 @@ $('#memberId').blur(()=>{
             }
         }
     })
+
+    if($('#memberId').val() == ''){
+        $('#idMsg').html('값을 넣어주세요.')
+    }
 })
 
 $('#memberPw').blur(()=>{
@@ -82,4 +87,15 @@ $('#submit1').click(()=>{
     }else{
         $('#addForm').submit();
     }
+})
+
+$('#searchFormBtn').click(()=>{
+    new daum.Postcode({
+        oncomplete: function(data) {
+            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+            console.log(data.address);
+            $('#memberAddress').val(data.address);
+        }
+    }).open();
 })

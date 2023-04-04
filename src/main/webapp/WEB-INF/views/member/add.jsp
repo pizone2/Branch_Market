@@ -63,13 +63,17 @@
                             <!-- <p>PHONE<span>*</span></p> -->
                             <input type="tel" name="memberPhone" id="memberPhone" placeholder="PHONE" class="checkout__input__add">                                
                         </div>
-                        <div id="phoneMsg"></div>                                                   
-                        <div class="checkout__input">
+                        <div id="phoneMsg"></div>           
+
+                        <div class="checkout__input d-flex mx-auto" style="width: 504px;">
                             <!-- <p>ADDRESS<span>*</span></p> -->
                             <input type="text" name="memberAddress" id="memberAddress" placeholder="ADDRESS" class="checkout__input__add">
-                           	<div id="addressMsg"></div>
-                            <button type="submit" id="submit1" class="site-btn">가입</button>                                                     
-                        </div>                                                                            
+                            <button id="searchFormBtn" class="col-md-3" style="border: 0px;" type="button">주소검색</button>
+                        </div>    
+                        <div id="addressMsg"></div>
+                        
+                        <button type="submit" id="submit1" class="site-btn">가입</button>                                                     
+                        
                     </div>
                 </div>                    
             </form>
@@ -96,6 +100,7 @@
         <input type="button" value="회원가입" id="submit1">
     </form> -->
 
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="/resources/js/member/add.js"></script>
      <c:import url="../template/footer.jsp"></c:import>
     <c:import url="../template/common_js.jsp"></c:import>
