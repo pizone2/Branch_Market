@@ -11,6 +11,7 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 </head>
 <body>
+<c:import url="../template/header.jsp"></c:import>
 <div class="container-fluid my-5">
 	<div class="row mb-4 ">
 		<h1 class="col-md-7 mx-auto text-center border-bottom border-dark pb-4">Board Update Page</h1>
@@ -50,6 +51,11 @@
 					  <option name="boardCategory" id="boardCategory">카테고리를 선택해주세요</option>
 					  <option for="boardCategory" ${dto.boardCategory eq "여성패션"?'selected':''} value="여성패션">여성패션</option>
 					  <option for="boardCategory" ${dto.boardCategory eq "남성패션"?'selected':''} value="남성패션">남성패션</option>
+					  <option for="boardCategory" ${dto.boardCategory eq "가구/인테리어"?'selected':''} value="가구/인테리어">가구/인테리어</option>
+					  <option for="boardCategory" ${dto.boardCategory eq "생활/주방"?'selected':''} value="생활/주방">생활/주방</option>
+					  <option for="boardCategory" ${dto.boardCategory eq "가전제품"?'selected':''} value="가전제품">가전제품</option>
+					  <option for="boardCategory" ${dto.boardCategory eq "전자기기"?'selected':''} value="전자기기">전자기기</option>
+					  <option for="boardCategory" ${dto.boardCategory eq "E쿠폰/티켓"?'selected':''} value="E쿠폰/티켓">E쿠폰/티켓</option>
 					  <option for="boardCategory" ${dto.boardCategory eq "기타"?'selected':''} value="기타">기타</option>
 					</select>
 		         </div>
@@ -69,5 +75,6 @@
    $("#boardContents").summernote();
 </script>
 <c:import url="../template/common_js.jsp"></c:import>
+<c:import url="../template/footer.jsp"></c:import>
 </body>
 </html>
