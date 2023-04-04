@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.main.branch.member.MemberDTO;
@@ -28,6 +29,7 @@ public class BoardController {
 	@GetMapping("list")
 	public ModelAndView getBoardList(Pager pager) throws Exception{
 		ModelAndView mv = new ModelAndView();
+		System.out.println(pager.getCategory());
 		List<BoardDTO> ar = boardService.getBoardList(pager);
 		mv.addObject("list", ar);
 		mv.setViewName("board/list");
@@ -60,9 +62,9 @@ public class BoardController {
 	}
 	
 	@PostMapping("add")
-	public ModelAndView setBoardAdd(BoardDTO boardDTO) throws Exception{
+	public ModelAndView setBoardAdd(BoardDTO boardDTO, MultipartFile multipartFile) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		int result = boardService.SetBoardAdd(boardDTO);
+		int result = boardService.SetBoardAdd(boardDTO, multipartFile);
 		String message = "등록 실패";
 		if(result>0) {
 			message = "게시물이 등록되었습니다";

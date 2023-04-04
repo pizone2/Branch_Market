@@ -3,12 +3,15 @@ package com.main.branch.board;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.main.branch.member.MemberDTO;
+import com.main.branch.util.FileManager;
 import com.main.branch.util.Pager;
 import com.main.branch.util.Parser;
 
@@ -18,6 +21,10 @@ public class BoardService {
 	private BoardDAO boardDAO;
 	@Autowired
 	private HttpSession httpSession;
+	@Autowired
+	private ServletContext servletContext;
+	@Autowired
+	private FileManager fileManager;
 	
 	public List<BoardDTO> getBoardList (Pager pager) throws Exception{
 		pager.makeRow();
@@ -30,8 +37,24 @@ public class BoardService {
 		return boardDAO.getBoardDetail(boardDTO);
 	}
 	
-	public int SetBoardAdd(BoardDTO boardDTO) throws Exception{
-		return boardDAO.setBoardAdd(boardDTO);
+	public int SetBoardAdd(BoardDTO boardDTO, MultipartFile multipartFile) throws Exception{
+		int result = boardDAO.setBoardAdd(boardDTO);
+		if(!multipartFile.isEmpty()) {//multipartFile.getSize()!=0
+		      //1. File을 HDD에 저장
+		      //   Project 경로가 아닌 OS가 이용하는 경로
+		      String path = servletContext.getRealPath("resources/upload/board");
+		      System.out.println(path);
+		      String fileName = fileManager.fileSave(multipartFile,path);
+		      
+		      //2. DB에 저장
+		      BoardImgDTO boardImgDTO = new BoardImgDTO();
+		      boardImgDTO.setFileName(fileName);
+		      boardImgDTO.setOriName(multipartFile.getOriginalFilename());
+		      boardImgDTO.setBookNum(boardImgDTO.getBookNum());
+		      
+		      result = boardDAO.setBoardImgAdd(boardImgDTO);
+		      }
+		      return result;
 	}
 	
 	public int setBoardDelete(BoardDTO boardDTO) throws Exception{

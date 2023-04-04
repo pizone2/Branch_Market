@@ -12,65 +12,86 @@
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
-<div class="container-fluid my-5">
-	<div class="row mb-4 ">
-		<h1 class="col-md-7 mx-auto text-center border-bottom border-dark pb-4">Board Update Page</h1>
-	</div>
-	
-	<div class="row col-md-7 mx-auto">
-		<form action="./update" method = "post">
-			<input type="hidden" name="boardNum" value="${dto.boardNum}">
-			
-	    	<div class="row">
-	        	<div class="fw-bold fs-5 col-12">
-	           		<p>작성자</p>
-	           		<input type="text" name="memberId" readonly="readonly" value="${dto.memberId}" class="form-control" id="memberId" placeholder="이름 입력"><br>
-	        	</div>
-	        	
-	         	<div class="fw-bold fs-5 col-12">
-	            	<p>제목</p>
-	            	<div class="form-check">
-		        	 	<input type="radio" class="btn-check" ${dto.boardState eq "판매"?'checked':''} name="boardState" value="판매" id="boardState" checked>
-						<label class="btn btn-outline-success" for="boardState">판매</label>
-						<input type="radio" class="btn-check" ${dto.boardState eq "구매"?'checked':''} name="boardState" value="구매" id="boardState1">
-						<label class="btn btn-outline-success" for="boardState1">구매</label>
-					</div>
-					<div class="fw-bold fs-5 col-12">
-	            	<input type="text" name="boardTitle" class="form-control my-2" value="${dto.boardTitle}" id="boardTitle" placeholder="제목 입력"><br>
-	            	</div>
-	        	 </div>
-	        	 
-	        	 <div class="fw-bold fs-5 col-12">
-		            <p>가격</lp>
-		            <input type="text" name="boardPrice" class="form-control my-2" value="${dto.boardPrice}" id="boardPrice" placeholder="가격 입력"><br>
-		         </div>
-	        	 
-	        	 <div class="fw-bold fs-5 col-12">
-		            <p>카테고리</lp>
-	        	  	<select class="form-select" aria-label="Default select example" name="boardCategory" id="boardCategory">
-					  <option name="boardCategory" id="boardCategory">카테고리를 선택해주세요</option>
-					  <option for="boardCategory" ${dto.boardCategory eq "여성패션"?'selected':''} value="여성패션">여성패션</option>
-					  <option for="boardCategory" ${dto.boardCategory eq "남성패션"?'selected':''} value="남성패션">남성패션</option>
-					  <option for="boardCategory" ${dto.boardCategory eq "가구/인테리어"?'selected':''} value="가구/인테리어">가구/인테리어</option>
-					  <option for="boardCategory" ${dto.boardCategory eq "생활/주방"?'selected':''} value="생활/주방">생활/주방</option>
-					  <option for="boardCategory" ${dto.boardCategory eq "가전제품"?'selected':''} value="가전제품">가전제품</option>
-					  <option for="boardCategory" ${dto.boardCategory eq "전자기기"?'selected':''} value="전자기기">전자기기</option>
-					  <option for="boardCategory" ${dto.boardCategory eq "E쿠폰/티켓"?'selected':''} value="E쿠폰/티켓">E쿠폰/티켓</option>
-					  <option for="boardCategory" ${dto.boardCategory eq "기타"?'selected':''} value="기타">기타</option>
-					</select>
-		         </div>
-		         <div class="fw-bold fs-5 col-12 my-4">
-		            <p>내용</lp>
-		            <textarea name="boardContents" class="form-control my-2" id="boardContents" rows="8" placeholder="내용 입력">${dto.boardContents}</textarea><br>
-		         </div>
-		       
-		         <div class="row justify-content-center my-5">
-		         	<button type="submit" class="btn btn-outline-success col-3">올리기</button>
-		         </div>
-	     	</div>
-	   </form>
-	</div>
-</div>
+
+<!-- Banner Section Begin -->
+    <section class="hero hero-normal">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <hr>
+                </div>
+                <div class="col-lg-12 text-center">
+                    <div class="background-page">
+                        <div class="banner-text"><h2>중고 거래</h2></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- Banner Section End -->
+
+<!-- Checkout Section Begin -->
+    <section class="checkout spad">
+        <div class="container">
+            <div class="checkout__form">
+                <form action="./update" method = "post">
+                	<input type="hidden" name="boardNum" value="${dto.boardNum}">
+                    <div class="row">
+                        <h4 class="join__title mx-auto">게시물 수정</h4>
+                    </div>
+                    <div class="row">                       
+                        <div class="col-lg-7 col-md-6 mx-auto"> 
+	                        <div class="fw-bold fs-5 col-12">
+				           		<p>작성자</p>
+				           		<input type="text" name="memberId" value="${dto.memberId}"  readonly="readonly" class="form-control" id="memberId" placeholder="이름 입력"><br>
+				        	</div>
+                            <div class="checkout__input">
+                            <p>제목</p>
+                                <input type="text" placeholder="제목" name="boardTitle" id="boardTitle"  value="${dto.boardTitle}" class="checkout__input__add">                                
+                            </div>             
+	                        <div class="row">
+	                            <div class="input-state col-6" >
+	                            <p>판매 | 구매</p>
+		                        	<select class="form-select" name="boardState" id="boardState" aria-label="Default select example">
+		                                <!-- <option selected>판매</option> -->
+	                                	<option value="판매" ${dto.boardState eq "판매"?'selected':''}>판매</option>
+	                                    <option value="구매" ${dto.boardState eq "구매"?'selected':''}>구매</option>    
+	                                </select> 
+	                            </div>                                                                                   
+	                            <div class="input-category col-6">
+	                            <p>카테고리</p>
+	                                <select class="form-select" aria-label="Default select example" name="boardCategory" id="boardCategory">
+									  <option name="boardCategory" id="boardCategory">카테고리를 선택해주세요</option>
+									  <option for="boardCategory" ${dto.boardCategory eq "여성패션"?'selected':''} value="여성패션">여성패션</option>
+									  <option for="boardCategory" ${dto.boardCategory eq "남성패션"?'selected':''} value="남성패션">남성패션</option>
+									  <option for="boardCategory" ${dto.boardCategory eq "가구/인테리어"?'selected':''} value="가구/인테리어">가구/인테리어</option>
+									  <option for="boardCategory" ${dto.boardCategory eq "생활/주방"?'selected':''} value="생활/주방">생활/주방</option>
+									  <option for="boardCategory" ${dto.boardCategory eq "가전제품"?'selected':''} value="가전제품">가전제품</option>
+									  <option for="boardCategory" ${dto.boardCategory eq "전자기기"?'selected':''} value="전자기기">전자기기</option>
+									  <option for="boardCategory" ${dto.boardCategory eq "E쿠폰/티켓"?'selected':''} value="E쿠폰/티켓">E쿠폰/티켓</option>
+									  <option for="boardCategory" ${dto.boardCategory eq "기타"?'selected':''} value="기타">기타</option>
+									</select>
+	                            </div>
+                            </div>
+                            <div class="checkout__input">
+                            <p>가격</p>
+                                <input type="text" placeholder="가격" name="boardPrice" id="boardPrice" value="${dto.boardPrice}" class="checkout__input__add">                                
+                            </div> 
+                            <div class="container">
+                            <p>상세설명</p>
+                                <textarea class="summernote" name="boardContents">${dto.boardContents}</textarea>    
+                            </div>
+                            <div class="d-flex justify-content-center my-5">
+                                <button type="text" class="site-btn mr-4"><a href="./detail?boardNum=${dto.boardNum}">취소</a></button>                                                     
+                                <button type="submit" class="site-btn">수정</a></button>     
+                            </div>                                                                                                                      
+                        </div> 
+                    </div>                    
+                </form>
+            </div>
+        </div>
+    </section>
+
 <script>
    $("#boardContents").summernote();
 </script>
