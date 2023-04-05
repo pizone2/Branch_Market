@@ -11,14 +11,22 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 
+<section class="hero hero-normal">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <hr>
+                </div>
+                <div class="col-lg-12 text-center">
+                    <div class="background-page">
+                        <div class="banner-text"><h2>알람</h2></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
 <div class="container-fluid my-5">
-	<div class="row mb-4">
-		<h1 class="col-md-7 mx-auto text-center pb-4">
-			알람
-			<hr class="border border-success border-2 opacity-50">
-		</h1>
-		
-	</div>
 	
 	
 
