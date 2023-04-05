@@ -205,7 +205,7 @@ del.addEventListener("click", function(){
 
 })
 </script>
-<script src="/resources/js/comments/list.js"></script>
+
 <script src="/resources/js/board/board.js"></script>
 <c:import url="../template/common_js.jsp"></c:import>
 <c:import url="../template/footer.jsp"></c:import>
