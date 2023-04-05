@@ -8,6 +8,7 @@
   		<!-- ex )) <typeAlias type="com.iu.s1.product.ProductDTO" alias="ProductDTO"/> -->
   		<typeAlias type="com.main.branch.board.BoardDTO" alias="BoardDTO"/>
   		<typeAlias type="com.main.branch.board.BoardPicDTO" alias="BoardPicDTO"/>
+  		<typeAlias type="com.main.branch.board.BoardImgDTO" alias="BoardImgDTO"/>
   		
   		<typeAlias type="com.main.branch.product.ProductDTO" alias="ProductDTO"/>
   		<typeAlias type="com.main.branch.product.ProductPicDTO" alias="ProductPicDTO"/>
@@ -30,6 +31,8 @@
   		<typeAlias type="com.main.branch.event.EventDTO" alias="EventDTO"/>
   		
   		<typeAlias type="com.main.branch.notify.NotifyDTO" alias="NotifyDTO"/>
+  		
+  		<typeAlias type="com.main.branch.pay.PayDTO" alias="PayDTO"/>
   		
   		<typeAlias type="com.main.branch.util.Pager" alias="Pager"/>
   		<typeAlias type="java.lang.String" alias="String"/>
