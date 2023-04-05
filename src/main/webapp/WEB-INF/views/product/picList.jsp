@@ -8,11 +8,17 @@
                 <meta charset="UTF-8">
                 <title>장바구니</title>
                 <c:import url="../template/common_css.jsp"></c:import>
+                <script src="https://cdn.iamport.kr/v1/iamport.js"></script>
             </head>
 
             <body>
                 <c:import url="../template/header.jsp"></c:import>
-                <div id="datas" data-productNum="${dto.productNum}"></div>
+                <div id="datas" data-productNum="${dto.productNum}"
+                     data-member-id="${member.memberId}"
+                     data-member-email="${member.memberEmail}"
+                     data-member-phone="${member.memberPhone}"
+                     data-member-address="${member.memberAddress}"
+                ></div>
 
                 <section class="hero hero-normal">
                     <div class="container">
@@ -57,7 +63,8 @@
                                                         <input type="checkbox" id="acc" class="chk"
                                                             data-price=${dto.productPrice}
                                                             data-productNum=${dto.productNum}
-                                                            data-productCount=${productDTOs.size()}>
+                                                            data-productCount=${productDTOs.size()}
+                                                            data-productTitle="${dto.productTitle}">
                                                         <h8>&nbsp;</h8>
 
                                                         <div style="display: flex; align-items: center;">
@@ -103,9 +110,9 @@
                                 <div class="shoping__checkout">
                                     <!-- <h5>장바구니 </h5> -->
                                     <ul>
-                                        <li>총 주문금액 <span id="totalPrice"></span></li>
+                                        <li>총 주문금액 <span id="totalPrice">0원</span></li>
                                     </ul>
-                                    <a href="#" class="primary-btn">주문하기</a>
+                                    <button type="button" class="primary-btn" onclick="requestPay()">주문하기</button>
                                 </div>
                             </div>
                         </div>
@@ -115,6 +122,13 @@
                 <script src="/resources/js/product/productPicList.js"></script>
                 <c:import url="../template/common_js.jsp"></c:import>
                 <c:import url="../template/footer.jsp"></c:import>
+
+                <script>
+
+                  
+    
+                </script>
+
             </body>
 
             </html>

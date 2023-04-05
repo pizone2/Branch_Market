@@ -41,8 +41,8 @@ public class EventService {
 		return result;	
 	}
 	public int setEventDelete(EventDTO eventDTO) throws Exception {
-//		String realPath = servletContext.getRealPath("/resources/upload/event/");
-//		fileManager.fileDelete(realPath, eventDTO.getFileName());
+		String realPath = servletContext.getRealPath("/resources/upload/event/");
+		fileManager.fileDelete(realPath, eventDTO.getFileName());
 		return eventDAO.setEventDelete(eventDTO);
 	}
 	

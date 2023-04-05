@@ -58,15 +58,15 @@
 						</div>
 						 
 
-						<div class="hero__search my-3">
+						<div class="hero__search my-3 row">
 							<div class="hero__search_btn">
 								<form class="row g-3" action="./list" method="get" id="searchForm">
-									<input type="hidden" name="page" value="1" id="page">
+									<input type="hidden" name="page" value="1" id="page" class="input-group mb-3">
 								  <div class="col-auto">
 									<label for="kind" class="visually-hidden"></label>
 									<select class="form-select" name="kind" id="kind" aria-label="Default select example">
-									  <option value="title" ${pager.kind eq 'productTitle' ? 'selected':''} >제목</option>
-									  <option value="contents" ${pager.kind eq 'productDetail' ? 'selected':''}>내용</option>
+									  <option value="title" ${pager.kind eq 'productTitle' ? 'selected':''} >상품명</option>
+									  <option value="contents" ${pager.kind eq 'productDetail' ? 'selected':''}>상품 내용</option>
 									</select>
 								  </div>
 								  <div class="col-auto">
@@ -78,7 +78,12 @@
 						</div>
 						<div>
 							<a href="./add"><button class="state-btn btn mb-3">위탁 판매 등록</button></a>
-							<a href="./addList"><button class="state-btn btn">위탁 판매 등록 신청</button></a>
+							
+							<c:forEach items="${memberDtos}" var="dto">
+            					<c:if test="${dto.memberRole eq admin}">
+									<a href="./addList"><button class="state-btn btn">위탁 판매 등록 신청</button></a>
+								</c:if>
+							</c:forEach>
 						</div>
 					</div>
 					</form>

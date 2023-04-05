@@ -45,29 +45,29 @@
                                             <span class="product-name">Banners</span>
                                         </label>
                                     </th>
-                                    <th><button class="banner-btn btn">삭제</button></th>
+                                    <!-- <th><button class="banner-btn btn">삭제</button></th> -->
                                     <th><button class="banner-btn btn" data-toggle="modal" data-target="#ModalLoginForm">배너 등록</button></th>
                                     
                                 
                                 </tr>
                             </thead>
                             <tbody>
-                              <c:forEach items="${eventDTOs}" var="dto">
+                              <c:forEach items="${eventDTOs}" var="dto" varStatus="i">
                                 <tr>
                                     <td class="shoping__cart__item" >
-                                        <input type="checkbox" id="acc" name="chk">  
+                                        <!-- <input type="checkbox" id="acc" name="chk">  --> 
                                         <h8>&nbsp;</h8>   
                                                                                                             
                                         <img src="/resources/upload/event/${dto.fileName}" alt="" style="width: 200px; height: 200px;">
-                                        <h5>블링블링 더블선샤인 볼드큐빅 귀걸이</h5>
+                                        <h5>${dto.oriName}</h5>
                                         
 
                                     </td>
                                     <td class="banner_update_btn">
                                         <button class="member-btn btn update"  data-toggle="modal" data-target="#ModalImageUpdateForm" data-eventNum="${dto.eventNum}">이미지 수정</button>
                                     </td>
-                                    <td class="shoping__cart__item__close">
-                                        <span class="icon_close"></span>
+                                    <td class="shoping__cart__item__close">                                   
+                                        <span class="icon_close fileDbDel" data-fileIndex="${i.count}" data-eventNum="${dto.eventNum}" data-fileName="${dto.fileName}"></span>
                                     </td> 
                                 </tr>
                                </c:forEach>
@@ -105,22 +105,18 @@
                 
                     <input type="hidden" name="_token" value="">
                     <div class="form-group">
-                        <label class="control-label">배너명</label>
+                        <!-- <label class="control-label">배너명</label>
                         <div>
                             <input type="text" class="form-control input-lg" name="name" value="">
-                        </div>
+                        </div> -->
                     </div>
                     <div class="form-group">
                         <label class="control-label">배너 이미지</label>
-                        
-                    </div>
                     <input type="button" id="fileAddBtn" value="파일 추가">
 					<form action="./add" method="post" enctype="multipart/form-data">
 				        <div id="fileAddList"></div>
-				        <input type="submit" value="등록하기">
-				    </form>
-                
-                    <div class="form-group mt-4" style="text-align: center;">
+				        
+				        <div class="form-group mt-4" style="text-align: center;">
                         <div >
                             <button type="submit" class="btn btn-success">
                                 등록
@@ -130,6 +126,11 @@
                             </button>
                         </div>
                     </div>
+				    </form>
+                        
+                    </div>
+                
+                   
                 
             </div>
         </div><!-- /.modal-content -->
@@ -144,10 +145,10 @@
                 <h3 class="mb-4">배너 이미지 수정하기</h3>
                 <form action="./update" method="post" id="imageUpdateForm" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label class="control-label">배너명</label>
+                        <!-- <label class="control-label">배너명</label>
                         <div>
                             <input type="text" class="form-control input-lg" name="name" value="">
-                        </div>
+                        </div> -->
                     </div>
                     <div class="form-group">
                         <label class="control-label">배너 이미지</label>

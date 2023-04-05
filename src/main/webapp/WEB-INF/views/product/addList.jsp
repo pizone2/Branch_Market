@@ -60,32 +60,32 @@
 			<nav aria-label="Page navigation example ">
 			  <ul class="pagination">
 			  
-			  	<li class="page-item">
-			      <a class="page-link" href="#" aria-label="Previous" data-board-page="1">
+			  	<li class="page-item" data-board-page="1">
+			      <span class="page-link"  aria-label="Previous" data-board-page="1">
 			        <span aria-hidden="true">&laquo;</span>
-			      </a>
+			      </span>
 			    </li>
 			  
 			    <li class="page-item ${pager.before?'disabled':''}">
-			      <a class="page-link" href="#" aria-label="Previous" data-board-page="${pager.startNum-1}">
+			      <span class="page-link"  aria-label="Previous" data-board-page="${pager.startNum-1}">
 			        <span aria-hidden="true">&lsaquo;</span>
-			      </a>
+			      </span>
 			    </li>
 			    
 			    <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-			    <li class="page-item"><a class="page-link" href="#" data-board-page="${i}"  >${i}</a></li>
+			   <li class="page-item" data-page="${i}"><span class="page-link" data-board-page="${i}">${i}</span></li>
 			    </c:forEach>
 			    
-			    <li class="page-item ${pager.after eq false ? 'disabled':''}"><%-- ${pager.after eq false ? 'disabled':''} --%>
-			      <a class="page-link" href="#"  aria-label="Next" data-board-page="${pager.lastNum+1}">
+			    <li class="page-item ${pager.after eq false ? 'disabled':''}" data-board-page="${pager.lastNum+1}"><%-- ${pager.after eq false ? 'disabled':''} --%>
+			      <span class="page-link"   aria-label="Next" data-board-page="${pager.lastNum+1}">
 			        <span aria-hidden="true">&rsaquo;</span>
-			      </a>
+			      </span>
 			    </li>
 			    
 			    <li class="page-item${pager.after eq false ? 'disabled':''}">
-			      <a class="page-link" href="#"  aria-label="Next" data-board-page="${pager.totalPage}">
+			      <span class="page-link"   aria-label="Next" data-board-page="${pager.totalPage}">
 			        <span aria-hidden="true">&raquo;</span>
-			      </a>
+			      </span>
 			    </li>
 			    
 			  </ul>
@@ -96,8 +96,8 @@
 			
 			<!-- 검색창 -->
 			<div class="row">
-				<form class="row g-3" action="./addList" method="get" id="searchForm">
-				<input type="hidden" id="page" name="page">
+				<!-- <form class="row g-3" action="#" method="get" id="searchForm"> -->
+				<input type="hidden" id="page" name="page" class="page">
 				<div class="fw-bold fs-5 col-12">
 		           <!--  <p>카테고리</p> -->
 	        	  	<select class="form-select" name="category" id="category" aria-label="Default select example">
@@ -126,7 +126,7 @@
 				  </div>
 				  
 				  <div class="col-auto">
-				    <button type="submit" class="btn btn-outline-success">검색</button>
+				    <button type="submit" class="btn btn-outline-success productSearchBtn">검색</button>
 				  </div>
 				</form>
 			</div>
@@ -134,6 +134,6 @@
 			</div>
 		</div>
 	
-		<script src="/resources/js/product/pageing.js"></script>
-		<script src="/resources/js/product/addList.js"></script>
+<!-- 		 <script src="/resources/js/product/pageing.js"></script> -->
+		<!-- <script src="/resources/js/product/addList.js"></script> -->
 		

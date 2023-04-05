@@ -58,6 +58,7 @@
  		INSERT INTO BOARD VALUES(#{boardNum},#{memberId},#{boardTitle},#{boardContents},#{boardPrice},SYSDATE,0,#{boardState},#{boardCategory})
  	</insert>
  	
+ 	
  	<delete id="setBoardDelete" parameterType="BoardDTO">
  		DELETE BOARD WHERE BOARDNUM=#{boardNum}
  	</delete>

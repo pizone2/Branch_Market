@@ -34,10 +34,10 @@
 
                 function requestPay() {
                 IMP.request_pay({
-                    pg : 'kcp',
+                    pg : 'kakaopay',
                     pay_method : 'card',
                     merchant_uid: merchant_uid,
-                    name : '당근 10kg',
+                    name : '당근123',
                     amount : 10,
 
                     buyer_email : 'Iamport@chai.finance',

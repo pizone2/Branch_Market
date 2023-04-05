@@ -62,56 +62,54 @@
                                     <a href="#" class="heart-icon" id="picDelete"><i class="icon-heart fa fa-check" type="submit"></i></a>
                                 </c:if>
                              </div>
+                            </div>
                         </div>
-                        
-					<div class="product__details__pic__slider owl-carousel my-5">
-						<img data-imgbigurl="${dto.productDetail}"
-							src="" alt="">
-					</div>
                     </div>
-                </div>
-                <div class="col-lg-12">
-                    <div class="product__details__tab">
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="tabs-1" role="tabpanel">
-                                <div class="product__details__tab__desc">
-                                    <table class="table">
-                                        <thead class="table-success">
-                                            <tr>
-                                                <th scope="col">번호</th>
-                                                <th scope="col">아이디</th>
-                                                <th scope="col">내용</th>
-                                                <th scope="col">평점</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <c:forEach items="${reviewDTOs}" var="dtos"> 
-                                            <tr>
-                                                <th scope="row">${dtos.reviewNum}</th>
-                                                <td>${dtos.memberId}</td>
-                                                <td>${dtos.reviewContents}</td>
-                                                <td>${dtos.reviewScore}</td>
-                                            </tr>
-                                            </c:forEach>
-                                        </tbody>
-                                    </table>
-                                    <div class="input-group mb-3">
-                                        <input type="text" class="form-control" placeholder="리뷰를 작성해주세요"aria-describedby="button-add">
-                                        <button class="btn btn-success" type="button" id="button-add">등록</button>
+                    <input type="button" value="리뷰 작성" id="reviewAddBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <!-- <div class="col-lg-12">
+                        <div class="product__details__tab">
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                                    <div class="product__details__tab__desc">
+                                        <table class="table">
+                                            <thead class="table-success">
+                                                <tr>
+                                                    <th scope="col">번호</th>
+                                                    <th scope="col">아이디</th>
+                                                    <th scope="col">내용</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <c:forEach items="${reviewDTOs}" var="dtos">
+                                                    <tr>
+                                                        <th scope="row">${reviewDTO.reviewNum}</th>
+                                                        <td id="reviewContents${reviewDTO.reviewNum}">${reviewDTO.reviewContents}</td>
+                                                        <td>${reviewDTO.memberId}</td>
+                                                    </tr>
+                                                </c:forEach>
+                                            </tbody>
+                                        </table>
+                                        <div class="input-group mb-3">
+                                            <input type="text" class="form-control" placeholder="댓글을 작성해주세요" aria-describedby="button-add">
+                                            <button class="btn btn-success" type="button" id="button-add">등록</button> 
+                                        </div>-->
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div id="reviewList"></div>
                 </div>
             </div>
-        </div>
-    </section>
-    <div class="list">
-        <!--권한을 가지고 있는 사람만 보임 -->
-        <a href="./update?productNum=${dto.productNum}"><button class="form-update btn btn-info">수정</button></a>
-        <a href="./delete?productNum=${dto.productNum}" id="delete"><button class="form-delete btn btn-danger">삭제</button></a>
-		
+        </section>
+        <div class="list">
+            <c:forEach items="${memberDtos}" var="dto">
+                <c:if test="${dto.memberRole eq admin}">
+            <!--권한을 가지고 있는 사람만 보임 -->
+                <a href="./update?productNum=${dto.productNum}"><button class="form-update btn btn-info">수정</button></a>
+                <a href="./delete?productNum=${dto.productNum}" id="delete"><button class="form-delete btn btn-danger">삭제</button></a>
+            </c:if>
+        </c:forEach>
         <!--모든 사람에게 보임 -->
         <a href="./list"><button class="form-list btn btn-success">목록으로</button></a>
     </div>
@@ -149,7 +147,7 @@
 <div id="reviewList"></div> -->
 
   
-  <!-- Modal -->
+  Modal
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 	  <div class="modal-content">

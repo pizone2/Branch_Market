@@ -144,7 +144,7 @@ public class ProductController {
 		
 		Integer result = productService.setProductAddConfirm(productDTO);
 		
-		mv.setViewName("redirect:./list");
+		mv.setViewName("redirect:../product/list");
 		
 		return mv;
 	}
