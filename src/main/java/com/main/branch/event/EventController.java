@@ -83,7 +83,7 @@ public class EventController {
 	}
 	
 	@PostMapping("/delete")
-	public ModelAndView setEventDelete(EventDTO eventDTO) {
+	public ModelAndView setEventDelete(EventDTO eventDTO) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		int result = eventService.setEventDelete(eventDTO);
 		modelAndView.addObject("result", result);
