@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.main.branch.pay.PayDAO">
+ 
+ 	<sql id="searchCondition">
+ 		<trim prefix="WHERE">
+ 			productTitle LIKE '%' || #{search} || '%'
+ 			AND
+ 			memberId = #{memberId}
+ 		</trim>
+ 	</sql>
+ 
+ 	<insert id="setPayAdd" parameterType="PayDTO">
+ 		INSERT INTO PAY VALUES(#{merchantUid},#{memberId},#{impUid},#{productTitle},#{productNums},SYSDATE)
+ 	</insert>
+ 
+ 	<select id="getPayList" parameterType="Pager" resultType="PayDTO">
+ 		SELECT * FROM
+ 		(SELECT rownum r,A.* FROM
+ 		(SELECT * FROM PAY <include refid="searchCondition"></include>) A)
+ 		WHERE R BETWEEN ${startRow} AND ${lastRow}
+ 	</select>
+ 	
+ 	<select id="getPayListCount" parameterType="Pager" resultType="Integer">
+ 		SELECT COUNT(*) FROM PAY <include refid="searchCondition"></include>
+ 	</select>
+ 	
+ 	<select id="getPayListDetail" parameterType="PayDTO" resultType="PayDTO">
+ 		SELECT * FROM PAY WHERE merchantUid = #{merchantUid}
+ 	</select>
+ </mapper>
+ 
+<!--  private String merchantUid;
+	private String memberId;
+	private String impUid;
+	private String productNums; -->
