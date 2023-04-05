@@ -54,30 +54,30 @@
 		        	 <nav aria-label="Page navigation example">
 					  <ul class="pagination">
 					  	<li class="page-item" data-page="1">
-					      <a class="page-link" data-page="1" aria-label="Previous" href="#">
+					      <span class="page-link" data-page="1" aria-label="Previous">
 					        <span aria-hidden="true">&laquo;</span>
-					      </a>
+					      </span>
 					    </li>
 					    
 					    <li class="page-item ${pager.before?'disabled':''}" data-page="${pager.startNum - 1}">
-					      <a class="page-link" data-page="${pager.startNum - 1}" aria-label="Previous" href="#">
+					      <span class="page-link" data-page="${pager.startNum - 1}" aria-label="Previous">
 					        <span aria-hidden="true">&lsaquo;</span>
-					      </a>
+					      </span>
 					    </li>
 					    <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-    						    <li class="page-item" data-page="${i}"><a class="page-link" data-page="${i}" href="#">${i}</a></li>
+    						    <li class="page-item" data-page="${i}"><span class="page-link" data-page="${i}">${i}</span></li>
 					    </c:forEach>
 
 
 					    <li class="page-item ${pager.after eq false ? 'disabled' : ''}" data-page="${pager.lastNum + 1}">
-					      <a class="page-link" data-page="${pager.lastNum + 1}" aria-label="Next" href="#">
+					      <span class="page-link" data-page="${pager.lastNum + 1}" aria-label="Next">
 					        <span aria-hidden="true">&rsaquo;</span>
-					      </a>
+					      </span>
 					    </li>
 					    <li class="page-item" data-page="${pager.totalPage}">
-					      <a class="page-link" data-page="${pager.totalPage}" aria-label="Next" href="#">
+					      <span class="page-link" data-page="${pager.totalPage}" aria-label="Next">
 					        <span aria-hidden="true">&raquo;</span>
-					      </a>
+					      </span>
 					    </li>
 					  </ul>
 					</nav>
@@ -86,8 +86,8 @@
 				
 				<!-- 검색창 -->
 				<div class = "row">
-					  <form class="row g-3" action="./list" method="get" id="paginingForm">
-						  <input type="hidden" name="page" id="page">
+			<!-- 		  <form class="row g-3" action="#" method="get" id="paginingForm"> -->
+						  <input type="hidden" name="page" id="page" class="page">
 						  <input type="hidden" name="category" id="category" value="${pager.category}">
 						  <div class="col-auto">
 						    <!-- <label for="kind" class="visually-hidden">Kind</label> -->
@@ -101,10 +101,10 @@
 						    <input type="text" class="form-control" name="search" id="search" placeholder="검색어를 입력 하세요." value="${pager.search}">
 						  </div>
 						  <div class="col-auto">
-						    <button type="submit" class="btn btn-outline-success">검색</button>
+						    <button type="submit" class="btn btn-outline-success inqSearchBtn">검색</button>
 						  </div>
-					</form>
+					<!-- </form> -->
 				</div>
 	
-				<script src="/resources/js/inquiry/list.js"></script>
+				<!-- <script src="/resources/js/inquiry/list.js"></script> -->
 
