@@ -78,7 +78,11 @@
 						</div>
 						<div>
 							<a href="./add"><button class="state-btn btn mb-3">위탁 판매 등록</button></a>
-							<a href="./addList"><button class="state-btn btn">위탁 판매 등록 신청</button></a>
+						</div>
+						<div>
+							<c:if test="${dto.memberId eq admin}">
+								<a href="./addList"><button class="state-btn btn">위탁 판매 등록 신청</button></a>
+							</c:if>
 						</div>
 					</div>
 					</form>

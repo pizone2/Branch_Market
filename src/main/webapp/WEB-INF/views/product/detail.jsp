@@ -65,8 +65,7 @@
                         </div>
                         
 					<div class="product__details__pic__slider owl-carousel my-5">
-						<img data-imgbigurl="${dto.productDetail}"
-							src="" alt="">
+						<img data-imgbigurl="${dto.productDetail}" src="" alt="">
 					</div>
                     </div>
                 </div>
@@ -108,10 +107,11 @@
         </div>
     </section>
     <div class="list">
+        <c:if test="${dto.memberId eq admin}">
         <!--권한을 가지고 있는 사람만 보임 -->
-        <a href="./update?productNum=${dto.productNum}"><button class="form-update btn btn-info">수정</button></a>
-        <a href="./delete?productNum=${dto.productNum}" id="delete"><button class="form-delete btn btn-danger">삭제</button></a>
-		
+            <a href="./update?productNum=${dto.productNum}"><button class="form-update btn btn-info">수정</button></a>
+            <a href="./delete?productNum=${dto.productNum}" id="delete"><button class="form-delete btn btn-danger">삭제</button></a>
+		</c:if>
         <!--모든 사람에게 보임 -->
         <a href="./list"><button class="form-list btn btn-success">목록으로</button></a>
     </div>
