@@ -32,11 +32,11 @@
     <section class="hero">
         <div class="container">
             <div class="row">
-                <div class="category-bar col-lg-3">         
+                <div class="category-bar col-lg-3 col-md-3">         
                     
-                <div class="manager-list col-lg-2">
+                <div class="manager-list col-lg-2 col-md-2">
                     <div class="mb-3">
-                        <button class="state-btn btn"><a href="./banner-update.html">이벤트 배너 수정</a></button>
+                        <button class="state-btn btn"><a href="../event/event/list">이벤트 배너 수정</a></button>
                     </div>
                     <div class="mb-3">
                         <button class="state-btn btn"><a href="./memberList">회원정보 관리</a></button>
@@ -47,7 +47,7 @@
                 </div>
 
                 </div>
-                <div class="col-lg-9">
+                <div class="col-lg-9 col-md-9">
               
                     <style> 
                         h2{

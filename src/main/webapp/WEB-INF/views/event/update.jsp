@@ -9,7 +9,7 @@
 <c:import url="../template/common_css.jsp"></c:import>
 </head>
 <body>
-    <input type="button" id="fileAddBtn" value="파일 추가">
+    <%-- <input type="button" id="fileAddBtn" value="파일 추가">
     
     <form action="./update" method="post" enctype="multipart/form-data">
         <div id="fileAddList">
@@ -20,7 +20,15 @@
             </c:forEach>
         </div>
         <input type="submit" value="등록하기">
-    </form>
+    </form> --%>
+    
+    <c:forEach items="${eventDTOs}" var="dto" varStatus="i">
+                <div id="file${i.count}">
+                    ${dto.oriName}<button class="fileDbDel" data-fileIndex="${i.count}" data-eventNum="${dto.eventNum}">X</button>
+                </div>
+    </c:forEach>
+    
+   
     <script src="/resources/js/event/fileManager.js"></script>
     <c:import url="../template/common_js.jsp"></c:import>
     <script>

@@ -15,25 +15,30 @@ $('#fileAddBtn').click((e)=>{
         $('#fileAddList').append(element);
     }
 })
-$('#fileAddList').on('click','.fileDel',(e)=>{
+$(document).on('click','.fileDel',(e)=>{
+console.log('del 1')
     let fileIndex = $(e.target).attr('data-fileIndex');
     $('#file' + fileIndex).remove();
     fileCnt--;
 })
-$('#fileAddList').on('click','.fileDbDel',(e)=>{
+$(document).on('click','.fileDbDel',(e)=>{
+console.log('del 2')
     console.log(e.target);
     let fileIndex = $(e.target).attr('data-fileIndex');
     $('#file' + fileIndex).remove();
     let eventNum = $(e.target).attr('data-eventNum');
+    let fileName = $(e.target).attr('data-fileName');
     $.ajax({
         url:'/event/delete',
         type:'post',
         data:{
-            'eventNum':eventNum
+            'eventNum':eventNum,
+            'fileName':fileName
         },
         success:(res)=>{
             console.log(res);
             fileCnt--;
+            window.location.reload();
         }
     })
 })
