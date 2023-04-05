@@ -81,6 +81,7 @@ public class MemberService {
 	public MemberDTO setMemberLogin(MemberDTO memberDTO) {
 		MemberDTO memberDTO2 = memberDAO.getMemberDetail(memberDTO);
 		if(memberDTO2!= null && memberDTO2.getMemberPw().equals(memberDTO.getMemberPw())) {
+			memberDTO = memberDTO2;
 			return memberDTO;
 		}else {
 			return null;
