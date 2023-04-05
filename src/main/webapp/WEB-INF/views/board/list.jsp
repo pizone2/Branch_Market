@@ -54,10 +54,10 @@
                     </div>
                     <div class="state-btn-form row my-3">
                         <div class="col-6">
-                            <button class="state-btn btn"><a href="./list?state=판매" value="판매">판매</button>
+                            <button class="state-btn btn"><a href="./list?state=판매" value="판매">판매</a></button>
                         </div>
                         <div class="col-6">
-                            <button class="state-btn btn"><a href="./list?state=구매" value="구매">구매</button>
+                            <button class="state-btn btn"><a href="./list?state=구매" value="구매">구매</a></button>
                         </div>
                     </div>
                     <div class="hero__search">
