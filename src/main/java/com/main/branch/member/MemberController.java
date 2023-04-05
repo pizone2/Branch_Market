@@ -323,21 +323,6 @@ public class MemberController {
 		return modelAndView;
 	}
 	
-	@GetMapping("/payComplete")
-	public ModelAndView payTest(String merchant_uid,String amount) {
-		ModelAndView modelAndView = new ModelAndView();
-		
-		Map<String, String> params = new HashMap<String, String>();
-		
-		params.put("merchant_uid", merchant_uid);
-		params.put("amount", amount);
-		String message =  ApiCallManager.post("https://api.iamport.kr/payments/prepare", null, params);
-		modelAndView.addObject("message", message);
-		modelAndView.setViewName("/common/result");
-		return modelAndView;
-	}
-	
-	
 	@GetMapping("/postTest")
 	public ModelAndView test2() {
 		Map<String, String> parms = new HashMap<String, String>();
@@ -372,5 +357,22 @@ public class MemberController {
 		modelAndView.setViewName("/common/ajaxResult");
 		return modelAndView;
 	}
+	
+//	@GetMapping("/payComplete")
+//	public ModelAndView payTest(String merchant_uid,String amount) {
+//		ModelAndView modelAndView = new ModelAndView();
+//		
+//		System.out.println(merchant_uid);
+//		System.out.println(amount);
+//		
+//		Map<String, String> params = new HashMap<String, String>();
+//		
+//		params.put("merchant_uid", merchant_uid);
+//		params.put("amount", amount);
+//		String message =  ApiCallManager.post("https://api.iamport.kr/payments/prepare", null, params);
+//		modelAndView.addObject("message", message);
+//		modelAndView.setViewName("/common/result");
+//		return modelAndView;
+//	}
 	// -------------------------테스트 전용---------------------------------
 }

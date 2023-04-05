@@ -21,4 +21,7 @@ public class EventDAO {
 	public int setEventDelete(EventDTO eventDTO) {
 		return sqlSession.update(NAMESPACE + "setEventDelete", eventDTO);
 	}
+	public int setEventUpdate(EventDTO eventDTO) {
+		return sqlSession.update(NAMESPACE + "setEventUpdate",eventDTO);
+	}
 }

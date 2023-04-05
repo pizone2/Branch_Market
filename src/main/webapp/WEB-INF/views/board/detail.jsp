@@ -28,7 +28,7 @@
                 	<div hidden id="datas" data-boardNum = "${dto.boardNum}" data-sendId="${sessionScope.id}" data-receiveId="${dto.memberId}"></div>
                     <div class="product__details__text">
                         <!--boardTitle-->
-                        <h3>${dto.boardTitle}</h3>
+                        <h3>${dto.boardTitle} ${dto.boardCategory} ${dto.boardState}</h3>
                         <!--boardPrice-->
                         <div class="product__details__price">${dto.boardPrice}원</div>
                         <!--boardContents-->
@@ -85,10 +85,11 @@
     </section>
     <div class="list">
         <!--권한을 가지고 있는 사람만 보임 -->
-        <a href="./update?boardNum=${dto.boardNum}" class="btn form-update btn btn-info col-3">수정</a>
-		<a href="./delete?boardNum=${dto.boardNum}" class="btn form-delete btn btn-danger col-3 mx-2" id="delete">삭제</a>
+        <a href="./update?boardNum=${dto.boardNum}"><button class="form-update btn btn-info">수정</button></a>
+        <a href="./delete?boardNum=${dto.boardNum}"><button class="form-delete btn btn-danger">삭제</button></a>
         <!--모든 사람에게 보임 -->
-        <a href="./list" class="btn form-list btn-success col-3">목록으로</a>
+        <a href="./list"><button class="form-list btn btn-success">목록으로</button></a>
+    </div>
     </div>
 <!-- Product Details Section End -->
 

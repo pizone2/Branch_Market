@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -62,10 +63,10 @@ public class EventController {
 		return modelAndView;
 	}
 	@PostMapping("/update")
-	public ModelAndView setEventUpdate(MultipartFile[] multipartFiles) throws Exception {
+	public ModelAndView setEventUpdate(MultipartFile multipartFile, Integer eventNum) throws Exception {
+		
 		ModelAndView modelAndView = new ModelAndView();
-		System.out.println(multipartFiles.length);
-		int result = eventService.setEventAdd(multipartFiles);
+		int result = eventService.setEventUpdate(multipartFile, eventNum);
 		String message = "";
 		String url = "/";
 		if(result > 0) {
@@ -73,6 +74,7 @@ public class EventController {
 		}else {
 			message = "수정 실패";
 		}
+		modelAndView.addObject("result", result);
 		modelAndView.addObject("message", message);
 		modelAndView.addObject("url", url);
 		modelAndView.setViewName("/common/result");
@@ -81,7 +83,7 @@ public class EventController {
 	}
 	
 	@PostMapping("/delete")
-	public ModelAndView setEventDelete(EventDTO eventDTO) {
+	public ModelAndView setEventDelete(EventDTO eventDTO) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		int result = eventService.setEventDelete(eventDTO);
 		modelAndView.addObject("result", result);

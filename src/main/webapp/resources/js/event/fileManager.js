@@ -42,3 +42,41 @@ function setFileIndex(num){
     fileIndex = num;
     fileCnt = num;
 }
+
+
+$(".update").on("click", function(e) {
+    console.log("UPDATE ON CLICK");
+    let num = $(this).attr("data-eventNum");
+    $("#eventConfirm").attr("data-eventNum", num);
+
+    $("#eventConfirm").off("click").on("click", function() {
+    console.log('수정버튼');
+
+	
+    
+    let form = new FormData();
+    
+    
+    form.append("multipartFile", $('#updateFile')[0].files[0]); // 파일 정보 추가
+    form.append("eventNum", parseInt($(this).attr('data-eventNum')));
+    
+ 
+    
+    fetch('../event/update', {
+        method: 'POST',
+        body: form
+    })
+    .then(response => {
+        console.log(response);
+        $('#ModalImageUpdateForm').modal('hide'); // 모달 닫기
+    	window.location.reload(); // 페이지 새로고침
+    })
+    .catch(error => {
+        console.error(error);
+    });
+    });
+});
+
+
+
+

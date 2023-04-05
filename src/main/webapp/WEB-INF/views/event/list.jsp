@@ -64,7 +64,7 @@
 
                                     </td>
                                     <td class="banner_update_btn">
-                                        <button class="member-btn btn"  data-toggle="modal" data-target="#ModalImageUpdateForm">이미지 수정</button>
+                                        <button class="member-btn btn update"  data-toggle="modal" data-target="#ModalImageUpdateForm" data-eventNum="${dto.eventNum}">이미지 수정</button>
                                     </td>
                                     <td class="shoping__cart__item__close">
                                         <span class="icon_close"></span>
@@ -102,7 +102,7 @@
         <div class="modal-content">
             <div class="modal-body">
                 <h3 class="mb-4">배너 이미지 등록하기</h3>
-                <form role="form" method="POST" action="">
+                
                     <input type="hidden" name="_token" value="">
                     <div class="form-group">
                         <label class="control-label">배너명</label>
@@ -130,7 +130,7 @@
                             </button>
                         </div>
                     </div>
-                </form>
+                
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
@@ -142,8 +142,7 @@
         <div class="modal-content">
             <div class="modal-body">
                 <h3 class="mb-4">배너 이미지 수정하기</h3>
-                <form role="form" method="POST" action="">
-                    <input type="hidden" name="_token" value="">
+                <form action="./update" method="post" id="imageUpdateForm" enctype="multipart/form-data">
                     <div class="form-group">
                         <label class="control-label">배너명</label>
                         <div>
@@ -152,18 +151,14 @@
                     </div>
                     <div class="form-group">
                         <label class="control-label">배너 이미지</label>
-                        
+                        <input type="file" name="fileName" id="updateFile">
                     </div>
-                    <form action="" method="post" enctype="multipart/form-data" name="">
-                        <input type="file" name="FileName">
-                    </form>
-                
                     <div class="form-group mt-4" style="text-align: center;">
                         <div>
-                            <button type="submit" class="btn btn-success">
+                            <button type="button" class="btn btn-success" data-eventNum="" id="eventConfirm">
                                 수정
                             </button>
-                            <button type="submit" class="btn btn-success">
+                            <button type="button" class="btn btn-success" data-dismiss="modal">
                                 취소
                             </button>
                         </div>

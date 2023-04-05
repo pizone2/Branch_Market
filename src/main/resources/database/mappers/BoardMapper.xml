@@ -5,18 +5,21 @@
  <mapper namespace="com.main.branch.board.BoardDAO">
  	<sql id="boardCondition">
  		<trim prefix="WHERE" prefixOverrides="AND">
-			<if test="kind=='title'">
-				BOARDTITLE LIKE '%' || #{search} ||'%'
+			<if test="search!=null">
+				(BOARDTITLE LIKE '%' || #{search} ||'%' OR BOARDCONTENTS LIKE '%' || #{search} ||'%')
 			</if>
-			<if test="kind=='contents'">
+			<!-- <if test="kind=='contents'">
 				BOARDCONTENTS LIKE '%' || #{search} || '%'
 			</if>
 			<if test="kind=='writer'">
 				MEMBERID LIKE '%' || #{search} || '%'
-			</if>
+			</if> -->
 	
-	 		<if test="category != null and category !=''">
+	 		<!-- <if test="category != null and category !=''">
 	 			AND boardCategory = #{category}
+	 		</if> -->
+	 		<if test="category != null and category !=''">
+	 			AND BOARDCATEGORY = #{category}
 	 		</if>
 	 		<if test="state != null and state != ''">
 	 			AND boardState = #{state}
@@ -36,7 +39,7 @@
  	<select id="getBoardList" resultType="BoardDTO" parameterType="Pager">
  		SELECT * FROM (
  			SELECT ROWNUM R,B.* FROM(
- 				SELECT BOARDNUM, MEMBERID, BOARDTITLE, BOARDHIT,BOARDDATE, BOARDCATEGORY FROM BOARD 
+ 				SELECT * FROM BOARD 
  				<include refid="boardCondition"></include>
  				ORDER BY BOARDNUM DESC
  				)B
