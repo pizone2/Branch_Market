@@ -10,3 +10,12 @@ $.ajax({
         $('#totalUnreadMessage').html(0);
     }
 })
+
+$.ajax({
+    url:'/product/myProductPicCount',
+    type:'post',
+    success:function(res){
+        res = res.trim();
+        $('#myProductPicCount').html(res);
+    }
+})

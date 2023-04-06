@@ -192,4 +192,13 @@ public class ProductService {
 	public Integer setProductUpdateState(ProductDTO productDTO)throws Exception{
 		return productDAO.setProductUpdateState(productDTO);
 	}
+	
+	public int getMyProductPicCount() {
+		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("member");
+		if(memberDTO == null) {
+			return 0;
+		}else {
+			return productDAO.getMyProductPicCount(memberDTO);
+		}
+	}
 }

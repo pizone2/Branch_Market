@@ -260,6 +260,17 @@ public class ProductController {
 		return modelAndView;
 	}
 	
+	// ajax
+	@PostMapping("myProductPicCount")
+	public ModelAndView getMyProductPicCount() {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		int result = productService.getMyProductPicCount();
+		modelAndView.addObject("result", result);
+		modelAndView.setViewName("/common/ajaxResult");
+		
+		return modelAndView;
+	}
 	
 	
 }

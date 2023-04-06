@@ -284,9 +284,7 @@ public class MemberController {
 		ModelAndView modelAndView = new ModelAndView();
 		if(memberDTO.getMemberId() == null) {
 			memberDTO = (MemberDTO) httpSession.getAttribute("member");
-			if(memberDTO != null) {
-				memberDTO = memberService.getMemberDetail(memberDTO);
-			}
+			memberDTO = memberService.getMemberDetail(memberDTO);
 		}else {
 			memberDTO = memberService.getMemberDetail(memberDTO);
 		}
