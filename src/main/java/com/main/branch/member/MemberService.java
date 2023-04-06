@@ -98,7 +98,8 @@ public class MemberService {
 			return false;
 		}
 	}
-	public int setMemberDelete(MemberDTO memberDTO) {
+	public int setMemberDelete() {
+		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("member");
 		return memberDAO.setMemberDelete(memberDTO);
 	}
 }

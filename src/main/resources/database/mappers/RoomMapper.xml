@@ -79,6 +79,10 @@
  	<select id="getUnreadMessageCnt" parameterType="MessageDTO" resultType="Integer">
  		SELECT COUNT(*) FROM MESSAGE WHERE isRead = 0 AND receiveId = #{receiveId} AND roomNum = #{roomNum}
  	</select>
+ 	
+ 	<select id="getTotalUnreadMessageCnt" parameterType="MessageDTO" resultType="Integer">
+ 		SELECT COUNT(*) FROM MESSAGE WHERE isRead = 0 AND receiveId = #{receiveId}
+ 	</select>
  </mapper>
  
 <!--  private Integer messageNum;

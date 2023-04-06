@@ -65,10 +65,10 @@
                         </div>
                         <div id="phoneMsg"></div>           
 
-                        <div class="checkout__input d-flex mx-auto" style="width: 504px;">
+                        <div class="checkout__input d-flex mx-auto" style="width: 620px;">
                             <!-- <p>ADDRESS<span>*</span></p> -->
                             <input type="text" name="memberAddress" id="memberAddress" placeholder="ADDRESS" class="checkout__input__add">
-                            <button id="searchFormBtn" class="col-md-3" style="border: 0px;" type="button">주소검색</button>
+                            <button id="searchFormBtn" class="col-3" style="border: 0px;" type="button">주소검색</button>
                         </div>    
                         <div id="addressMsg"></div>
                         

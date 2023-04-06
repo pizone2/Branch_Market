@@ -200,4 +200,15 @@ public class RoomController {
 		modelAndView.setViewName("/common/ajaxResult");
 		return modelAndView;
 	}
+	
+	@PostMapping("/totalUnreadMessageCnt")
+	public ModelAndView getTotalUnreadMessageCnt() {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		int result = roomService.getTotalUnreadMessageCnt();
+		modelAndView.addObject("result", result);
+		modelAndView.setViewName("/common/ajaxResult");
+		
+		return modelAndView;
+	}
 }

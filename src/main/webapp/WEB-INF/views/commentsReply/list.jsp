@@ -2,6 +2,45 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
+<div class="container mt-5">
+
+	<div class="row  d-flex justify-content-center">
+
+		<div class="col-md-10">
+
+			
+			<c:forEach items="${list}" var="dto" varStatus="i">
+				<div class="card p-3 ${i.first ? 'mt-2' : ''}">
+					<div class="d-flex justify-content-between align-items-center">
+				<div class="user d-flex flex-row align-items-center">
+					<img src="https://i.imgur.com/hczKIze.jpg" width="30" class="user-imgs rounded-circle mr-2">
+					<span><small class="font-weight-bold comments-name">${dto.memberId}</small> <small class="font-weight-bold">
+						<h5 id="inqCommentsContents${inqCommentsDTO.inqCommentsNum}">${dto.replyContents}</h5>
+					</small></span>                    
+				</div>
+				</div>
+				<div class="action d-flex justify-content-between mt-2 align-items-center">
+					<div class="reply px-4">
+						
+						<span class="dots"></span>
+						<small class="button update newDate" id="replies" data-bs-toggle="modal" data-target="#modifyModal"  data-comment-num="${dto.replyNum}">
+                            수정
+                        </small>
+						<span class="dots"></span>
+						<small class="button del" id="del${dto.replyNum}" data-comment-num="${dto.replyNum}">
+							삭제
+						</small>              
+					</div>                   
+				</div>
+				</div>
+			</c:forEach>         
+		</div>            
+	</div>        
+</div>
+
+
+
+<%-- 
 <table class="table table-striped">
 	<c:forEach items="${list}" var="dto"> 
 		<tr id="${dto.replyNum}" style="background-color:bisque ;">
@@ -22,7 +61,7 @@
 		</td>
 
 	</c:forEach>
-</table>
+</table> --%>
 <!-- @@@@@@@@@@@@@@@@@@@@@@  UPDATE 댓글모달창 @@@@@@@@@@@@@@@@@@@@@@@-->
 <!-- <div class="modal fade" id="modifyModal" role="dialog">
     <div class="modal-dialog">

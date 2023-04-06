@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +22,7 @@
                 </div>
                 <div class="col-lg-12 text-center">
                     <div class="background-page">
-                        <div class="banner-text"><h2>결제 상세내역</h2></div>
+                        <div class="banner-text"><h2>구매 상세내역</h2></div>
                     </div>
                 </div>
             </div>
@@ -45,7 +46,7 @@
 									<img alt="" src="${dto.productImgName}" height="100px">
 								</td>
 								<td><a href="/product/detail?productNum=${dto.productNum}">${dto.productTitle}</a></td>
-								<td>${dto.productPrice }</td>
+								<td><fmt:formatNumber value="${dto.productPrice }"/>원</td>
 								<td><a>${dto.productQ}</a></td>
 							</tr>
 					</c:forEach>
