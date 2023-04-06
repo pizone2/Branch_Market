@@ -82,44 +82,7 @@
                                 </div>                                                                            
                             </div>
                         </div>
-                        <h3 style="text-align: center;">판매 중 상품</h3>
-                        <table class="boardTable table table-hover">
-                            <thead class="table-success">
-                                <tr>
-                                    <th>Num</th> <th>Title</th> <th>Writer</th> <th>Date</th> <th>Hit</th>  
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td><a href="./board-details.html">Detail Test</a></td>
-                                    <td>내용1</td>
-                                    <td>날짜1</td>
-                                    <td>조회수1</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>J제목2</td>
-                                    <td>내용2</td>
-                                    <td>날짜2</td>
-                                    <td>조회수2</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>제목3</td>
-                                    <td>내용3</td>
-                                    <td>날짜3</td>
-                                    <td>조회수3</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">4</th>
-                                    <td>J제목2</td>
-                                    <td>내용2</td>
-                                    <td>날짜2</td>
-                                    <td>조회수2</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <div id="mySellList"></div>
                     </div>
                     
                 </div>
@@ -136,7 +99,7 @@
     </div>
     <!-- Blog Details Section End -->
 
-    
+    <script src="/resources/js/member/myPage.js"></script>
     <c:import url="../template/footer.jsp"></c:import>
  	<c:import url="../template/common_js.jsp"></c:import>
 </body>

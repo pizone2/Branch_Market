@@ -89,7 +89,7 @@ public class ProductController {
 		
 	}
 	
-	@GetMapping("delete")
+	@PostMapping("delete")
 	public ModelAndView setProductDelete(ProductDTO productDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
@@ -207,6 +207,18 @@ public class ProductController {
 		Collections.reverse(productDTOs);
 		modelAndView.addObject("productDTOs", productDTOs);
 		modelAndView.setViewName("/product/recentProduct");
+		return modelAndView;
+	}
+	
+	// ajax
+	@GetMapping("mySellList")
+	public ModelAndView getProductMySellList(Pager pager) throws Exception {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		List<ProductDTO> productDTOs = productService.getProductMySellList(pager);
+		modelAndView.addObject("productDTOs", productDTOs);
+		modelAndView.setViewName("/common/mySellList");
+		
 		return modelAndView;
 	}
 	//----------------

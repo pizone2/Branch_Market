@@ -2,6 +2,7 @@ package com.main.branch.product;
 
 public class ProductDTO {
 
+	private Integer r;
 	private Integer productNum;
 	private String memberId;
 	private String productTitle;
@@ -15,6 +16,12 @@ public class ProductDTO {
 	
 	
 	
+	public Integer getR() {
+		return r;
+	}
+	public void setR(Integer r) {
+		this.r = r;
+	}
 	public Integer getState() {
 		return state;
 	}
