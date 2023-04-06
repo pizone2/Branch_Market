@@ -2,9 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!--@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  -->
-<div class="container mt-5">
+<!-- <div class="container mt-5"> -->
 
-	<div class="row  d-flex justify-content-center">
+	<div class="row  d-flex justify-content-center mb-2">
 
 		<div class="col-md-10">
 
@@ -15,7 +15,7 @@
 				<div class="user d-flex flex-row align-items-center">
 					<img src="https://i.imgur.com/hczKIze.jpg" width="30" class="user-imgs rounded-circle mr-2">
 					<span><small class="font-weight-bold comments-name">${dto.memberId}</small> <small class="font-weight-bold">
-						<h5 id="inqCommentsContents${inqCommentsDTO.inqCommentsNum}">${dto.replyContents}</h5>
+						<h5>${dto.replyContents}</h5>
 					</small></span>                    
 				</div>
 				</div>
@@ -36,7 +36,7 @@
 			</c:forEach>         
 		</div>            
 	</div>        
-</div>
+<!-- </div> -->
 
 
 
