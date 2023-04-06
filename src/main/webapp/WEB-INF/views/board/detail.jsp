@@ -20,8 +20,8 @@
 				<div class="col-lg-6 col-md-6">
 					<div class="product__details__pic">
 						<div class="product__details__pic__item">
-							<c:if test="${not empty dto.boardImgDTO}">
-								<img class="product__details__pic__item--large" src="../resources/upload/board/${dto.boardImgDTO.fileName}">
+							<c:if test="${not empty dto.boardImgDTOs}">
+								<img class="product__details__pic__item--large" src="../resources/upload/board/${dto.boardImgDTOs[0].fileName}">
 							</c:if>
                         </div>
                     </div>
@@ -41,16 +41,10 @@
                         </div>
                         
                         <div class="product__details__pic__slider owl-carousel my-5">
-                            <img data-imgbigurl="img/kong.jpg"
-                                src="../resources/upload/board/${dto.boardImgDTO.fileName}" alt="">
-                            <img data-imgbigurl="img/kong2.jpg"
-                                src="../resources/upload/board/${dto.boardImgDTO.fileName}" alt="">
-                            <img data-imgbigurl="img/kong3.jpg"
-                                src="../resources/upload/board/${dto.boardImgDTO.fileName}" alt="">
-                            <img data-imgbigurl="img/kong4.jpg"
-                                src="../resources/upload/board/${dto.boardImgDTO.fileName}" alt="">
-                            <img data-imgbigurl="img/kong5.jpg"
-                                src="../resources/upload/board/${dto.boardImgDTO.fileName}" alt="">
+                        <c:forEach begin="0" end="${dto.boardImgDTOs.size()-1}" step="1" var="i">
+							<img data-imgbigurl="../resources/upload/board/${dto.boardImgDTOs[i].fileName}"
+                                src="../resources/upload/board/${dto.boardImgDTOs[i].fileName}" alt="">
+						</c:forEach>
                         </div>
                     </div>
                 </div>
@@ -108,7 +102,7 @@
             <div class="row">
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/kong.jpg"></div>
+                        <div class="product__item__pic set-bg" data-setbg="../resources/upload/board/${dto.boardImgDTOs[0].fileName}"></div>
                         <div class="product__item__text">
                             <h6><a href="#">Crab Pool Security</a></h6>
                             <h5>$30.00</h5>
@@ -117,7 +111,7 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/kong2.jpg"></div>
+                        <div class="product__item__pic set-bg" data-setbg="../resources/upload/board/${dto.boardImgDTOs[0].fileName}"></div>
                         <div class="product__item__text">
                             <h6><a href="#">Crab Pool Security</a></h6>
                             <h5>$30.00</h5>
@@ -126,7 +120,7 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/kong3.jpg"></div>
+                        <div class="product__item__pic set-bg" data-setbg="../resources/upload/board/${dto.boardImgDTOs[0].fileName}"></div>
                         <div class="product__item__text">
                             <h6><a href="#">Crab Pool Security</a></h6>
                             <h5>$30.00</h5>
@@ -135,7 +129,7 @@
                 </div>
                 <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="img/kong5.jpg"></div>
+                        <div class="product__item__pic set-bg" data-setbg="../resources/upload/board/${dto.boardImgDTOs[0].fileName}"></div>
                         <div class="product__item__text">
                             <h6><a href="#">Crab Pool Security</a></h6>
                             <h5>$30.00</h5>
