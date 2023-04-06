@@ -31,23 +31,41 @@
     <!-- Hero Section Begin -->
     <section class="hero">
         <div class="container">
+                    <div class="mypage-text">
+		                <h4></h4>
+		            </div>
             <div class="row">
-                <div class="category-bar col-lg-3 col-md-3">         
-                    
-                <div class="manager-list col-lg-2 col-md-2">
-                    <div class="mb-3">
-                        <button class="state-btn btn"><a href="../event/event/list">이벤트 배너 수정</a></button>
-                    </div>
-                    <div class="mb-3">
-                        <button class="state-btn btn"><a href="./memberList">회원정보 관리</a></button>
-                    </div>
-                    <div>
-                        <button class="state-btn btn"><a href="./add">관리자 추가</a></button>
-                    </div>
-                </div>
 
-                </div>
-                <div class="col-lg-9 col-md-9">
+            	<div class="category-bar col-lg-3 col-md-3">	
+            	<div class="blog__sidebar">
+                        <div class="blog__sidebar__item">
+                            <h3>Category</h3>
+                            <ul>
+                                <li><a href="../event/event/list">이벤트 배너 수정 :)</a></li>
+                                <li><a href="./memberList">회원정보 관리</a></li>
+                                <li><a href="./add">관리자 추가</a></li>
+                                
+                            </ul>
+                        </div>
+                        
+                    </div>
+                 </div>
+                <!-- <div class="category-bar col-lg-3 col-md-3">                             
+	                <div class="manager-list col-lg-2 col-md-2">
+	                    <div class="mb-3">
+	                        <button class="state-btn btn"><a href="../event/event/list">이벤트 배너 수정</a></button>
+	                    </div>
+	                    <div class="mb-3">
+	                        <button class="state-btn btn"><a href="./memberList">회원정보 관리</a></button>
+	                    </div>
+	                    <div>
+	                        <button class="state-btn btn"><a href="./add">관리자 추가</a></button>
+	                    </div>
+	                </div>
+                </div> -->
+                
+                
+                <div class="col-lg-9 col-md-9 mt-5">
               
                     <style> 
                         h2{
