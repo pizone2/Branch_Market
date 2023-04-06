@@ -37,7 +37,7 @@ public class BoardService {
 		return boardDAO.getBoardDetail(boardDTO);
 	}
 	
-	public int SetBoardAdd(BoardDTO boardDTO, MultipartFile multipartFile) throws Exception{
+	public int SetBoardAdd(BoardDTO boardDTO, MultipartFile  multipartFile) throws Exception{
 		int result = boardDAO.setBoardAdd(boardDTO);
 		if(!multipartFile.isEmpty()) {//multipartFile.getSize()!=0
 		      //1. File을 HDD에 저장
