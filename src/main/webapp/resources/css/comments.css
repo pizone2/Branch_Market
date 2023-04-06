@@ -78,6 +78,10 @@ display: inline-block;
 
 }
 
+.reply-form {
+	display: none;
+}
+
 /* 문의 디테일 스타일 */
 .inquiry-text{
     /* text-align: center; */
