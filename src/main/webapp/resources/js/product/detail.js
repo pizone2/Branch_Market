@@ -1,11 +1,12 @@
 const productNum = $('#datas').attr('data-productNum');
+
 $('.del').click((e)=>{
     let productNum = $(e.target).attr('data-productNum');
     let isGo = confirm('정말 삭제 하시겠습니까?');
     console.log(isGo);
     if(isGo == true){
         $.ajax({
-            url:'./delete',
+            url:'./product/delete',
             type:'post',
             data:{
                 'productNum':productNum
@@ -23,7 +24,7 @@ $('.del').click((e)=>{
     }
 })
 
-function getReviewList(page, productNum){
+function getReviewList(){
     $.ajax({
         url:'/review/list?productNum=' + productNum,
         type:'get',
