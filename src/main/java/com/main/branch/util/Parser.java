@@ -4,7 +4,8 @@ import org.jsoup.Jsoup;
 
 public class Parser {
 	public static String html2text(String html) {
-	    return Jsoup.parse(html).text();
+		if(html == null)return "";
+		else return Jsoup.parse(html).text();
 	}
 	public static String longStringToShort(String contents) {
 		if(contents == null) {
