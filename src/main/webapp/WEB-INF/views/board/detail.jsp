@@ -9,6 +9,7 @@
 <c:import url="../template/common_css.jsp"></c:import>
 <link rel="stylesheet" href="/resources/css/chat/chatPage.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/resources/css/comments.css">
 </head>
 <body>
 <c:import url="../template/header.jsp"></c:import>
@@ -207,6 +208,7 @@ del.addEventListener("click", function(){
 
 })
 </script>
+
 
 <script src="/resources/js/board/board.js"></script>
 <c:import url="../template/common_js.jsp"></c:import>

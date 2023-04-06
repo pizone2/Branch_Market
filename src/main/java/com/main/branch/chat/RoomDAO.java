@@ -63,4 +63,7 @@ public class RoomDAO {
 	public int updateMemberRead(MessageDTO messageDTO) {
 		return sqlSession.update(NAMESPACE + "updateMemberRead", messageDTO);
 	}
+	public int getTotalUnreadMessageCnt(MessageDTO messageDTO) {
+		return sqlSession.selectOne(NAMESPACE + "getTotalUnreadMessageCnt", messageDTO);
+	}
 }

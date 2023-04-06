@@ -102,15 +102,31 @@
                 </nav>
             </div>
             <div class="col-lg-2">
-                <div class="header__cart">
-                    <ul>
-                        <li><a href="/board/picList"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                        <li><a href="/product/picList"><i class="fa fa-shopping-cart"></i> <span>3</span></a></li>
-                    </ul>
+                    <div class="header__cart" style="padding-left: 0px;">
+                        <ul>
+                            <li><a href="/chat/myRoomList"><i class="fa fa-commenting"></i> <span id="totalUnreadMessage"></span></a></li>
+                            <li><a href="/board/picList"><i class="fa fa-heart"></i> <span>1</span></a></li>
+                            <li><a href="/product/picList"><i class="fa fa-shopping-cart"></i> <span>3</span></a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
+
+        <!-- <div class="row d-flex justify-content-end">
+            <div class="col-lg-3">
+            <div class="header__cart">
+                <ul>
+                    <li><a href="/board/picList"><i class="fa fa-heart"></i> <span>1</span></a></li>
+                    <li><a href="/product/picList"><i class="fa fa-shopping-cart"></i> <span>3</span></a></li>
+                    <li><a href="/chat/myRoomList"><i class="fa fa-commenting"></i> <span id="totalUnreadMessage"></span></a></li>
+                </ul>
+            </div>
+        </div>
+    </div> -->
+
     </div>
 </header>
+<script src="/resources/js/template/header.js"></script>
 <!-- Header Section End -->
 

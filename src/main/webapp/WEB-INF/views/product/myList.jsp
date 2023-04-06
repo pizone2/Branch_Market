@@ -43,11 +43,11 @@
 					<div class="blog__sidebar__item">
 						<h3>Category</h3>
 						<ul>
-							<li><a href="./myPage.html">내 계정</a></li>
-							<li><a href="./product/myList">내 신청 상품 내역</a></li>
-							<li><a href="./myPage-buy.html">내 구매 내역</a></li>
-							<li><a href="./myPage-inquiry.html">내 문의 내역</a></li>
-							<li><a href="#">최근 본 상품 :)</a></li>
+							<li><a href="/member/myPage">내 계정</a></li>
+							<li><a href="/product/myList">내 신청 상품 내역</a></li>
+							<li><a href="/pay/payList">내 구매 내역</a></li>
+							<li><a href="/inquiry/myList">내 문의 내역</a></li>
+							<li><a href="/product/recentProduct">최근 본 상품 :)</a></li>
 						</ul>
 					</div>
 					
@@ -61,7 +61,7 @@
 					<table class="boardTable table table-hover">
 						<thead class="table-success">
 							<tr>
-								<th>상품번호</th> <th>상품명</th> <th>작성자</th> <th>가격</th> <th>조회수</th> 
+								<th>상품번호</th> <th>상품명</th> <th>작성자</th> <th>가격</th> <th>조회수</th> <th>판매여부</th> 
 							</tr>
 						</thead>
 						<tbody>
@@ -72,6 +72,9 @@
 									<td><a>${dto.memberId}</a></td>
 									<td><a><fmt:formatNumber value="${dto.productPrice}" pattern="#,###"/></a></td>
 									<td><a>${dto.productHit}</a></td>
+									<td>
+										${dto.state eq 1 ?'<a class="text-success">판매완료</a>':'<a class="text-primary">판매중</a>'}
+									</td>
 								</tr>
 							</c:forEach>
 						</tbody>
