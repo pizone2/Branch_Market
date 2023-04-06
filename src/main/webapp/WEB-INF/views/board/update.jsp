@@ -86,9 +86,9 @@
 						         <button id="fileAdd" type="button" class="btn btn-primary">add</button>
 									<div class="input-group mb-3 my-3">
 										  <div class="input-group-text">
-										    <input class="form-check-input mt-0" type="checkbox" name="fileNum" value="${dto.boardImgDTO.fileNum}" aria-label="Checkbox for following text input">
+										    <input class="form-check-input mt-0" type="checkbox" name="fileNum" value="${dto.boardImgDTOs.fileNum}" aria-label="Checkbox for following text input">
 										  </div>
-										  <input type="text" disabled value="${img.boardImgDTO.oriName}" class="form-control" aria-label="Text input with checkbox">
+										  <input type="text" disabled value="${dto.boardImgDTOs.oriName}" class="form-control" aria-label="Text input with checkbox">
 									</div>
 					   		</div> 
                             <div class="d-flex justify-content-center my-5">
