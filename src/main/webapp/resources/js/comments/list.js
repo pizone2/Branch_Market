@@ -1,7 +1,15 @@
 
-//@@@@@@@@@@@@@@@@@@@@@@@@@ 답글달기 폼 생성@@@@@@@@@@@@@@@@@@@@@@@
 
-$('.rep').click(function() {
+
+//@@@@@@@@@@@@@@@@@@@@@@@@@ 답글달기 폼 생성@@@@@@@@@@@@@@@@@@@@@@@
+$(document).ready(function() {
+
+
+//$('.rep').click(function() {
+//$(".rep").on("click",function() {
+$(".rep").off("click").on("click", function() {
+	console.log("답글등록 TEST")
+
 
     // get the comment container element
     var commentContainer = $(this).closest('.card');
@@ -15,7 +23,7 @@ $('.rep').click(function() {
     // get the comment ID
     var commentId = $(this).data('comment-num');
     // create the reply form HTML
-    var replyFormHtml = '<div class="reply-form">' +
+    var replyFormHtml = '<div class="reply-form" style="display: block;">' +
     '<form>' +
     '<input type="hidden" id="newReplyText" name="parent_id" value="' + commentId + '">' +
     '<textarea name="reply_content" class="form-control mt-2 mb-2" placeholder="답글 입력..."></textarea>' +
@@ -24,44 +32,49 @@ $('.rep').click(function() {
     '</div>';
     // insert the reply form after the comment container
     commentContainer.after(replyFormHtml);
+    
+    console.log("답글등록 END")
 });
 
+
+});
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@  답글 등록  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 $(document).on("click", ".add", function(e) {
-console.log("답글등록 TEST")
+    console.log("답글등록 TEST")
 
+    let reply_content = $('textarea[name="reply_content"]').val();
+    var commentsNum = $('[name="parent_id"]').val();
+    console.log(commentsNum);
+    console.log(reply_content);
+ 
+    
+    // AJAX 요청
+    $.ajax({
+        type: 'POST',
+        url: '../commentsReply/add',
+        data: {
+            commentsNum: commentsNum,
+            memberId: '작성자 아이디',
+            replyContents: reply_content
+        },
+        jdbcTypeForNull: 'NULL',
 
-let reply_content = $('#reply_content').val();
-var newReplyText = $('#newReplyText').val();
-console.log(newReplyText);
-console.log(reply_content);
-// AJAX 요청
-$.ajax({
-type: 'POST',
-url: '../commentsReply/add',
-data: {
-    commentsNum: newReplyText,
-    memberId: '작성자 아이디',
-    replyContents: reply_content
-},
-jdbcTypeForNull: 'NULL',
-
-success: function(result) {
-    if (result) {
-        alert("완료");
-        location.reload();
-    } else {
-        alert("전송된 값 없음");
-    }
-        // 성공적으로 댓글을 추가한 경우, 페이지 리로드
-    // location.reload();
-},
-error: function(error) {
-        // 오류가 발생한 경우, 적절한 처리를 수행
-        console.log(newReplyText);
-        alert(error);
-    }
-});
+        success: function(result) {
+            if (result) {
+                alert("완료");
+                location.reload();
+            } else {
+                alert("전송된 값 없음");
+            }
+            // 성공적으로 댓글을 추가한 경우, 페이지 리로드
+            // location.reload();
+        },
+        error: function(error) {
+            // 오류가 발생한 경우, 적절한 처리를 수행
+            console.log(commentsNum);
+            alert(error);
+        }
+    });
 });
 //@@@@@@@@@@@@@@@@@@@@@@@@ ReplyList @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
@@ -151,6 +164,11 @@ $("#commentsContents").val($("#commentsContents"+num).text());
 $("#contentsConfirm").attr("data-comment-num", num);
 e.preventDefault();
 $('#modifyModal').modal("show");
+ 
+  $("#updateModalCloseBtn").off("click").on("click", function(){
+        console.log('닫기')
+        $('#modifyModal').modal('hide');
+    })
 
 $("#contentsConfirm").off("click").on("click", function(){
     console.log("수정")

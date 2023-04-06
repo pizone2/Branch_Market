@@ -20,7 +20,7 @@
 				<div class="user d-flex flex-row align-items-center">
 					<img src="https://i.imgur.com/hczKIze.jpg" width="30" class="user-imgs rounded-circle mr-2">
 					<span><small class="font-weight-bold comments-name">${dto.memberId}</small> <small class="font-weight-bold">
-						<h5 id="inqCommentsContents${inqCommentsDTO.inqCommentsNum}">${dto.commentsContents}</h5>
+						<h5>${dto.commentsContents}</h5>
 					</small></span>                    
 				</div>
 				</div>
@@ -117,9 +117,10 @@
             
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-bs-dismiss="modal" id="closeModal">닫기</button>
                 <button type="button" class="btn btn-success modalModBtn"  data-comment-num="" id="contentsConfirm">수정</button>
-                
+                <button type="button" class="btn btn-success pull-left" data-bs-dismiss="modal" id="updateModalCloseBtn">
+				  닫기
+				</button>
             </div>
         </div>
     </div>
