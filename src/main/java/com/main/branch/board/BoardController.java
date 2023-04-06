@@ -62,7 +62,7 @@ public class BoardController {
 	}
 	
 	@PostMapping("add")
-	public ModelAndView setBoardAdd(BoardDTO boardDTO, MultipartFile multipartFile) throws Exception{
+	public ModelAndView setBoardAdd(BoardDTO boardDTO, MultipartFile [] multipartFiles, HttpSession session) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		int result = boardService.SetBoardAdd(boardDTO, multipartFile);
 		String message = "등록 실패";
@@ -89,10 +89,18 @@ public class BoardController {
 		return mv;
 	}
 	
+	@PostMapping("boardImgDelete")
+	public ModelAndView setBoardImgDelete(Long fileNum) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		int result = boardService.setBoardImgDelete(fileNum);
+		mv.addObject("result",result);
+		mv.setViewName("common/ajaxResult");
+		return mv;
+	}
+	
 	@GetMapping("update")
 	public ModelAndView setBoardUpdate(BoardDTO boardDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		System.out.println(boardDTO.getBoardNum());
 		boardDTO = boardService.getBoardDetail(boardDTO);
 		mv.addObject("dto", boardDTO);
 		mv.setViewName("board/update");
@@ -100,9 +108,8 @@ public class BoardController {
 	}
 	
 	@PostMapping("update")
-	public ModelAndView setBoardUpdate(BoardDTO boardDTO, ModelAndView mv) throws Exception{
-		int result = boardService.setBoardUpdate(boardDTO);
-		System.out.println(boardDTO.getBoardNum());
+	public ModelAndView setBoardUpdate(BoardDTO boardDTO, ModelAndView mv, MultipartFile multipartFile, Long fileNum) throws Exception{
+		int result = boardService.setBoardUpdate(boardDTO, multipartFile, fileNum);
 		mv.setViewName("common/result");
 		mv.addObject("result","수정성공");
 		mv.addObject("url","./detail"+"?boardNum="+boardDTO.getBoardNum());

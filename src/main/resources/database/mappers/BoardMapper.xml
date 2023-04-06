@@ -47,9 +47,31 @@
  		WHERE R BETWEEN #{startRow} AND #{lastRow}
  	</select>
  	
- 	<select id="getBoardDetail" parameterType="BoardDTO" resultType="BoardDTO" >
- 		SELECT * FROM BOARD WHERE BOARDNUM=#{boardNum}
+ 	<select id="getBoardDetail" parameterType="BoardDTO" resultMap="BoardDetailResult" >
+ 		SELECT * FROM BOARD B LEFT OUTER JOIN BOARDIMG BI ON (B.BOARDNUM = BI.BOARDNUM) 
+  		WHERE B.BOARDNUM=#{boardNum}
  	</select>
+ 	
+ 	<resultMap type="BoardDTO" id="BoardDetailResult">
+  		<!-- Primary Key -->
+  		<id column="BOARDNUM" property="boardNum"/>
+  		<!-- 洹몄쇅 ?섎㉧吏 -->
+  		<result column="MEMBERID" property="memberId"/>
+  		<result column="BOARDTITLE" property="boardTitle"/>
+  		<result column="BOARDCONTENTS" property="boardContents"/>
+  		<result column="BOARDPRICE" property="boardPrice"/>
+  		<result column="BOARDDATE" property="boardDate"/>
+  		<result column="BOARDHIT" property="boardHit"/>
+  		<result column="BOARDSTATE" property="boardState"/>
+  		<result column="BOARDCATEGORY" property="boardCategory"/>
+  		<!-- 1:1 -->
+  		<association property="boardImgDTO" javaType="BoardImgDTO">
+  			<id column="FILENUM" property="fileNum"/>
+  			<result column="FILENAME" property="fileName"/>
+  			<result column="ORINAME" property="oriName"/>
+  		</association>
+  		<!-- 1:N -->
+  	</resultMap>
  	
  	<insert id="setBoardAdd" parameterType="BoardDTO">
  		<selectKey keyProperty="boardNum" resultType="Integer" order="BEFORE">
@@ -58,15 +80,23 @@
  		INSERT INTO BOARD VALUES(#{boardNum},#{memberId},#{boardTitle},#{boardContents},#{boardPrice},SYSDATE,0,#{boardState},#{boardCategory})
  	</insert>
  	
+ 	<insert id="setBoardImgAdd" parameterType="BoardImgDTO">
+ 		INSERT INTO BOARDIMG (FILENUM,BOARDNUM,FILENAME,ORINAME) VALUES (SEQ.NEXTVAL,#{boardNum},#{fileName},#{oriName})
+ 	</insert>
+ 	
  	
  	<delete id="setBoardDelete" parameterType="BoardDTO">
  		DELETE BOARD WHERE BOARDNUM=#{boardNum}
  	</delete>
  	
+ 	<delete id="setBoardImgDelete" parameterType="Long">
+  		DELETE BOARDIMG WHERE FILENUM=#{fileNum}
+  	</delete>
  	<update id="setBoardUpdate" parameterType="BoardDTO">
  		UPDATE BOARD SET BOARDTITLE=#{boardTitle}, BOARDCONTENTS=#{boardContents},BOARDPRICE=#{boardPrice},BOARDSTATE=#{boardState},BOARDCATEGORY= #{boardCategory} 
  		WHERE BOARDNUM=#{boardNum}
  	</update>
+ 	
  	<update id="setBoardHitAdd" parameterType="BoardDTO">
  		UPDATE BOARD SET boardHit = boardHit + 1 WHERE BOARDNUM = #{boardNum}
  	</update>

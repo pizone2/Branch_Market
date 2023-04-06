@@ -81,6 +81,16 @@
                             <p>상세설명</p>
                                 <textarea class="summernote" name="boardContents">${dto.boardContents}</textarea>    
                             </div>
+                            <!-- FILE 추가 -->
+                            <div id="filelist">       
+						         <button id="fileAdd" type="button" class="btn btn-primary">add</button>
+									<div class="input-group mb-3 my-3">
+										  <div class="input-group-text">
+										    <input class="form-check-input mt-0" type="checkbox" name="fileNum" value="${dto.boardImgDTO.fileNum}" aria-label="Checkbox for following text input">
+										  </div>
+										  <input type="text" disabled value="${img.boardImgDTO.oriName}" class="form-control" aria-label="Text input with checkbox">
+									</div>
+					   		</div> 
                             <div class="d-flex justify-content-center my-5">
                                 <button type="text" class="site-btn mr-4"><a href="./detail?boardNum=${dto.boardNum}">취소</a></button>                                                     
                                 <button type="submit" class="site-btn">수정</a></button>     
@@ -91,7 +101,7 @@
             </div>
         </div>
     </section>
-
+<script src="../resources/js/board/fileManager.js"></script>
 <script>
    $("#boardContents").summernote();
 </script>

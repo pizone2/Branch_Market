@@ -3,7 +3,7 @@ package com.main.branch.board;
 
 public class BoardImgDTO {
 	private Integer fileNum;
-	private Integer bookNum;
+	private Integer boardNum;
 	private String fileName;
 	private String oriName;
 	
@@ -13,11 +13,11 @@ public class BoardImgDTO {
 	public void setFileNum(Integer fileNum) {
 		this.fileNum = fileNum;
 	}
-	public Integer getBookNum() {
-		return bookNum;
+	public Integer getBoardNum() {
+		return boardNum;
 	}
-	public void setBookNum(Integer bookNum) {
-		this.bookNum = bookNum;
+	public void setBoardNum(Integer boardNum) {
+		this.boardNum = boardNum;
 	}
 	public String getFileName() {
 		return fileName;

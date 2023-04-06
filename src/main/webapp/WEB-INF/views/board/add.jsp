@@ -75,19 +75,16 @@
                             <div class="container">
                                 <textarea class="summernote" name="boardContents"></textarea>    
                             </div>
+                            <!-- FILE 추가 -->
+                            <div id="filelist">       
+						         <button id="fileAdd" type="button" class="btn btn-primary">add</button>
+						         
+					   		</div> 
 
                             <div class="d-flex justify-content-center my-5">
                                 <button type="text" class="site-btn mr-4"><a href="./list">취소</a></button>     
                                 <button type="submit" class="site-btn">추가</button>   
-                            </div>   
-                            
-                            <div id="filelist">
-					        <div class="fw-bold fs-5 col-12 mt-3">
-					            <input type="file" class="form-control" id="files" name="multipartFile">
-					            <button type="button">X</button>
-					         </div>        
-					         <button id="fileAdd" type="button" class="btn btn-primary">add</button>
-					       </div>                                                                                                                     
+                            </div>                                                                                                                     
                         </div> 
                     </div>                    
                 </form>
@@ -95,7 +92,7 @@
         </div>
     </section>
     <!-- Checkout Section End --> 
-
+<script src="../resources/js/board/fileManager.js"></script>
 <script>
    $("#boardContents").summernote({
 	   height:250

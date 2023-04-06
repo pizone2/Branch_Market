@@ -12,6 +12,15 @@ public class BoardDTO {
 	private String boardPrice;
 	private String boardState;
 	private String boardCategory;
+	private BoardImgDTO boardImgDTO;
+	
+	
+	public BoardImgDTO getBoardImgDTO() {
+		return boardImgDTO;
+	}
+	public void setBoardImgDTO(BoardImgDTO boardImgDTO) {
+		this.boardImgDTO = boardImgDTO;
+	}
 	public Integer getBoardNum() {
 		return boardNum;
 	}
