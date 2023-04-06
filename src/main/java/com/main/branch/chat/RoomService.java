@@ -222,5 +222,11 @@ public class RoomService {
 			roomDTO.setUnReadCnt(unReadCnt);
 		}
 	}
+	public int getTotalUnreadMessageCnt() {
+		MessageDTO messageDTO = new MessageDTO();
+		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("member");
+		messageDTO.setReceiveId(memberDTO.getMemberId());
+		return roomDAO.getTotalUnreadMessageCnt(messageDTO);
+	}
 	
 }

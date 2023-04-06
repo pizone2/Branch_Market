@@ -140,10 +140,10 @@ public class MemberController {
 	
 	// --------------------- memberDelete
 	@PostMapping("/delete")
-	public ModelAndView setMemberDelete(MemberDTO memberDTO) {
+	public ModelAndView setMemberDelete() {
 		ModelAndView modelAndView = new ModelAndView();
 		
-		int result = memberService.setMemberDelete(memberDTO);
+		int result = memberService.setMemberDelete();
 		if(result > 0) {
 			modelAndView.addObject("message", "회원 탈퇴가 완료되었습니다");
 		}else {
@@ -276,6 +276,13 @@ public class MemberController {
 		}
 		modelAndView.addObject("url", "/");
 		modelAndView.setViewName("/common/result");
+		return modelAndView;
+	}
+	
+	@GetMapping("/myPage")
+	public ModelAndView getMemberMyPage() {
+		ModelAndView modelAndView = new ModelAndView();
+		modelAndView.setViewName("/member/myPage");
 		return modelAndView;
 	}
 	

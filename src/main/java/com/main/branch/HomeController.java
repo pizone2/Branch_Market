@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.main.branch.board.BoardDAO;
 import com.main.branch.board.BoardDTO;
 import com.main.branch.board.BoardService;
+import com.main.branch.chat.RoomService;
 import com.main.branch.event.EventDAO;
 import com.main.branch.event.EventDTO;
 import com.main.branch.notice.NoticeDAO;
@@ -36,6 +37,9 @@ public class HomeController {
 	private ProductDAO productDAO;
 	@Autowired
 	private BoardService boardService;
+	@Autowired
+	private RoomService roomService;
+	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public ModelAndView home() throws Exception {
