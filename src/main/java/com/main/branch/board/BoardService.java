@@ -50,7 +50,7 @@ public class BoardService {
 		      BoardImgDTO boardImgDTO = new BoardImgDTO();
 		      boardImgDTO.setFileName(fileName);
 		      boardImgDTO.setOriName(multipartFile.getOriginalFilename());
-		      boardImgDTO.setBookNum(boardImgDTO.getBookNum());
+		      boardImgDTO.setBoardNum(boardDTO.getBoardNum());
 		      
 		      result = boardDAO.setBoardImgAdd(boardImgDTO);
 		      }
