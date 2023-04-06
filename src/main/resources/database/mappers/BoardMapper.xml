@@ -89,10 +89,14 @@
  		DELETE BOARD WHERE BOARDNUM=#{boardNum}
  	</delete>
  	
+ 	<delete id="setBoardImgDelete" parameterType="Long">
+  		DELETE BOARDIMG WHERE FILENUM=#{fileNum}
+  	</delete>
  	<update id="setBoardUpdate" parameterType="BoardDTO">
  		UPDATE BOARD SET BOARDTITLE=#{boardTitle}, BOARDCONTENTS=#{boardContents},BOARDPRICE=#{boardPrice},BOARDSTATE=#{boardState},BOARDCATEGORY= #{boardCategory} 
  		WHERE BOARDNUM=#{boardNum}
  	</update>
+ 	
  	<update id="setBoardHitAdd" parameterType="BoardDTO">
  		UPDATE BOARD SET boardHit = boardHit + 1 WHERE BOARDNUM = #{boardNum}
  	</update>

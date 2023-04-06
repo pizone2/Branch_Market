@@ -54,8 +54,6 @@ $(".deleteCheck").click(function(){
 
 
 $("#filelist").on("click",".dels",function(e){
-    // let id = $(this).attr("data-dels-id");
-    // $("#"+id).remove();
     $(this).parent().remove();
     count--;
 })

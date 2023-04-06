@@ -42,15 +42,15 @@
                         
                         <div class="product__details__pic__slider owl-carousel my-5">
                             <img data-imgbigurl="img/kong.jpg"
-                                src="img/kong.jpg" alt="">
+                                src="../resources/upload/board/${dto.boardImgDTO.fileName}" alt="">
                             <img data-imgbigurl="img/kong2.jpg"
-                                src="img/kong2.jpg" alt="">
+                                src="../resources/upload/board/${dto.boardImgDTO.fileName}" alt="">
                             <img data-imgbigurl="img/kong3.jpg"
-                                src="img/kong3.jpg" alt="">
+                                src="../resources/upload/board/${dto.boardImgDTO.fileName}" alt="">
                             <img data-imgbigurl="img/kong4.jpg"
-                                src="img/kong4.jpg" alt="">
+                                src="../resources/upload/board/${dto.boardImgDTO.fileName}" alt="">
                             <img data-imgbigurl="img/kong5.jpg"
-                                src="img/kong5.jpg" alt="">
+                                src="../resources/upload/board/${dto.boardImgDTO.fileName}" alt="">
                         </div>
                     </div>
                 </div>

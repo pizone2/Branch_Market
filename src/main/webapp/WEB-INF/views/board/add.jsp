@@ -78,6 +78,7 @@
                             <!-- FILE 추가 -->
                             <div id="filelist">       
 						         <button id="fileAdd" type="button" class="btn btn-primary">add</button>
+						         
 					   		</div> 
 
                             <div class="d-flex justify-content-center my-5">
