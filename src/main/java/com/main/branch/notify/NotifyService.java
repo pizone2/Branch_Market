@@ -23,6 +23,9 @@ public class NotifyService {
 	
 	public List<NotifyDTO> getNotifyList(Pager pager) throws Exception{
 		
+		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("member");
+		pager.setMemberId(memberDTO.getMemberId());
+		
 		pager.makeNum(notifyDAO.getNotifyCount(pager));
 		pager.makeRow();
 		

@@ -66,17 +66,27 @@
                 <div class="col-lg-6">
                     <div class="header__top__left">
                         <ul>
-                            <li>OOO님 환영합니다</li>
+                            <li>${not empty member ? member.memberId += '님 환영합니다' : ''}</li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="header__top__right">
                         <div class="header__top__right__auth">
-                            <a href="/member/login"><i class="fa fa-user"></i> Login</a>
+                        	<c:if test="${not empty member}">
+                        		<a href="/member/logout"><i class="fa fa-user"></i>logout</a>
+                        	</c:if>
+                            <c:if test="${empty member}">
+                        		<a href="/member/login"><i class="fa fa-user"></i>Login</a>
+                        	</c:if>
                         </div>
                         <div class="header__top__right__auth mx-3">
-                            <a href="/member/addAgree"><i class="fa fa-user"></i> Join</a>
+	                        <c:if test="${not empty member}">
+	                        	 <a href="/notify/list"><i class="fa fa-bell" aria-hidden="true">Notify</i></a>
+	                        </c:if>
+	                        <c:if test="${empty member}">
+                            	<a href="/member/addAgree"><i class="fa fa-user"></i>Join</a>
+                            </c:if>
                         </div> 
                     </div>
                 </div>
@@ -97,7 +107,7 @@
                         <li><a href="/product/list">위탁 판매</a></li>
                         <li><a href="/inquiry/add">문의사항</a></li>
                         <li><a href="/notice/list">공지사항</a></li>
-                        <li><a href="/member/myPage">마이페이지</a></li>
+                        <li><a href="/member/myPage?memberId=${member.memberId}">마이페이지</a></li>
                     </ul>
                 </nav>
             </div>
@@ -106,24 +116,13 @@
                         <ul>
                             <li><a href="/chat/myRoomList"><i class="fa fa-commenting"></i> <span id="totalUnreadMessage"></span></a></li>
                             <li><a href="/board/picList"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                            <li><a href="/product/picList"><i class="fa fa-shopping-cart"></i> <span>3</span></a></li>
+                            <li><a href="/product/picList"><i class="fa fa-shopping-cart"></i> <span id="myProductPicCount">3</span></a></li>
                         </ul>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- <div class="row d-flex justify-content-end">
-            <div class="col-lg-3">
-            <div class="header__cart">
-                <ul>
-                    <li><a href="/board/picList"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                    <li><a href="/product/picList"><i class="fa fa-shopping-cart"></i> <span>3</span></a></li>
-                    <li><a href="/chat/myRoomList"><i class="fa fa-commenting"></i> <span id="totalUnreadMessage"></span></a></li>
-                </ul>
-            </div>
-        </div>
-    </div> -->
 
     </div>
 </header>
