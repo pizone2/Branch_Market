@@ -35,4 +35,7 @@ public class MemberDAO {
 	public int setMemberDelete(MemberDTO memberDTO) {
 		return sqlSession.delete(NAMESPACE + "setMemberDelete", memberDTO);
 	}
+	public int setMemberHitUpdate(MemberDTO memberDTO) {
+		return sqlSession.update(NAMESPACE + "setMemberHitUpdate", memberDTO);
+	}
 }

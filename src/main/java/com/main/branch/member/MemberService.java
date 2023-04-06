@@ -102,4 +102,7 @@ public class MemberService {
 		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("member");
 		return memberDAO.setMemberDelete(memberDTO);
 	}
+	public int setMemberHitUpdate(MemberDTO memberDTO) {
+		return memberDAO.setMemberHitUpdate(memberDTO);
+	}
 }

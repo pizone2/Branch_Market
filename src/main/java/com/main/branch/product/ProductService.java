@@ -140,9 +140,6 @@ public class ProductService {
 		return productDAO.getProductTopList();
 	}
 	public List<ProductDTO> getProductMySellList(Pager pager) throws Exception{
-		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("member");
-		
-		pager.setMemberId(memberDTO.getMemberId());
 		pager.setState("0");
 		pager.makeNum(productDAO.getProductCount(pager));
 		pager.makeRow();
