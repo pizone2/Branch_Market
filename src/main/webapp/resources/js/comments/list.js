@@ -1,39 +1,40 @@
 
 //@@@@@@@@@@@@@@@@@@@@@@@@@ 답글달기 폼 생성@@@@@@@@@@@@@@@@@@@@@@@
 
-// 답글 버튼 클릭 이벤트
 $('.rep').click(function() {
-    // 부모 댓글의 ID 가져오기
-var parentId = $(this).data('comment-num');
-    // 부모 댓글의 행 요소 가져오기
-var parentRow = $('#' + parentId);
-    // 답글 폼이 이미 삽입되어 있는지 확인
-var replyForm = parentRow.next('.reply-form');
-if (replyForm.length > 0) {
-    // 답글 폼이 이미 삽입되어 있다면, 답글 폼을 숨기거나 삭제
+
+    // get the comment container element
+    var commentContainer = $(this).closest('.card');
+    // check if the reply form is already inserted
+    var replyForm = commentContainer.next('.reply-form');
+    if (replyForm.length > 0) {
+      // toggle the reply form visibility
     replyForm.toggle();
     return;
-}
-    // 부모 댓글의 답글 폼 HTML 생성
-var replyFormHtml = '<tr class="reply-form">' +
-    '<td colspan="6">' +
+    }
+    // get the comment ID
+    var commentId = $(this).data('comment-num');
+    // create the reply form HTML
+    var replyFormHtml = '<div class="reply-form">' +
     '<form>' +
-    '<input type="hidden" id="newReplyText" name="parent_id" value="' + parentId + '">' +
-    '<textarea name="reply_content" id="reply_content" class="w-100 form-control" placeholder="답글입력..."></textarea>' +
-    '<button class="btn btn-success add mb-1 write_reply">등록</button>' +
+    '<input type="hidden" id="newReplyText" name="parent_id" value="' + commentId + '">' +
+    '<textarea name="reply_content" class="form-control mt-2 mb-2" placeholder="답글 입력..."></textarea>' +
+    '<button type="button" class="btn btn-success add mb-1 write_reply">등록</button>' +
     '</form>' +
-    '</td>' +
-    '</tr>';
-    // 부모 댓글 아래에 답글 폼 삽입
-parentRow.after(replyFormHtml);
+    '</div>';
+    // insert the reply form after the comment container
+    commentContainer.after(replyFormHtml);
 });
 
 // @@@@@@@@@@@@@@@@@@@@@@@@@@@  답글 등록  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 $(document).on("click", ".add", function(e) {
 console.log("답글등록 TEST")
 
+
 let reply_content = $('#reply_content').val();
 var newReplyText = $('#newReplyText').val();
+console.log(newReplyText);
+console.log(reply_content);
 // AJAX 요청
 $.ajax({
 type: 'POST',
@@ -57,6 +58,7 @@ success: function(result) {
 },
 error: function(error) {
         // 오류가 발생한 경우, 적절한 처리를 수행
+        console.log(newReplyText);
         alert(error);
     }
 });
