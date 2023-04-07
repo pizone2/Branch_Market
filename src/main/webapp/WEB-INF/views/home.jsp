@@ -28,7 +28,7 @@
                 <div class="col-lg-12">
                     <hr>
                 </div>
-                <div class="col-lg-12 text-center">
+                <div class="col-lg-12 text-center"><!--  d-flex justify-content-center -->
                     <div class="background-page">
                         <div class="banner-text"><h2>Branch Market</h2></div>
                     </div>
@@ -93,7 +93,7 @@
     
     <c:if test="${not empty productDTOs }">
 		<!-- product -->
-		 <h1 class="home-main-title text-center home-hot-title">
+		 <h1 class="home-main-title text-center home-hot-title my-5">
 	        위탁판매 인기 게시글
 	    </h1>
 	
@@ -118,7 +118,7 @@
 	</c:if>
 	
 	<c:if test="${not empty boardSellTopDTOs or not empty boardBuyTopDTOs }">
-		<h1 class="home-main-title text-center home-hot-title">
+		<h1 class="home-main-title text-center home-hot-title my-5">
 	        중고거래 인기 게시글
 	    </h1>
 	

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
  <!-- Footer Section Begin -->
     <footer class="footer spad">
         <div class="container">
@@ -7,12 +8,12 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__about__logo">
-                            <a href="#"><img src="/resources/images/logo.png" alt=""></a>
+                            <a href="https://www.gdu.co.kr/main/main.html"><img src="https://www.gdu.co.kr/images/main/logo.png" alt=""></a>
                         </div>
                         <ul>
-                            <li>Address: 60-49 Road 11378 New York</li>
-                            <li>Phone: +65 11.188.888</li>
-                            <li>Email: hello@colorlib.com</li>
+                            <li>Address: <span style="font-size: 14px;color:cornflowerblue ;">#306, 151 Gasan Digital 1-ro, Geumcheon-gu, Seoul</span></li>
+                            <li>Phone:  <span style="font-size: 14px;color:cornflowerblue ;">02-2108-5900</span></li>
+                            <li>Email: <span style="font-size: 14px;color:cornflowerblue ;">hello@gmail.com</span></li>
                         </ul>
                     </div>
                 </div>
@@ -37,21 +38,9 @@
                         </ul>
                     </div>
                 </div>
+                 
                 <div class="col-lg-4 col-md-12">
-                    <div class="footer__widget">
-                        <h6>Join Our Newsletter Now</h6>
-                        <p>Get E-mail updates about our latest shop and special offers.</p>
-                        <form action="#">
-                            <input type="text" placeholder="Enter your mail">
-                            <button type="submit" class="site-btn">Subscribe</button>
-                        </form>
-                        <div class="footer__widget__social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-instagram"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-pinterest"></i></a>
-                        </div>
-                    </div>
+             		  <c:import url="/WEB-INF/views/template/weatherUi.jsp"></c:import>
                 </div>
             </div>
             <div class="row">
