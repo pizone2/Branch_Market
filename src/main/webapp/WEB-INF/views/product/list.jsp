@@ -77,10 +77,10 @@
 							</div>
 						</div>
 						<div>
-							<a href="./add"><button class="state-btn btn mb-3">위탁 판매 등록</button></a>
+							<a href="./add"><button class="btn btn-outline-success mb-3">위탁 판매 등록</button></a>
 						
             				<c:if test="${member.memberRole eq 'admin'}">
-								<a href="./addList"><button class="state-btn btn">위탁 판매 등록 신청</button></a>
+								<a href="./addList"><button class="btn btn-outline-success">위탁 판매 등록 신청</button></a>
 							</c:if>
 							
 						</div>

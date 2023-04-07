@@ -72,7 +72,6 @@
 
 								<div class="mb-4">
 									<label for="productDetail" class="form-label">상세설명</label>
-									<h6>※주의 : 이미지는 이미지 하나당 엔터로 내리면서 입력!!</h6>
 									<textarea name="productDetail" class="form-control" id="productDetail" placeholder="설명 입력" rows="7"></textarea>
 								</div>
 	
