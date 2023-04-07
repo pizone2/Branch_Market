@@ -46,7 +46,18 @@
                         <p>${dto.boardContents}</p>
                         <div class="co1-8">
                             <a href="#" class="btn-icon btn btn-success">채팅</a>
-                            <a href="#" class="heart-icon" id="checkPic" name="checkPic"><i class="icon-heart fa fa-heart"></i></a>
+                            <a href="#" class="heart-icon"><i class="icon-heart fa fa-heart"></i></a>
+                            <div id="picIcon">
+                                                <c:if test="${checkPic eq 0}">
+                                                    <a href="#" class="heart-icon" id="picAdd"><i
+                                                            class="icon-heart fa fa-heart" type="submit"
+                                                            data-board-boardNum="${dto.boardNum}"></i></a>
+                                                </c:if>
+                                                <c:if test="${checkPic eq 1}">
+                                                    <a href="#" class="heart-icon" id="picDelete"><i
+                                                            class="icon-heart fa fa-check" type="submit"></i></a>
+                                                </c:if>
+                                            </div>
                         </div>
                         
                         <div class="product__details__pic__slider owl-carousel my-5">
@@ -200,20 +211,6 @@
 	</div>
 </div>
 
-<script>
-const del = document.getElementById("delete");
-const frm = document.getElementById("frm");
-
-del.addEventListener("click", function(){
-    let check = window.confirm("정말 삭제ㄱrrrrrrrrrrr?");
-    if(check){
-        frm.setAttribute("action","./delete");
-        frm.setAttribute("method","post");
-        frm.submit();
-    }
-
-})
-</script>
 
 
 <script src="/resources/js/board/board.js"></script>
