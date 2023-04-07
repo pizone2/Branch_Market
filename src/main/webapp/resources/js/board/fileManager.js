@@ -24,7 +24,7 @@ $(".deleteCheck").click(function(){
         let fileNum = $(this).val();
         $.ajax({
             type:'POST',
-            url:'./boardFileDelete',
+            url:'./boardImgDelete',
             data:{
                 fileNum:fileNum //속성명:변수명
             },

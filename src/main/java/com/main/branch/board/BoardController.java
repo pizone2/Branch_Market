@@ -109,8 +109,8 @@ public class BoardController {
 	}
 	
 	@PostMapping("update")
-	public ModelAndView setBoardUpdate(BoardDTO boardDTO, ModelAndView mv, MultipartFile multipartFile, Long fileNum) throws Exception{
-		int result = boardService.setBoardUpdate(boardDTO, multipartFile, fileNum);
+	public ModelAndView setBoardUpdate(BoardDTO boardDTO, ModelAndView mv, MultipartFile [] multipartFiles,HttpSession session, Long [] fileNum) throws Exception{
+		int result = boardService.setBoardUpdate(boardDTO, multipartFiles,session, fileNum);
 		mv.setViewName("common/result");
 		mv.addObject("result","수정성공");
 		mv.addObject("url","./detail"+"?boardNum="+boardDTO.getBoardNum());
