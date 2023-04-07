@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.main.branch.member.MemberDTO;
 import com.main.branch.util.Pager;
 
 @Repository
@@ -75,5 +76,8 @@ public class BoardDAO {
 	
 	public int setBoardImgDelete(Integer fileNum) throws Exception{
 		return sqlSession.insert(NAMESPACE+"setBoardImgDelete", fileNum);
+	}
+	public int getMyBoardPicTotalCount(MemberDTO memberDTO) {
+		return sqlSession.selectOne(NAMESPACE + "getMyBoardPicTotalCount", memberDTO);
 	}
 }

@@ -76,7 +76,7 @@
                                 <textarea class="summernote" name="boardContents"></textarea>    
                             </div>
                             <!-- FILE 추가 -->
-                            <div id="filelist">       
+                            <div id="addFile">       
 						         <button id="fileAdd" type="button" class="btn btn-primary">add</button>
 						         
 					   		</div> 
