@@ -1,3 +1,4 @@
+
 let boardNum = $('#datas').attr('data-boardNum');
 let roomNum;
 let ws;
