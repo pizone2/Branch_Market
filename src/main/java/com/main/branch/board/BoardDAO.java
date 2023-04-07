@@ -47,7 +47,9 @@ public class BoardDAO {
 	public List<BoardDTO> getBoardBuyTopList() throws Exception{
 		return sqlSession.selectList(NAMESPACE + "getBoardBuyTopList");
 	}
+	
 	//----------------------------------
+	
 	public int setBoardPicAdd(BoardPicDTO boardPicDTO) throws Exception{
 		return sqlSession.insert(NAMESPACE+"setBoardPicAdd", boardPicDTO);
 	}
@@ -60,10 +62,17 @@ public class BoardDAO {
 	public BoardPicDTO checkAlreadyBoardPic(BoardDTO boardDTO)throws Exception{
 		return sqlSession.selectOne(NAMESPACE + "checkAlreadyBoardPic", boardDTO);
 	}
+	
 	//----------------------------------
+	public List<BoardImgDTO> getBoardImgList(BoardDTO boardDTO) throws Exception {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(NAMESPACE+"getBoardImgList", boardDTO);
+	}
+	
 	public int setBoardImgAdd(BoardImgDTO boardImgDTO) throws Exception{
 		return sqlSession.insert(NAMESPACE+"setBoardImgAdd", boardImgDTO);
 	}
+	
 	public int setBoardImgDelete(Long fileNum) throws Exception{
 		return sqlSession.insert(NAMESPACE+"setBoardImgDelete", fileNum);
 	}

@@ -64,12 +64,13 @@
   		<result column="BOARDHIT" property="boardHit"/>
   		<result column="BOARDSTATE" property="boardState"/>
   		<result column="BOARDCATEGORY" property="boardCategory"/>
+
   		<!-- 1:1 -->
-  		<association property="boardImgDTO" javaType="BoardImgDTO">
+  		<collection property="boardImgDTOs" javaType="List" ofType="boardImgDTO">
   			<id column="FILENUM" property="fileNum"/>
   			<result column="FILENAME" property="fileName"/>
   			<result column="ORINAME" property="oriName"/>
-  		</association>
+  		</collection>
   		<!-- 1:N -->
   	</resultMap>
  	

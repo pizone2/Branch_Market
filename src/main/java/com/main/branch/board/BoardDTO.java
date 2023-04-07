@@ -1,6 +1,7 @@
 package com.main.branch.board;
 
 import java.sql.Date;
+import java.util.List;
 
 public class BoardDTO {
 	private Integer boardNum;
@@ -12,14 +13,13 @@ public class BoardDTO {
 	private String boardPrice;
 	private String boardState;
 	private String boardCategory;
-	private BoardImgDTO boardImgDTO;
+	private List<BoardImgDTO> boardImgDTOs;
 	
-	
-	public BoardImgDTO getBoardImgDTO() {
-		return boardImgDTO;
+	public List<BoardImgDTO> getBoardImgDTOs() {
+		return boardImgDTOs;
 	}
-	public void setBoardImgDTO(BoardImgDTO boardImgDTO) {
-		this.boardImgDTO = boardImgDTO;
+	public void setBoardImgDTOs(List<BoardImgDTO> boardImgDTOs) {
+		this.boardImgDTOs = boardImgDTOs;
 	}
 	public Integer getBoardNum() {
 		return boardNum;
