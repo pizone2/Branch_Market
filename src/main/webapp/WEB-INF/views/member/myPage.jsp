@@ -37,26 +37,30 @@
                 <h4></h4>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-5 order-md-1 order-2">
-                    <div class="blog__sidebar">
-                        <div class="blog__sidebar__item">
-                            <h3>Category</h3>
-                            <ul>
-                                <li><a href="/member/myPage">내 계정</a></li>
-                                <li><a href="/product/myList">내 신청 상품 내역</a></li>
-                                <li><a href="/pay/payList">내 구매 내역</a></li>
-                                <li><a href="/inquiry/myList">내 문의 내역</a></li>
-                                <li><a href="/product/recentProduct">최근 본 상품 :)</a></li>
-                            </ul>
-                        </div>
-                        
-                    </div>
-                </div>
-                <div class="col-lg-8 col-md-7 order-md-1 order-1">
+            	
+            	<c:if test="${member.memberId eq memberDTO.memberId}">
+	                <div class="col-lg-4 col-md-5 order-md-1 order-2">
+	                    <div class="blog__sidebar">
+	                        <div class="blog__sidebar__item">
+	                            <h3>Category</h3>
+	                            <ul>
+	                                <li><a href="/member/myPage">내 계정</a></li>
+	                                <li><a href="/product/myList">내 신청 상품 내역</a></li>
+	                                <li><a href="/pay/payList">내 구매 내역</a></li>
+	                                <li><a href="/inquiry/myList">내 문의 내역</a></li>
+	                                <li><a href="/product/recentProduct">최근 본 상품 :)</a></li>
+	                            </ul>
+	                        </div>
+	                        
+	                    </div>
+	                </div>
+                </c:if>
+                
+                <div class="col-lg-8 col-md-7 order-md-1 order-1 mx-auto">
                     
                     <div class="blog__details__text">
                         <div style="text-align : center;">
-                            <h2>내 계정</h2>
+                            <h2>${memberDTO.memberId} 계정</h2>
                             <img class=" user-img" src="/resources/images/profileImg.png" alt="">
                             <!--<img class=" best-img" src="img/cherryBlossom.png" alt="">-->
                         </div>
@@ -80,7 +84,9 @@
                                 <div class="checkout__input">
                                     <input type="text" placeholder="권한: ${memberDTO.memberRole}" readonly>                                                   
                                 </div>   
-                                <a class="btn btn-success" id="hitUpdateBtn">인기도 올리기</a>                                                                         
+                                <c:if test="${member.memberId ne memberDTO.memberId}">
+                                	<a class="btn btn-success" id="hitUpdateBtn">인기도 올리기</a>  
+                                </c:if>                                                                       
                             </div>
                         </div>
                         <div id="mySellList" data-memberId = "${memberDTO.memberId}"></div>
@@ -90,14 +96,17 @@
             </div>
         </div>
     </section>
-    <div class="list">
-        <!--권한을 가지고 있는 사람만 보임 -->
-        <button class="form-update btn btn-info"><a href="/member/update">정보 수정</a></button>
-       
-        <form action="/member/delete" method="post">
-            <button class="form-delete btn btn-danger" type="submit">회원 탈퇴</button>
-        </form> 
-    </div>
+    
+    <c:if test="${member.memberId eq memberDTO.memberId}">
+	    <div class="list">
+	        <!--권한을 가지고 있는 사람만 보임 -->
+	        <button class="form-update btn btn-info"><a href="/member/update">정보 수정</a></button>
+	       
+	        <form action="/member/delete" method="post">
+	            <button class="form-delete btn btn-danger" type="submit">회원 탈퇴</button>
+	        </form> 
+	    </div>
+    </c:if>
     <!-- Blog Details Section End -->
 
     <script src="/resources/js/member/myPage.js"></script>

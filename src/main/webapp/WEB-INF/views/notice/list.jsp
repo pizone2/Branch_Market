@@ -55,7 +55,7 @@
 								<tr scope="row">
 									<td>${dto.r}</td>
 									<td><a href="./detail?noticeNum=${dto.noticeNum}" style="color: cadetblue;">${dto.noticeTitle}</a></h2></td>
-									<td>${dto.memberId}</td>
+									<td><a href="/member/myPage?memberId=${dto.memberId}" style="color: steelblue;">${dto.memberId}</a></td>
 									<td>${dto.date}</td>
 									<td>${dto.noticeHit}</td>		
 								</tr>
@@ -114,7 +114,9 @@
 								  <button type="submit" class="btn btn-primary" style="width: 100px;">검색</button>
 								</div>
 						  </form>
-						  <button class="add-btn btn btn-primary mt-2"><a href="./add">공지사항 올리기</a></button>
+						  <c:if test="${not empty member}">
+							  <button class="add-btn btn btn-primary mt-2"><a href="./add">공지사항 올리기</a></button>
+						  </c:if>
                         </div>
                     </div>
                 </div>
