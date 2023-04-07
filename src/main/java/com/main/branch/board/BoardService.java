@@ -61,14 +61,24 @@ public class BoardService {
 	}
 
 	
-	public int setBoardUpdate(BoardDTO boardDTO, MultipartFile multipartFile, Long fileNum) throws Exception{
+	public int setBoardUpdate(BoardDTO boardDTO, MultipartFile [] multipartFiles, HttpSession session, Integer [] fileNums) throws Exception{
+		System.out.println(fileNums.length);
 		int result =  boardDAO.setBoardUpdate(boardDTO);
-		boardDAO.setBoardImgDelete(fileNum);
-		if(!multipartFile.isEmpty()) {//multipartFile.getSize()!=0
-		      //1. File을 HDD에 저장
-		      //   Project 경로가 아닌 OS가 이용하는 경로
-		      String path = servletContext.getRealPath("resources/upload/board");
-		      System.out.println(path);
+		
+		if(fileNums!=null) {
+			for(Integer fileNum : fileNums) {
+				System.out.println(fileNum);
+				boardDAO.setBoardImgDelete(fileNum);
+			}
+		}
+		String path = session.getServletContext().getRealPath("resources/upload/board");
+		System.out.println(path);
+			for(MultipartFile multipartFile : multipartFiles) {
+				if(multipartFile.isEmpty()) {
+					System.out.println("check");
+					continue;
+				}
+				System.out.println(boardDTO.getBoardNum());
 		      String fileName = fileManager.fileSave(multipartFile,path);
 		      
 		      //2. DB에 저장
@@ -79,15 +89,25 @@ public class BoardService {
 		      
 		      result = boardDAO.setBoardImgAdd(boardImgDTO);
 		      }
-		return result;
+		      return result;
 	}
 	
-	public int setBoardImgDelete(Long fileNum) throws Exception{
+	public int setBoardImgDelete(Integer fileNum) throws Exception{
 		return boardDAO.setBoardImgDelete(fileNum);
 	}
 	
-	public int setBoardDelete(BoardDTO boardDTO) throws Exception{
-		return boardDAO.setBoardDelete(boardDTO);
+	public int setBoardDelete(BoardDTO boardDTO, HttpSession session) throws Exception{
+		List<BoardImgDTO> ar = boardDAO.getBoardImgList(boardDTO);
+		int result = boardDAO.setBoardDelete(boardDTO);
+		
+		if(result>0) {
+			String realPath = session.getServletContext().getRealPath("resources/upload/board");
+			for(BoardImgDTO boardImgDTO : ar) {
+			boolean check = fileManager.fileDelete(realPath, boardImgDTO.getFileName());
+			}
+		}
+		
+		return result;
 	}
 	
 	public List<BoardDTO> getBoardSellTopList()throws Exception{
