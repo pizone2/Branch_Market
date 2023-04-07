@@ -16,12 +16,14 @@ function setMax(m){
 function setCount(c){
     count=c;
 }
+function setIdx(c){
+    idx = c;
+}
 
-$(".deleteCheck").click(function(){
+$('#existFile').on('click','.dels',function(){
+    let fileNum = $(this).attr('data-fileNum');
     let result = confirm("파일이 영구히 삭제됩니다!");
-    let ch = $(this);
     if(result){
-        let fileNum = $(this).val();
         $.ajax({
             type:'POST',
             url:'./boardImgDelete',
@@ -31,25 +33,23 @@ $(".deleteCheck").click(function(){
             success:function(responces){
                 if(responces.trim()>0){
                     alert("삭제되었습니다");
-                    //this : ajax 객체 자기 자신
-                    console.log(ch)
-                    ch.parent().parent().remove();
-                    count--;
+                    $('#existFile' + fileNum).remove();
                 }else{
                     alert("삭제 실패<br> 관리자에게 문의 요망");
                 }
+                count--;
             },
             error:function(){
 
             }
         })
-
-       
-
-    }else{
-        $(this).prop('checked',false);
     }
-    
+})
+
+$('#addFile').on('click','.dels',function(){
+    let idx = $(this).attr('data-fileNum');
+    $('#addFile' + idx).remove();
+    count--;
 })
 
 
@@ -64,14 +64,17 @@ $("#fileAdd").click(()=>{
     if(count>=max){
         alert("첨부파일은 최대 "+max+"개까지 업로드 가능합니다.");
         return ;
-        }else{
-            let child = '<div class="input-group mb-3" id="f'+idx+'">'
-                child = child+'<input type="file" class="form-control" name="'+param+'">'
-                child = child+'<button type="button" class="btn btn-outline-primary dels" data-dels-id="f'+idx+'">X</button>'
-            $("#filelist").append(child);
-            count++;
-            idx++;
+    }
+    else{
+        let child = '<div class="input-group mb-3" id="addFile'+idx+'">'
+            child = child+'<input type="file" class="form-control" name="'+param+'">'
+            child = child+'<button type="button" class="btn btn-outline-primary dels" data-fileNum="'+idx+'">X</button>'
+            child = child + '</div>'
 
-        }
+        $("#addFile").append(child);
+        count++;
+        idx++;
+    }
+
 })
 

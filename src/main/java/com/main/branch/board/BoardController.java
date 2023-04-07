@@ -109,10 +109,10 @@ public class BoardController {
 	}
 	
 	@PostMapping("update")
-	public ModelAndView setBoardUpdate(BoardDTO boardDTO, MultipartFile [] multipartFiles, HttpSession session, Integer [] fileNums) throws Exception{
+	public ModelAndView setBoardUpdate(BoardDTO boardDTO, MultipartFile [] multipartFiles, HttpSession session) throws Exception{
 		System.out.println("check");
 		ModelAndView mv = new ModelAndView();
-		int result = boardService.setBoardUpdate(boardDTO, multipartFiles, session, fileNums);
+		int result = boardService.setBoardUpdate(boardDTO, multipartFiles, session);
 		mv.setViewName("common/result");
 		mv.addObject("result","수정성공");
 		mv.addObject("url","./detail"+"?boardNum="+boardDTO.getBoardNum());
@@ -172,6 +172,17 @@ public class BoardController {
 		
 		modelAndView.addObject("boardDTOs", boardDTOs);
 		modelAndView.setViewName("/board/picList");
+		return modelAndView;
+	}
+	
+	@PostMapping("/myBoardPicTotalCount")
+	public ModelAndView getMyBoardPicTotalCount() {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		int result = boardService.getMyBoardPicTotalCount();
+		modelAndView.addObject("result", result);
+		modelAndView.setViewName("/common/ajaxResult");
+		
 		return modelAndView;
 	}
 }

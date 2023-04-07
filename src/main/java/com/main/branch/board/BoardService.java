@@ -61,18 +61,12 @@ public class BoardService {
 	}
 
 	
-	public int setBoardUpdate(BoardDTO boardDTO, MultipartFile [] multipartFiles, HttpSession session, Integer [] fileNums) throws Exception{
-		System.out.println(fileNums.length);
+	public int setBoardUpdate(BoardDTO boardDTO, MultipartFile [] multipartFiles, HttpSession session) throws Exception{
 		int result =  boardDAO.setBoardUpdate(boardDTO);
 		
-		if(fileNums!=null) {
-			for(Integer fileNum : fileNums) {
-				System.out.println(fileNum);
-				boardDAO.setBoardImgDelete(fileNum);
-			}
-		}
 		String path = session.getServletContext().getRealPath("resources/upload/board");
 		System.out.println(path);
+		if(multipartFiles != null) {
 			for(MultipartFile multipartFile : multipartFiles) {
 				if(multipartFile.isEmpty()) {
 					System.out.println("check");
@@ -89,7 +83,8 @@ public class BoardService {
 		      
 		      result = boardDAO.setBoardImgAdd(boardImgDTO);
 		      }
-		      return result;
+		}
+      return result;
 	}
 	
 	public int setBoardImgDelete(Integer fileNum) throws Exception{
@@ -169,6 +164,14 @@ public class BoardService {
 		else {
 			boardDTO.setMemberId(memberDTO.getMemberId());
 			return boardDAO.checkAlreadyBoardPic(boardDTO);
+		}
+	}
+	public int getMyBoardPicTotalCount() {
+		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("member");
+		if(memberDTO == null) {
+			return 0;
+		}else {
+			return boardDAO.getMyBoardPicTotalCount(memberDTO);
 		}
 	}
 }
