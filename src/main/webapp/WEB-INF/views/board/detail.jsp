@@ -46,7 +46,7 @@
                         <p>${dto.boardContents}</p>
                         <div class="co1-8">
                             <a href="#" class="btn-icon btn btn-success">채팅</a>
-                            <a href="#" class="heart-icon"><i class="icon-heart fa fa-heart"></i></a>
+                            <a href="#" class="heart-icon" id="checkPic" name="checkPic"><i class="icon-heart fa fa-heart"></i></a>
                         </div>
                         
                         <div class="product__details__pic__slider owl-carousel my-5">

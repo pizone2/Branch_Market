@@ -93,7 +93,6 @@
 									<td>${dto.memberId}</td>
 									<td>${dto.boardDate}</td>
 									<td>${dto.boardHit}</td>
-									<td>${dto.boardState}</td>
 								</tr>
 							</c:forEach>
 						</tbody>
