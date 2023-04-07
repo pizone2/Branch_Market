@@ -29,7 +29,6 @@ public class BoardController {
 	@GetMapping("list")
 	public ModelAndView getBoardList(Pager pager) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		System.out.println(pager.getCategory());
 		List<BoardDTO> ar = boardService.getBoardList(pager);
 		mv.addObject("list", ar);
 		mv.setViewName("board/list");
@@ -62,9 +61,10 @@ public class BoardController {
 	}
 	
 	@PostMapping("add")
-	public ModelAndView setBoardAdd(BoardDTO boardDTO, MultipartFile multipartFile, HttpSession session) throws Exception{
+	public ModelAndView setBoardAdd(BoardDTO boardDTO, MultipartFile [] multipartFiles, HttpSession session) throws Exception{
+		System.out.println(multipartFiles.length);
 		ModelAndView mv = new ModelAndView();
-		int result = boardService.SetBoardAdd(boardDTO, multipartFile);
+		int result = boardService.SetBoardAdd(boardDTO, multipartFiles, session);
 		String message = "등록 실패";
 		if(result>0) {
 			message = "게시물이 등록되었습니다";
@@ -74,6 +74,7 @@ public class BoardController {
 		mv.setViewName("common/result");
 		return mv;
 	}
+
 	
 	@GetMapping("delete")
 	public ModelAndView setBoardDelete(BoardDTO boardDTO) throws Exception{
