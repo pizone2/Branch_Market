@@ -1,7 +1,10 @@
 package com.main.branch.board;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
@@ -33,6 +36,19 @@ public class BoardService {
 	}
 	
 	public BoardDTO getBoardDetail(BoardDTO boardDTO) throws Exception{
+		/*
+		 * List<BoardDTO> dtos = boardDAO.getBoardList(pager); Set<BoardDTO> indexs =
+		 * new HashSet<BoardDTO>(); //들어간 data 정리 int maxSize = Math.min(dtos.size(),4);
+		 */
+		/*
+		 * while(indexs.size()<maxSize) { //int index = random(0,dtos.size());//index를
+		 * 랜덤으로 int index = (int)(Math.random()*dtos.size()+1); //if(index == )
+		 * continue; //set을 비교했을때 같으면 continue boardDTO = dtos[index]; //index를 뽑아서 해당
+		 * index의 DTO를 indexs.add(boardDTO); //indexs에 넣음 }
+		 */
+		
+		
+		
 		boardDAO.setBoardHitAdd(boardDTO);
 		return boardDAO.getBoardDetail(boardDTO);
 	}
