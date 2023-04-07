@@ -280,9 +280,28 @@ public class MemberController {
 	}
 	
 	@GetMapping("/myPage")
-	public ModelAndView getMemberMyPage() {
+	public ModelAndView getMemberMyPage(MemberDTO memberDTO) {
 		ModelAndView modelAndView = new ModelAndView();
+		if(memberDTO.getMemberId() == null) {
+			memberDTO = (MemberDTO) httpSession.getAttribute("member");
+			memberDTO = memberService.getMemberDetail(memberDTO);
+		}else {
+			memberDTO = memberService.getMemberDetail(memberDTO);
+		}
+		
+		modelAndView.addObject("memberDTO", memberDTO);
 		modelAndView.setViewName("/member/myPage");
+		return modelAndView;
+	}
+	
+	@PostMapping("/hitUpdate")
+	public ModelAndView setMemberHitUpdate(MemberDTO memberDTO) {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		int result = memberService.setMemberHitUpdate(memberDTO);
+		modelAndView.addObject("result", result);
+		modelAndView.setViewName("/common/ajaxResult");
+		
 		return modelAndView;
 	}
 	

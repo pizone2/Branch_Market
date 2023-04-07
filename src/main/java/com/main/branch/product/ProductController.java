@@ -89,7 +89,7 @@ public class ProductController {
 		
 	}
 	
-	@GetMapping("delete")
+	@PostMapping("delete")
 	public ModelAndView setProductDelete(ProductDTO productDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		
@@ -209,6 +209,18 @@ public class ProductController {
 		modelAndView.setViewName("/product/recentProduct");
 		return modelAndView;
 	}
+	
+	// ajax
+	@GetMapping("mySellList")
+	public ModelAndView getProductMySellList(Pager pager) throws Exception {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		List<ProductDTO> productDTOs = productService.getProductMySellList(pager);
+		modelAndView.addObject("productDTOs", productDTOs);
+		modelAndView.setViewName("/common/mySellList");
+		
+		return modelAndView;
+	}
 	//----------------
 	
 	// ajax
@@ -247,5 +259,18 @@ public class ProductController {
 		modelAndView.setViewName("/product/picList");
 		return modelAndView;
 	}
+	
+	// ajax
+	@PostMapping("myProductPicCount")
+	public ModelAndView getMyProductPicCount() {
+		ModelAndView modelAndView = new ModelAndView();
+		
+		int result = productService.getMyProductPicCount();
+		modelAndView.addObject("result", result);
+		modelAndView.setViewName("/common/ajaxResult");
+		
+		return modelAndView;
+	}
+	
 	
 }

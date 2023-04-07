@@ -42,5 +42,10 @@
  	<delete id="setMemberDelete" parameterType="MemberDTO">
  		DELETE MEMBER WHERE memberId = #{memberId}
  	</delete>
+ 	
+ 	<update id="setMemberHitUpdate" parameterType="MemberDTO">
+ 		UPDATE MEMBER SET memberHit = memberHit + 1 WHERE memberId = #{memberId}
+ 	</update>
+ 	
  </mapper>
  

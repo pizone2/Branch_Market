@@ -17,6 +17,12 @@
   		<if test="category != null and category !=''">
 	 			AND productCategory = #{category}
  		</if>
+ 		<if test="state != null and state != ''">
+ 				AND state = #{state}
+ 		</if>
+ 		<if test="memberId != null and memberId != ''">
+ 				AND memberId = #{memberId}
+ 		</if>
   </sql>
   
   <select id="getProductCount" parameterType="Pager" resultType="Integer">
@@ -138,4 +144,8 @@
   	<update id="setProductUpdateState" parameterType="ProductDTO">
   		UPDATE PRODUCT SET state = 1 WHERE PRODUCTNUM=#{productNum} 
   	</update>
+  	
+  	<select id="getMyProductPicCount" parameterType="MemberDTO" resultType="Integer">
+  		SELECT COUNT(*) FROM PRODUCTPIC P WHERE memberId = #{memberId}
+  	</select>
   </mapper>

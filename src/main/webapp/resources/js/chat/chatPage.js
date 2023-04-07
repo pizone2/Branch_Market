@@ -11,7 +11,7 @@ chatHead.onmousedown = function(event) {
     // body를 기준으로 위치를 지정합니다.
     document.body.append(ball);
   
-    // 공을 pageX, pageY 좌표 중앙에 위치하게 합니다.
+    // 공을 위치하게 합니다.
     function moveAt(pageX, pageY) {
       ball.style.left = pageX - event.offsetX + 'px';
       ball.style.top = pageY - event.offsetY + 'px';

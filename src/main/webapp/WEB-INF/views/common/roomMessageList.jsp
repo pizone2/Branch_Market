@@ -5,7 +5,7 @@
 	<c:if test="${sessionScope.id eq dto.sendId}">
          <div class="chat_message_wrapper chat_message_right">
              <div class="chat_user_avatar">
-                 <a href="https://web.facebook.com/iamgurdeeposahan" target="_blank">
+                 <a href="#" target="_blank">
                      <img alt="Gurdeep Osahan (Web Designer)" title="Gurdeep Osahan (Web Designer)"
                          src="https://bootdey.com/img/Content/avatar/avatar1.png" class="md-user-image">
                  </a>
@@ -23,7 +23,7 @@
 	<c:if test="${sessionScope.id ne dto.sendId}">
          <div class="chat_message_wrapper">
              <div class="chat_user_avatar">
-                 <a href="https://web.facebook.com/iamgurdeeposahan" target="_blank">
+                 <a href="#" target="_blank">
                      <img alt="Gurdeep Osahan (Web Designer)" title="Gurdeep Osahan (Web Designer)"
                          src="https://bootdey.com/img/Content/avatar/avatar1.png" class="md-user-image">
                  </a>

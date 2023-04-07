@@ -113,52 +113,43 @@
 										<button class="btn btn-outline-secondary" type="button" id="submitBtn">등록</button>
 									</div> -->
 									<!-- pagining -->
-									<div class="mx-auto"><!--id="pagining" -->
+									<div class="mx-auto">
 										<nav aria-label="Page navigation example">
 											<ul class="pagination">
+											
 												<li class="page-item ${pager.before ? 'disabled' : ''}">
-													<a class="page-link"
-														href="./detail?productNum=${dto.productNum}/review?page=1&kind=${pager.kind}&search=${pager.search}&category=${pager.category}"
-														aria-label="Previous">
-														<span aria-hidden="true">&laquo;</span>
+													<a class="page-link" href="./detail?productNum=${pager.productNum}&page=1" aria-label="Previous">
+													  <span aria-hidden="true">&laquo;</span>
 													</a>
-												</li>
-				
-				
-												<li class="page-item ${pager.before ? 'disabled' : ''}">
-													<a class="page-link"
-														href="./list?page=${pager.startNum-1}&kind=${pager.kind}&search=${pager.search}&category=${pager.category}"
-														aria-label="Previous">
-														<span aria-hidden="true">&lsaquo;</span>
+												  </li>
+												
+												
+												  <li class="page-item ${pager.before ? 'disabled' : ''}">
+													<a class="page-link" href="./detail?productNum=${pager.productNum}&page=${pager.startNum-1}" aria-label="Previous">
+													  <span aria-hidden="true">&lsaquo;</span>
 													</a>
-												</li>
-				
-				
-												<c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-													<li class="page-item"><a class="page-link"
-															href="./list?page=${i}&kind=${pager.kind}&search=${pager.search}&category=${pager.category}">${i}</a>
-													</li>
-												</c:forEach>
-				
-				
-												<li class="page-item ${pager.after eq false ? 'disabled' : ''}">
-													<a class="page-link"
-														href="./list?page=${pager.lastNum+1}&kind=${pager.kind}&search=${pager.search}&category=${pager.category}"
-														aria-label="Next">
-														<span aria-hidden="true">&rsaquo;</span>
+												  </li>
+												  
+												  
+												  <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
+													  <li class="page-item"><a class="page-link" href="./detail?productNum=${pager.productNum}&page=${i}">${i}</a></li>
+												  </c:forEach>
+												  
+												  
+												   <li class="page-item ${pager.after eq false ? 'disabled' : ''}">
+													<a class="page-link"  href="./detail?productNum=${pager.productNum}&page=${pager.lastNum+1}" aria-label="Next">
+													  <span aria-hidden="true">&rsaquo;</span>
 													</a>
-												</li>
-				
-				
-												<li class="page-item ${pager.after eq false ? 'disabled' : ''}">
-													<a class="page-link"
-														href="./list?page=${pager.totalPage}&kind=${pager.kind}&search=${pager.search}&category=${pager.category}"
-														aria-label="Next">
-														<span aria-hidden="true">&raquo;</span>
+												  </li>
+												  
+												  
+												  <li class="page-item ${pager.after eq false ? 'disabled' : ''}">
+													<a class="page-link"  href="./detail?productNum=${pager.productNum}&page=${pager.totalPage}" aria-label="Next">
+													  <span aria-hidden="true">&raquo;</span>
 													</a>
-												</li>
+												  </li>
 											</ul>
-										</nav>
+									  </nav>
 									</div>
 								</div>
 								

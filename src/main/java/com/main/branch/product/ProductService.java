@@ -139,7 +139,13 @@ public class ProductService {
 	public List<ProductDTO> getProductTopList()throws Exception{
 		return productDAO.getProductTopList();
 	}
-	
+	public List<ProductDTO> getProductMySellList(Pager pager) throws Exception{
+		pager.setState("0");
+		pager.makeNum(productDAO.getProductCount(pager));
+		pager.makeRow();
+		
+		return productDAO.getProductList(pager);
+	}
 	//----------------------------
 	
 	public int setProductPicAdd(ProductPicDTO productPicDTO) throws Exception{
@@ -185,5 +191,14 @@ public class ProductService {
 	// 판매 중 업데이트
 	public Integer setProductUpdateState(ProductDTO productDTO)throws Exception{
 		return productDAO.setProductUpdateState(productDTO);
+	}
+	
+	public int getMyProductPicCount() {
+		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("member");
+		if(memberDTO == null) {
+			return 0;
+		}else {
+			return productDAO.getMyProductPicCount(memberDTO);
+		}
 	}
 }
