@@ -19,7 +19,7 @@
                 </div>
                 <div class="col-lg-12 text-center">
                     <div class="background-page">
-                        <div class="banner-text"><h2>회원정보 관리</h2></div>
+                        <div class="banner-text"><h2>회원정보 조회</h2></div>
                     </div>
                 </div>
             </div>
