@@ -93,9 +93,15 @@
     
     <c:if test="${not empty productDTOs }">
 		<!-- product -->
-		 <h1 class="home-main-title text-center home-hot-title my-5">
+		<section class="hero">
+        <div class="container">
+            <div class="row d-flex" style="background-color: #F3F6FA;">
+		 <h1 class="home-main-title text-center home-hot-title my-5 col-lg-12" style="background-color: #F3F6FA;">
 	        위탁판매 인기 게시글
 	    </h1>
+	    </div>
+	    </div>
+	    </section>
 	
 	    <!-- Categories Section Begin -->
 	    <section class="categories">
@@ -118,9 +124,16 @@
 	</c:if>
 	
 	<c:if test="${not empty boardSellTopDTOs or not empty boardBuyTopDTOs }">
-		<h1 class="home-main-title text-center home-hot-title my-5">
-	        중고거래 인기 게시글
-	    </h1>
+		
+		<section class="hero">
+        <div class="container">
+            <div class="row d-flex mt-5" style="background-color: #F3F6FA;">
+			<h1 class="home-main-title text-center home-hot-title my-5" style="background-color: #F3F6FA;">
+		        중고거래 인기 게시글
+		    </h1>
+	    </div>
+	    </div>
+	    </section>
 	
 	    <div class="container">
 	        <div class="wrapper">
