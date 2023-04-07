@@ -33,8 +33,13 @@
                 <div class="product_details col-lg-6 col-md-6">
                 	<div hidden id="datas" data-boardNum = "${dto.boardNum}" data-sendId="${sessionScope.id}" data-receiveId="${dto.memberId}"></div>
                     <div class="product__details__text">
+                    	<div class="row">
+                    		<button readonly class="col-3 detail-state btn btn-secondary">${dto.boardCategory}</button>
+                    		<button readonly class="col-3 detail-state btn btn-secondary mx-2">${dto.boardState}</button>
+                    	</div>
+                   		
                         <!--boardTitle-->
-                        <h3>${dto.boardTitle} ${dto.boardCategory} ${dto.boardState}</h3>
+                        <h3>${dto.boardTitle}</h3>
                         <!--boardPrice-->
                         <div class="product__details__price">${dto.boardPrice}원</div>
                         <!--boardContents-->
