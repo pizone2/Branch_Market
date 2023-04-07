@@ -90,7 +90,7 @@
  		DELETE BOARD WHERE BOARDNUM=#{boardNum}
  	</delete>
  	
- 	<delete id="setBoardImgDelete" parameterType="Long">
+ 	<delete id="setBoardImgDelete" parameterType="Integer">
   		DELETE BOARDIMG WHERE FILENUM=#{fileNum}
   	</delete>
  	<update id="setBoardUpdate" parameterType="BoardDTO">

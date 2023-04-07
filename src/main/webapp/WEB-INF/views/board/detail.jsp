@@ -25,7 +25,7 @@
 								<img class="product__details__pic__item--large" src="../resources/upload/board/${dto.boardImgDTOs[0].fileName}">
 							</c:if>
 							<c:if test="${empty dto.boardImgDTOs}">
-								<img class="product__details__pic__item--large" src="../../resources/images/leaves.png">
+								<img class="product__details__pic__item--large" src="../../resources/images/noImg.png">
 							</c:if>
                         </div>
                     </div>
@@ -65,7 +65,8 @@
 	                        <c:if test="${not empty dto.boardImgDTOs}">
 		                        <c:forEach begin="0" end="${dto.boardImgDTOs.size()-1}" step="1" var="i">
 									<img data-imgbigurl="../resources/upload/board/${dto.boardImgDTOs[i].fileName}"
-		                                src="../resources/upload/board/${dto.boardImgDTOs[i].fileName}" alt="">
+		                                src="../resources/upload/board/${dto.boardImgDTOs[i].fileName}" alt="" >
+		                                <input type="hidden" name="fileNum" value="${dto.boardImgDTOs[i].fileNum}">
 								</c:forEach>
 							</c:if>
                         </div>
@@ -105,7 +106,7 @@
     <div class="list">
         <!--권한을 가지고 있는 사람만 보임 -->
         <c:if test="${member.memberId eq dto.memberId}">
-	        <a href="./update?boardNum=${dto.boardNum}"><button class="form-update btn btn-info">수정</button></a>
+	        <button type="button" class="form-update btn btn-info" id="updatebtn" data-Img-num="${dto.dto.boardImgDTOs.fileNum}">수정</button>
 	        <a href="./delete?boardNum=${dto.boardNum}" id="del"><button class="form-delete btn btn-danger">삭제</button></a>
         </c:if>
         <!--모든 사람에게 보임 -->

@@ -79,7 +79,7 @@ public class BoardController {
 	@GetMapping("delete")
 	public ModelAndView setBoardDelete(BoardDTO boardDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		int result = boardService.setBoardDelete(boardDTO);
+		int result = boardService.setBoardDelete(boardDTO, httpSession);
 		String message = "삭제 실패";
 		if(result>0) {
 			message = "게시물이 삭제되었습니다";
@@ -91,7 +91,7 @@ public class BoardController {
 	}
 	
 	@PostMapping("boardImgDelete")
-	public ModelAndView setBoardImgDelete(Long fileNum) throws Exception{
+	public ModelAndView setBoardImgDelete(Integer fileNum) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		int result = boardService.setBoardImgDelete(fileNum);
 		mv.addObject("result",result);
@@ -109,8 +109,10 @@ public class BoardController {
 	}
 	
 	@PostMapping("update")
-	public ModelAndView setBoardUpdate(BoardDTO boardDTO, ModelAndView mv, MultipartFile multipartFile, Long fileNum) throws Exception{
-		int result = boardService.setBoardUpdate(boardDTO, multipartFile, fileNum);
+	public ModelAndView setBoardUpdate(BoardDTO boardDTO, MultipartFile [] multipartFiles, HttpSession session, Integer [] fileNums) throws Exception{
+		System.out.println("check");
+		ModelAndView mv = new ModelAndView();
+		int result = boardService.setBoardUpdate(boardDTO, multipartFiles, session, fileNums);
 		mv.setViewName("common/result");
 		mv.addObject("result","수정성공");
 		mv.addObject("url","./detail"+"?boardNum="+boardDTO.getBoardNum());

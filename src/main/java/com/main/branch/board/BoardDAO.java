@@ -73,7 +73,7 @@ public class BoardDAO {
 		return sqlSession.insert(NAMESPACE+"setBoardImgAdd", boardImgDTO);
 	}
 	
-	public int setBoardImgDelete(Long fileNum) throws Exception{
+	public int setBoardImgDelete(Integer fileNum) throws Exception{
 		return sqlSession.insert(NAMESPACE+"setBoardImgDelete", fileNum);
 	}
 }

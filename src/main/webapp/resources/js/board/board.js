@@ -1,4 +1,8 @@
+let updatebtn = document.getElementById("updatebtn")
+$("updatebtn").click(function(){
 
+
+//-------------------------------------------------------
 let boardNum = $('#datas').attr('data-boardNum');
 let roomNum;
 let ws;
