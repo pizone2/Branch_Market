@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.main.branch.product.ProductDTO;
 import com.main.branch.util.Pager;
 
 @Controller
@@ -20,9 +21,9 @@ public class ReviewController {
 	
 	// ---------------------- 리스트 가져오기
 	@GetMapping("list")
-	public ModelAndView getReviewList(Pager pager) {
+	public ModelAndView getReviewList(ReviewDTO reviewDTO) {
 		ModelAndView modelAndView = new ModelAndView();
-		List<ReviewDTO> reviewDTOs = reviewService.getReviewList(pager);
+		List<ReviewDTO> reviewDTOs = reviewService.getReviewList(reviewDTO);
 		
 		modelAndView.addObject("reviewDTOs", reviewDTOs);
 		modelAndView.setViewName("/common/reviewList");
@@ -62,6 +63,7 @@ public class ReviewController {
 	public ModelAndView setReviewDelete(ReviewDTO reviewDTO) {
 		ModelAndView modelAndView = new ModelAndView();
 		int reuslt = reviewService.setReviewDelete(reviewDTO);
+		System.out.println(reviewDTO.getReviewNum());
 		
 		if(reuslt > 0) {
 			modelAndView.addObject("result", "true");

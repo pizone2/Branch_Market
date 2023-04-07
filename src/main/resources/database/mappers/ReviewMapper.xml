@@ -16,22 +16,19 @@
 			</choose>
 			LIKE '%' || #{search} || '%' AND PRODUCTNUM = #{productNum}
  	</sql>
- 	<select id="getReviewList" parameterType="Pager" resultType="ReviewDTO">
+ 	<select id="getReviewList" parameterType="ReviewDTO" resultType="ReviewDTO">
  		SELECT * FROM(
-		SELECT ROWNUM R, A.* FROM
-		(
-			SELECT * FROM REVIEW <include refid="searchCondition"></include>
+			SELECT * FROM REVIEW
+			WHERE PRODUCTNUM = #{productNum}
 			ORDER BY REVIEWNUM DESC
-			) A
 		)
-		WHERE R BETWEEN #{startRow} AND #{lastRow}
  	</select>
  	<select id="getReviewCount" parameterType="Pager" resultType="Integer">
  		SELECT COUNT(*) FROM REVIEW <include refid="searchCondition"></include>
  	</select>
  	
  	<insert id="setReviewAdd" parameterType="ReviewDTO">
- 		INSERT INTO REVIEW VALUES(SEQ.NEXTVAL,#{productNum},#{memberId},#{reviewContents},#{reviewScore})
+ 		INSERT INTO REVIEW VALUES(SEQ.NEXTVAL,#{productNum},#{memberId},#{reviewContents},9)
  	</insert>
  	
  	<update id="setReviewUpdate" parameterType="ReviewDTO">

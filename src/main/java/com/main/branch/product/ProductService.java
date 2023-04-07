@@ -1,6 +1,7 @@
 package com.main.branch.product;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -85,7 +86,7 @@ public class ProductService {
 	    
 	    return productDetail;
 	}
-
+	
 	public Integer setProductAdd(ProductDTO productDTO, MultipartFile filecs) throws Exception{
 		Integer result;
 		

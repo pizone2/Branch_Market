@@ -25,12 +25,9 @@ public class ReviewService {
 	@Autowired
 	private ProductDAO productDAO;
 	
-	public List<ReviewDTO> getReviewList(Pager pager){
-		pager.setPerPage(5);
-		pager.makeNum(reviewDAO.getReviewCount(pager));
-		pager.makeRow();
+	public List<ReviewDTO> getReviewList(ReviewDTO reviewDTO){
 		
-		return reviewDAO.getReviewList(pager);
+		return reviewDAO.getReviewList(reviewDTO);
 	}
 	public int setReviewAdd(ReviewDTO reviewDTO) throws Exception {
 		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("member");
@@ -38,8 +35,10 @@ public class ReviewService {
 		
 		ProductDTO productDTO = new ProductDTO();
 		productDTO.setProductNum(reviewDTO.getProductNum());
-		
 		productDTO = productDAO.getProductDetail(productDTO);
+//		reviewDTO.setProductNum(productDTO.getProductNum());
+		
+		
 		
 		NotifyDTO notifyDTO = new NotifyDTO();
 		notifyDTO.setMemberId(productDTO.getMemberId());

@@ -54,7 +54,7 @@
                                                 상품 품질 : ${dto.productQ}</p>
                                         </div>
                                         <div class="co1-8">
-                                            <a href="../product/picList" class="btn-icon btn btn-success">구매</a>
+                                            <a href="../product/picList" id="picAdd" class="btn-icon btn btn-success">구매</a>
                                             <div id="picIcon">
                                                 <c:if test="${checkPic eq 0}">
                                                     <a href="#" class="heart-icon" id="picAdd"><i
@@ -83,13 +83,11 @@
                                     </div>
                                 </section>
 
-                                    </div>
-                                    <div id="reviewList">
-
-                                    </div>
-                                </div>
+                                
                             </div>
-                    </section>
+                            <div id="reviewList"></div>
+                   
+                </section>
                 <div class="list">
                         <c:if test="${member.memberRole eq 'admin'}">
                             <!--권한을 가지고 있는 사람만 보임 -->

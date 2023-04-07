@@ -15,8 +15,8 @@ public class ReviewDAO {
 	private SqlSession sqlSession;
 	private final String NAMESPACE = "com.main.branch.review.ReviewDAO.";
 	
-	public List<ReviewDTO> getReviewList(Pager pager){
-		return sqlSession.selectList(NAMESPACE + "getReviewList", pager);
+	public List<ReviewDTO> getReviewList(ReviewDTO reviewDTO){
+		return sqlSession.selectList(NAMESPACE + "getReviewList", reviewDTO);
 	}
 	public int getReviewCount(Pager pager) {
 		return sqlSession.selectOne(NAMESPACE + "getReviewCount", pager);

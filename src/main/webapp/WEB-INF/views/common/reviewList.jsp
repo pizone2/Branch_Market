@@ -21,65 +21,6 @@
 			</c:forEach>
 	</tbody>
   </table> -->
-  
-		  <!-- pagining -->
-			 <!-- <div class = "row" id="pagining">
-					   <nav aria-label="Page navigation example">
-						<ul class="pagination">
-							<li class="page-item" data-page="1">
-							<a class="page-link" data-page="1" aria-label="Previous" href="#">
-							  <span aria-hidden="true">&laquo;</span>
-							</a>
-						  </li>
-						  
-						  <li class="page-item ${pager.before?'disabled':''}" data-page="${pager.startNum - 1}">
-							<a class="page-link" data-page="${pager.startNum - 1}" aria-label="Previous" href="#">
-							  <span aria-hidden="true">&lsaquo;</span>
-							</a>
-						  </li>
-						  <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-								  <li class="page-item" data-page="${i}"><a class="page-link" data-page="${i}" href="#">${i}</a></li>
-						  </c:forEach>
-  
-  
-						  <li class="page-item ${pager.after eq false ? 'disabled' : ''}" data-page="${pager.lastNum + 1}">
-							<a class="page-link" data-page="${pager.lastNum + 1}" aria-label="Next" href="#">
-							  <span aria-hidden="true">&rsaquo;</span>
-							</a>
-						  </li>
-						  <li class="page-item" data-page="${pager.totalPage}">
-							<a class="page-link" data-page="${pager.totalPage}" aria-label="Next" href="#">
-							  <span aria-hidden="true">&raquo;</span>
-							</a>
-						  </li>
-						</ul>
-					  </nav>
-			  </div> -->
-				  
-				  <!-- 검색창 -->
-				   <!-- <div class = "row">
-					<form action="./list" method="get" id="paginingForm">
-						<input type="hidden" name="page" id="page">
-						<input type="hidden" name="category" id="category" value="${pager.category}">
-						<div class="col-auto">
-							<label for="kind" class="visually-hidden">Kind</label>
-							<select name="kind" class="form-select" id="kind" aria-label="Default select example">
-							<option value="memberId" ${pager.kind eq 'memberId' ? 'selected' : ''} >작성자</option>
-							<option value="reviewContents" ${pager.kind eq 'reviewContents' ? 'selected' : ''}>내용</option>
-							</select>
-						</div>
-						<div class="col-auto">
-							<label for="search" class="visually-hidden">Search</label>
-							<input type="text" class="form-control" name="search" id="search" placeholder="검색어를 입력 하세요." value="${pager.search}">
-						</div>
-						<div class="col-auto">
-							<button type="submit" class="btn btn-primary mb-3" id="searchBtn">검색</button>
-						</div>
-					</form>
-				  </div>  -->
-
-
-
 
 				<div class="col-lg-12">
 					<div class="product__details__tab">
@@ -92,65 +33,30 @@
 												<th scope="col">글번호</th>
 												<th scope="col">작성자</th>
 												<th scope="col">글내용</th>
+												<th></th>
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach items="${reviewDTOs}" var="dtos">
+											<c:forEach items="${reviewDTOs}" var="reviewDTO">
 												<tr>
-													<th scope="row">${dtos.reviewNum}</th>
-													<td>${dtos.memberId}</td>
-													<td>${dtos.reviewContents}</td>
+													<th scope="row">${reviewDTO.reviewNum}</th>
+													<td>${reviewDTO.memberId}</td>
+													<td>${reviewDTO.reviewContents}</td>
+													<td><button class="btn btn-danger" type="button" id="reviewDelBtn" data-reviewNum="${reviewDTO.reviewNum}">삭제</button></td>
 												</tr>
 											</c:forEach>
-										</tbody>
+									</tbody>
 									</table>
 									<div class="input-group mb-3">
 										<input type="text" class="form-control" placeholder="댓글을 작성해주세요" aria-label="Recipient's username" id="reviewContents" aria-describedby="button-add">
 										<button class="btn btn-success" type="button" id="reviewAddBtn">등록</button>
 									</div>
-									<!-- <div class="input-group mb-3">
-										<input type="text" class="form-control" placeholder="댓글을 작성해주세요" aria-label="Recipient's username" id="inqCommentsContents" aria-describedby="button-addon2">
-										<button class="btn btn-outline-secondary" type="button" id="submitBtn">등록</button>
-									</div> -->
-									<!-- pagining -->
-									<div class="mx-auto">
-										<nav aria-label="Page navigation example">
-											<ul class="pagination">
-											
-												<li class="page-item ${pager.before ? 'disabled' : ''}">
-													<a class="page-link" href="./detail?productNum=${pager.productNum}&page=1" aria-label="Previous">
-													  <span aria-hidden="true">&laquo;</span>
-													</a>
-												  </li>
-												
-												
-												  <li class="page-item ${pager.before ? 'disabled' : ''}">
-													<a class="page-link" href="./detail?productNum=${pager.productNum}&page=${pager.startNum-1}" aria-label="Previous">
-													  <span aria-hidden="true">&lsaquo;</span>
-													</a>
-												  </li>
-												  
-												  
-												  <c:forEach begin="${pager.startNum}" end="${pager.lastNum}" var="i">
-													  <li class="page-item"><a class="page-link" href="./detail?productNum=${pager.productNum}&page=${i}">${i}</a></li>
-												  </c:forEach>
-												  
-												  
-												   <li class="page-item ${pager.after eq false ? 'disabled' : ''}">
-													<a class="page-link"  href="./detail?productNum=${pager.productNum}&page=${pager.lastNum+1}" aria-label="Next">
-													  <span aria-hidden="true">&rsaquo;</span>
-													</a>
-												  </li>
-												  
-												  
-												  <li class="page-item ${pager.after eq false ? 'disabled' : ''}">
-													<a class="page-link"  href="./detail?productNum=${pager.productNum}&page=${pager.totalPage}" aria-label="Next">
-													  <span aria-hidden="true">&raquo;</span>
-													</a>
-												  </li>
-											</ul>
-									  </nav>
-									</div>
 								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+								
 								
 			
