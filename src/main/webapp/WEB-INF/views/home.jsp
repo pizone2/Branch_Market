@@ -95,8 +95,8 @@
 		<!-- product -->
 		<section class="hero">
         <div class="container">
-            <div class="row d-flex" style="background-color: #F3F6FA;">
-		 <h1 class="home-main-title text-center home-hot-title my-5 col-lg-12" style="background-color: #F3F6FA;">
+            <div class="row d-flex " style="background-color: #F3F6FA;">
+		 <h1 class="home-main-title text-center home-hot-title my-5 col-lg-12">
 	        위탁판매 인기 게시글
 	    </h1>
 	    </div>
@@ -128,7 +128,7 @@
 		<section class="hero">
         <div class="container">
             <div class="row d-flex mt-5" style="background-color: #F3F6FA;">
-			<h1 class="home-main-title text-center home-hot-title my-5" style="background-color: #F3F6FA;">
+			<h1 class="home-main-title text-center home-hot-title my-5 col-lg-12">
 		        중고거래 인기 게시글
 		    </h1>
 	    </div>

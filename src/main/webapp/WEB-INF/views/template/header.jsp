@@ -126,7 +126,7 @@
 	                    <div class="header__cart" style="padding-left: 0px;">
 	                        <ul>
 	                            <li><a href="/chat/myRoomList"><i class="fa fa-commenting"></i> <span id="totalUnreadMessage"></span></a></li>
-	                            <li><a href="/board/picList"><i class="fa fa-heart"></i> <span>1</span></a></li>
+	                            <li><a href="/board/picList"><i class="fa fa-heart"></i> <span id="myBoardPicTotalCount">1</span></a></li>
 	                            <li><a href="/product/picList"><i class="fa fa-shopping-cart"></i> <span id="myProductPicCount">3</span></a></li>
 	                        </ul>
 	                    </div>

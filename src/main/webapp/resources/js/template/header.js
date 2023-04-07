@@ -19,3 +19,12 @@ $.ajax({
         $('#myProductPicCount').html(res);
     }
 })
+
+$.ajax({
+    url:'/board/myBoardPicTotalCount',
+    type:'post',
+    success:function(res){
+        res = res.trim();
+        $('#myBoardPicTotalCount').html(res);
+    }
+})

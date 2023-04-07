@@ -13,11 +13,11 @@
   href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
   rel="stylesheet"
 />
-<!-- MDB -->
-<link
+<!-- MDB css 충돌 -->
+<!-- <link
   href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.css"
   rel="stylesheet"
-/>
+/> -->
 
 
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -53,8 +53,8 @@
       </div>
     </div>
 
-    <script
+    <!-- <script
   type="text/javascript"
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.2.0/mdb.min.js"
-></script>
+></script> -->
 <script src="/resources/js/template/weatherUi.js"></script>

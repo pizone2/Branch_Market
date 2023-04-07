@@ -112,11 +112,11 @@
 
                                     </div>
 
-                                </div>
                                 <div class="d-flex justify-content-center my-5">
                                     <button type="text" class="site-btn mr-4"><a
                                             href="./detail?boardNum=${dto.boardNum}">취소</a></button>
                                     <button type="submit" class="site-btn">수정</a></button>
+                                </div>
                                 </div>
                             </div>
                     </div>

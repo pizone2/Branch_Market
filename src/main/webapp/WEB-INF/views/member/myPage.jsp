@@ -60,7 +60,8 @@
                     
                     <div class="blog__details__text">
                         <div style="text-align : center;">
-                            <h2>${memberDTO.memberId} 계정</h2>
+                            <h2>${memberDTO.memberHit >= 10 ? '<i class="fa fa-star" aria-hidden="true"></i>': ''} 
+                            	${memberDTO.memberId} 계정</h2>
                             <img class=" user-img" src="/resources/images/profileImg.png" alt="">
                             <!--<img class=" best-img" src="img/cherryBlossom.png" alt="">-->
                         </div>

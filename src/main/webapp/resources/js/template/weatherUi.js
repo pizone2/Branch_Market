@@ -63,9 +63,6 @@ $.ajax({
             }else{
                 $('#weatherImage').html('<i class="fa fa-cloud" aria-hidden="true"></i>');
             }
-            // <i class="fa fa-cloud" aria-hidden="true"></i> 흐림 dmstMtphNo 16
-            // <i class="fa fa-sun-o" aria-hidden="true"></i> 밝음 dmstMtphNo 조건없이
-            // <i class="fa fa-umbrella" aria-hidden="true"></i> 비 dmstMtphNo 01
         }
     }
 })
