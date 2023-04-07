@@ -123,8 +123,8 @@
 									title="Gurdeep Osahan (Web Designer)"
 									src="https://bootdey.com/img/Content/avatar/avatar1.png"
 									title="Gurdeep Osahan (Web Designer)" alt="Gurdeep Osahan (Web Designer)">
-								<h1>Gurdeep Osahan</h1><small><br> <span class="glyphicon glyphicon-briefcase"
-										aria-hidden="true"></span> Web Designer</small>
+								<h1>상대방</h1><small><br> <span class="glyphicon glyphicon-briefcase"
+										aria-hidden="true"></span>Developer</small>
 							</a></div>
 						<div class="popup-head-right pull-right">
 							<button data-widget="remove" id="removeClass" class="chat-header-button pull-right"

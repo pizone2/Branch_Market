@@ -95,8 +95,13 @@
                             <!--권한을 가지고 있는 사람만 보임 -->
                             <a href="./update?productNum=${dto.productNum}"><button
                                     class="form-update btn btn-info">수정</button></a>
-                            <a data-productNum="${dto.productNum}"><button
-                                    class="form-delete btn btn-danger del">삭제</button></a>
+                            <a>
+                                <form action="/product/delete" method="post">
+                                    <input type="hidden" name="productNum" value="${dto.productNum}">
+                                    <button type="submit" data-productNum="${dto.productNum}"
+                                    class="form-delete btn btn-danger del">삭제</button>
+                                </form>
+                            </a>
                         </c:if>
                     <!--모든 사람에게 보임 -->
                     <a href="./list"><button class="form-list btn btn-success">목록으로</button></a>

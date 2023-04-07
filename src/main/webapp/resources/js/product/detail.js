@@ -1,28 +1,28 @@
 const productNum = $('#datas').attr('data-productNum');
 
-$('.del').click((e)=>{
-    let productNum = $(e.target).attr('data-productNum');
-    let isGo = confirm('정말 삭제 하시겠습니까?');
-    console.log(isGo);
-    if(isGo == true){
-        $.ajax({
-            url:'./product/delete',
-            type:'post',
-            data:{
-                'productNum':productNum
-            },
-            success:(response)=>{
-                response = response.trim();
-                if(response == 'true'){
-                    alert('삭제가 완료 되었습니다!');
-                }else{
-                    alert('삭제 실패!')
-                }
-                location.href = "./list";
-            }
-        })
-    }
-})
+// $('.del').click(function(){
+//     let productNum = $(this).attr('data-productNum');
+//     let isGo = confirm('정말 삭제 하시겠습니까?');
+//     console.log(this);
+//     if(isGo == true){
+//         $.ajax({
+//             url:'./delete',
+//             type:'post',
+//             data:{
+//                 'productNum':productNum
+//             },
+//             success:(response)=>{
+//                 response = response.trim();
+//                 if(response == 'true'){
+//                     alert('삭제가 완료 되었습니다!');
+//                 }else{
+//                     alert('삭제 실패!')
+//                 }
+//                 location.href = "./list";
+//             }
+//         })
+//     }
+// })
 
 function getReviewList(){
     $.ajax({

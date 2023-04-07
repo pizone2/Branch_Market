@@ -68,6 +68,10 @@ public class ProductDAO {
 	public List<ProductDTO> getProductTopList()throws Exception{
 		return sqlSession.selectList(NAMESPACE + "getProductTopList", NAMESPACE);
 	}
+	
+	public int getMyProductPicCount(MemberDTO memberDTO) {
+		return sqlSession.selectOne(NAMESPACE + "getMyProductPicCount", memberDTO);
+	}
 	//----------------
 	
 	public int setProductPicAdd(ProductPicDTO productPicDTO) throws Exception{
