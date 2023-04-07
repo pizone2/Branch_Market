@@ -105,20 +105,31 @@
                     <ul>
                         <li><a href="/board/list">중고 거래</a></li>
                         <li><a href="/product/list">위탁 판매</a></li>
-                        <li><a href="/inquiry/add">문의사항</a></li>
                         <li><a href="/notice/list">공지사항</a></li>
-                        <li><a href="/member/myPage?memberId=${member.memberId}">마이페이지</a></li>
+                        <c:if test="${not empty member}">
+                       	  <c:if test="${member.memberRole eq 'member'}">
+                       	  	 <li><a href="/inquiry/add">문의하기</a></li>
+                      	  </c:if>
+                      	  
+                      	  <li><a href="/member/myPage?memberId=${member.memberId}">마이페이지</a></li>
+                      	  
+                      	  <c:if test="${member.memberRole eq 'admin'}">
+                      	 	 <li><a href="/admin/home">관리자페이지</a></li>
+                      	  </c:if>
+                        </c:if>
                     </ul>
                 </nav>
             </div>
             <div class="col-lg-2">
-                    <div class="header__cart" style="padding-left: 0px;">
-                        <ul>
-                            <li><a href="/chat/myRoomList"><i class="fa fa-commenting"></i> <span id="totalUnreadMessage"></span></a></li>
-                            <li><a href="/board/picList"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                            <li><a href="/product/picList"><i class="fa fa-shopping-cart"></i> <span id="myProductPicCount">3</span></a></li>
-                        </ul>
-                    </div>
+            		<c:if test="${not empty member}">
+	                    <div class="header__cart" style="padding-left: 0px;">
+	                        <ul>
+	                            <li><a href="/chat/myRoomList"><i class="fa fa-commenting"></i> <span id="totalUnreadMessage"></span></a></li>
+	                            <li><a href="/board/picList"><i class="fa fa-heart"></i> <span>1</span></a></li>
+	                            <li><a href="/product/picList"><i class="fa fa-shopping-cart"></i> <span id="myProductPicCount">3</span></a></li>
+	                        </ul>
+	                    </div>
+                    </c:if>
                 </div>
             </div>
         </div>

@@ -56,9 +56,11 @@
                 </table> 
                 <br><br>
                 <div class="list">
+                	<c:if test="${member.memberId eq noticeDTO.memberId}">
                     <!--권한을 가지고 있는 사람만 보임 -->
-                    <button class="btn btn-info"><a href="./update?noticeNum=${noticeDTO.noticeNum}">수정</a></button>
-                    <button class="btn btn-danger del" data-noticeNum="${noticeDTO.noticeNum}">삭제</button>
+	                    <button class="btn btn-info"><a href="./update?noticeNum=${noticeDTO.noticeNum}">수정</a></button>
+	                    <button class="btn btn-danger del" data-noticeNum="${noticeDTO.noticeNum}">삭제</button>
+                     </c:if>
                     <!--모든 사람에게 보임 -->
                     <button class="btn btn-success"><a href="./list">목록으로</a></button>
                 </div>
