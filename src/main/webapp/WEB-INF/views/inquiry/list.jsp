@@ -18,7 +18,7 @@
                                 <c:forEach items="${inquiryDTOs}" var="inquiryDTO">
 					                   <tr>
 					                  <td>${inquiryDTO.memberId}</td>
-					                  <td><a href="./detail?inquiryNum=${inquiryDTO.inquiryNum}">${inquiryDTO.inquiryTitle}</a></td>
+					                  <td><a href="../inquiry/detail?inquiryNum=${inquiryDTO.inquiryNum}">${inquiryDTO.inquiryTitle}</a></td>
 					                  <td>${inquiryDTO.inquiryDetail}</td>
 					                  <td>${inquiryDTO.inquiryCategory}</td>
 					              </tr>

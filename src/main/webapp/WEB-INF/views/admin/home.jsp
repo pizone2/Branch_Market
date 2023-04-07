@@ -42,7 +42,7 @@
                             <h3>Category</h3>
                             <ul>
                                 <li><a href="../event/event/list">이벤트 배너 수정 :)</a></li>
-                                <li><a href="./memberList">회원정보 관리</a></li>
+                                <li><a href="./memberList">회원정보 조회</a></li>
                                 <li><a href="./add">관리자 추가</a></li>
                                 
                             </ul>
