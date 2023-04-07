@@ -2,7 +2,7 @@ const fileAdd=document.getElementById("fileAdd");
 const filelist = document.getElementById("filelist");
 let count=0;
 let max=5;
-let param="multipartFile";
+let param="multipartFiles";
 let idx = 0;
 
 function setParam(p){
@@ -24,7 +24,7 @@ $(".deleteCheck").click(function(){
         let fileNum = $(this).val();
         $.ajax({
             type:'POST',
-            url:'./boardFileDelete',
+            url:'./boardImgDelete',
             data:{
                 fileNum:fileNum //속성명:변수명
             },

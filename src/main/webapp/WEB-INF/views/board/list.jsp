@@ -71,7 +71,9 @@
                         </div>
                     </div>
                     <div>
-                        <a href="./add"><button class="state-btn btn">게시물 올리기</button></a>
+                    	<c:if test="${not empty member}">
+                        	<a href="./add"><button class="state-btn btn">게시물 올리기</button></a>
+                        </c:if>
                     </div>
                      	</form>
                 </div>
@@ -93,7 +95,6 @@
 									<td>${dto.memberId}</td>
 									<td>${dto.boardDate}</td>
 									<td>${dto.boardHit}</td>
-									<td>${dto.boardState}</td>
 								</tr>
 							</c:forEach>
 						</tbody>
