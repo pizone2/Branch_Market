@@ -57,7 +57,7 @@ public class ProductService {
 	}
 	
 	public List<ProductDTO> getProductResultList(ProductDTO productDTO) throws Exception {
-	    List<ProductDTO> allProducts = productDAO.getProductResultList(productDTO);
+	    List<ProductDTO> allProducts = productDAO.getProductList();
 	    List<ProductDTO> relatedProducts = new ArrayList<ProductDTO>();
 	    Set<ProductDTO> indexes = new HashSet<ProductDTO>();
 	    int maxSize = Math.min(allProducts.size(), 4);
@@ -80,8 +80,7 @@ public class ProductService {
 
 	    return new ArrayList<ProductDTO>(indexes);
 	}
-
-
+	
 	public ProductDTO getProductDetail(ProductDTO productDTO) throws Exception{
 	    ProductDTO productDetail = productDAO.getProductDetail(productDTO);
 	    productDAO.setProductHit(productDTO);
