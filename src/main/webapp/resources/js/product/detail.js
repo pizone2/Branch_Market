@@ -1,7 +1,5 @@
 const productNum = $('#datas').attr('data-productNum');
 
-
-
 function getReviewList(){
     $.ajax({
         url:'/review/list?productNum=' + productNum,
@@ -32,16 +30,12 @@ $('#reviewList').on('click','#reviewAddBtn',(e)=>{
             }
             $('#reviewContents').val("");
             getReviewList();
-        },
-        error: function(){
-            console.log(productNum)
         }
     })
 })
 
 $('#reviewList').on('click','#reviewDelBtn',function(){
     const reviewNum = $(this).attr('data-reviewNum');
-    console.log(reviewNum)
     $.ajax({
         url:'/review/delete',
         type:'post',

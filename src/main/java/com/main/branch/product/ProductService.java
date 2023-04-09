@@ -2,7 +2,10 @@ package com.main.branch.product;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
+import java.util.Set;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.Cookie;
@@ -53,6 +56,32 @@ public class ProductService {
 		return productDAO.getProductMyList(pager);
 	}
 	
+	public List<ProductDTO> getProductResultList(ProductDTO productDTO) throws Exception {
+	    List<ProductDTO> allProducts = productDAO.getProductResultList(productDTO);
+	    List<ProductDTO> relatedProducts = new ArrayList<ProductDTO>();
+	    Set<ProductDTO> indexes = new HashSet<ProductDTO>();
+	    int maxSize = Math.min(allProducts.size(), 4);
+
+	    for (ProductDTO p : allProducts) {
+	        if (p.getProductCategory().equals(productDTO.getProductCategory()) && !p.getProductNum().equals(productDTO.getProductNum())) {
+	            relatedProducts.add(p);
+	        }
+	    }
+
+	    while (indexes.size() < maxSize && relatedProducts.size() > 0) {
+	        Random random = new Random();
+	        int index = random.nextInt(relatedProducts.size());
+	        ProductDTO randomProduct = relatedProducts.get(index);
+
+	        if (!indexes.contains(randomProduct)) {
+	            indexes.add(randomProduct);
+	        }
+	    }
+
+	    return new ArrayList<ProductDTO>(indexes);
+	}
+
+
 	public ProductDTO getProductDetail(ProductDTO productDTO) throws Exception{
 	    ProductDTO productDetail = productDAO.getProductDetail(productDTO);
 	    productDAO.setProductHit(productDTO);

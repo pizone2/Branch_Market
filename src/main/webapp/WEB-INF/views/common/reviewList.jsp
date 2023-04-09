@@ -42,7 +42,11 @@
 													<th scope="row">${reviewDTO.reviewNum}</th>
 													<td>${reviewDTO.memberId}</td>
 													<td>${reviewDTO.reviewContents}</td>
-													<td><button class="btn btn-danger" type="button" id="reviewDelBtn" data-reviewNum="${reviewDTO.reviewNum}">삭제</button></td>
+													<td>
+														<c:if test="${member.memberId eq reviewDTO.memberId || member.memberRole eq 'admin'}">
+															<button class="btn btn-danger" type="button" id="reviewDelBtn" data-reviewNum="${reviewDTO.reviewNum}">삭제</button>
+														</c:if>
+													</td>
 												</tr>
 											</c:forEach>
 									</tbody>

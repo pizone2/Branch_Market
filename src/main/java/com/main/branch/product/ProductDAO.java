@@ -26,6 +26,10 @@ public class ProductDAO {
 		return sqlSession.selectList(NAMESPACE + "getProductList", pager);
 	}
 	
+	public List<ProductDTO> getProductResultList(ProductDTO productDTO) throws Exception{
+		return sqlSession.selectList(NAMESPACE + "getProductResultList", productDTO);
+	}
+	
 	public List<ProductDTO> getProductMyList(Pager pager) throws Exception{
 		return sqlSession.selectList(NAMESPACE + "getProductMyList", pager);
 	}

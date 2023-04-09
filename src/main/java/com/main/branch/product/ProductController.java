@@ -51,6 +51,17 @@ public class ProductController {
 		return mv;
 	}
 	
+	@GetMapping("resultList")
+	public ModelAndView getProductResultList(ProductDTO productDTO) throws Exception{
+	    ModelAndView mv = new ModelAndView();
+	    
+	    List<ProductDTO> ar = productService.getProductResultList(productDTO);
+	    mv.addObject("resultList", ar);
+	    mv.setViewName("product/resultList");
+	    
+	    return mv;
+	}
+	
 	@GetMapping("detail")
 	public ModelAndView getProductDetail(ProductDTO productDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();

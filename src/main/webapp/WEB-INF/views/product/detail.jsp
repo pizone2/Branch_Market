@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+        <%@ page import="com.main.branch.product.ProductDTO" %>
+
             <!DOCTYPE html>
             <html>
 
@@ -119,44 +121,26 @@
                         <div class="row">
                             <div class="col-lg-3 col-md-4 col-sm-6">
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="${dto.productImgName}"></div>
-                                    <div class="product__item__text">
-                                        <h6><a href="./detail?productNum=${dto.productNum}">${dto.productTitle}</a></h6>
-                                        <h5>
-                                            <fmt:formatNumber value="${dto.productPrice}" pattern="#,###" />원
-                                        </h5>
-                                    </div>
+                                    <c:forEach items="${resultList}" var="dto">
+                                        <div class="product__item__pic set-bg" 
+                                            data-setbg="${dto.productImgName}">
+                                        </div>
+                                        <div class="product__item__text">
+                                            <h6><a href="./detail?productNum=${dto.productNum}">${dto.productTitle}</a></h6>
+                                            <h5><fmt:formatNumber value="${dto.productPrice}" pattern="#,###" />원</h5>
+                                        </div>
+                                    </c:forEach>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </section>
                 <!-- Related Product Section End -->
-
                 </div>
 
-
-                <!-- <input type="button" value="리뷰 작성" id="reviewAddBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
-<div id="reviewList"></div> -->
-
-
-                <!-- <script>
-const del = document.getElementById("delete");
-const frm = document.getElementById("frm");
-
-del.addEventListener("click", function(){
-    let check = window.confirm("정말 삭제하시겠습니까?");
-    if(check){
-        frm.setAttribute("action","./delete");
-        frm.setAttribute("method","post");
-        frm.submit();
-    }
-})
-</script> -->
-                <script src="/resources/js/product/productPic.js"></script>
-                <script src="/resources/js/product/detail.js"></script>
-                <c:import url="../template/common_js.jsp"></c:import>
-                <c:import url="../template/footer.jsp"></c:import>
-            </body>
-
-            </html>
+    <script src="/resources/js/product/productPic.js"></script>
+    <script src="/resources/js/product/detail.js"></script>
+    <c:import url="../template/common_js.jsp"></c:import>
+    <c:import url="../template/footer.jsp"></c:import>
+</body>
+</html>
