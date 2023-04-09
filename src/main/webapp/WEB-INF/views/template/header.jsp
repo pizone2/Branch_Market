@@ -66,8 +66,10 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="header__top__left">
-                        <ul>
-                            <li>${not empty member ? member.memberId += '님 환영합니다' : ''}</li>
+                        <ul style="font-weight: bold;">
+                        	<c:if test="${not empty member}">
+                        		<i style='font-size:24px;color: greenyellow;' class='fas'>&#xf56b;</i>${member.memberId}님 환영합니다
+                        	</c:if>
                         </ul>
                     </div>
                 </div>
