@@ -44,8 +44,20 @@
             <div class="row d-flex">
 				
 				<!--최근 공지사항-->
-            	<div class="col-md-6 my-5">
-            		<ul class="list-group">
+            	<div class="col-md-6 my-5 ">
+            	
+            		<div class="card border-light mb-3">
+					  <div class="card-header" style="font-size: 20px;background-color: rgb(203, 233, 209);">공지사항</div>
+					  <div class="card-body">
+						  <c:forEach items="${noticeTopDTOs}" var="dto">
+		                       	 <h5 class="card-title"><a href="/notice/detail?noticeNum=${dto.noticeNum}" class="m-b-0 font-medium p-0" data-abc="true">제목: ${dto.noticeTitle }</a></h5>
+		                         <p class="card-text">${dto.noticeContents}</p>
+		                         <hr>
+	                       </c:forEach>
+					  </div>
+					</div>
+					
+            		<%-- <ul class="list-group">
 					  <li class="list-group-item"><h4 class="pt-4">공지사항</h4></li>
                        <c:forEach items="${noticeTopDTOs}" var="dto">
 	                       	<li class="list-group-item border-top">
@@ -53,7 +65,7 @@
 	                            <div>${dto.noticeContents}</div>
 	                       	</li>
                        </c:forEach>
-					</ul> 
+					</ul>  --%>
             	</div>
 				<!--최근 공지사항 end-->
 
@@ -95,11 +107,14 @@
 		<!-- product -->
 		<section class="hero">
         <div class="container">
-            <div class="row d-flex " style="background-color: #F3F6FA;">
-		 <h1 class="home-main-title text-center home-hot-title my-5 col-lg-12">
-	        위탁판매 인기 게시글
-	    </h1>
-	    </div>
+            <div class="row d-flex ">
+				 <h1 class="home-main-title text-center home-hot-title my-5 col-lg-12" style="font-weight: bold">
+			        위탁판매 인기 게시글
+			    </h1>
+		    </div>
+	    	<div class="row">
+	   			<hr class="border border-success border-2 opacity-50 col-md-2 mx-auto">
+   			</div>
 	    </div>
 	    </section>
 	
@@ -126,13 +141,16 @@
 	<c:if test="${not empty boardSellTopDTOs or not empty boardBuyTopDTOs }">
 		
 		<section class="hero">
-        <div class="container">
-            <div class="row d-flex mt-5" style="background-color: #F3F6FA;">
-			<h1 class="home-main-title text-center home-hot-title my-5 col-lg-12">
-		        중고거래 인기 게시글
-		    </h1>
-	    </div>
-	    </div>
+		       <div class="container">
+		            <div class="row d-flex mt-4">
+						<h1 class="home-main-title text-center home-hot-title my-5 col-lg-12" style="font-weight: bold">
+					        중고거래 인기 게시글
+					    </h1>
+			   		</div>
+			   		<div class="row">
+			   			<hr class="border border-success border-2 opacity-50 col-md-2 mx-auto">
+		   			</div>
+		    	</div>
 	    </section>
 	
 	    <div class="container">
@@ -151,7 +169,7 @@
 	                    <div class="col-lg-12">
 	                        
 	                        <div class="card">
-	                            <div class="card-body text-center">
+	                            <div class="card-body text-center" style="background-color: rgb(203, 233, 209);">
 	                                <h4 class="card-title m-b-0">판매</h4>
 	                            </div>
 	                            <ul class="list-style-none">
@@ -182,7 +200,7 @@
 	                    <div class="col-lg-12">
 	                        
 	                        <div class="card">
-	                            <div class="card-body text-center">
+	                            <div class="card-body text-center" style="background-color: rgb(203, 233, 209);">
 	                                <h4 class="card-title m-b-0">구매</h4>
 	                            </div>
 	                            <ul class="list-style-none">
