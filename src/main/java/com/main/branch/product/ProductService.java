@@ -57,10 +57,16 @@ public class ProductService {
 	}
 	
 	public List<ProductDTO> getProductResultList(ProductDTO productDTO) throws Exception {
-	    List<ProductDTO> allProducts = productDAO.getProductResultList(productDTO);
+		Pager pager = new Pager();
+		pager.makeNum(productDAO.getProductCount(pager));
+		pager.setStartRow(1);
+		pager.setLastRow(productDAO.getProductCount(pager));
+		
+	    List<ProductDTO> allProducts = productDAO.getProductList(pager);
 	    List<ProductDTO> relatedProducts = new ArrayList<ProductDTO>();
+	    
 	    Set<ProductDTO> indexes = new HashSet<ProductDTO>();
-	    int maxSize = Math.min(allProducts.size(), 4);
+	    int maxSize = Math.min(allProducts.size() - 1, 4);
 
 	    for (ProductDTO p : allProducts) {
 	        if (p.getProductCategory().equals(productDTO.getProductCategory()) && !p.getProductNum().equals(productDTO.getProductNum())) {
@@ -68,17 +74,16 @@ public class ProductService {
 	        }
 	    }
 
-	    while (indexes.size() < maxSize && relatedProducts.size() > 0) {
+	    while (indexes.size() < maxSize) {
 	        Random random = new Random();
 	        int index = random.nextInt(relatedProducts.size());
 	        ProductDTO randomProduct = relatedProducts.get(index);
 
-	        if (!indexes.contains(randomProduct)) {
-	            indexes.add(randomProduct);
-	        }
+            indexes.add(randomProduct);
 	    }
-
-	    return productDAO.getProductResultList(productDTO);
+	    
+	   
+	    return new ArrayList<ProductDTO>(indexes);
 	}
 	
 	public ProductDTO getProductDetail(ProductDTO productDTO) throws Exception{

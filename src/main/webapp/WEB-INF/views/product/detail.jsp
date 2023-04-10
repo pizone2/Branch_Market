@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
         <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-        <%@ page import="com.main.branch.product.ProductDTO" %>
+        <%@ page import="com.main.branch.product.*" %>
 
             <!DOCTYPE html>
             <html>
@@ -84,8 +84,6 @@
                                         </div>
                                     </div>
                                 </section>
-
-                                
                             </div>
                             <div id="reviewList"></div>
                    
@@ -121,19 +119,21 @@
                         <div class="row">
                             <div class="col-lg-3 col-md-4 col-sm-6">
                                 <div class="product__item">
-                                    <c:forEach items="${resultList}" var="dto">
-                                        <div class="product__item__pic set-bg" 
-                                            data-setbg="${dto.productImgName}">
-                                        </div>
-                                        <div class="product__item__text">
-                                            <h6><a href="./detail?productNum=${dto.productNum}">${dto.productTitle}</a></h6>
-                                            <h5><fmt:formatNumber value="${dto.productPrice}" pattern="#,###" />원</h5>
-                                        </div>
-                                    </c:forEach>
+                                    <div class="product__list d-flex justify-content-between">
+                                        <c:forEach items="${resultList}" var="dto">
+                                            <div class="product__list__item mx-auto">
+                                                <div class="product__item__pic set-bg" data-setbg="${dto.productImgName}"></div>
+                                                <div class="product__item__text">
+                                                    <h6><a href="./detail?productNum=${dto.productNum}">${dto.productTitle}</a></h6>
+                                                    <h5><fmt:formatNumber value="${dto.productPrice}" pattern="#,###" />원</h5>
+                                                </div>
+                                            </div>
+                                        </c:forEach>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        
                 </section>
                 <!-- Related Product Section End -->
                 </div>
