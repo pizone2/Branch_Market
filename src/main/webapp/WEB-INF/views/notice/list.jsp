@@ -114,7 +114,7 @@
 								  <button type="submit" class="btn btn-primary" style="width: 100px;">검색</button>
 								</div>
 						  </form>
-						  <c:if test="${not empty member}">
+						  <c:if test="${not empty member and member.memberRole eq 'admin'}">
 							  <button class="add-btn btn btn-primary mt-2"><a href="./add">공지사항 올리기</a></button>
 						  </c:if>
                         </div>
