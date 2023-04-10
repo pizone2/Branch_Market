@@ -66,7 +66,6 @@ public class ProductService {
 	    List<ProductDTO> relatedProducts = new ArrayList<ProductDTO>();
 	    
 	    Set<ProductDTO> indexes = new HashSet<ProductDTO>();
-	    int maxSize = Math.min(allProducts.size() - 1, 4);
 
 	    for (ProductDTO p : allProducts) {
 	        if (p.getProductCategory().equals(productDTO.getProductCategory()) && !p.getProductNum().equals(productDTO.getProductNum())) {
@@ -74,6 +73,9 @@ public class ProductService {
 	        }
 	    }
 
+	    
+	    int maxSize = Math.min(relatedProducts.size() - 1, 4);
+	    
 	    while (indexes.size() < maxSize) {
 	        Random random = new Random();
 	        int index = random.nextInt(relatedProducts.size());
