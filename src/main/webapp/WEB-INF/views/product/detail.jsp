@@ -44,7 +44,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="product_details col-lg-6 col-md-6 ">
+                                <div class="product_details col-lg-6 col-md-6 my-auto">
                                     <div class="product__details__text">
                                         <h3>${dto.productTitle}</h3>
                                         <div class="product__details__price mb-3 mt-3"
@@ -52,8 +52,10 @@
                                             <fmt:formatNumber value="${dto.productPrice}" pattern="#,###" />원
                                         </div>
                                         <div class="mt-3">
-                                            <p>카테고리 : ${dto.productCategory}
-                                                상품 품질 : ${dto.productQ}</p>
+                                            <div class="row">
+                                                <button readonly class="col-3 detail-state btn btn-secondary">${dto.productCategory}</button>
+                                                <button readonly class="col-3 detail-state btn btn-secondary mx-2">${dto.productQ}</button>
+                                            </div>
                                         </div>
                                         <div class="co1-8">
                                             <a href="../product/picList" id="picAdd" class="btn-icon btn btn-success">구매</a>
