@@ -177,6 +177,7 @@ public class ProductService {
 	}
 	public List<ProductDTO> getProductMySellList(Pager pager) throws Exception{
 		pager.setState("0");
+		pager.setPerPage(5);
 		pager.makeNum(productDAO.getProductCount(pager));
 		pager.makeRow();
 		
