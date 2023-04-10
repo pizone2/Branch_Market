@@ -1,9 +1,10 @@
 
 // ------------------------ 네이버 데이터 넣기
 $('#getNaverDataBtn').click(()=>{
-    let searchList = ['여성패션','남성패션','가구/인테리어','생활/주방','가전제품','전자기기(디지털,컴퓨터)','E쿠폰/티켓']
+    let searchList = ['여성패션','남성패션','가구/인테리어','생활/주방','가전제품','전자기기(디지털,컴퓨터)','E쿠폰/티켓'];
     let productQ = ['아주 좋음','좋음','보통','나쁨','매우 나쁨'];
-    
+    let boardState = ['판매','구매'];
+
     for(let search of searchList){
         $.ajax({
             type:"GET",
@@ -29,6 +30,27 @@ $('#getNaverDataBtn').click(()=>{
                             },
                             success:(response)=>{
                                 console.log(response);
+                            }
+                        })
+                    }
+                })
+                $(response.items).each((index,item)=>{
+                    item.title = item.title.replace(/<[^>]*>?/g, '');
+                    if(item.title.length <= 40){
+                        $.ajax({
+                            async:false,
+                            url:"/board/add",
+                            type:'post',
+                            data:{
+                                'memberId':'admin',
+                                'boardTitle':item.title,
+                                'boardPrice':item.lprice,
+                                'boardContents':item.title + " 상품 입니다 많은 구매 바랍니다",
+                                'boardState':boardState[Math.floor(Math.random() * boardState.length)],
+                                'boardCategory':search
+                            },
+                            success:(response)=>{
+                                console.log(1);
                             }
                         })
                     }

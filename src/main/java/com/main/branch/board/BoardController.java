@@ -65,7 +65,6 @@ public class BoardController {
 	
 	@PostMapping("add")
 	public ModelAndView setBoardAdd(BoardDTO boardDTO, MultipartFile [] multipartFiles, HttpSession session) throws Exception{
-		System.out.println(multipartFiles.length);
 		ModelAndView mv = new ModelAndView();
 		int result = boardService.SetBoardAdd(boardDTO, multipartFiles, session);
 		String message = "등록 실패";
