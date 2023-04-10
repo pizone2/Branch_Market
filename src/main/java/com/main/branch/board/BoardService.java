@@ -35,20 +35,40 @@ public class BoardService {
 		return boardDAO.getBoardList(pager);
 	}
 	
+	
+	public List<BoardDTO> getBoardResultList(BoardDTO boardDTO) throws Exception {
+		Pager pager = new Pager();
+		pager.makeNum(boardDAO.getTotalCount(pager));
+		pager.setStartRow(1);
+		pager.setLastRow(boardDAO.getTotalCount(pager));
+		
+	    List<BoardDTO> allBoards = boardDAO.getBoardList(pager);
+	    List<BoardDTO> relatedBoards = new ArrayList<BoardDTO>();
+	    
+	    Set<BoardDTO> indexes = new HashSet<BoardDTO>();
+
+	    for (BoardDTO p : allBoards) {
+	        if (p.getBoardCategory().equals(boardDTO.getBoardCategory()) && !p.getBoardNum().equals(boardDTO.getBoardNum())) {
+	        	p = boardDAO.getBoardDetail(p);
+	            relatedBoards.add(p);
+	            
+	        }
+	    }
+	    int maxSize = Math.min(relatedBoards.size(), 4);
+	   // System.out.println(boardDTO.getBoardCategory()) + " " + relatedBoards.size());
+	    while (indexes.size() < maxSize) {
+	        Random random = new Random();
+	        int index = random.nextInt(relatedBoards.size());
+	        BoardDTO randomBoard = relatedBoards.get(index);
+
+            indexes.add(randomBoard);
+	    }
+	    
+	   
+	    return new ArrayList<BoardDTO>(indexes);
+	}
+	
 	public BoardDTO getBoardDetail(BoardDTO boardDTO) throws Exception{
-		/*
-		 * List<BoardDTO> dtos = boardDAO.getBoardList(pager); Set<BoardDTO> indexs =
-		 * new HashSet<BoardDTO>(); //들어간 data 정리 int maxSize = Math.min(dtos.size(),4);
-		 */
-		/*
-		 * while(indexs.size()<maxSize) { //int index = random(0,dtos.size());//index를
-		 * 랜덤으로 int index = (int)(Math.random()*dtos.size()+1); //if(index == )
-		 * continue; //set을 비교했을때 같으면 continue boardDTO = dtos[index]; //index를 뽑아서 해당
-		 * index의 DTO를 indexs.add(boardDTO); //indexs에 넣음 }
-		 */
-		
-		
-		
 		boardDAO.setBoardHitAdd(boardDTO);
 		return boardDAO.getBoardDetail(boardDTO);
 	}
@@ -57,6 +77,7 @@ public class BoardService {
 		int result = boardDAO.setBoardAdd(boardDTO);
 		String path = session.getServletContext().getRealPath("resources/upload/board");
 		System.out.println(path);
+		if(multipartFiles != null) {
 			for(MultipartFile multipartFile : multipartFiles) {
 				if(multipartFile.isEmpty()) {
 					System.out.println("check");
@@ -73,6 +94,7 @@ public class BoardService {
 		      
 		      result = boardDAO.setBoardImgAdd(boardImgDTO);
 		      }
+		}
 		      return result;
 	}
 

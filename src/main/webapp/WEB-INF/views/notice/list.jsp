@@ -105,17 +105,12 @@
 							<form class="row g-5" action="./list" method="get" id="paginingForm">
 								<input type="hidden" name="page" id="page">
 								<div class="col-auto d-flex justify-content-between">
-								  
-								  <select name="kind" class="form-select" id="kind" aria-label="Default select example">
-									<option value="noticeTitle" ${pager.kind eq 'noticeTitle' ? 'selected' : ''} >제목</option>
-									<option value="noticeContents" ${pager.kind eq 'noticeContents' ? 'selected' : ''}>내용</option>
-								  </select>
-								  <input type="text" class="form-control" name="search" id="search" placeholder="검색어를 입력 하세요." value="${pager.search}">
-								  <button type="submit" class="btn btn-primary" style="width: 100px;">검색</button>
+								  <input type="text" class="form-control" name="search" id="search" placeholder="제목을 입력 하세요." value="${pager.search}">
+								  <button type="submit" class="btn btn-success text-white" style="width: 100px;">검색</button>
 								</div>
 						  </form>
-						  <c:if test="${not empty member}">
-							  <button class="add-btn btn btn-primary mt-2"><a href="./add">공지사항 올리기</a></button>
+						  <c:if test="${not empty member and member.memberRole eq 'admin'}">
+							  <button class="btn btn-success mt-2 text-white"><a href="./add">공지사항 올리기</a></button>
 						  </c:if>
                         </div>
                     </div>

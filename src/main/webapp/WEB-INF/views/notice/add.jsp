@@ -54,7 +54,7 @@
                                 <input type="text" placeholder="제목" class="checkout__input__add" name="noticeTitle">                                
                             </div>  
                             <div class="container">
-                                <textarea name="noticeContents" id="noticeContents" cols="30" rows="10"></textarea>    
+                                <textarea name="noticeContents" id="noticeContents" cols="30px" rows="50px"></textarea>    
                             </div>
 
                             <h3>&nbsp;</h3>
@@ -74,7 +74,9 @@
     <c:import url="../template/footer.jsp"></c:import>
     <c:import url="../template/common_js.jsp"></c:import>
     <script>
-    	$('#noticeContents').summernote();
+    	$('#noticeContents').summernote({
+    		height: 300
+    	});
     </script>
 </body>
 </html>
