@@ -45,12 +45,8 @@
                             <input type="text" name="memberId" id="memberId" readonly="readonly" value="${memberDTO.memberId}" class="checkout__input__add">                                
                         </div>
                         <div class="checkout__input">
-                            <!-- <p>PW<span>*</span></p> -->
-                            <input type="password" name="memberPw" id="memberPw" placeholder="PW" class="checkout__input__add">                                
-                        </div>                                                                                                                                              
-                        <div class="checkout__input">
                             <!-- <p>EMAIL<span>*</span></p> -->
-                            <input  type="email" name="memberEmail" id="memberEmail" value="${memberDTO.memberEmail}" class="checkout__input__add">                                
+                            <input  type="email" name="memberEmail" id="memberEmail" value="${memberDTO.memberEmail}" placeholder="asd" class="checkout__input__add">                                
                         </div>                                                   
                         <div class="checkout__input">
                             <!-- <p>PHONE<span>*</span></p> -->
@@ -59,8 +55,12 @@
                         <div class="checkout__input">
                             <!-- <p>ADDRESS<span>*</span></p> -->
                             <input type="text" name="memberAddress" id="memberAddress" value="${memberDTO.memberAddress}" class="checkout__input__add">
-                            <button type="submit" class="site-btn">수정하기</button>                                                     
                         </div>                                                                            
+                        <div class="checkout__input">
+                            <!-- <p>PW<span>*</span></p> -->
+                            <input type="password" name="memberPw" id="memberPw" placeholder="PW" class="checkout__input__add">                                
+                            <button type="submit" class="site-btn mt-5">수정하기</button>                                                     
+                        </div>                                                                                                                                              
                     </div>
                 </div>                    
             </form>
