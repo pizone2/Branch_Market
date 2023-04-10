@@ -54,7 +54,7 @@
                         <!--boardTitle-->
                         <h3>${dto.boardTitle}</h3>
                         <!--boardPrice-->
-                        <div class="product__details__price">${dto.boardPrice}원</div>
+                        <div class="product__details__price"><fmt:formatNumber value="${dto.boardPrice}" pattern="#,###" />원</div>
                         <!--boardContents-->
                         <p>${dto.boardContents}</p>
                         <div class="co1-8">
@@ -120,7 +120,7 @@
     </section>
     <div class="list">
         <!--권한을 가지고 있는 사람만 보임 -->
-        <c:if test="${member.memberId eq dto.memberId}">
+        <c:if test="${member.memberId eq dto.memberId} || ${member.memberRole eq 'admin'}">
 	        <a href="./update?boardNum=${dto.boardNum}" type="button" class="form-update btn btn-info" id="updatebtn">수정</button>
 	        <a href="./delete?boardNum=${dto.boardNum}" id="del"><button class="form-delete btn btn-danger">삭제</button></a>
         </c:if>
@@ -136,7 +136,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title related__product__title">
-                        <h2>Related Product</h2>
+                        <h2>관련 중고 상품</h2>
                     </div>
                 </div>
             </div>
