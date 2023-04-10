@@ -41,9 +41,9 @@ public class CommentsController {
 	public ModelAndView setCommentsAdd(CommentsDTO commentsDTO,HttpSession session)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		// 나중에 주석해제
-//		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
-//		commentsDTO.setMemberId(memberDTO.getMemberId());
-		commentsDTO.setMemberId("사람");
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		commentsDTO.setMemberId(memberDTO.getMemberId());
+//		commentsDTO.setMemberId("사람");
 		int result = commentsService.setCommentsAdd(commentsDTO, session);
 		
 		mv.addObject("result", result);
