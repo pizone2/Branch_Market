@@ -117,10 +117,10 @@
                             </div>
                         </div>
                         <div class="row">
+                                        <c:forEach items="${resultList}" var="dto">
                             <div class="col-lg-3 col-md-4 col-sm-6">
                                 <div class="product__item">
                                     <div class="product__list d-flex justify-content-between">
-                                        <c:forEach items="${resultList}" var="dto">
                                             <div class="product__list__item mx-auto">
                                                 <div class="product__item__pic set-bg" data-setbg="${dto.productImgName}"></div>
                                                 <div class="product__item__text">
@@ -128,10 +128,10 @@
                                                     <h5><fmt:formatNumber value="${dto.productPrice}" pattern="#,###" />원</h5>
                                                 </div>
                                             </div>
-                                        </c:forEach>
                                     </div>
                                 </div>
                             </div>
+                                        </c:forEach>
                         </div>
                         
                 </section>

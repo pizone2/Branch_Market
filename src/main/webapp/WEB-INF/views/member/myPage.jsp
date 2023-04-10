@@ -101,8 +101,10 @@
     <c:if test="${member.memberId eq memberDTO.memberId}">
 	    <div class="list">
 	        <!--권한을 가지고 있는 사람만 보임 -->
-	        <button class="form-update btn btn-info"><a href="/member/update">정보 수정</a></button>
 	       
+	        <button class="form-update btn btn-info">비밀번호 수정</button>
+	       
+	        <button class="form-update btn btn-info"><a href="/member/update">정보 수정</a></button>
 	        <form action="/member/delete" method="post">
 	            <button class="form-delete btn btn-danger" type="submit">회원 탈퇴</button>
 	        </form> 
