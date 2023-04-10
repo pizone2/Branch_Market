@@ -87,7 +87,7 @@ public class MemberController {
 	}
 	
 	@PostMapping("/member/findId")
-	public ModelAndView getMemberFindId(MemberDTO memberDTO) {
+	public ModelAndView getMemberFindId(MemberDTO memberDTO) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		
 		int result = memberService.getMemberFindId(memberDTO);
