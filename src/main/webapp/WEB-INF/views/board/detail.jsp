@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +15,18 @@
 <body>
 <c:import url="../template/header.jsp"></c:import>
 
+<!-- Banner Section Begin -->
+		 <section class="hero hero-normal">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-12">
+						<hr>
+					</div>
+					
+				</div>
+			</div>
+		</section>
+		<!-- Banner Section End -->
 <!-- Product Details Section Begin -->
 	<section class="product-details spad">
 		<div class="container">
@@ -63,36 +76,38 @@
                         
                         <div class="product__details__pic__slider owl-carousel my-5">
 	                        <c:if test="${not empty dto.boardImgDTOs}">
-		                        <c:forEach begin="0" end="${dto.boardImgDTOs.size()-1}" step="1" var="i">
-									<img data-imgbigurl="../resources/upload/board/${dto.boardImgDTOs[i].fileName}"
-		                                src="../resources/upload/board/${dto.boardImgDTOs[i].fileName}" alt="" >
-		                                <input type="hidden" name="fileNum" value="${dto.boardImgDTOs[i].fileNum}">
-								</c:forEach>
+	                        	<c:if test="${dto.boardImgDTOs.size()>1}">
+			                        <c:forEach begin="0" end="${dto.boardImgDTOs.size()-1}" step="1" var="i">
+			                        	<div class="row">
+											<img data-imgbigurl="../resources/upload/board/${dto.boardImgDTOs[i].fileName}"
+			                                src="../resources/upload/board/${dto.boardImgDTOs[i].fileName}" alt="" >
+			                                <input type="hidden" name="fileNum" value="${dto.boardImgDTOs[i].fileNum}">
+			                        	</div>
+									</c:forEach>
+								</c:if>
+								<c:if test=""></c:if>
 							</c:if>
                         </div>
                     </div>
                 </div>
+                 <section class="related-product mx-auto mt-5">
+                                    <div class="container mt-5">
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="section-title related__product__title mt-5">
+                                                    <h2>상품 상세 내용</h2>
+                                                </div>
+                                                <h4>${dto.boardContents}</h3>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
                 <div class="col-lg-12">
                     <div class="product__details__tab">
                         <div class="tab-content">
                             <div class="tab-pane active" id="tabs-1" role="tabpanel">
                                 <div class="product__details__tab__desc">
-                                    <table class="table">
-                                        <thead class="table-success">
-                                            <tr>
-                                                <th scope="col">번호</th>
-                                                <th scope="col">닉네임</th>
-                                                <th scope="col">내용</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">1</th>
-                                                <td>Mark</td>
-                                                <td>내용1</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    
                                     <!-- 댓글  -->
 									<div id="commentsList"></div>
                                 </div>
@@ -126,43 +141,27 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="../resources/upload/board/${dto.boardImgDTOs[0].fileName}"></div>
+    <c:forEach items="${resultList}" var="list">
+        <div class="col-lg-3 col-md-4 col-sm-6">
+            <div class="product__item">
+                <div class="product__list d-flex justify-content-between">
+                    <div class="product__list__item mx-auto">
+                    	<c:if test="${empty list.boardImgDTOs[0].fileName}">
+							<div class="product__item__pic set-bg" data-setbg="/resources/images/noImg.png"></div>
+						</c:if>
+						<c:if test="${not empty list.boardImgDTOs[0].fileName}">
+							<div class="product__item__pic set-bg" data-setbg="/resources/upload/board/${list.boardImgDTOs[0].fileName}"></div>
+						</c:if>
                         <div class="product__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="../resources/upload/board/${dto.boardImgDTOs[0].fileName}"></div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="../resources/upload/board/${dto.boardImgDTOs[0].fileName}"></div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                    <div class="product__item">
-                        <div class="product__item__pic set-bg" data-setbg="../resources/upload/board/${dto.boardImgDTOs[0].fileName}"></div>
-                        <div class="product__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
+                            <h6><a href="./detail?boardNum=${list.boardNum}">${list.boardTitle}</a></h6>
+                            <h5><fmt:formatNumber value="${list.boardPrice}" pattern="#,###" />원</h5>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </c:forEach>
+</div>              
         </div>
     </section>
 <!-- Related Product Section End -->
