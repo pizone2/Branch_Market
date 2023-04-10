@@ -46,6 +46,9 @@ public class BoardController {
 		}
 		
 		boardDTO = boardService.getBoardDetail(boardDTO);
+		
+		List<BoardDTO> ar = boardService.getBoardResultList(boardDTO);
+	    mv.addObject("resultList", ar);
 
 		mv.addObject("dto", boardDTO);
 		mv.setViewName("board/detail");

@@ -41,6 +41,7 @@
                             <span>카테고리</span>
                         </div>
                         <ul >
+                        	<li><a href="./list?category=" value="">모두보기</a></li>
 							<li><a href="./list?category=여성패션" value="여성패션">여성패션</a></li>
 							<li><a href="./list?category=남성패션" value="남성패션">남성패션</a></li>
 							<li><a href="./list?category=가구/인테리어" value="가구/인테리어">가구/인테리어</a></li>
@@ -95,6 +96,7 @@
 									<td>${dto.memberId}</td>
 									<td>${dto.boardDate}</td>
 									<td>${dto.boardHit}</td>
+									<td>${dto.boardState}</td>
 								</tr>
 							</c:forEach>
 						</tbody>
