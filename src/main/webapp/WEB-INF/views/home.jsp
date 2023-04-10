@@ -44,10 +44,10 @@
             <div class="row d-flex">
 				
 				<!--최근 공지사항-->
-            	<div class="col-md-6 my-5 ">
+            	<%-- <div class="col-md-6 my-5 ">
             	
             		<div class="card border-light mb-3">
-					  <div class="card-header" style="font-size: 20px;background-color: rgb(203, 233, 209);">공지사항</div>
+					  <div class="card-header" style="font-size: 20px;background-color: rgb(203, 233, 209);font-weight: bold;">공지사항</div>
 					  <div class="card-body">
 						  <c:forEach items="${noticeTopDTOs}" var="dto">
 		                       	 <h5 class="card-title"><a href="/notice/detail?noticeNum=${dto.noticeNum}" class="m-b-0 font-medium p-0" data-abc="true">제목: ${dto.noticeTitle }</a></h5>
@@ -56,22 +56,12 @@
 	                       </c:forEach>
 					  </div>
 					</div>
-					
-            		<%-- <ul class="list-group">
-					  <li class="list-group-item"><h4 class="pt-4">공지사항</h4></li>
-                       <c:forEach items="${noticeTopDTOs}" var="dto">
-	                       	<li class="list-group-item border-top">
-	                            <p><a href="/notice/detail?noticeNum=${dto.noticeNum}" class="m-b-0 font-medium p-0" data-abc="true">제목: ${dto.noticeTitle }</a></p>
-	                            <div>${dto.noticeContents}</div>
-	                       	</li>
-                       </c:forEach>
-					</ul>  --%>
-            	</div>
+            	</div> --%>
 				<!--최근 공지사항 end-->
 
 				<!--event slide-->
                 
-				<div class="col-md-6">
+				<div class="col-md-12">
 					<div id="myCarousel" class="carousel slide" data-ride="carousel">
 
 						<ol class="carousel-indicators">
@@ -82,7 +72,7 @@
 
 						<div class="carousel-inner">
 							<c:forEach items="${eventDTOs}" var="dto" varStatus="i">
-							  <div class="item ${i.count eq 1 ? 'active': '' }">
+							  <div class="item ${i.count eq 1 ? 'active': '' }" style="background-color:azure">
 								<img alt="" src="/resources/upload/event/${dto.fileName}">
 							  </div>
 							</c:forEach>
@@ -169,10 +159,10 @@
 	                    <div class="col-lg-12">
 	                        
 	                        <div class="card">
-	                            <div class="card-body text-center" style="background-color: rgb(203, 233, 209);">
-	                                <h4 class="card-title m-b-0">판매</h4>
+	                            <div class="card-body text-center" style="background-image: url('/resources/images/mainTableTitle.png')">
+	                                <h4 class="card-title m-b-0" style="font-weight: bold;">판매</h4>
 	                            </div>
-	                            <ul class="list-style-none">
+	                            <ul class="list-style-none" style="background-image: url('/resources/images/leaves.png');width: 100%">
 	                       		    <c:forEach items="${boardSellTopDTOs}" var="dto">
 		                                <li class="d-flex no-block card-body border-top">
 		                                    <i class="fa fa-gift w-30px m-t-5"></i>
@@ -193,6 +183,7 @@
 	                    </div>
 	                    </div>
 	                </div>
+	                
 	                <div class="col-lg-6"> <!--구매-->
 	                    <div class="row d-flex justify-content-center mt-100 mb-100">
 	                        
@@ -200,10 +191,10 @@
 	                    <div class="col-lg-12">
 	                        
 	                        <div class="card">
-	                            <div class="card-body text-center" style="background-color: rgb(203, 233, 209);">
-	                                <h4 class="card-title m-b-0">구매</h4>
+	                            <div class="card-body text-center" style="background-image: url('/resources/images/mainTableTitle.png')">
+	                                <h4 class="card-title m-b-0" style="font-weight: bold;">구매</h4>
 	                            </div>
-	                            <ul class="list-style-none">
+	                            <ul class="list-style-none" style="background-image: url('/resources/images/leaves.png');width: 100%">
 	                       		    <c:forEach items="${boardBuyTopDTOs}" var="dto">
 		                                <li class="d-flex no-block card-body border-top">
 		                                    <i class="fa fa-gift w-30px m-t-5"></i>
