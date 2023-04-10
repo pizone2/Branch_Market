@@ -13,23 +13,25 @@ $('#getNaverDataBtn').click(()=>{
   
                 $(response.items).each((index,item)=>{
                     item.title = item.title.replace(/<[^>]*>?/g, '');
-                    $.ajax({
-                        async:false,
-                        url:"/product/insertNaverData",
-                        type:'post',
-                        data:{
-                            'memberId':'admin',
-                            'productTitle':item.title,
-                            'productPrice':item.lprice,
-                            'productDetail':item.title + " 상품 입니다 많은 구매 바랍니다",
-                            'productQ':productQ[Math.floor(Math.random() * productQ.length)],
-                            'productCategory':search,
-                            'productImgName':item.image
-                        },
-                        success:(response)=>{
-                            console.log(response);
-                        }
-                    })
+                    if(item.title.length <= 40){
+                        $.ajax({
+                            async:false,
+                            url:"/product/insertNaverData",
+                            type:'post',
+                            data:{
+                                'memberId':'admin',
+                                'productTitle':item.title,
+                                'productPrice':item.lprice,
+                                'productDetail':item.title + " 상품 입니다 많은 구매 바랍니다",
+                                'productQ':productQ[Math.floor(Math.random() * productQ.length)],
+                                'productCategory':search,
+                                'productImgName':item.image
+                            },
+                            success:(response)=>{
+                                console.log(response);
+                            }
+                        })
+                    }
                 })
 
             }
