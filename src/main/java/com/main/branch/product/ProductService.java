@@ -74,7 +74,7 @@ public class ProductService {
 	    }
 
 	    
-	    int maxSize = Math.min(relatedProducts.size() - 1, 4);
+	    int maxSize = Math.min(relatedProducts.size(), 4);
 	    
 	    while (indexes.size() < maxSize) {
 	        Random random = new Random();
