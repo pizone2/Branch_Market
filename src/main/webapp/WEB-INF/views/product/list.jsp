@@ -51,38 +51,25 @@
 								<li><a href="./list?category=가구/인테리어" value="가구/인테리어">가구/인테리어</a></li>
 								<li><a href="./list?category=생활/주방" value="생활/주방">생활/주방</a></li>
 								<li><a href="./list?category=가전제품" value="가전제품">가전제품</a></li>
-								<li><a href="./list?category=전자기기(디지털,컴퓨터)" value="전자기기(디지털,컴퓨터)">전자기기(디지털,컴퓨터)</a></li>
+								<li><a href="./list?category=전자기기" value="전자기기">전자기기</a></li>
 								<li><a href="./list?category=E쿠폰/티켓" value="E쿠폰/티켓">E쿠폰/티켓</a></li>
 								<li><a href="./list?category=기타" value="기타">기타</a></li>
 							</ul>
 						</div>
 						 
 
-						<div class="hero__search my-3 row">
+						<div class="hero__search mt-4">
 							<div class="hero__search_btn">
 								<form class="row g-3" action="./list" method="get" id="searchForm">
-									<input type="hidden" name="page" value="1" id="page" class="input-group mb-3">
-								  <div class="col-auto">
-									<label for="kind" class="visually-hidden"></label>
-									<select class="form-select" name="kind" id="kind" aria-label="Default select example">
-									  <option value="title" ${pager.kind eq 'productTitle' ? 'selected':''} >상품명</option>
-									  <option value="contents" ${pager.kind eq 'productDetail' ? 'selected':''}>상품 내용</option>
-									</select>
-								  </div>
-								  <div class="col-auto">
-									<input type="text" class="form-control" value="${pager.search}" name="search" id="search" placeholder="검색어를 입력하세요">
-									<button type="submit" class="btn btn-success mb-3">검색</button>
-								  </div>
+									<div class="input-group mb-3">
+										<input type="text" class="form-control" value="${pager.search}" name="search" id="search" placeholder="검색어를 입력하세요">
+										<button type="submit" class="btn btn-outline-success">검색</button>
+									</div>
 								</form>
 							</div>
 						</div>
 						<div>
-							<a href="./add"><button class="btn btn-outline-success mb-3">위탁 판매 등록</button></a>
-						
-            				<c:if test="${member.memberRole eq 'admin'}">
-								<a href="./addList"><button class="btn btn-outline-success">위탁 판매 등록 신청</button></a>
-							</c:if>
-							
+							<a href="./add"><button class="state-btn btn">위탁 판매 등록</button></a>
 						</div>
 					</div>
 					</form>

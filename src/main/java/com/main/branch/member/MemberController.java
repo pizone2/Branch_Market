@@ -59,7 +59,7 @@ public class MemberController {
 	
 	// memberId, email 입력받음
 	@PostMapping("/member/findPw")
-	public ModelAndView getMemberFindPw(MemberDTO memberDTO) {
+	public ModelAndView getMemberFindPw(MemberDTO memberDTO) throws Exception {
 		ModelAndView modelAndView = new ModelAndView();
 		String message = "";
 		String url = "/";
