@@ -70,8 +70,8 @@
                                                             data-product-productNum="${dto.productNum}"></i></a>
                                                 </c:if>
                                                 <c:if test="${checkPic eq 1}">
-                                                    <a href="#" class="heart-icon" id="picDelete"><i
-                                                            class="icon-heart fa fa-check" type="submit"></i></a>
+                                                    <a href="#" class="heart-icon" id="picDelete">
+                                                        <i class="icon-heart fa fa-check" type="submit"></i></a>
                                                 </c:if>
                                             </div>
                                         </div>

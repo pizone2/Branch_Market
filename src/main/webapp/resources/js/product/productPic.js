@@ -28,7 +28,7 @@ $('#picIcon').on('click','#picDelete',function(){
             alert('장바구니에서 삭제 완료');
         }
     })
-    $('#picIcon').html('<a href="#" class="heart-icon"><i class="icon-heart fa fa-shopping-cart" type="submit" id="picAdd" data-product-productNum="${dto.productNum}"></i></a>')
+    $('#picIcon').html('<a href="#" class="heart-icon"><i class="icon-heart fa fa-check" type="submit" id="picDelete"></i></a>')
     
 })
 
