@@ -85,22 +85,33 @@
 			<h2>&nbsp</h2>
 				
 				<!-- 검색창 -->
-				<div class = "row">
-			<!-- 		  <form class="row g-3" action="#" method="get" id="paginingForm"> -->
-						  <input type="hidden" name="page" id="page" class="page">
-						  <input type="hidden" name="category" id="category" value="${pager.category}">
-						  <div class="col-auto">
-						    <!-- <label for="kind" class="visually-hidden">Kind</label> -->
-						    <select name="kind" class="form-select" id="kind" aria-label="Default select example">
+				
+				
+				<div class = "row" style="margin-left: 22%;">
+				
+					<div class="fw-bold fs-5 col-12">
+							<select name="kind" class="form-select" id="kind" aria-label="Default select example">
 							  <option value="inquiryTitle" ${pager.kind eq 'inquiryTitle' ? 'selected' : ''} >제목</option>
 							  <option value="inquiryDetail" ${pager.kind eq 'inquiryDetail' ? 'selected' : ''}>내용</option>
 							</select>
+					
+					</div>
+				
+				
+				
+				
+			<!-- 		  <form class="row g-3" action="#" method="get" id="paginingForm"> -->
+						  <input type="hidden" name="page" id="page" class="page">
+						  <input type="hidden" name="category" id="category" value="${pager.category}">
+						  <div class="d-inline-block">
+						    <!-- <label for="kind" class="visually-hidden">Kind</label> -->
+						   
 						  </div>
-						  <div class="col-auto">
+						  <div class="d-inline-block">
 						    <!-- <label for="search" class="visually-hidden">Search</label> -->
-						    <input type="text" class="form-control" name="search" id="search" placeholder="검색어를 입력 하세요." value="${pager.search}">
+						    <input type="text" class="form-control" name="search" id="search" style="width: 400px; margin-left: 15px" placeholder="검색어를 입력 하세요." value="${pager.search}">
 						  </div>
-						  <div class="col-auto">
+						  <div class="d-inline-block">
 						    <button type="submit" class="btn btn-outline-success inqSearchBtn">검색</button>
 						  </div>
 					<!-- </form> -->
