@@ -62,7 +62,7 @@ $("#filelist").on("click",".dels",function(e){
 
 $("#fileAdd").click(()=>{
     if(count>=max){
-        alert("첨부파일은 최대 "+max+"개까지 업로드 가능합니다.");
+        alert("파일 추가는 최대 "+max+"개까지 업로드 가능합니다.");
         return ;
     }
     else{

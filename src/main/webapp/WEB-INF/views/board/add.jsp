@@ -70,16 +70,20 @@
 	                            </div>
                             </div>
                             <div class="checkout__input">
-                                <input type="text" placeholder="가격" name="boardPrice" id="boardPrice" class="checkout__input__add">                                
+                                <input type="text" placeholder="가격" name="boardPrice" id="boardPrice" class="checkout__input__add"> 
+                                                             
                             </div>                    
                             <div class="container">
                                 <textarea class="summernote" name="boardContents"></textarea>    
                             </div>
+                            
                             <!-- FILE 추가 -->
                             <div id="addFile">       
-						         <button id="fileAdd" type="button" class="btn btn-primary">add</button>
+						         <button id="fileAdd" type="button" class="btn btn-success my-3">파일 추가</button>
+						         
 						         
 					   		</div> 
+					   		<p class="mx-3">이미지 파일은 최대 5개까지 추가 가능합니다</p>
 
                             <div class="d-flex justify-content-center my-5">
                                 <button type="text" class="site-btn mr-4"><a href="./list">취소</a></button>     

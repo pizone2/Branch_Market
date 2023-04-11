@@ -349,6 +349,32 @@ ol {
 	color: deepskyblue
 }
 
+#fileAdd {
+	width: 120px;
+	background-color: forestgreen;
+	color: white;
+}
+#addFile{
+	margin-left: 16px;
+	margin-top: 5px;
+}
+#existFile{
+	margin-left: 16px;
+	margin-top: 5px;
+}
+
+.dels {
+	border-color: forestgreen;
+	background-color: white;
+	color: forestgreen;
+}
+.dels:hover {
+	background-color: forestgreen;
+	color: white;
+}
+
+
+
 /* Preloder */
 
 #preloder {
@@ -485,6 +511,11 @@ header__menu	color: #252525;
 /*header logo*/
 .header__logo {
 	padding: 15px 0 0 30px;
+	
+}
+.header__logo a img{
+	width: 500px;
+	height: 100px;
 }
 
 .header__logo a {
@@ -816,6 +847,16 @@ header__menu	color: #252525;
 
 .hero__text p {
 	margin-bottom: 35px;
+}
+
+.detail-state{
+	background-color: white;
+	color: forestgreen;
+	width: 50px;
+	height: 30px;
+	text-align: center;
+	border-radius: 3px;
+	border: 1px solid forestgreen;
 }
 
 /*page CSS*/
