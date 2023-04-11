@@ -87,7 +87,7 @@ function requestPay() {
 
   IMP.request_pay({
       // pg : 'kcp.T0000',
-      pg : 'kakaopay',
+      pg : 'kcp.T0000',
       pay_method : 'card',
 
       merchant_uid: merchant_uid,

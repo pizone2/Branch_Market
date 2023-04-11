@@ -26,10 +26,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    
-    <div class="row col-md-7 mx-auto">
+            <div class="row col-lg-12 mx-auto my-3">
 		<table class="table table-hover">
 				<thead class = "table-success">
 					<tr>
@@ -53,6 +50,10 @@
 				</tbody>
 			</table>
 	</div>
+        </div>
+    </section>
+    
+    
     
     <c:import url="../template/footer.jsp"></c:import>
  	<c:import url="../template/common_js.jsp"></c:import>
