@@ -62,7 +62,7 @@
                         <table class="boardTable table table-hover">
                             <thead class="table-success">
                                 <tr>
-                                    <th>Num</th> <th>Title</th> <th>Writer</th> <th>Category</th>
+                                    <th>문의번호</th> <th>제목</th> <th>작성자</th> <th>카테고리</th>
                                 </tr>
                             </thead>
                             <tbody>	

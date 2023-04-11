@@ -47,7 +47,7 @@
                     <table class="boardTable table table-hover">
                         <thead class="table-success">
                             <tr>
-                                <th>Num</th> <th>Title</th><th>writer</th><th>Date</th> <th>Hit</th>
+                                <th>상품번호</th> <th>제목</th><th>작성자</th><th>작성일</th> <th>조회수</th>
                             </tr>
                         </thead>
                         <tbody>

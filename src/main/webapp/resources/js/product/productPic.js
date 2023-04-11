@@ -39,14 +39,14 @@ picBuy.addEventListener('click', function() {
     fetch("../product/picAdd", {
     method: 'POST',
     headers: {"Content-type" : "application/x-www-form-urlencoded"},
-    body: "productNum=" + productNum
+    body: "productNum=" + productNum,
+    async:false
     })
     .then((response) => response.text())
     .then((res) => {
     console.log(res.trim());
     if (res.trim() == 1) {
-        alert('장바구니에 추가 완료!');
-        window.location.href = "../product/picList"; // redirect to cart page
+         window.location.href = "../product/picList"; // redirect to cart page
     }
     })
 });

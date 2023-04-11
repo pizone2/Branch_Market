@@ -5,7 +5,7 @@
 <table class="boardTable table table-hover">
     <thead class="table-success">
         <tr>
-            <th>Num</th> <th>Image</th> <th>Title</th> <th>Quality</th> <th>Category</th> <th>Hit</th>  
+            <th>상품번호</th> <th>썸네일</th> <th>제목</th> <th>품질</th> <th>카테고리</th> <th>조회수</th>  
         </tr>
     </thead>
     <tbody>
