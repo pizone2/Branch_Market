@@ -39,7 +39,7 @@
                                 <div class="col-lg-6 col-md-6">
                                     <div class="product__details__pic">
                                         <div class="product__details__pic__item">
-                                            <img class="product__details__pic__item--large" src="${dto.productImgName}"
+                                            <img class="product__details__pic__item--large mx-auto" src="${dto.productImgName}"
                                                 alt="">
                                         </div>
                                     </div>
@@ -53,8 +53,12 @@
                                         </div>
                                         <div class="mb-3 ">
                                             <div class="row">
-                                                <button readonly class="col-3 detail-state btn btn-secondary">${dto.productCategory}</button>
-                                                <button readonly class="col-3 detail-state btn btn-secondary mx-2">${dto.productQ}</button>
+                                                <div class="col-3 detail-state">
+                                                    <span>${dto.productCategory}</span>
+                                                </div>
+                                                <div class="col-3 detail-state mx-2">
+                                                    <span>${dto.productQ}</span>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="co1-8">
