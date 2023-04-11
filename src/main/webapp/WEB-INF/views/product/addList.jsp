@@ -107,7 +107,7 @@
 				      <option ${pager.category eq '가구/인테리어' ? 'selected':''} value="가구/인테리어">가구/인테리어</option>
 				      <option ${pager.category eq '생활/주방' ? 'selected':''} value="생활/주방">생활/주방</option>
 				      <option ${pager.category eq '가전제품' ? 'selected':''} value="가전제품">가전제품</option>
-				      <option ${pager.category eq '전자기기(디지털,컴퓨터)' ? 'selected':''} value="전자기기(디지털,컴퓨터)">전자기기(디지털,컴퓨터)</option>
+				      <option ${pager.category eq '전자기기' ? 'selected':''} value="전자기기">전자기기</option>
 					  <option ${pager.category eq 'E쿠폰/티켓' ? 'selected':''} value="E쿠폰/티켓">E쿠폰/티켓</option>
 					  <option ${pager.category eq '기타' ? 'selected':''} value="기타">기타</option>
 					</select>

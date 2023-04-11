@@ -31,3 +31,22 @@ $('#picIcon').on('click','#picDelete',function(){
     $('#picIcon').html('<a href="#" class="heart-icon"><i class="icon-heart fa fa-shopping-cart" type="submit" id="picAdd" data-product-productNum="${dto.productNum}"></i></a>')
     
 })
+
+
+const picBuy = document.getElementById("picBuy");
+
+picBuy.addEventListener('click', function() {
+    fetch("../product/picAdd", {
+    method: 'POST',
+    headers: {"Content-type" : "application/x-www-form-urlencoded"},
+    body: "productNum=" + productNum
+    })
+    .then((response) => response.text())
+    .then((res) => {
+    console.log(res.trim());
+    if (res.trim() == 1) {
+        alert('장바구니에 추가 완료!');
+        window.location.href = "../product/picList"; // redirect to cart page
+    }
+    })
+});

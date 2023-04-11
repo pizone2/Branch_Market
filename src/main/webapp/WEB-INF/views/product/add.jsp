@@ -59,7 +59,7 @@
 									  <option value="가구/인테리어">가구/인테리어</option>
 									  <option value="생활/주방">생활/주방</option>
 									  <option value="가전제품">가전제품</option>
-									  <option value="전자기기(디지털,컴퓨터)">전자기기(디지털,컴퓨터)</option>
+									  <option value="전자기기">전자기기</option>
 									  <option value="E쿠폰/티켓">E쿠폰/티켓</option>
 									  <option value="기타">기타</option>
 									</select>

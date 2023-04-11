@@ -62,7 +62,7 @@
                         <div style="text-align : center;">
                             <h2>${memberDTO.memberHit >= 10 ? '<i class="fa fa-star" aria-hidden="true"></i>': ''} 
                             	${memberDTO.memberId} 계정</h2>
-                            <img class=" user-img" src="/resources/images/profileImg.png" alt="">
+                            <img class=" user-img" src="https://cdn-icons-png.flaticon.com/512/5580/5580909.png" alt="">
                             <!--<img class=" best-img" src="img/cherryBlossom.png" alt="">-->
                         </div>
                         <div class="row" id="check_row">                       
@@ -98,16 +98,21 @@
         </div>
     </section>
     
-    <c:if test="${member.memberId eq memberDTO.memberId}">
-	    <div class="list">
-	        <!--권한을 가지고 있는 사람만 보임 -->
-	        <button class="form-update btn btn-info"><a href="/member/update">정보 수정</a></button>
-	       
-	        <form action="/member/delete" method="post">
-	            <button class="form-delete btn btn-danger" type="submit">회원 탈퇴</button>
-	        </form> 
-	    </div>
-    </c:if>
+    
+  <c:if test="${member.memberId eq memberDTO.memberId}">
+    <div class="list">
+        <!-- 권한을 가지고 있는 사람만 보임 -->
+        
+        <a href="/member/updatePw"><button class="form-list btn btn-success">비번 수정</button></a>
+       
+        <a class="form-update btn btn-info" href="/member/update">정보 수정</a>
+       
+        <form action="/member/delete" method="post">
+            <button class="form-delete btn btn-danger" type="submit">회원 탈퇴</button>
+        </form> 
+    </div>
+</c:if>
+
     <!-- Blog Details Section End -->
 
     <script src="/resources/js/member/myPage.js"></script>

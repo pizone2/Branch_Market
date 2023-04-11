@@ -77,6 +77,7 @@ public class BoardService {
 		int result = boardDAO.setBoardAdd(boardDTO);
 		String path = session.getServletContext().getRealPath("resources/upload/board");
 		System.out.println(path);
+		if(multipartFiles != null) {
 			for(MultipartFile multipartFile : multipartFiles) {
 				if(multipartFile.isEmpty()) {
 					System.out.println("check");
@@ -93,6 +94,7 @@ public class BoardService {
 		      
 		      result = boardDAO.setBoardImgAdd(boardImgDTO);
 		      }
+		}
 		      return result;
 	}
 

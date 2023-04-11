@@ -44,9 +44,9 @@ public class CommentsReplyController {
 			ModelAndView mv = new ModelAndView();
 			
 			// 나중에 주석해제
-//			MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
-//			commentsReplyDTO.setMemberId(memberDTO.getMemberId());
-			commentsReplyDTO.setMemberId("사람");
+			MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+			commentsReplyDTO.setMemberId(memberDTO.getMemberId());
+//			commentsReplyDTO.setMemberId("사람");
 			int result = commentsReplyService.setCommentsReplyAdd(commentsReplyDTO, session);
 			
 			mv.addObject("result", result);

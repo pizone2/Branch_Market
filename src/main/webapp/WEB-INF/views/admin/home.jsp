@@ -44,7 +44,7 @@
                                 <li><a href="../event/event/list">이벤트 배너 수정 :)</a></li>
                                 <li><a href="./memberList">회원정보 조회</a></li>
                                 <li><a href="./add">관리자 추가</a></li>
-                                
+                                <li><a id="getNaverDataBtn">테스트 데이터 넣기</a></li>
                             </ul>
                         </div>
                         

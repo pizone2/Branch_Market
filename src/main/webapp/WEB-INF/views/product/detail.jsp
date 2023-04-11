@@ -44,21 +44,21 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="product_details col-lg-6 col-md-6 my-auto">
+                                <div class="product_details col-lg-6 col-md-6">
                                     <div class="product__details__text">
                                         <h3>${dto.productTitle}</h3>
                                         <div class="product__details__price mb-3 mt-3"
                                             style="width: 200px; overflow: hidden; text-overflow: ellipsis;">
                                             <fmt:formatNumber value="${dto.productPrice}" pattern="#,###" />원
                                         </div>
-                                        <div class="mt-3">
+                                        <div class="mb-3 ">
                                             <div class="row">
                                                 <button readonly class="col-3 detail-state btn btn-secondary">${dto.productCategory}</button>
                                                 <button readonly class="col-3 detail-state btn btn-secondary mx-2">${dto.productQ}</button>
                                             </div>
                                         </div>
                                         <div class="co1-8">
-                                            <a href="../product/picList" id="picAdd" class="btn-icon btn btn-success">구매</a>
+                                            <a href="../product/picList" id="picBuy" class="btn-icon btn btn-success">구매</a>
                                             <div id="picIcon">
                                                 <c:if test="${checkPic eq 0}">
                                                     <a href="#" class="heart-icon" id="picAdd"><i
@@ -119,10 +119,12 @@
                             </div>
                         </div>
                         <div class="row">
+
                             <c:forEach items="${resultList}" var="dto">
                                 <div class="col-lg-3 col-md-4 col-sm-6">
                                     <div class="product__item">
                                         <div class="product__list d-flex justify-content-between mr">
+
                                             <div class="product__list__item mx-auto">
                                                 <div class="product__item__pic set-bg" data-setbg="${dto.productImgName}"></div>
                                                 <div class="product__item__text">
@@ -132,10 +134,12 @@
                                                     </h5>
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>
                             </c:forEach>
+
                         </div>
                 </section>
                 <!-- Related Product Section End -->
