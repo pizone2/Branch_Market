@@ -49,4 +49,5 @@ picBuy.addEventListener('click', function() {
          window.location.href = "../product/picList"; // redirect to cart page
     }
     })
+    $('#picIcon').html('<a href="#" class="heart-icon"><i class="icon-heart fa fa-check" type="submit" id="picDelete"></i></a>')
 });
