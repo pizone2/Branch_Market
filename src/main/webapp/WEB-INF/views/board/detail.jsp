@@ -55,8 +55,9 @@
                         <h3>${dto.boardTitle}</h3>
                         <!--boardPrice-->
                         <div class="product__details__price"><fmt:formatNumber value="${dto.boardPrice}" pattern="#,###" />원</div>
-                        <!--boardContents-->
-                        <p><a href="../../member/myPage?memberId=${dto.memberId}">${dto.memberId}</p>
+                        <!--boardID-->
+                        <p><a href="../../member/myPage?memberId=${dto.memberId}" style='color: gray;'><i style='font-size:18px;' class='fas mx-2'>&#xf56b;</i>${dto.memberId}</p>
+                        <!--boardSub-->
                         <div class="co1-8">
                             <a href="#" class="btn-icon btn btn-success" id="chatBtn">채팅</a>
                             <a href="#" class="heart-icon"><i class="icon-heart fa fa-heart"></i></a>
