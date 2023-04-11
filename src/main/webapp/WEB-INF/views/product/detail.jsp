@@ -63,17 +63,19 @@
                                         </div>
                                         <div class="co1-8">
                                             <a href="../product/picList" id="picBuy" class="btn-icon btn btn-success">구매</a>
-                                            <div id="picIcon">
-                                                <c:if test="${checkPic eq 0}">
-                                                    <a href="#" class="heart-icon" id="picAdd"><i
-                                                            class="icon-heart fa fa-shopping-cart" type="submit"
-                                                            data-product-productNum="${dto.productNum}"></i></a>
-                                                </c:if>
-                                                <c:if test="${checkPic eq 1}">
-                                                    <a href="#" class="heart-icon" id="picDelete">
-                                                        <i class="icon-heart fa fa-check" type="submit"></i></a>
-                                                </c:if>
-                                            </div>
+                                            <c:if test="${not empty member}">
+                                                <div id="picIcon">
+                                                    <c:if test="${checkPic eq 0}">
+                                                        <a href="#" class="heart-icon" id="picAdd"><i
+                                                                class="icon-heart fa fa-shopping-cart" type="submit"
+                                                                data-product-productNum="${dto.productNum}"></i></a>
+                                                    </c:if>
+                                                        <c:if test="${checkPic eq 1}">
+                                                            <a href="#" class="heart-icon" id="picDel">
+                                                                <i class="icon-heart fa fa-check" type="submit"></i></a>
+                                                    </c:if>
+                                                </div>
+                                            </c:if>
                                         </div>
                                     </div>
                                 </div>

@@ -71,9 +71,9 @@
                             <button id="searchFormBtn" class="col-3" style="border: 0px;" type="button">주소검색</button>
                         </div>    
                         <div id="addressMsg"></div>
-                        
-                        <button type="submit" id="submit1" class="site-btn">가입</button>                                                     
-                        
+                        <div class="d-flex justify-content-center">
+                        <button type="submit" id="submit1" class="site-btn ml-20px">가입</button>                                                     
+                        </div>
                     </div>
                 </div>                    
             </form>
