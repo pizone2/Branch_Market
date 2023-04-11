@@ -95,7 +95,7 @@
 		<!-- </div> -->
 			
 			<!-- 검색창 -->
-			<div class="row">
+			<div class = "row" style="margin-left: 22%;">
 				<!-- <form class="row g-3" action="#" method="get" id="searchForm"> -->
 				<input type="hidden" id="page" name="page" class="page">
 				<div class="fw-bold fs-5 col-12">
@@ -111,21 +111,22 @@
 					  <option ${pager.category eq 'E쿠폰/티켓' ? 'selected':''} value="E쿠폰/티켓">E쿠폰/티켓</option>
 					  <option ${pager.category eq '기타' ? 'selected':''} value="기타">기타</option>
 					</select>
-	         </div>
-	         
-	         <div class="col-auto">
-				    <!-- <label for="kind" class="visually-hidden">Kind</label> -->
-				    <select class="form-select" name="kind" id="kind" aria-label="Default select example">
+					<select class="form-select" name="kind" id="kind" aria-label="Default select example">
 						<option ${pager.kind eq 'title' ? 'selected' : '' } value="title">상품명</option>
 						<option ${pager.kind eq 'contents' ? 'selected' : '' } value="contents">상품내용</option>
 					  </select>
+	         </div>
+	         
+	       	 <div class="d-inline-block">
+				    <!-- <label for="kind" class="visually-hidden">Kind</label> -->
+				    
 				  </div>
-				  <div class="col-auto">
+				  <div class="d-inline-block">
 				    <!-- <label for="search" class="visually-hidden">Search</label> -->
-				    <input type="text" class="form-control" value="${pager.search}" name="search" id="search" placeholder="검색어를 입력하세요">
+				    <input type="text" class="form-control" value="${pager.search}" name="search" id="search"  style="width: 400px; margin-left: 15px" placeholder="검색어를 입력하세요">
 				  </div>
 				  
-				  <div class="col-auto">
+				   <div class="d-inline-block">
 				    <button type="submit" class="btn btn-outline-success productSearchBtn">검색</button>
 				  </div>
 				</form>
