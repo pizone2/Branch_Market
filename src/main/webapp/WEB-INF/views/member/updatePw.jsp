@@ -55,7 +55,7 @@
                             <!-- <p>ADDRESS<span>*</span></p> -->
                             <input  type="password" name="checkMemberPw" id="checkMemberPw" placeholder="변경 할 비밀번호를 확인." class="checkout__input__add">
                             <div id = "checkMemberPwMsg"></div>
-                            <button type="submit" class="site-btn" id="btn">변경하기</button>                                                     
+                            <button type="submit" class="site-btn mt-5" id="btn">변경하기</button>                                                     
                         </div>                                                                            
                     </div>
                 </div>                    
