@@ -76,8 +76,6 @@
 					<div class="col-lg-9">
 						<div class="row">
 								<c:forEach items="${list}" var="dto"> <!-- dto는 page 영역에 담김 -->
-									<c:if test="${dto.state eq 0}">
-										<c:if test="${dto.productQ ne null}">
 
 										<div class="col-lg-4 col-md-6 col-sm-6">
 											<div class="product__item">
@@ -92,8 +90,6 @@
 											</div>
 										</div>
 										
-										</c:if>
-									</c:if>
 								</c:forEach>
 						</div>
 						<div class="mx-auto">
