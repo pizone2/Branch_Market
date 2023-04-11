@@ -7,7 +7,7 @@
              <div class="chat_user_avatar">
                  <a href="#" target="_blank">
                      <img alt="Gurdeep Osahan (Web Designer)" title="Gurdeep Osahan (Web Designer)"
-                         src="https://bootdey.com/img/Content/avatar/avatar1.png" class="md-user-image">
+                         src="https://cdn-icons-png.flaticon.com/512/5580/5580909.png" class="md-user-image">
                  </a>
              </div>
              <ul class="chat_message">
@@ -25,7 +25,7 @@
              <div class="chat_user_avatar">
                  <a href="#" target="_blank">
                      <img alt="Gurdeep Osahan (Web Designer)" title="Gurdeep Osahan (Web Designer)"
-                         src="https://bootdey.com/img/Content/avatar/avatar1.png" class="md-user-image">
+                         src="https://cdn-icons-png.flaticon.com/512/5580/5580909.png" class="md-user-image">
                  </a>
              </div>
              <ul class="chat_message">
