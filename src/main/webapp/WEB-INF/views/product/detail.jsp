@@ -53,10 +53,10 @@
                                         </div>
                                         <div class="mb-3 ">
                                             <div class="row">
-                                                <div class="col-4 detail-state">
+                                                <div class="col-3 detail-state">
                                                     <span>${dto.productCategory}</span>
                                                 </div>
-                                                <div class="col-4 detail-state mx-2">
+                                                <div class="col-3 detail-state mx-2">
                                                     <span>${dto.productQ}</span>
                                                 </div>
                                             </div>
