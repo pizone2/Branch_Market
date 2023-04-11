@@ -50,13 +50,11 @@
                                             class="form-control" id="memberId" placeholder="이름 입력"><br>
                                     </div>
                                     <div class="checkout__input">
-                                        <p>제목</p>
                                         <input type="text" placeholder="제목" name="boardTitle" id="boardTitle"
                                             value="${dto.boardTitle}" class="checkout__input__add">
                                     </div>
                                     <div class="row">
                                         <div class="input-state col-6">
-                                            <p>판매 | 구매</p>
                                             <select class="form-select" name="boardState" id="boardState"
                                                 aria-label="Default select example">
                                                 <!-- <option selected>판매</option> -->
@@ -65,11 +63,11 @@
                                             </select>
                                         </div>
                                         <div class="input-category col-6">
-                                            <p>카테고리</p>
                                             <select class="form-select" aria-label="Default select example"
                                                 name="boardCategory" id="boardCategory">
                                                 <option name="boardCategory" id="boardCategory">카테고리를 선택해주세요</option>
-                                                <option for="boardCategory" ${dto.boardCategory eq "여성패션"
+                                                <option for="boardCat
+                                                egory" ${dto.boardCategory eq "여성패션"
                                                     ?'selected':''} value="여성패션">여성패션</option>
                                                 <option for="boardCategory" ${dto.boardCategory eq "남성패션"
                                                     ?'selected':''} value="남성패션">남성패션</option>
@@ -89,16 +87,15 @@
                                         </div>
                                     </div>
                                     <div class="checkout__input">
-                                        <p>가격</p>
+                                    
                                         <input type="text" placeholder="가격" name="boardPrice" id="boardPrice"
                                             value="${dto.boardPrice}" class="checkout__input__add">
                                     </div>
                                     <div class="container">
-                                        <p>상세설명</p>
                                         <textarea class="summernote"
                                             name="boardContents">${dto.boardContents}</textarea>
                                     </div>
-                                    <button id="fileAdd" type="button" class="btn btn-primary">add</button>
+                                    
                                     <div id="existFile">
                                         <c:forEach items="${dto.boardImgDTOs}" var="imgDTO" varStatus="i">
                                             <div class="input-group mb-3 my-3" id="existFile${imgDTO.fileNum}">
@@ -109,7 +106,7 @@
                                         </c:forEach>
                                     </div>
                                     <div id="addFile">
-
+										<button id="fileAdd" type="button" class="btn btn-success my-3">파일 추가</button>
                                     </div>
 
                                 <div class="d-flex justify-content-center my-5">

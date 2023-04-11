@@ -68,7 +68,7 @@
                     <div class="header__top__left">
                         <ul style="font-weight: bold;">
                         	<c:if test="${not empty member}">
-                        		<i style='font-size:24px;color: greenyellow;' class='fas'>&#xf56b;</i>${member.memberId}님 환영합니다
+                        		<i style='font-size:24px;' class='fas mx-2'>&#xf56b;</i>${member.memberId}님 환영합니다
                         	</c:if>
                         </ul>
                     </div>
@@ -85,7 +85,7 @@
                         </div>
                         <div class="header__top__right__auth mx-3">
 	                        <c:if test="${not empty member}">
-	                        	 <a href="/notify/list"><i class="fa fa-bell" aria-hidden="true">Notify</i></a>
+	                        	 <a href="/notify/list"><i class="fa fa-bell" aria-hidden="true"></i>Notify</a>
 	                        </c:if>
 	                        <c:if test="${empty member}">
                             	<a href="/member/addAgree"><i class="fa fa-user"></i>Join</a>
@@ -127,9 +127,9 @@
             		<c:if test="${not empty member}">
 	                    <div class="header__cart" style="padding-left: 0px;">
 	                        <ul>
-	                            <li><a href="/chat/myRoomList"><i class="fa fa-commenting"></i> <span id="totalUnreadMessage"></span></a></li>
-	                            <li><a href="/board/picList"><i class="fa fa-heart"></i> <span id="myBoardPicTotalCount">1</span></a></li>
-	                            <li><a href="/product/picList"><i class="fa fa-shopping-cart"></i> <span id="myProductPicCount">3</span></a></li>
+	                            <li><a href="/chat/myRoomList"><i class="fa fa-commenting"></i> <span id="totalUnreadMessage" class="mx-1"></span></a></li>
+	                            <li><a href="/board/picList"><i class="fa fa-heart"></i> <span id="myBoardPicTotalCount" class="mx-1">1</span></a></li>
+	                            <li><a href="/product/picList"><i class="fa fa-shopping-cart"></i> <span id="myProductPicCount" class="mx-1">3</span></a></li>
 	                        </ul>
 	                    </div>
                     </c:if>

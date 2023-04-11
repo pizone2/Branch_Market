@@ -47,8 +47,8 @@
                 	<div hidden id="datas" data-boardNum = "${dto.boardNum}" data-sendId="${sessionScope.id}" data-receiveId="${dto.memberId}"></div>
                     <div class="product__details__text">
                     	<div class="row">
-                    		<button readonly class="col-3 detail-state btn btn-secondary">${dto.boardCategory}</button>
-                    		<button readonly class="col-3 detail-state btn btn-secondary mx-2">${dto.boardState}</button>
+                    		<div class="col-3 detail-state">${dto.boardCategory}</div>
+                    		<div class="col-3 detail-state mx-2">${dto.boardState}</div>
                     	</div>
                    		
                         <!--boardTitle-->
@@ -56,7 +56,7 @@
                         <!--boardPrice-->
                         <div class="product__details__price"><fmt:formatNumber value="${dto.boardPrice}" pattern="#,###" />원</div>
                         <!--boardContents-->
-                        <p>${dto.boardContents}</p>
+                        <p><a href="../../member/myPage?memberId=${dto.memberId}">${dto.memberId}</p>
                         <div class="co1-8">
                             <a href="#" class="btn-icon btn btn-success" id="chatBtn">채팅</a>
                             <a href="#" class="heart-icon"><i class="icon-heart fa fa-heart"></i></a>
@@ -120,7 +120,7 @@
     </section>
     <div class="list">
         <!--권한을 가지고 있는 사람만 보임 -->
-        <c:if test="${member.memberId eq dto.memberId} || ${member.memberRole eq 'admin'}">
+        <c:if test="${member.memberId eq dto.memberId or member.memberRole eq 'admin'}">
 	        <a href="./update?boardNum=${dto.boardNum}" type="button" class="form-update btn btn-info" id="updatebtn">수정</button>
 	        <a href="./delete?boardNum=${dto.boardNum}" id="del"><button class="form-delete btn btn-danger">삭제</button></a>
         </c:if>
