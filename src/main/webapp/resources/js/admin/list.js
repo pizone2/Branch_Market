@@ -119,6 +119,7 @@ $('#productAddList').on('click','.addConfirmBtn',function(){
 
 // ------------------------ 네이버 데이터 넣기
 $('#getNaverDataBtn').click(()=>{
+	console.log("아무거나")
     let searchList = ['여성패션','남성패션','가구/인테리어','생활/주방','가전제품','전자기기(디지털,컴퓨터)','E쿠폰/티켓'];
     let productQ = ['아주 좋음','좋음','보통','나쁨','매우 나쁨'];
     let boardState = ['판매','구매'];
