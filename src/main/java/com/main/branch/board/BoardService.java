@@ -49,9 +49,7 @@ public class BoardService {
 
 	    for (BoardDTO p : allBoards) {
 	        if (p.getBoardCategory().equals(boardDTO.getBoardCategory()) && !p.getBoardNum().equals(boardDTO.getBoardNum())) {
-	        	p = boardDAO.getBoardDetail(p);
 	            relatedBoards.add(p);
-	            
 	        }
 	    }
 	    int maxSize = Math.min(relatedBoards.size(), 4);
@@ -60,7 +58,8 @@ public class BoardService {
 	        Random random = new Random();
 	        int index = random.nextInt(relatedBoards.size());
 	        BoardDTO randomBoard = relatedBoards.get(index);
-
+	        
+	        randomBoard = boardDAO.getBoardDetail(randomBoard);
             indexes.add(randomBoard);
 	    }
 	    
