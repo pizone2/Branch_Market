@@ -66,7 +66,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="header__top__left">
-                        <ul style="font-weight: bold;">
+                        <ul style="font-weight: 600;">
                         	<c:if test="${not empty member}">
                         		<i style='font-size:24px;' class='fas mx-2'>&#xf56b;</i>${member.memberId}님 환영합니다
                         	</c:if>

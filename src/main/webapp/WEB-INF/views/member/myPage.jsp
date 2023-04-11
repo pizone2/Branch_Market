@@ -86,7 +86,7 @@
                                     <input type="text" placeholder="권한: ${memberDTO.memberRole}" readonly>                                                   
                                 </div>   
                                 <c:if test="${member.memberId ne memberDTO.memberId}">
-                                	<a class="btn btn-success" id="hitUpdateBtn">인기도 올리기</a>  
+                                	<a class="btn btn-success mx-2" id="hitUpdateBtn" style="color: white;">인기도 올리기</a>  
                                 </c:if>                                                                       
                             </div>
                         </div>

@@ -178,7 +178,7 @@
                         href="#">
                         <img class="md-user-image" alt="Gurdeep Osahan (Web Designer)"
                             title="Gurdeep Osahan (Web Designer)"
-                            src="https://bootdey.com/img/Content/avatar/avatar1.png"
+                            src="https://cdn-icons-png.flaticon.com/512/5580/5580909.png"
                             title="Gurdeep Osahan (Web Designer)" alt="Gurdeep Osahan (Web Designer)">
                         <h1>상대방</h1><small><br> <span class="glyphicon glyphicon-briefcase"
                                 aria-hidden="true"></span>Developer</small>

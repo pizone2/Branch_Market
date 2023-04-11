@@ -13,13 +13,29 @@
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
+	<!-- Banner Section Begin -->
+    <section class="hero hero-normal">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <hr>
+                </div>
+                <div class="col-lg-12 text-center">
+                    <div class="background-page">
+                        <div class="banner-text"><h2>채팅</h2></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</section>
+<!-- Banner Section End -->
 
 	<div id="datas"></div>
 	<input type="hidden" id="sender" value="${sessionScope.id}">
 	<!-- 검색창 -->
 	<div class="container">
         <div class="row">
-                <div class="chat_container col-md-8 mx-auto">
+                <div class="chat_container col-md-12 mx-auto">
                     <div class="job-box">
                         <div class="job-box-filter">
                             <div class="row">

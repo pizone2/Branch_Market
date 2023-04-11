@@ -82,8 +82,8 @@
                     <!-- BoardList -->
 					<table class="table table-hover">
 						<thead class="table-success">
-							<tr>
-								<th>Num</th> <th>Title</th> <th>Writer</th> <th>Date</th> <th>Hit</th>  
+							<tr style="font-size: 13px;text-align:center;">
+								<th></th>  <th>제목</th> <th>작성자</th> <th>작성일</th> <th>조회</th>  
 							</tr>
 						</thead>
 						<tbody>
@@ -91,11 +91,11 @@
 								<tr>
 									<td>${dto.boardNum}</td>
 									<td>
-										<a href="./detail?boardNum=${dto.boardNum}">${dto.boardTitle}</a>
+										<a href="./detail?boardNum=${dto.boardNum}" style="color: black;">[${dto.boardState}] ${dto.boardTitle}</a>
 									</td>
-									<td>${dto.memberId}</td>
-									<td>${dto.boardDate}</td>
-									<td>${dto.boardHit}</td>
+									<td style="text-align:center;">${dto.memberId}</td>
+									<td style="text-align:center;">${dto.boardDate}</td>
+									<td style="text-align:center;">${dto.boardHit}</td>
 								</tr>
 							</c:forEach>
 						</tbody>
