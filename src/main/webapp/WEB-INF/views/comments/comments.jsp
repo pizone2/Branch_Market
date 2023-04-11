@@ -62,7 +62,7 @@
 	<input class="w-100 form-control" id="newReplyText"type="text" placeholder="댓글입력...">
 </div>
 <div class="col-3 ">
-	<button type="button" id="replyAddBtn"class="btn btn-success mb-1 write_reply">
+	<button type="button" id="replyAddBtn"class="btn btn-outline-success mb-1 write_reply">
 		등록
 	</button>
 </div>

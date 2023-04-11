@@ -11,7 +11,7 @@
 			
 			<div class="input-group mb-3 input_reply_div">
 				<input type="text" class="form-control" placeholder="댓글을 작성해주세요" aria-label="Recipient's username" id="newReplyText" aria-describedby="button-addon2">
-				<button  class="btn btn-outline-secondary write_reply" type="button" id="replyAddBtn">등록</button>
+				<button  class="btn btn-outline-success write_reply" type="button" id="replyAddBtn">등록</button>
 			</div>
 			
 			<c:forEach items="${list}" var="dto" varStatus="i">
