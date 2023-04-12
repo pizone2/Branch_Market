@@ -116,17 +116,17 @@
 							</div>
 						</div>
                     </div>
-					<form class="row mx-auto d-flex justify-content-end" action="./payList" method="get" id="paginingForm">
+					<form class="row d-flex justify-content-end" action="./payList" method="get" id="paginingForm">
 						<input type="hidden" name="page" id="page">
-						<div class="col-auto">
+						<div class="col-auto" style="padding: 0px">
 						<select name="kind" class="form-select" id="kind" aria-label="Default select example">
 							<option value="productTitle">주문명</option>
 						</select>
 						</div>
-						<div class="col-auto">
+						<div class="col-auto" style="padding: 0px">
 						<input type="text" class="form-control" name="search" id="search" placeholder="검색어를 입력 하세요." value="${pager.search}">
 						</div>
-						<div class="col-auto">
+						<div class="col-auto" style="padding: 0px">
 							<button type="submit" class="btn btn-outline-success">검색</button>
 						</div>
 					</form>

@@ -119,7 +119,7 @@
 						 <form class="row g-3" action="./myList" method="get" id="paginingForm">
 							 <input type="hidden" name="page" id="page">
 							 <!-- <input type="hidden" name="category" id="category" value="${pager.category}"> -->
-							 <select name="category" id="category">
+							 <select name="category" id="category" style="padding: 0px">
 							   <option ${pager.category eq '환불/취소' ? 'selected' : ''} value="환불/취소">환불/취소</option>
 							   <option ${pager.category eq '신고' ? 'selected' : ''} value="신고">신고</option>
 							   <option ${pager.category eq '배송' ? 'selected' : ''} value="배송">배송</option>
@@ -127,18 +127,18 @@
 							   <option ${pager.category eq '' ? 'selected' : ''} value="">모두</option>
 						   </select>
    
-							 <div class="col-auto">
+							 <div class="col-auto" style="padding: 0px">
 							   <!-- <label for="kind" class="visually-hidden">Kind</label> -->
 							   <select name="kind" class="form-select" id="kind" aria-label="Default select example">
 								 <option value="inquiryTitle" ${pager.kind eq 'inquiryTitle' ? 'selected' : ''} >제목</option>
 								 <option value="inquiryDetail" ${pager.kind eq 'inquiryDetail' ? 'selected' : ''}>내용</option>
 							   </select>
 							 </div>
-							 <div class="col-auto">
+							 <div class="col-auto" style="padding: 0px">
 							   <!-- <label for="search" class="visually-hidden">Search</label> -->
 							   <input type="text" class="form-control" name="search" id="search" placeholder="검색어를 입력 하세요." value="${pager.search}">
 							 </div>
-							 <div class="col-auto">
+							 <div class="col-auto" style="padding: 0px">
 							   <button type="submit" class="btn btn-success mb-3">검색</button>
 							 </div>
 					   </form>
