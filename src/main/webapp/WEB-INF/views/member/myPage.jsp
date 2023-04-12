@@ -45,6 +45,7 @@
 	                            <h3>Category</h3>
 	                            <ul>
 	                                <li><a href="/member/myPage">내 계정</a></li>
+	                                <li><a href="/board/myList">내 게시글</a></li>
 	                                <li><a href="/product/myList">내 신청 상품 내역</a></li>
 	                                <li><a href="/pay/payList">내 구매 내역</a></li>
 	                                <li><a href="/inquiry/myList">내 문의 내역</a></li>
