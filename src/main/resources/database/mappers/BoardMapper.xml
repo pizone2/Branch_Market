@@ -132,4 +132,7 @@
  	<select id="getMyBoardPicTotalCount" parameterType="MemberDTO" resultType="Integer">
  		SELECT COUNT(*) FROM BOARDPIC WHERE memberId = #{memberId}
  	</select>
+ 	<select id="getBoardImgList" parameterType="BoardDTO" resultType="BoardImgDTO">
+ 		SELECT * FROM BOARDIMG WHERE BOARDNUM=#{boardNum}
+ 	</select>
  </mapper>

@@ -137,8 +137,10 @@ public class BoardService {
 		
 		if(result>0) {
 			String realPath = session.getServletContext().getRealPath("resources/upload/board");
-			for(BoardImgDTO boardImgDTO : ar) {
-			boolean check = fileManager.fileDelete(realPath, boardImgDTO.getFileName());
+			if(ar != null) {
+				for(BoardImgDTO boardImgDTO : ar) {
+					fileManager.fileDelete(realPath, boardImgDTO.getFileName());
+				}
 			}
 		}
 		
