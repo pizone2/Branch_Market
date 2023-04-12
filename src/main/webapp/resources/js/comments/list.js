@@ -205,6 +205,11 @@ $('#modifyModal').modal({
     backdrop: 'static'
 }).modal("show");
 
+$("#updateModalCloseBtn").off("click").on("click", function(){
+        console.log('닫기')
+        $('#modifyModal').modal('hide');
+    })
+
 $("#contentsConfirm").off("click").on("click", function(){
     console.log("수정")
     fetch('../commentsReply/update', {
@@ -212,7 +217,7 @@ $("#contentsConfirm").off("click").on("click", function(){
         headers:{
             "Content-type":"application/x-www-form-urlencoded"
         },
-        body: "replyNum="+$(this).attr("data-comment-num")+"&replyContents="+$('#reply_text').val()
+        body: "replyNum="+num+"&replyContents="+$('#reply_text').val()
     }).then( (response) => response.text())
     .then( (res) => {
         if(res.trim()>0){
