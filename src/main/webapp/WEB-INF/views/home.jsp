@@ -21,22 +21,7 @@
 <body>
 	<c:import url="./template/header.jsp"></c:import>
        
-	 <!-- Banner Section Begin -->
-	 <section class="hero hero-normal">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <hr>
-                </div>
-                <div class="col-lg-12 text-center"><!--  d-flex justify-content-center -->
-                    <div class="background-page">
-                        <div class="banner-text"><h2>Branch Market</h2></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Banner Section End -->
+	
 
 
 	<section class="hero">
@@ -62,6 +47,7 @@
 				<!--event slide-->
                 
 				<div class="col-md-12">
+				<hr>
 					<div id="myCarousel" class="carousel slide" data-ride="carousel">
 
 						<ol class="carousel-indicators">
