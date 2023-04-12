@@ -45,7 +45,9 @@
 			<mapping path="/*/picList"/>
 			<mapping path="/chat/**"/>
 			<mapping path="/inqComments/**"/>
-			<mapping path="/admin/home"/>
+			<mapping path="/admin/*"/>
+			
+			<exclude-mapping path="/member/add"/>
 			
 			<beans:ref bean="loginCheckInterceptor"/>
 		</interceptor>
@@ -56,7 +58,8 @@
 			<mapping path="/notice/add"/>
 			<mapping path="/notice/update"/>
 			<mapping path="/notice/delete"/>
-			<mapping path="/admin/home"/>
+			<mapping path="/event/event/list"/>
+			<mapping path="/admin/*"/>
 			
 			<beans:ref bean="adminCheckInterceptor"/>
 		</interceptor>

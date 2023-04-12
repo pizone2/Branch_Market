@@ -30,7 +30,6 @@ public class CommentsController {
 	public ModelAndView getCommentsList (Pager pager)throws Exception{
 		ModelAndView mv = new ModelAndView();
 		List<CommentsDTO> ar = commentsService.getCommentsList(pager); // 댓글가져옴
-
 		mv.addObject("list", ar);
 		mv.setViewName("comments/list");
 	
@@ -66,7 +65,6 @@ public class CommentsController {
 	@PostMapping("update")
 	public ModelAndView setCommentsUpdate(CommentsDTO commentsDTO)throws Exception{
 		ModelAndView mv = new ModelAndView();
-		System.out.println("update");
 		int result = commentsService.setCommentsUpdate(commentsDTO);
 		
 		mv.addObject("result", result);

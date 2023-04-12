@@ -73,6 +73,9 @@ public class BoardService {
 	}
 	
 	public int SetBoardAdd(BoardDTO boardDTO, MultipartFile [] multipartFiles, HttpSession session) throws Exception{
+		MemberDTO memberDTO = (MemberDTO) httpSession.getAttribute("member");
+		boardDTO.setMemberId(memberDTO.getMemberId());
+		
 		int result = boardDAO.setBoardAdd(boardDTO);
 		String path = session.getServletContext().getRealPath("resources/upload/board");
 		System.out.println(path);

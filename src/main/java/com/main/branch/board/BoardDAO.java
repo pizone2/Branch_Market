@@ -28,7 +28,6 @@ public class BoardDAO {
 	}
 	
 	public int setBoardAdd(BoardDTO boardDTO) throws Exception{
-		System.out.println(boardDTO.getBoardNum());
 		return sqlSession.insert(NAMESPACE+"setBoardAdd", boardDTO);
 	}
 	

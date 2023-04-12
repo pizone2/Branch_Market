@@ -57,23 +57,26 @@
                         <div class="product__details__price"><fmt:formatNumber value="${dto.boardPrice}" pattern="#,###" />원</div>
                         <!--boardID-->
                         <p><a href="../../member/myPage?memberId=${dto.memberId}" style='color: gray;'><i style='font-size:18px;' class='fas mx-2'>&#xf56b;</i>${dto.memberId}</p>
-                        <!--boardSub-->
-                        <div class="co1-8">
-                            <a href="#" class="btn-icon btn btn-success" id="chatBtn">채팅</a>
-                            <a href="#" class="heart-icon"><i class="icon-heart fa fa-heart"></i></a>
-                            <div id="picIcon">
-                                <c:if test="${checkPic eq 0}">
-                                	<a href="./detail?boardNum=${dto.boardNum}" class="heart-icon" id="picAdd">
-                                		<i class="icon-heart fa fa-heart" type="submit" data-board-boardNum="${dto.boardNum}"></i>
-                                	</a>
-                               	</c:if>
-                                <c:if test="${checkPic eq 1}">
-                                	<a href="./detail?boardNum=${dto.boardNum}" class="heart-icon" id="picDelete">
-                                		<i class="icon-heart fa fa-check" type="submit"></i>
-                                	</a>
-                                </c:if>
-                            </div>
-                        </div>
+                        
+                        <c:if test="${not empty member}">
+	                        <!--boardSub-->
+	                        <div class="co1-8">
+	                            <a href="#" class="btn-icon btn btn-success" id="chatBtn">채팅</a>
+	                            <a href="#" class="heart-icon"><i class="icon-heart fa fa-heart"></i></a>
+	                            <div id="picIcon">
+	                                <c:if test="${checkPic eq 0}">
+	                                	<a href="./detail?boardNum=${dto.boardNum}" class="heart-icon" id="picAdd">
+	                                		<i class="icon-heart fa fa-heart" type="submit" data-board-boardNum="${dto.boardNum}"></i>
+	                                	</a>
+	                               	</c:if>
+	                                <c:if test="${checkPic eq 1}">
+	                                	<a href="./detail?boardNum=${dto.boardNum}" class="heart-icon" id="picDelete">
+	                                		<i class="icon-heart fa fa-check" type="submit"></i>
+	                                	</a>
+	                                </c:if>
+	                            </div>
+	                        </div>
+                        </c:if>
                         
                         <div class="product__details__pic__slider owl-carousel my-5">
 	                        <c:if test="${not empty dto.boardImgDTOs}">

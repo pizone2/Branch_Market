@@ -30,12 +30,12 @@ public class CommentsReplyController {
 		@GetMapping("list")
 		public ModelAndView getCommentsReplyList (CommentsReplyDTO commentsReplyDTO)throws Exception{
 			ModelAndView mv = new ModelAndView();
-			System.out.println("답글리스트");
+			
 			List<CommentsReplyDTO> ar = commentsReplyService.getCommentsReplyList(commentsReplyDTO);
 		
 			mv.addObject("list", ar);
 			mv.setViewName("commentsReply/list");
-			System.out.println("답글리스트2");	
+		
 			return mv;
 		}
 	//Add
