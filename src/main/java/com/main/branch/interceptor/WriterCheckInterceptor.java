@@ -123,8 +123,9 @@ public class WriterCheckInterceptor extends HandlerInterceptorAdapter{
 					return false;
 				}
 			}else if(path.equals("commentsReply")) {
-				int replyNum = Integer.parseInt(request.getParameter("replyNum"));
+				Long replyNum = Long.parseLong(request.getParameter("replyNum"));
 				CommentsReplyDTO commentsReplyDTO = new CommentsReplyDTO();
+				commentsReplyDTO.setReplyNum(replyNum);
 				commentsReplyDTO = commentsReplyDAO.getCommentsDetail(commentsReplyDTO);
 				
 				if(commentsReplyDTO.getMemberId().equals(memberDTO.getMemberId())) {
