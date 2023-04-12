@@ -42,7 +42,9 @@
  	<delete id="setInqCommentsDelete" parameterType="InqCommentsDTO">
  		DELETE INQCOMMENTS WHERE inqCommentsNum = #{inqCommentsNum}
  	</delete>
- 	
+ 	<select id="getInqCommentsDetail" parameterType="InqCommentsDTO" resultType="InqCommentsDTO">
+ 		SELECT * FROM INQCOMMENTS WHERE inqCommentsNum = #{inqCommentsNum}
+ 	</select>
  </mapper>
  
 <!--  private Integer inqCommentsNum;

@@ -25,5 +25,7 @@
 		INSERT INTO COMMENTSREPLY 
 		VALUES (SEQ.NEXTVAL,#{commentsNum},#{memberId},#{replyContents},SYSDATE)	
 	</insert>
-
+	<select id="getCommentsDetail" parameterType="CommentsReplyDTO" resultType="CommentsReplyDTO">
+		SELECT * FROM COMMENTSREPLY WHERE REPLYNUM=#{replyNum}
+	</select>
  </mapper>

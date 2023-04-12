@@ -53,6 +53,9 @@
 		VALUES (SEQ.NEXTVAL,#{boardNum},#{memberId},#{commentsContents},SYSDATE)	
 	</insert>
  
+ 	<select id="getCommentsDetail" parameterType="CommentsDTO" resultType="CommentsDTO">
+ 		SELECT * FROM COMMENTS WHERE COMMENTSNUM=#{commentsNum}
+ 	</select>
  
 
  

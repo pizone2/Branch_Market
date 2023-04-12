@@ -30,4 +30,7 @@ public class InqCommentsDAO {
 	public int setInqCommentsDelete(InqCommentsDTO inqCommentsDTO) {
 		return sqlSession.delete(NAMESPACE + "setInqCommentsDelete", inqCommentsDTO);
 	}
+	public InqCommentsDTO getInqCommentsDetail(InqCommentsDTO inqCommentsDTO) {
+		return sqlSession.selectOne(NAMESPACE + "getInqCommentsDetail", inqCommentsDTO);
+	}
 }

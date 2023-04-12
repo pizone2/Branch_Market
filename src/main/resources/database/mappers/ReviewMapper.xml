@@ -38,6 +38,9 @@
  	<delete id="setReviewDelete" parameterType="ReviewDTO">
  		DELETE REVIEW WHERE REVIEWNUM = #{reviewNum}
  	</delete>
+ 	<select id="getReviewDetail" parameterType="ReviewDTO" resultType="ReviewDTO">
+ 		SELECT * FROM REVIEW WHERE REVIEWNUM = #{reviewNum}
+ 	</select>
  	
  </mapper>
  

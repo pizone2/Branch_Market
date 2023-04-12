@@ -43,6 +43,10 @@ public class CommentsDAO {
 	public int getTotalCount(Pager pager) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"getTotalCount",pager);
 	}
+	
+	public CommentsDTO getCommentsDetail(CommentsDTO commentsDTO) {
+		return sqlSession.selectOne(NAMESPACE + "getCommentsDetail", commentsDTO);
+	}
 
 	
 }

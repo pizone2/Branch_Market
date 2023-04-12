@@ -33,5 +33,42 @@
 	
 	<context:component-scan base-package="com.main.branch" />
 	
+	<interceptors>
+		
+		<interceptor>
+			<mapping path="/*/add"/>
+			<mapping path="/*/update"/>
+			<mapping path="/*/delete"/>
+			<mapping path="/*/myList"/>
+			<mapping path="/pay/*"/>
+			<mapping path="/notify/list"/>
+			<mapping path="/*/picList"/>
+			<mapping path="/chat/**"/>
+			<mapping path="/inqComments/**"/>
+			<mapping path="/admin/home"/>
+			
+			<beans:ref bean="loginCheckInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/product/addConfirm"/>
+			<mapping path="/product/addList"/>
+			<mapping path="/notice/add"/>
+			<mapping path="/notice/update"/>
+			<mapping path="/notice/delete"/>
+			<mapping path="/admin/home"/>
+			
+			<beans:ref bean="adminCheckInterceptor"/>
+		</interceptor>
+		
+		<interceptor>
+			<mapping path="/*/update"/>
+			<mapping path="/*/delete"/>
+			
+			<beans:ref bean="writerCheckInterceptor"/>
+		</interceptor>
+		
+	</interceptors>
+	
 	
 </beans:beans>

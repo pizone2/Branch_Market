@@ -36,6 +36,9 @@ public class CommentsReplyDAO {
 	public int setCommentsReplyAdd(CommentsReplyDTO commentsReplyDTO)throws Exception{
 		return sqlSession.insert(NAMESPACE+"setCommentsReplyAdd", commentsReplyDTO);
 	}
+	public CommentsReplyDTO getCommentsDetail(CommentsReplyDTO commentsReplyDTO) {
+		return sqlSession.selectOne(NAMESPACE + "getCommentsDetail", commentsReplyDTO);
+	}
 	
 	
 	

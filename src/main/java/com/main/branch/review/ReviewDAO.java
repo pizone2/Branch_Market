@@ -30,4 +30,7 @@ public class ReviewDAO {
 	public int setReviewDelete(ReviewDTO reviewDTO) {
 		return sqlSession.delete(NAMESPACE + "setReviewDelete", reviewDTO);
 	}
+	public ReviewDTO getReviewDetail(ReviewDTO reviewDTO) {
+		return sqlSession.selectOne(NAMESPACE + "getReviewDetail", reviewDTO);
+	}
 }
